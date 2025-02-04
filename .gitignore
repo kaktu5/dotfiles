@@ -1,0 +1,12 @@
+*
+!docs/
+!docs/*.md
+!hosts/
+!hosts/**
+!lib/
+!lib/*.nix
+!.editorconfig
+!.gitignore
+!README.md
+!flake.lock
+!flake.nix
