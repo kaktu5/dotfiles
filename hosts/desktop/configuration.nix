@@ -1,7 +1,12 @@
-_: {
+{inputs, ...}: {
+  users.users.kkts.initialPassword = "nix";
   kkts = {
     system.hostname = "desktop";
-    impermanence.root = "/dev/mapper/nix_pool-root";
+    rootfs = {
+      device = "/dev/disk/by-id/nvme-Samsung_SSD_980_500GB_S64DNL0T802589T";
+      root = "/dev/mapper/nix_pool-root";
+      swapSize = 32;
+    };
     hardware = {
       amd = {
         cpu.enable = true;

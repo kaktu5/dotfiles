@@ -8,12 +8,13 @@ in
       kkts = {
         forEachSystem = nixpkgs.lib.genAttrs ["x86_64-linux" "aarch64-linux"];
 
-        modules.collect = pipe ./. [
-          readDir
-          attrNames
-          (filter (file: match file != null && file != "default.nix"))
-          (map (file: toString ./. + "/${file}"))
-        ];
+        modules.collect = path:
+          pipe path [
+            readDir
+            attrNames
+            (filter (file: match file != null && file != "default.nix"))
+            (map (file: path + "/${file}"))
+          ];
       };
     }
   )

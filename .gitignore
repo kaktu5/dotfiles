@@ -7,6 +7,8 @@
 !lib/*.nix
 !modules
 !modules/**
+!resources
+!resources/**
 !.editorconfig
 !.gitignore
 !README.md
