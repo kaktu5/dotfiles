@@ -1,4 +1,4 @@
-{inputs, ...}: {
+_: {
   users.users.kkts.initialPassword = "nix";
   kkts = {
     system.hostname = "desktop";
