@@ -5,19 +5,16 @@
 }: let
   inherit (inputs) nixpkgs nixpkgs-stable;
   inherit (lib) nixosSystem optionalAttrs;
-  inherit (lib.kkts) forEachSystem;
-  mkSystem = path: type:
+  mkSystem = path: type: system:
     nixosSystem {
-      pkgs = forEachSystem (system: (import nixpkgs {inherit system;}));
+      pkgs = import nixpkgs ({inherit system;} // {config.allowUnfree = true;});
       specialArgs =
         {inherit inputs;}
         // optionalAttrs (type == "desktop") {
-          spkgs = forEachSystem (
-            system: (import nixpkgs-stable {inherit system;})
-          );
+          spkgs = import nixpkgs-stable ({inherit system;} // {config.allowUnfree = true;});
         };
       modules = [path ../modules/common (../modules + "/${type}")];
     };
 in {
-  desktop = mkSystem ./desktop "desktop";
+  desktop = mkSystem ./desktop "desktop" "x86_64-linux";
 }
