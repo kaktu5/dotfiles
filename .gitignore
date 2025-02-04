@@ -5,6 +5,8 @@
 !hosts/**
 !lib/
 !lib/*.nix
+!modules
+!modules/**
 !.editorconfig
 !.gitignore
 !README.md

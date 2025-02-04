@@ -16,7 +16,7 @@
             system: (import nixpkgs-stable {inherit system;})
           );
         };
-      modules = [path ../modules/common (../modules + type)];
+      modules = [path ../modules/common (../modules + "/${type}")];
     };
 in {
   desktop = mkSystem ./desktop "desktop";
