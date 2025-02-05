@@ -1,10 +1,3 @@
-/*
-* 1. Enable all installed addons
-* 2. Enable "all hosts" permission for Vimium
-* 3. Unpin all addons from Toolbar
-* 4. Apply theme (resources/firefox/theme.json)
-* 5. Customize toolbar (search, downloads (hide when empty))
-*/
 {
   config,
   inputs,
@@ -12,9 +5,9 @@
   pkgs,
   ...
 }: let
-  inherit (config.kkts.system) username;
+  inherit (builtins) toJSON toString;
   inherit (config.stylix) base16Scheme;
-  inherit (lib) mkForce readFile;
+  inherit (lib) concatStringsSep foldl mapAttrsToList mkForce pipe readFile singleton;
   inherit (pkgs) fetchFromGitHub system;
   arkenfox = readFile ((fetchFromGitHub {
       owner = "arkenfox";
@@ -24,16 +17,36 @@
     })
     + "/user.js");
   firefox-addons = inputs.firefox-addons.packages.${system};
+  fonts = config.fonts.fontconfig.defaultFonts;
+  mkUserPrefs = attrs:
+    pipe attrs [
+      (mapAttrsToList (name: value: ''user_pref("${name}", ${toJSON value});''))
+      (concatStringsSep "\n")
+    ];
+  mkSearchEngine = {
+    alias,
+    template,
+    params,
+  }: {
+    definedAliases = [alias];
+    urls = singleton {
+      inherit template;
+      params = pipe params [
+        (foldl (acc: param: acc // param) {})
+        (mapAttrsToList (name: value: {inherit name value;}))
+      ];
+    };
+    icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+  };
 in {
-  home-manager.users.${username} = {
+  homeManager = {
     home.file.".mozilla/firefox/kkts/search.json.mozlz4".force = mkForce true;
     programs.firefox = {
       enable = true;
-      profiles.${username} = {
+      profiles.kkts = {
         isDefault = true;
         extensions = with firefox-addons; [
           bitwarden
-          canvasblocker
           darkreader
           firefox-color
           skip-redirect
@@ -45,62 +58,20 @@ in {
           default = "DuckDuckGo";
           privateDefault = "DuckDuckGo";
           engines = {
-            "nixpkgs packages" = {
-              urls = [
-                {
-                  template = "https://search.nixos.org/packages";
-                  params = [
-                    {
-                      name = "channel";
-                      value = "unstable";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["@np"];
+            "nixpkgs packages" = mkSearchEngine {
+              alias = "@np";
+              template = "https://search.nixos.org/packages";
+              params = [{channel = "unstable";} {query = "{searchTerms}";}];
             };
-            "nixpkgs options" = {
-              urls = [
-                {
-                  template = "https://search.nixos.org/options";
-                  params = [
-                    {
-                      name = "channel";
-                      value = "unstable";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["@no"];
+            "nixpkgs options" = mkSearchEngine {
+              alias = "@no";
+              template = "https://search.nixos.org/options";
+              params = [{channel = "unstable";} {query = "{searchTerms}";}];
             };
-            "home-manager" = {
-              urls = [
-                {
-                  template = "https://home-manager-options.extranix.com";
-                  params = [
-                    {
-                      name = "release";
-                      value = "master";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["@hm"];
+            "home-manager" = mkSearchEngine {
+              alias = "@hm";
+              template = "https://home-manager-options.extranix.com";
+              params = [{release = "master";} {query = "{searchTerms}";}];
             };
             "DuckDuckGo".metaData.alias = "@dg";
             "Google".metaData.hidden = true;
@@ -108,41 +79,42 @@ in {
             "Wikipedia (en)".metaData.hidden = true;
           };
         };
-        extraConfig =
+        extraConfig = concatStringsSep "\n" [
           arkenfox
-          # js
-          + ''
-            /*
-             * extraConfig
-             */
+          ''/*extraConfig*/''
+          (mkUserPrefs {
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
-            user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+            "font.name.serif.x-western" = toString fonts.serif;
+            "font.name.sans-serif.x-western" = toString fonts.sansSerif;
+            "font.name.monospace.x-western" = toString fonts.monospace;
 
-            user_pref("sidebar.verticalTabs", true);
-            user_pref("sidebar.main.tools", "history");
-            user_pref("sidebar.backupState", "{\"expanded\":false,\"hidden\":false}");
+            "sidebar.verticalTabs" = true;
+            "sidebar.main.tools" = "history";
+            "sidebar.backupState" = ''{"expanded":false,"hidden":false}'';
 
-            user_pref("browser.display.background_color.dark", "#${base16Scheme.base00}");
+            "browser.display.background_color.dark" = "#${base16Scheme.base00}";
 
-            user_pref("browser.toolbars.bookmarks.visibility", "never");
+            "browser.toolbars.bookmarks.visibility" = "never";
 
-            user_pref("browser.tabs.closeWindowWithLastTab", false);
+            "browser.tabs.closeWindowWithLastTab" = false;
 
-            user_pref("extensions.pocket.enabled", false);
+            "extensions.pocket.enabled" = false;
 
-            user_pref("browser.newtabpage.enabled", false);
+            "browser.newtabpage.enabled" = false;
 
-            user_pref("browser.urlbar.trimURLs", false);
-            user_pref("browser.urlbar.trimHttps", false);
+            "browser.urlbar.trimURLs" = false;
+            "browser.urlbar.trimHttps" = false;
 
-            user_pref("pdfjs.forcePageColors", true);
-            user_pref("pdfjs.pageColorsBackground", "#${base16Scheme.base00}");
-            user_pref("pdfjs.pageColorsForeground", "#${base16Scheme.base07}");
+            "pdfjs.forcePageColors" = true;
+            "pdfjs.pageColorsBackground" = "#${base16Scheme.base00}";
+            "pdfjs.pageColorsForeground" = "#${base16Scheme.base07}";
 
-            user_pref("widget.gtk.hide-pointer-while-typing.enabled", false);
+            "widget.gtk.hide-pointer-while-typing.enabled" = false;
 
-            user_pref("ui.key.menuAccessKey", 0);
-          '';
+            "ui.key.menuAccessKey" = 0;
+          })
+        ];
         userChrome =
           # css
           ''

@@ -16,13 +16,18 @@
       enableRenice = true;
     };
   };
-  environment.systemPackages = with pkgs; [
-    adwsteamgtk
-    gamescope
-    heroic
-    lutris
-    mangohud
-    wine64
-    winetricks
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      adwsteamgtk
+      gamescope
+      lutris
+      mangohud
+      protonup
+      wineWowPackages.waylandFull
+      winetricks
+    ];
+    sessionVariables = {
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/$USER/.steam/root/compatibilitytools.d";
+    };
+  };
 }

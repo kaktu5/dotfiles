@@ -5,9 +5,9 @@
   ...
 }: let
   inherit (builtins) toString;
-  inherit (lib.ints) positive;
   inherit (lib.options) mkOption;
   inherit (lib.types) str;
+  inherit (lib.types.ints) positive;
   cfg = config.kkts.rootfs;
 in {
   imports = [inputs.disko.nixosModules.disko];

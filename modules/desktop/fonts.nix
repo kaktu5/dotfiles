@@ -1,11 +1,13 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
-  inherit (config.kkts.system) username;
-  inherit (pkgs.stdenv) mkDerivation;
+  inherit (builtins) toString;
+  inherit (lib) mkForce;
   inherit (pkgs) fetchFromGitHub;
+  inherit (pkgs.stdenv) mkDerivation;
   dmMono = mkDerivation {
     name = "dm-mono";
     src = fetchFromGitHub {
@@ -18,26 +20,28 @@
       install -Dm644 $src/exports/*.ttf -t $out/share/fonts
     '';
   };
+  cfg = config.fonts.fontconfig.defaultFonts;
 in {
-  home-manager.users.${username} = {
-    home.packages = with pkgs; [sarasa-gothic nerd-fonts.symbols-only];
-    stylix.fonts = {
-      serif = config.stylix.fonts.sansSerif;
-      sansSerif = {
-        package = dmMono;
-        name = "DM Mono";
-      };
-      monospace = {
-        package = pkgs.fira-code;
-        name = "Fira Code";
-      };
-      emoji = {
-        package = pkgs.twitter-color-emoji;
-        name = "Twitter Color Emoji";
+  fonts = {
+    packages = with pkgs; [
+      dmMono
+      fira-code
+      nerd-fonts.symbols-only
+      sarasa-gothic
+      twitter-color-emoji
+    ];
+    fontconfig = {
+      enable = true;
+      hinting.enable = false;
+      defaultFonts = {
+        serif = mkForce ["DM Mono"];
+        sansSerif = mkForce cfg.serif;
+        monospace = mkForce ["Fira Code"];
+        emoji = mkForce ["Twitter Color Emoji"];
       };
     };
   };
-  fonts.fontconfig.hinting.enable = false;
+  homeManager.gtk.font.name = mkForce (toString cfg.sansSerif);
   environment.sessionVariables = {
     FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
   };
