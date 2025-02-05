@@ -13,7 +13,7 @@ _: {
         gpu.enable = true;
       };
       bluetooth.enable = true;
-      fstrim = {
+      filesystems = {
         enable = true;
         btrfs.enable = true;
       };

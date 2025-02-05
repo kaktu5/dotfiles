@@ -4,12 +4,10 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.options) mkOption;
-  inherit (lib.types) bool;
+  inherit (lib.options) mkEnableOption;
   cfg = config.kkts.hardware.qemuGuest;
 in {
-  options.kkts.hardware.qemuGuest.enable =
-    mkOption {type = bool;} // {default = false;};
+  options.kkts.hardware.qemuGuest.enable = mkEnableOption "qemu guest support";
   config.boot = mkIf cfg.enable {
     initrd = {
       availableKernelModules = [
