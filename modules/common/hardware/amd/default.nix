@@ -1,6 +1,3 @@
-{
-  imports = [
-    ./cpu.nix
-    ./gpu.nix
-  ];
+{lib, ...}: {
+  imports = lib.kkts.modules.collect ./.;
 }

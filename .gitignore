@@ -14,3 +14,4 @@
 !README.md
 !flake.lock
 !flake.nix
+!shell.nix

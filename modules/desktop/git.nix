@@ -1,7 +1,5 @@
-{config, ...}: let
-  inherit (config.kkts.system) username;
-in {
-  home-manager.users.${username}.programs.git = {
+_: {
+  homeManager.programs.git = {
     enable = true;
     userName = "kaktu5";
     userEmail = "108426150+kaktu5@users.noreply.github.com";

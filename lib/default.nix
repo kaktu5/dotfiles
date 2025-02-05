@@ -1,12 +1,12 @@
 {nixpkgs, ...}: let
   inherit (nixpkgs) lib;
-  inherit (builtins) attrNames filter map match readDir toString;
-  inherit (lib) pipe;
+  inherit (builtins) attrNames filter map match readDir;
+  inherit (lib) genAttrs pipe;
 in
   nixpkgs.lib.extend (
     _: _: {
       kkts = {
-        forEachSystem = nixpkgs.lib.genAttrs ["x86_64-linux" "aarch64-linux"];
+        forEachSystem = genAttrs ["x86_64-linux" "aarch64-linux"];
 
         modules.collect = path:
           pipe path [

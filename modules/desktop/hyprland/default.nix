@@ -1,10 +1,8 @@
 {
-  config,
   inputs,
   pkgs,
   ...
 }: let
-  inherit (config.kkts.system) username;
   inherit
     (inputs.hyprland.packages.${pkgs.system})
     hyprland
