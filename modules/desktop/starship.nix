@@ -1,12 +1,10 @@
-{config, ...}: let
-  inherit (config.kkts.system) username;
-in {
-  home-manager.users.${username}.programs.starship = {
+_: {
+  homeManager.programs.starship = {
     enable = true;
     enableZshIntegration = true;
     settings = {
       add_newline = false;
-      format = "$username@$hostname$directory$git_branch$git_metrics$cmd_duration\n$character";
+      format = "$username@$hostname$directory$nix_shell$git_branch$git_metrics$cmd_duration\n$character";
       directory = {
         format = " [$path](purple)[$read_only](while)";
         read_only = "";
@@ -24,6 +22,7 @@ in {
         disabled = false;
         format = "( +[$added](green))( -[$deleted](red))";
       };
+      nix_shell.format = " [󱄅 shell](blue)";
       cmd_duration.format = " [$duration](white)";
       character = {
         success_symbol = "[󰘧](white)";

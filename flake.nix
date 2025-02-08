@@ -4,7 +4,10 @@
   in {
     nixosConfigurations = import ./hosts {inherit inputs lib;};
     devShells = lib.kkts.forEachSystem (system: {
-      default = import ./shell.nix {pkgs = import inputs.nixpkgs {inherit system;};};
+      default = import ./shell.nix {
+        inherit lib;
+        pkgs = import inputs.nixpkgs {inherit system;};
+      };
     });
     formatter = lib.kkts.forEachSystem (
       system: (import inputs.nixpkgs {inherit system;}).alejandra
