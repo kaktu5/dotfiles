@@ -16,7 +16,6 @@ in {
   };
   home-manager.users.${username}.home.packages = with pkgs; [
     # programs
-    blender-hip
     fragments
     gimp
     handbrake
@@ -27,10 +26,9 @@ in {
     obs-studio
     obsidian
     pwvucontrol
-    reaper
     spotify
 
-    # games
+    # games todo: move to gaming.nix
     arma3-unix-launcher
     osu-lazer-bin
     prismlauncher

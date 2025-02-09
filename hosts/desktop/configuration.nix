@@ -1,4 +1,4 @@
-_: {
+{inputs, ...}: {
   users.users.kkts.initialPassword = "nix";
   kkts = {
     system.hostname = "desktop";
@@ -36,4 +36,12 @@ _: {
       };
     };
   };
+  # todo: make a universal overlay function that overwrites package
+  # with version from nixos-unstable-small
+  nixpkgs.overlays = [
+    (_: prev: {
+      inherit (import inputs.nixpkgs-small {inherit (prev) system;}) python311Packages;
+      inherit (import inputs.nixpkgs-small {inherit (prev) system;}) python312Packages;
+    })
+  ];
 }

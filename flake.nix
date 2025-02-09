@@ -50,13 +50,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix.url = "github:danth/stylix";
-    nvfdots = {
-      url = "github:kaktu5/nvfdots";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    yaf = {
-      url = "github:kaktu5/yaf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nvf-config.url = "github:kaktu5/nvf-config";
   };
 }

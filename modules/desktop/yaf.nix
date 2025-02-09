@@ -8,7 +8,7 @@
   inherit (pkgs) system;
 in {
   home-manager.users.${username} = {
-    home.packages = [inputs.yaf.packages.${system}.yaf];
+    # home.packages = [inputs.yaf.packages.${system}.yaf];
     xdg.configFile."yaf.conf".text = ''
            {c5}/\  {c4}\‾\  /\
            {c5}\ \  {c4}\ \/ /     {c5} {@username}@{@hostname}
