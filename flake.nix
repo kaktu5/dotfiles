@@ -1,15 +1,23 @@
 {
   outputs = inputs: let
-    lib = import ./lib {inherit (inputs) nixpkgs;};
+    lib =
+      inputs.nixpkgs.lib.genAttrs
+      ["x86_64-linux" "aarch64-linux"]
+      (system: (import ./lib {inherit inputs system;}));
   in {
-    nixosConfigurations = import ./hosts {inherit inputs lib;};
+    nixosConfigurations = import ./hosts {
+      inherit inputs;
+      lib = lib.x86_64-linux;
+    };
+    /*
     devShells = lib.kkts.forEachSystem (system: {
       default = import ./shell.nix {
         inherit lib;
         pkgs = import inputs.nixpkgs {inherit system;};
       };
     });
-    formatter = lib.kkts.forEachSystem (
+    */
+    formatter = lib.x86_64-linux.kkts.forEachSystem (
       system: (import inputs.nixpkgs {inherit system;}).alejandra
     );
   };

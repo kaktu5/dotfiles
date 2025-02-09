@@ -1,9 +1,14 @@
-{nixpkgs, ...}: let
-  inherit (nixpkgs) lib;
-  inherit (builtins) attrNames filter map match readDir;
-  inherit (lib) genAttrs pipe;
+{
+  inputs,
+  system,
+}: let
+  inherit (inputs.nixpkgs) lib;
+  pkgs = import inputs.nixpkgs {inherit system;};
+  inherit (builtins) attrNames concatStringsSep filter map match readDir;
+  inherit (lib) extend genAttrs getExe pipe;
+  inherit (pkgs) writeScriptBin;
 in
-  nixpkgs.lib.extend (
+  extend (
     _: _: {
       kkts = {
         forEachSystem = genAttrs ["x86_64-linux" "aarch64-linux"];
@@ -15,6 +20,16 @@ in
             (filter (file: match file != null && file != "default.nix"))
             (map (file: path + "/${file}"))
           ];
+
+        writers.writeNu = filename: {
+          package ? pkgs.nushell,
+          plugins ? [],
+        }: script: (writeScriptBin filename (concatStringsSep "\n" [
+          "#!${getExe package}"
+          (concatStringsSep "\n"
+            (map (plugin: "plugin add ${getExe plugin}") plugins))
+          script
+        ]));
       };
     }
   )

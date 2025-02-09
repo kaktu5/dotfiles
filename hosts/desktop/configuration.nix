@@ -1,4 +1,11 @@
-{inputs, ...}: {
+{
+  inputs,
+  lib,
+  ...
+}: let
+  inherit (lib.kkts.writers) writeNu;
+  inherit (lib.lists) singleton;
+in {
   users.users.kkts.initialPassword = "nix";
   kkts = {
     system.hostname = "desktop";
@@ -36,6 +43,7 @@
       };
     };
   };
+
   # todo: make a universal overlay function that overwrites package
   # with version from nixos-unstable-small
   nixpkgs.overlays = [
@@ -44,4 +52,12 @@
       inherit (import inputs.nixpkgs-small {inherit (prev) system;}) python312Packages;
     })
   ];
+
+  environment.systemPackages = singleton (writeNu "sqrt" {}
+    # nu
+    ''
+      def main [x: int] {
+        2 ** $x
+      }
+    '');
 }

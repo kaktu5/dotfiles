@@ -83,6 +83,7 @@ in {
     ];
     bind = [
       "super, q, exec, ${kitty} tmux"
+      "super shift, q, exec, ${kitty}"
       "super, space, exec, ${rofi} -show drun"
 
       ", print, exec, ${getExe screenshot-window}"
