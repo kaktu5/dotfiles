@@ -13,7 +13,7 @@
 in {
   imports = [inputs.stylix.nixosModules.stylix];
   options.kkts.colors = {
-    bg0 = mkStrOption "000000"; # ----
+    bg0 = mkStrOption inputs.colorscheme.bg0; # ----
     bg1 = mkStrOption "0d0e14"; # ---
     bg2 = mkStrOption "1b1c28"; # --
     bg3 = mkStrOption "292b3d"; # -

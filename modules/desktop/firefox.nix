@@ -43,6 +43,7 @@ in {
     home.file.".mozilla/firefox/kkts/search.json.mozlz4".force = mkForce true;
     programs.firefox = {
       enable = true;
+      # package = pkgs.firefox-devedition; # broken
       profiles.kkts = {
         isDefault = true;
         extensions = with firefox-addons; [

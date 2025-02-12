@@ -123,15 +123,16 @@ in {
       initExtra =
         # sh
         ''
-          zstyle ":completion:*" menu no
-          zstyle ":completion:*" matcher-list "m:{a-z}={A-Za-z}"
-          zstyle ":completion:*" list-colors "''${(s.:.)LS_COLORS}"
-          zstyle ":completion:*:descriptions" format "[%d]"
-          zstyle ":completion:*:git-checkout:*" sort false
-          zstyle ":fzf-tab:*" use-fzf-default-opts yes
-          zstyle ":fzf-tab:complete:cd:*" fzf-preview "lsd -1 --color always $realpath"
+          zstyle ':completion:*' menu no
+          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+          zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
+          zstyle ':completion:*:descriptions' format '[%d]'
+          zstyle ':completion:*:git-checkout:*' sort false
+          zstyle ':fzf-tab:*' use-fzf-default-opts yes
+          zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --color always $realpath'
+
           function lf() {
-            local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+            local tmp="$(mktemp -t 'yazi-cwd.XXXXXX')" cwd
             yazi "$@" --cwd-file="$tmp"
             if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
             builtin cd -- "$cwd"

@@ -8,6 +8,7 @@
   inherit (config.kkts.system) username;
   inherit (pkgs) system;
   inherit (inputs.agenix.packages.${system}) agenix;
+  inherit (inputs.flint.packages.${system}) flint;
   inherit (spkgs) arma3-unix-launcher;
 in {
   nix.settings = {
@@ -55,6 +56,7 @@ in {
     alejandra
     deadnix
     disko
+    flint
     nixd
     nixos-anywhere
     statix

@@ -4,7 +4,7 @@ _: {
     enable = true;
     settings = {
       clock = "%c";
-      vi_default_mode = "insert";
+      vi_default_mode = "insert"; # doesnt work
       vi_mode = true;
     };
   };

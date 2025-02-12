@@ -43,6 +43,8 @@ in {
 
         set -g default-terminal "tmux-256color"
         set -ga terminal-overrides ",tmux-256color:Tc"
+        set -gq allow-passthrough on
+        set -g visual-activity off
 
         set -g base-index 1
         set -g pane-base-index 1

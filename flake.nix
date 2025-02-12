@@ -22,6 +22,10 @@
     );
   };
   inputs = {
+    # nixpkgs
+    # my own stuff
+    # -other
+    # dependencies
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
@@ -44,6 +48,10 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flint = {
+      url = "github:notashelf/flint";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,5 +67,6 @@
     };
     stylix.url = "github:danth/stylix";
     nvf-config.url = "github:kaktu5/nvf-config";
+    colorscheme.url = "github:kaktu5/colorscheme";
   };
 }
