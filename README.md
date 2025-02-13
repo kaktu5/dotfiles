@@ -1,6 +1,5 @@
-<style>h1, p {text-align = "center";}</style>
-<h1>kaktu5/dotfiles</h1>
-<p>a nix flake containing configs for all of my machines</p>
+<h1 align="center">kaktu5/dotfiles</h1>
+<p align="center">a nix flake containing configs for all of my machines</p>
 
 ## directory structure
 
