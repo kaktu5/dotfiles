@@ -1,6 +1,8 @@
 {lib}: let
   inherit (builtins) attrNames filter map match readDir;
-  inherit (lib) extend genAttrs pipe;
+  inherit (lib) extend genAttrs pipe findFirst;
+  inherit (lib.options) mkOption;
+  inherit (lib.types) attrsOf submodule;
 in
   extend (
     _: _: {
@@ -14,6 +16,15 @@ in
             (filter (file: match file != null && file != "default.nix"))
             (map (file: path + "/${file}"))
           ];
+
+        options.mkSubmodule = options: (mkOption {
+          type = attrsOf (submodule {inherit options;} // {default = {};});
+        });
+
+        match = arms: expr: pipe arms [
+          (map (arm: arm.${toString expr} or null))
+          (findFirst (x: x != null) null)
+        ];
 
         /*
         writers.writeNu = filename: {

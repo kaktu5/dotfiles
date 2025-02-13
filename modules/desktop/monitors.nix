@@ -3,50 +3,46 @@
   lib,
   ...
 }: let
-  inherit (config.kkts.hardware.monitors) monitors;
-  inherit (lib) mkOption;
   inherit (lib.attrsets) mapAttrsToList;
+  inherit (lib.kkts) match;
+  inherit (lib.kkts.options) mkSubmodule;
   inherit (lib.modules) mkIf;
-  inherit (lib.types) attrsOf float int str submodule;
+  inherit (lib.options) mkOption;
+  inherit (lib.types) float int str;
   inherit (lib.types.ints) positive;
+  cfg = config.kkts.hardware.monitors;
 in {
   options.kkts.hardware.monitors = {
-    main = mkOption {type = str;};
-    monitors = mkOption {
-      type = attrsOf (submodule {
-        options = {
-          resolution = mkOption {
-            type = submodule {
-              options = {
-                w = mkOption {type = positive;};
-                h = mkOption {type = positive;};
-              };
-            };
-          };
-          refreshRate = mkOption {type = positive;};
-          position = mkOption {
-            type = submodule {
-              options = {
-                x = mkOption {type = int;};
-                y = mkOption {type = int;};
-              };
-            };
-          };
-          scale = mkOption {type = float;};
-        };
-      });
-      default = {};
+    primaryMonitor = mkOption {type = str;};
+    monitors = mkSubmodule {
+      position = {
+        x = mkOption {type = int;};
+        y = mkOption {type = int;};
+      };
+      refreshRate = mkOption {type = positive;};
+      resolution = {
+        w = mkOption {type = positive;};
+        h = mkOption {type = positive;};
+      };
+      rotation = mkOption {type = int;};
+      scale = mkOption {type = float;};
     };
   };
-  config = mkIf (monitors != {}) {
+  config = mkIf (cfg.monitors != {}) {
     boot.kernelParams =
       mapAttrsToList (
         name: monitor: let
           w = toString monitor.resolution.w;
           h = toString monitor.resolution.h;
-          r = toString monitor.refreshRate;
-        in "video=${name}:${w}x${h}@${r}"
+          rr = toString monitor.refreshRate;
+          ro = match [
+            {"0" = "normal";}
+            {"90" = "left_side_up";}
+            {"180" = "upside_down";}
+            {"270" = "right_side_up";}
+          ] (toString monitor.rotation);
+        in "video=${name}:${w}x${h}@${rr}:panel_orientation=${ro}"
       )
-      monitors;
+      cfg.monitors;
   };
 }

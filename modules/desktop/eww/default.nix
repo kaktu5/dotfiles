@@ -11,7 +11,7 @@
   inherit (config.kkts.hardware) monitors;
   inherit (config.kkts.system) username;
   inherit (config.stylix.base16Scheme) base00 base02 base07 base0E;
-  monitor = monitors.monitors.${monitors.main};
+  monitor = monitors.monitors.${monitors.primaryMonitor};
 in {
   imports = [./scripts.nix];
   home-manager.users.${username} = {

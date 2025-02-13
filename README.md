@@ -13,9 +13,7 @@ dotfiles
 │   ├── desktop (imported on all desktops)
 │   ├── server  (imported on all servers)
 │   └── profile (imported in a host's `profile.nix`)
-└── resources
-    ├── neovim  (neovim config submodule)
-    └── secrets (age-encrypted secrets)
+└── secrets     (age-encrypted secrets)
 ```
 
 ## flakes I took inspiration from
