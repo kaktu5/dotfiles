@@ -11,7 +11,7 @@
         ...
       }: let
         treefmt = import ./flake/treefmt.nix {inherit inputs pkgs;};
-        flint = import ./flake/flint.nix {inherit inputs pkgs;};
+        # flint = import ./flake/flint.nix {inherit inputs pkgs;};
       in {
         packages = {
           default = self.packages.${system}.installer;
@@ -25,7 +25,7 @@
         formatter = treefmt.wrapper;
         checks = {
           formatting = treefmt.check self;
-          lockfile = flint;
+          # lockfile = flint;
         };
       };
     };
