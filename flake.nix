@@ -1,10 +1,9 @@
 {
-  outputs = {self, ...} @ inputs:
+  outputs = {self, ...} @ inputs: let
+    lib = import ./lib {inherit (inputs.nixpkgs) lib;};
+  in
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      flake.nixosConfigurations = import ./hosts {
-        inherit inputs;
-        lib = import ./lib {inherit (inputs.nixpkgs) lib;};
-      };
+      flake.nixosConfigurations = import ./hosts {inherit inputs lib;};
       systems = ["x86_64-linux" "aarch64-linux"];
       perSystem = {
         pkgs,
@@ -31,6 +30,15 @@
             touch "$out"
           '';
       in {
+        packages = {
+          default = self.packages.${system}.installer;
+          installer = inputs.nixos-generators.nixosGenerate {
+            format = "install-iso";
+            inherit system;
+            specialArgs.nixpkgs = inputs.nixpkgs-stable;
+            modules = [./flake/installer.nix];
+          };
+        };
         formatter = treefmt.wrapper;
         checks = {
           formatting = treefmt.check self;
@@ -38,6 +46,7 @@
         };
       };
     };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
@@ -102,6 +111,10 @@
     impermanence.url = "github:nix-community/impermanence";
     minimal-tmux-status = {
       url = "github:niksingh710/minimal-tmux-status";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {

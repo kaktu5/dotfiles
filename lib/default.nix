@@ -21,10 +21,11 @@ in
           type = attrsOf (submodule {inherit options;} // {default = {};});
         });
 
-        match = arms: expr: pipe arms [
-          (map (arm: arm.${toString expr} or null))
-          (findFirst (x: x != null) null)
-        ];
+        match = arms: expr:
+          pipe arms [
+            (map (arm: arm.${toString expr} or null))
+            (findFirst (x: x != null) null)
+          ];
 
         /*
         writers.writeNu = filename: {

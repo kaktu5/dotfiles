@@ -4,7 +4,6 @@
   ...
 }: let
   inherit (lib.attrsets) mapAttrsToList;
-  inherit (lib.kkts) match;
   inherit (lib.kkts.options) mkSubmodule;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkOption;
@@ -35,13 +34,8 @@ in {
           w = toString monitor.resolution.w;
           h = toString monitor.resolution.h;
           rr = toString monitor.refreshRate;
-          ro = match [
-            {"0" = "normal";}
-            {"90" = "left_side_up";}
-            {"180" = "upside_down";}
-            {"270" = "right_side_up";}
-          ] (toString monitor.rotation);
-        in "video=${name}:${w}x${h}@${rr}:panel_orientation=${ro}"
+          ro = toString monitor.rotation;
+        in "video=${name}:${w}x${h}@${rr},rotate=${ro}"
       )
       cfg.monitors;
   };

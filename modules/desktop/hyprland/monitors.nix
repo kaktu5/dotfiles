@@ -3,23 +3,29 @@
   lib,
   ...
 }: let
-  inherit (config.kkts.system) username;
   inherit (config.kkts.hardware.monitors) monitors;
   inherit (lib.attrsets) mapAttrsToList;
+  inherit (lib.kkts) match;
 in {
-  home-manager.users.${username} = {
-    wayland.windowManager.hyprland.settings.monitor =
-      mapAttrsToList (
-        name: monitor: let
-          w = toString monitor.resolution.w;
-          h = toString monitor.resolution.h;
-          r = toString monitor.refreshRate;
-          x = toString monitor.position.x;
-          y = toString monitor.position.y;
-          s = toString monitor.scale;
-        in "${name}, ${w}x${h}@${r}, ${x}x${y}, ${s}"
-      )
-      monitors
-      ++ [", preferred, auto, auto"];
-  };
+  homeManager.wayland.windowManager.hyprland.settings.monitor =
+    mapAttrsToList (
+      name: monitor: let
+        x = toString monitor.position.x;
+        y = toString monitor.position.y;
+        rr = toString monitor.refreshRate;
+        w = toString monitor.resolution.w;
+        h = toString monitor.resolution.h;
+        ro =
+          match [
+            {"0" = "0";}
+            {"90" = "1";}
+            {"180" = "2";}
+            {"270" = "3";}
+          ]
+          (toString monitor.rotation);
+        s = toString monitor.scale;
+      in "${name}, ${w}x${h}@${rr}, ${x}x${y}, ${s}, transform, ${ro}"
+    )
+    monitors
+    ++ [", preferred, auto, auto"];
 }

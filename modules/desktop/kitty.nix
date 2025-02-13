@@ -3,10 +3,9 @@
   inherit (config.kkts.system) username;
   font = config.home-manager.users.${username}.stylix.fonts.monospace.name;
 in {
-  home-manager.users.${username} = {
+  homeManager = {
     programs.kitty = {
       enable = true;
-
       extraConfig = with base16Scheme;
       # sh
         ''
