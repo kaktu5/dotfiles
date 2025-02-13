@@ -11,8 +11,11 @@
 !modules/**
 !resources/
 !resources/**
+!secrets/
+!secrets/**
 !.editorconfig
 !.gitignore
+!LICENSE
 !README.md
 !flake.lock
 !flake.nix
