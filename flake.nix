@@ -10,25 +10,8 @@
         system,
         ...
       }: let
-        treefmt =
-          (inputs.treefmt-nix.lib.evalModule pkgs {
-            programs = {
-              alejandra.enable = true;
-              deadnix.enable = true;
-              statix.enable = true;
-            };
-          })
-          .config
-          .build;
-        flint =
-          pkgs.runCommandLocal "lockfile-check" {
-            src = ./.;
-            nativeBuildInputs = [inputs.flint.packages.${system}.default];
-          } ''
-            find "$src" -type f -name 'flake.lock' \
-              | xargs flint --fail-if-multiple-versions --lockfile
-            touch "$out"
-          '';
+        treefmt = import ./flake/treefmt.nix {inherit inputs pkgs;};
+        flint = import ./flake/flint.nix {inherit inputs pkgs;};
       in {
         packages = {
           default = self.packages.${system}.installer;
