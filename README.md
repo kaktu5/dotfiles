@@ -19,6 +19,6 @@ dotfiles
 
 ## flakes I took inspiration from
 
-- [github:notashelf/nyx](https://github.com/notashelf/nyx)
-- [git.poz.pet:poz/niksos](https://git.jacekpoz.pl/poz/niksos)
-- [github:sioodmy/dotfiles](https://github.com/sioodmy/dotfiles)
+[github:notashelf/nyx](https://github.com/notashelf/nyx)<br>
+[git.poz.pet:poz/niksos](https://git.jacekpoz.pl/poz/niksos)<br>
+[github:sioodmy/dotfiles](https://github.com/sioodmy/dotfiles)
