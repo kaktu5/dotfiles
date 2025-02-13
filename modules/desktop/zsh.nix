@@ -129,6 +129,8 @@ in {
           zstyle ':completion:*:descriptions' format '[%d]'
           zstyle ':completion:*:git-checkout:*' sort false
           zstyle ':fzf-tab:*' use-fzf-default-opts yes
+          zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+          zstyle ':fzf-tab:*' popup-pad 30 0
           zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --color always $realpath'
 
           function lf() {

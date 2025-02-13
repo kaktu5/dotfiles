@@ -1,43 +1,73 @@
 {
-  outputs = inputs: let
-    lib =
-      inputs.nixpkgs.lib.genAttrs
-      ["x86_64-linux" "aarch64-linux"]
-      (system: (import ./lib {inherit inputs system;}));
-  in {
-    nixosConfigurations = import ./hosts {
-      inherit inputs;
-      lib = lib.x86_64-linux;
-    };
-    /*
-    devShells = lib.kkts.forEachSystem (system: {
-      default = import ./shell.nix {
-        inherit lib;
-        pkgs = import inputs.nixpkgs {inherit system;};
+  outputs = {self, ...} @ inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      flake.nixosConfigurations = import ./hosts {
+        inherit inputs;
+        lib = import ./lib {inherit (inputs.nixpkgs) lib;};
       };
-    });
-    */
-    formatter = lib.x86_64-linux.kkts.forEachSystem (
-      system: (import inputs.nixpkgs {inherit system;}).alejandra
-    );
-  };
+      systems = ["x86_64-linux" "aarch64-linux"];
+      perSystem = {
+        pkgs,
+        system,
+        ...
+      }: let
+        treefmt =
+          (inputs.treefmt-nix.lib.evalModule pkgs {
+            programs = {
+              alejandra.enable = true;
+              deadnix.enable = true;
+              statix.enable = true;
+            };
+          })
+          .config
+          .build;
+      in {
+        formatter = treefmt.wrapper;
+        checks = {
+          formatting = treefmt.check self;
+          lockfile =
+            pkgs.runCommandLocal "lockfile-check" {
+              src = ./.;
+              nativeBuildInputs = [inputs.flint.packages.${system}.default];
+            } ''
+              find "$src" -type f -name 'flake.lock' \
+                | xargs flint --fail-if-multiple-versions --lockfile
+              touch "$out"
+            '';
+        };
+      };
+    };
   inputs = {
-    # nixpkgs
-    # my own stuff
-    # -other
-    # dependencies
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    # my flakes
+    colorscheme.url = "github:kaktu5/colorscheme";
+    nvf-config = {
+      url = "github:kaktu5/nvf-config";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        flint.follows = "flint";
+        nixpkgs.follows = "nixpkgs";
+        nvf.follows = "nvf";
+        systems.follows = "systems";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
+    # other inputs
     aagl = {
       url = "github:ezkea/aagl-gtk-on-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
       };
     };
     disko = {
@@ -46,8 +76,12 @@
     };
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
+    flake-parts.url = "github:hercules-ci/flake-parts";
     flint = {
       url = "github:notashelf/flint";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,15 +92,51 @@
     };
     hyprland = {
       url = "github:hyprwm/hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        pre-commit-hooks.follows = "git-hooks";
+        systems.follows = "systems";
+      };
     };
     impermanence.url = "github:nix-community/impermanence";
     minimal-tmux-status = {
       url = "github:niksingh710/minimal-tmux-status";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix";
-    nvf-config.url = "github:kaktu5/nvf-config";
-    colorscheme.url = "github:kaktu5/colorscheme";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+        git-hooks.follows = "git-hooks";
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # dependencies
+    flake-compat.url = "github:edolstra/flake-compat";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.flake-compat.follows = "flake-compat";
+    };
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+    systems.url = "github:nix-systems/default";
   };
 }

@@ -17,4 +17,5 @@
     };
 in {
   desktop = mkSystem ./desktop "desktop" "x86_64-linux";
+  # mercury = mkSystem ./mercury "server" "x86_64-linux";
 }

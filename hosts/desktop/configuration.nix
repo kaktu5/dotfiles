@@ -1,11 +1,7 @@
 {
-  inputs,
   lib,
   ...
-}: let
-  inherit (lib.kkts.writers) writeNu;
-  inherit (lib.lists) singleton;
-in {
+}: {
   users.users.kkts.initialPassword = "nix";
   kkts = {
     system.hostname = "desktop";

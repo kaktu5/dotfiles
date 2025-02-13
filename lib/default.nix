@@ -1,12 +1,6 @@
-{
-  inputs,
-  system,
-}: let
-  inherit (inputs.nixpkgs) lib;
-  pkgs = import inputs.nixpkgs {inherit system;};
-  inherit (builtins) attrNames concatStringsSep filter map match readDir;
-  inherit (lib) extend genAttrs getExe pipe;
-  inherit (pkgs) writeScriptBin;
+{lib}: let
+  inherit (builtins) attrNames filter map match readDir;
+  inherit (lib) extend genAttrs pipe;
 in
   extend (
     _: _: {
@@ -21,6 +15,7 @@ in
             (map (file: path + "/${file}"))
           ];
 
+        /*
         writers.writeNu = filename: {
           package ? pkgs.nushell,
           plugins ? [],
@@ -30,6 +25,7 @@ in
             (map (plugin: "plugin add ${getExe plugin}") plugins))
           script
         ]));
+        */
       };
     }
   )
