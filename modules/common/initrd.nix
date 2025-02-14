@@ -1,6 +1,7 @@
 _: {
   boot = {
     initrd.systemd.enable = true;
-    consoleLogLevel = 0;
+    consoleLogLevel = 3;
+    kernelParams = ["quiet"];
   };
 }
