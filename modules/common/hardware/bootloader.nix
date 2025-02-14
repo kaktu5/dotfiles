@@ -12,6 +12,7 @@ in {
     efi.canTouchEfiVariables = true;
     systemd-boot = {
       enable = true;
+      editor = false;
       configurationLimit = 7;
       memtest86.enable = true;
     };

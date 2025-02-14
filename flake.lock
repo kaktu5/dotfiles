@@ -993,7 +993,8 @@
         "nvf-config": "nvf-config",
         "stylix": "stylix",
         "systems": "systems",
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": "treefmt-nix",
+        "xanmod-bore-patch": "xanmod-bore-patch"
       }
     },
     "rust-overlay": {
@@ -1178,6 +1179,22 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "xanmod-bore-patch": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739161054,
+        "narHash": "sha256-47SiXMnUO5qGRFVV3MNf/UNF6Ggk5gPbeQkIIfx9ZLg=",
+        "owner": "micros24",
+        "repo": "linux-xanmod-bore",
+        "rev": "ac5128344f47c642bb06c80a1282135d57956c13",
+        "type": "github"
+      },
+      "original": {
+        "owner": "micros24",
+        "repo": "linux-xanmod-bore",
         "type": "github"
       }
     },

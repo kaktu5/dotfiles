@@ -49,6 +49,11 @@
       };
     };
     # other inputs
+    xanmod-bore-patch = {
+      url = "github:micros24/linux-xanmod-bore";
+      flake = false;
+    };
+
     aagl = {
       url = "github:ezkea/aagl-gtk-on-nix";
       inputs = {
