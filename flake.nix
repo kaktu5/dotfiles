@@ -7,6 +7,7 @@
       systems = ["x86_64-linux" "aarch64-linux"];
       perSystem = {
         pkgs,
+        self',
         system,
         ...
       }: let
@@ -14,7 +15,7 @@
         # flint = import ./flake/flint.nix {inherit inputs pkgs;};
       in {
         packages = {
-          default = self.packages.${system}.installer;
+          default = self'.packages.installer;
           installer = inputs.nixos-generators.nixosGenerate {
             format = "install-iso";
             inherit system;

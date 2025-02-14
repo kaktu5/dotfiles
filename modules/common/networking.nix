@@ -4,7 +4,7 @@ _: {
   ];
   boot.initrd.systemd.network.wait-online.enable = false;
   networking = {
+    dhcpcd.enable = false;
     networkmanager.enable = true;
-    dhcpcd.wait = "background";
   };
 }
