@@ -141,6 +141,10 @@ in {
             fi
             rm -f -- "$tmp"
           }
+
+          function ,() {
+            nix run "nixpkgs#$1" -- $(shift; echo "$@")
+          }
         '';
     };
   };

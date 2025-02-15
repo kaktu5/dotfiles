@@ -1,6 +1,7 @@
 {lib, ...}: let
   inherit (lib) singleton;
 in {
+  environment.persistence."/persist/root".directories = [];
   networking.firewall.allowedTCPPorts = [3000];
   services = {
     grafana = {
