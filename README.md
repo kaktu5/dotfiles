@@ -6,18 +6,19 @@
 ```
 dotfiles
 ├── docs        (flake documentation)
+├── flake       (flake utilities)
 ├── hosts       (machine-specific configuration)
 ├── lib         (extension of `nixpkgs.lib`)
 ├── modules     (common configuration)
 │   ├── common  (imported on all hosts)
 │   ├── desktop (imported on all desktops)
 │   ├── server  (imported on all servers)
-│   └── profile (imported in a host's `profile.nix`)
-└── resources
-    ├── neovim  (neovim config submodule)
-    └── secrets (age-encrypted secrets)
+│   └── profile (imported using `config.kkts.profiles`)
+└── secrets     (age-encrypted secrets)
 ```
 
 ## flakes I took inspiration from
 
-[poz/niksos](https://git.jacekpoz.pl/poz/niksos)
+[github:notashelf/nyx](https://github.com/notashelf/nyx)<br>
+[git.poz.pet:poz/niksos](https://git.jacekpoz.pl/poz/niksos)<br>
+[github:sioodmy/dotfiles](https://github.com/sioodmy/dotfiles)

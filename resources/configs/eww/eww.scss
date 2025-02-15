@@ -1,0 +1,11 @@
+@use "theme" as *;
+
+* {all: unset;}
+
+.statusbar, .notification {
+  background-color: $background;
+  border: 2px solid $border;
+  color: $foreground;
+  font-family: "DM Mono Medium", "Symbols Nerd Font Mono";
+  padding: 6px 4px;
+}
