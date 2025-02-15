@@ -36,7 +36,6 @@ in {
 
     # utils
     clang
-    comma
     compsize
     dash
     file
