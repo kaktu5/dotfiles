@@ -2,7 +2,6 @@ _: {
   imports = [../../modules/profile/disk-layouts/luks-btrfs];
   users.users.kkts.initialPassword = "nix";
   kkts = {
-    system.hostname = "desktop";
     hardware = {
       amd = {
         cpu.enable = true;

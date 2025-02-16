@@ -3,7 +3,7 @@
     lib = import ./lib {inherit (inputs.nixpkgs) lib;};
   in
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      flake.nixosConfigurations = import ./hosts {inherit inputs lib;};
+      flake.nixosConfigurations = import ./hosts {inherit inputs lib self;};
       systems = ["x86_64-linux" "aarch64-linux"];
       perSystem = {
         inputs',

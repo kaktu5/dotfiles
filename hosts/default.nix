@@ -1,20 +1,27 @@
 {
   inputs,
   lib,
+  self,
   ...
 }: let
   inherit (inputs) nixpkgs nixpkgs-stable;
   inherit (lib) nixosSystem;
-  mkSystem = path: type: system:
+  mkSystem = name: type: system:
     nixosSystem (let
       pkgs = import nixpkgs ({inherit system;} // {config.allowUnfree = true;});
       spkgs = import nixpkgs-stable ({inherit system;} // {config.allowUnfree = true;});
     in {
       inherit pkgs;
-      specialArgs = {inherit inputs spkgs;};
-      modules = [path ../modules/common (../modules + "/${type}")];
+      specialArgs = {inherit inputs spkgs;} // {flake = self;};
+      modules = [
+        {networking.hostName = name;}
+        {nixpkgs.hostPlatform = system;}
+        ./${name}
+        ../modules/common
+        ../modules/${type}
+      ];
     });
 in {
-  desktop = mkSystem ./desktop "desktop" "x86_64-linux";
-  mercury = mkSystem ./mercury "server" "x86_64-linux";
+  desktop = mkSystem "desktop" "desktop" "x86_64-linux";
+  mercury = mkSystem "mercury" "server" "x86_64-linux";
 }

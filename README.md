@@ -17,8 +17,8 @@ dotfiles
 └── secrets     (age-encrypted secrets)
 ```
 
-## flakes I took inspiration from
+## flakes that inspired this configuration
 
-[github:notashelf/nyx](https://github.com/notashelf/nyx)<br>
-[git.poz.pet:poz/niksos](https://git.jacekpoz.pl/poz/niksos)<br>
-[github:sioodmy/dotfiles](https://github.com/sioodmy/dotfiles)
+[notashelf/nyx](https://github.com/notashelf/nyx)<br>
+[poz/niksos](https://git.jacekpoz.pl/poz/niksos)<br>
+[sioodmy/dotfiles](https://github.com/sioodmy/dotfiles)
