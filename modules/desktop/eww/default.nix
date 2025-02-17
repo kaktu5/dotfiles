@@ -17,10 +17,6 @@ in {
   home-manager.users.${username} = {
     home.packages = [pkgs.eww];
     xdg.configFile = {
-      "eww" = {
-        recursive = true;
-        source = ../../../resources/configs/eww;
-      };
       "eww/theme.scss" = {
         text = ''
           $foreground: #${base07};
@@ -96,6 +92,71 @@ in {
                 :orientation "vertical"
                 (label :text title)
                 (label :text text))))
+        '';
+      "eww/eww.scss".text =
+        # css
+        ''
+          @use "theme" as *;
+
+          * {all: unset;}
+
+          .statusbar, .notification {
+            background-color: $background;
+            border: 2px solid $border;
+            color: $foreground;
+            font-family: "DM Mono Medium", "Symbols Nerd Font Mono";
+            padding: 6px 4px;
+          }
+
+        '';
+      "eww/eww.yuck".text =
+        # yuck
+        ''
+          (include "windows.yuck")
+
+          (deflisten active_workspace `~/.config/eww/scripts/active_workspace`)
+          (defwidget workspaces []
+            (box
+              :spacing 4
+              :orientation "vertical"
+              (label :text { active_workspace == 1 ? "" : "" })
+              (label :text { active_workspace == 2 ? "" : "" })
+              (label :text { active_workspace == 3 ? "" : "" })
+              (label :text { active_workspace == 4 ? "" : "" })
+              (label :text { active_workspace == 5 ? "" : "" })
+              (label :text { active_workspace == 6 ? "" : "" })
+              (label :text { active_workspace == 7 ? "" : "" })
+              (label :text { active_workspace == 8 ? "" : "" })))
+
+          (defvar do_not_disturb false) ; TODO
+          (defvar unread_notification false) ; TODO
+          (defwidget notifications []
+            (label :text { do_not_disturb == true ? "󱏨" :
+              unread_notification == true ? "󰅸" : "󰂜" }))
+
+          (deflisten wlp_up :initial false `~/.config/eww/scripts/wlp_up`)
+          (deflisten wlp_rssi :initial 0 `~/.config/eww/scripts/wlp_rssi`)
+          (defwidget wlp_status []
+            (label :text { !wlp_up ? "󰤮" :
+              wlp_rssi < -80 ? "󰤯" :
+                wlp_rssi < -70 ? "󰤟" :
+                  wlp_rssi < -60 ? "󰤢" :
+                    wlp_rssi < -50 ? "󰤥" : "󰤨" }))
+
+          (deflisten enp_up :initial false `~/.config/eww/scripts/enp_up`)
+          (defwidget enp_status []
+            (label :text { enp_up ? "󰈁" : "󰈂" }))
+
+          (deflisten hci_up :initial false `~/.config/eww/scripts/hci_up`)
+          (defwidget hci_status []
+            (label :text { hci_up ? "󰂯" : "󰂲" }))
+
+          (defwidget clock []
+            (box
+              :orientation "vertical"
+              (label :text { formattime(EWW_TIME, "%H") })
+              (label :text { formattime(EWW_TIME, "%M") })
+              (label :text { formattime(EWW_TIME, "%S") })))
         '';
     };
   };

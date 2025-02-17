@@ -9,13 +9,14 @@
 !lib/**
 !modules/
 !modules/**
-!resources/
-!resources/**
 !secrets/
 !secrets/**
+!system/
+!system/**
 !.editorconfig
 !.gitignore
 !LICENSE
 !README.md
 !flake.lock
 !flake.nix
+!theme.nix

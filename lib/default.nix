@@ -1,6 +1,6 @@
 {lib}: let
   inherit (builtins) attrNames filter map match readDir;
-  inherit (lib) extend genAttrs pipe findFirst;
+  inherit (lib) extend findFirst genAttrs pipe;
   inherit (lib.options) mkOption;
   inherit (lib.types) attrsOf submodule;
 in

@@ -12,13 +12,19 @@
       spkgs = import nixpkgs-stable ({inherit system;} // {config.allowUnfree = true;});
     in {
       inherit pkgs;
-      specialArgs = {inherit inputs spkgs;} // {flake = self;};
+      specialArgs = {
+        inherit inputs spkgs;
+        flake = self;
+        theme = import ../theme.nix;
+      };
       modules = [
         {networking.hostName = name;}
         {nixpkgs.hostPlatform = system;}
         ./${name}
         ../modules/common
         ../modules/${type}
+        ../system/common
+        ../system/${type}
       ];
     });
 in {
