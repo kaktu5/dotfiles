@@ -49,12 +49,30 @@
         treefmt-nix.follows = "treefmt-nix";
       };
     };
-    # other inputs
+
+    ###
+    stylix = {
+      url = "github:danth/stylix";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+        git-hooks.follows = "git-hooks";
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     xanmod-bore-patch = {
       url = "github:micros24/linux-xanmod-bore";
       flake = false;
     };
+    ###
 
+    # other inputs
     aagl = {
       url = "github:ezkea/aagl-gtk-on-nix";
       inputs = {
@@ -86,8 +104,8 @@
       url = "github:notashelf/flint";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = {
-      url = "github:nix-community/home-manager";
+    hjem = {
+      url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
@@ -106,17 +124,6 @@
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    stylix = {
-      url = "github:danth/stylix";
-      inputs = {
-        flake-compat.follows = "flake-compat";
-        flake-utils.follows = "flake-utils";
-        git-hooks.follows = "git-hooks";
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
     };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
