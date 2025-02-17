@@ -1,29 +1,16 @@
-/*
-{
-  lib,
-  pkgs,
-  ...
-}: let
-  inherit (lib) getExe;
-  inherit (pkgs) makeWrapper symlinkJoin writeShellScriptBin zsh;
-  config = writeShellScriptBin "zsh-config" ''
+{pkgs}: let
+  inherit (pkgs) writeShellScriptBin;
+  aliases' = "";
+in
+  writeShellScriptBin ".zshrc" ''
+    eval "$(starship init zsh)"
+    source ${./config.zsh}
+
     source ${pkgs.zsh-defer}/share/zsh-defer/zsh-defer.plugin.zsh
 
-    eval "$(${getExe pkgs.starship} init zsh)"
-
-    # zsh-defer source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-  '';
-  zsh' = symlinkJoin rec {
-    name = "zsh";
-    paths = [zsh];
-    nativeBuildInputs = [makeWrapper];
-    postBuild = ''
-      wrapProgram $out/bin/${name} \
-        --set ZDOTDIR ${getExe config}
-    '';
-  };
-in {user.shell = [zsh'];}
-*/
+    ${aliases'}
+  ''
+/*
 {
   config,
   pkgs,
@@ -177,3 +164,5 @@ in {
     };
   };
 }
+*/
+
