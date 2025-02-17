@@ -1,15 +1,26 @@
-{pkgs}: let
-  inherit (pkgs) writeShellScriptBin;
+{pkgs, ...}: let
+  inherit (pkgs) makeWrapper symlinkJoin zsh writeShellScriptBin;
   aliases' = "";
-in
-  writeShellScriptBin ".zshrc" ''
+  config = writeShellScriptBin ".zshrc" ''
     eval "$(starship init zsh)"
     source ${./config.zsh}
 
     source ${pkgs.zsh-defer}/share/zsh-defer/zsh-defer.plugin.zsh
 
     ${aliases'}
-  ''
+  '';
+  zsh' =
+    (symlinkJoin rec {
+      name = "zsh";
+      paths = [zsh];
+      nativeBuildInputs = [makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/${name} \
+          --set ZDOTDIR ${config}/bin
+      '';
+    })
+    .overrideAttrs (_: {passthru.shellPath = "/bin/zsh";});
+in {user.shell = zsh';}
 /*
 {
   config,
