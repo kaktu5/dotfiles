@@ -12,4 +12,7 @@
       '';
     })
     .overrideAttrs (_: {passthru.shellPath = "/bin/zsh";});
-in {user.shell = zsh';}
+in {
+  imports = [./fzf.nix ./starship.nix ./tmux.nix];
+  user.shell = zsh';
+}
