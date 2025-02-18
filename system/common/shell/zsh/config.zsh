@@ -1,18 +1,16 @@
 export HISTFILESIZE=16384
 export HISTSIZE=16384
+setopt EXTENDED_HISTORY
 setopt HIST_FCNTL_LOCK
-unsetopt APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
+unsetopt APPEND_HISTORY
+unsetopt HIST_EXPIRE_DUPS_FIRST
+unsetopt HIST_FIND_NO_DUPS
 unsetopt HIST_IGNORE_ALL_DUPS
 unsetopt HIST_SAVE_NO_DUPS
-unsetopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_SPACE
-unsetopt HIST_EXPIRE_DUPS_FIRST
-setopt SHARE_HISTORY
-setopt EXTENDED_HISTORY
 HISTFILE=~/.cache/zsh-history
-
-zvm_after_init_commands+=('eval "$(fzf --zsh)"')
 
 bindkey -v
 export KEYTIMEOUT=1

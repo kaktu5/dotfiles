@@ -27,6 +27,7 @@ in {
           libva-vdpau-driver
           libvdpau-va-gl
           mesa
+          rocmPackages.clr.icd
         ];
         extraPackages32 = with pkgs.driversi686Linux; [libvdpau-va-gl mesa];
       };
