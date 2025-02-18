@@ -49,6 +49,10 @@
         treefmt-nix.follows = "treefmt-nix";
       };
     };
+    tmux-fuzzback = {
+      url = "github:kaktu5/tmux-fuzzback";
+      flake = false;
+    };
 
     ###
     stylix = {

@@ -1014,6 +1014,7 @@
         "nvf-config": "nvf-config",
         "stylix": "stylix",
         "systems": "systems",
+        "tmux-fuzzback": "tmux-fuzzback",
         "treefmt-nix": "treefmt-nix",
         "xanmod-bore-patch": "xanmod-bore-patch"
       }
@@ -1180,6 +1181,22 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "tmux-fuzzback": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739910099,
+        "narHash": "sha256-YyW1ahHXNK9kXWQFJi/bUDPjYVphH29iyksaajbHUv4=",
+        "owner": "kaktu5",
+        "repo": "tmux-fuzzback",
+        "rev": "a8adf1ae57cfadbc018241b4d920f09fd3df0a7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kaktu5",
+        "repo": "tmux-fuzzback",
         "type": "github"
       }
     },

@@ -2,9 +2,7 @@
   inputs,
   pkgs,
   ...
-}: let
-  inherit (inputs) xanmod-bore-patch;
-in {
+}: {
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
     /*

@@ -8,10 +8,17 @@ in {
   nix = {
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     settings = {
+      allowed-users = ["@builders" "@wheel"];
+      trusted-users = ["root" "@wheel"];
       experimental-features = ["flakes" "nix-command" "pipe-operators"];
-      trusted-users = ["root" "${username}"];
       auto-optimise-store = true;
       warn-dirty = false;
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      randomizedDelaySec = "60min";
+      options = "--delete-older-than 14d";
     };
   };
   systemd.tmpfiles.rules = [

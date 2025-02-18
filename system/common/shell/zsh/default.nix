@@ -18,26 +18,24 @@
     (xs: xs ++ ["ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#${bg3}'"])
     (concatStringsSep "\n")
   ]);
-  config = writeShellScriptBin ".zshrc" (with pkgs;
-    # sh
-      ''
-        eval "$(starship init zsh)"
-        zvm_after_init_commands+=('eval "$(fzf --zsh)"')
+  config = writeShellScriptBin ".zshrc" (with pkgs; ''
+    eval "$(starship init zsh)"
+    zvm_after_init_commands+=('eval "$(fzf --zsh)"')
 
-        source ${zsh-defer}/share/zsh-defer/zsh-defer.plugin.zsh
+    source ${zsh-defer}/share/zsh-defer/zsh-defer.plugin.zsh
 
-        source ${./config.zsh}
+    source ${./config.zsh}
 
-        source ${aliases'}
+    source ${aliases'}
 
-        source ${highlights'}
+    source ${highlights'}
 
-        zsh-defer source ${zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        zsh-defer source ${zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-        zsh-defer source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-        zsh-defer source ${zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh
-        zsh-defer source ${zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-      '');
+    zsh-defer source ${zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    zsh-defer source ${zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    zsh-defer source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+    zsh-defer source ${zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh
+    zsh-defer source ${zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+  '');
   zsh' =
     (symlinkJoin rec {
       name = "zsh";
