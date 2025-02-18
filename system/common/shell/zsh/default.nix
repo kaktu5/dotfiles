@@ -37,7 +37,6 @@
         zsh-defer source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         zsh-defer source ${zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh
         zsh-defer source ${zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-        zsh-defer source ${zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
       '');
   zsh' =
     (symlinkJoin rec {
