@@ -11,6 +11,8 @@
   aliases' = "";
   highlights' = toFile "highlights" (pipe (import ./highlights.nix {inherit theme;}) [
     (mapAttrsToList (name: value: "ZSH_HIGHLIGHT_STYLES[${name}]=\'${value}\'"))
+    (xs: ["typeset -A ZSH_HIGHLIGHT_STYLES"] ++ xs)
+    (xs: xs ++ [''ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${bg3}"''])
     (concatStringsSep "\n")
   ]);
   config = writeShellScriptBin ".zshrc" (with pkgs;
@@ -21,11 +23,12 @@
         source ${zsh-defer}/share/zsh-defer/zsh-defer.plugin.zsh
 
         source ${./config.zsh}
-        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${bg3}"
+
         ${aliases'}
 
-        zsh-defer source ${zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
         source ${highlights'}
+
+        zsh-defer source ${zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
         zsh-defer source ${zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
         zsh-defer source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         zsh-defer source ${zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh

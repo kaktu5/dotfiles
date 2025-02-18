@@ -13,10 +13,15 @@
     "border:#${bg3}"
     "fg:#${fg0}"
     "fg+:#${purple}"
-    "info:#${purple}"
+    "header:#${fg0}"
+    "hl:#${purple}"
+    "hl+:#${lightPurple}"
+    "info:#${fg0}"
     "label:#${purple}"
+    "marker:#${purple}"
     "pointer:#${purple}"
     "prompt:#${purple}"
+    "query:#${fg0}"
     "spinner:#${purple}"
   ]);
   fzf' = symlinkJoin rec {

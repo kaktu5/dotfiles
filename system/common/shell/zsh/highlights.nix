@@ -1,15 +1,15 @@
 {theme}:
 with theme.colors; let
+  _path = "fg=#${lightBlue}";
+  argument = "fg=#${yellow}";
+  command = "fg=#${blue}";
+  comment = "fg=#${bg3}";
   error = "fg=#${red}";
   keyword = "fg=#${purple}";
-  command = "fg=#${blue}";
-  substitution = "fg=#${lightBlue}";
-  argument = "fg=#${yellow}";
   operator = "fg=#${purple}";
   string = "fg=#${green}";
+  substitution = "fg=#${lightBlue}";
   variable = "fg=#${orange}";
-  _path = "fg=#${lightBlue}";
-  comment = "fg=#${bg3}";
 in {
   default = argument;
   unknown-token = error;
@@ -20,7 +20,7 @@ in {
   builtin = keyword;
   function = command;
   inherit command;
-  precommand = keyword;
+  precommand = command;
   commandseparator = operator;
   hashed-command = command;
   autodirectory = _path;
