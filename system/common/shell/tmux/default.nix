@@ -34,6 +34,10 @@
   config = writeText "tmux-config" ''
     source-file ${./tmux.conf}
 
+    set -g mode-style "fg=#${bg0} bg=#${fg0}"
+    set -g pane-active-border-style "fg=#${purple}"
+    set -g pane-border-style "fg=#${bg3}"
+
     set -g @minimal-tmux-fg "#${bg0}"
     set -g @minimal-tmux-bg "#${purple}"
     set -g @minimal-tmux-justify "left"
@@ -43,10 +47,6 @@
     set -g @fuzzback-bind s
     set -g @fuzzback-popup 1
     set -g @fuzzback-popup-size "90%"
-
-    set -g mode-style "fg=#${bg0} bg=#${fg0}"
-    set -g pane-active-border-style "fg=#${purple}"
-    set -g pane-border-style "fg=#${bg3}"
 
     run-shell ${minimal-tmux-status}/share/tmux-plugins/minimal-tmux-status/minimal.tmux
     run-shell ${tmux-fuzzback'}/share/tmux-plugins/fuzzback/fuzzback.tmux
