@@ -1,8 +1,7 @@
 {lib}: let
   inherit (lib) concatStringsSep;
 in {
-  ls = "lsd --group-directories-first";
-  ll = "ls -l";
+  ls = "lsd -1F --group-dirs first --date +'%H:%M:%S %d-%m-%Y'";
   la = "ls -lA";
   lt = "ls --tree";
   cp = "cp -r";

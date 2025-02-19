@@ -1,12 +1,12 @@
 {theme}:
 with theme.colors; let
-  _path = "fg=#${lightBlue}";
   argument = "fg=#${yellow}";
   command = "fg=#${blue}";
   comment = "fg=#${bg3}";
   error = "fg=#${red}";
   keyword = "fg=#${purple}";
   operator = "fg=#${purple}";
+  _path = "fg=#${lightBlue}";
   string = "fg=#${green}";
   substitution = "fg=#${lightBlue}";
   variable = "fg=#${orange}";
