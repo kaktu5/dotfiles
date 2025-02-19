@@ -49,10 +49,6 @@
         treefmt-nix.follows = "treefmt-nix";
       };
     };
-    tmux-fuzzback = {
-      url = "github:kaktu5/tmux-fuzzback";
-      flake = false;
-    };
 
     ###
     stylix = {
@@ -128,6 +124,10 @@
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    tmux-fuzzback = {
+      url = "github:roosta/tmux-fuzzback";
+      flake = false;
     };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";

@@ -10,16 +10,11 @@
   inherit (pkgs.tmuxPlugins) mkTmuxPlugin vim-tmux-navigator yank;
   inherit (theme.colors) bg0 bg3 fg0 purple;
   minimal-tmux-status = inputs.minimal-tmux-status.packages.${pkgs.system}.default;
-  tmux-fuzzback = mkTmuxPlugin {
+  tmux-fuzzback' = mkTmuxPlugin {
     pluginName = "fuzzback";
-    version = "18-02-2025";
+    version = "unstable-2022-11-21";
     src = inputs.tmux-fuzzback;
-    meta = with lib; {
-      homepage = "https://github.com/kaktu5/tmux-fuzzback";
-      description = "Fuzzy search for terminal scrollback";
-      license = licenses.mit;
-      platforms = platforms.unix;
-    };
+    patches = [./colors.patch];
     nativeBuildInputs = [makeWrapper];
     postInstall = ''
       for f in fuzzback.sh preview.sh supported.sh; do
@@ -28,6 +23,13 @@
           --prefix PATH : ${makeBinPath (with pkgs; [coreutils gawk gnused])}
       done
     '';
+    meta = with lib; {
+      homepage = "https://github.com/roosta/tmux-fuzzback";
+      description = "Fuzzy search for terminal scrollback";
+      license = licenses.mit;
+      platforms = platforms.unix;
+      maintainers = [maintainers.deejayem];
+    };
   };
   config = writeText "tmux-config" ''
     source-file ${./tmux.conf}
@@ -47,7 +49,7 @@
     set -g pane-border-style "fg=#${bg3}"
 
     run-shell ${minimal-tmux-status}/share/tmux-plugins/minimal-tmux-status/minimal.tmux
-    run-shell ${tmux-fuzzback}/share/tmux-plugins/fuzzback/fuzzback.tmux
+    run-shell ${tmux-fuzzback'}/share/tmux-plugins/fuzzback/fuzzback.tmux
     run-shell ${vim-tmux-navigator}/share/tmux-plugins/vim-tmux-navigator/vim-tmux-navigator.tmux
     run-shell ${yank}/share/tmux-plugins/vim-tmux-navigator/vim-tmux-navigator.tmux
   '';
