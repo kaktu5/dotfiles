@@ -2,11 +2,12 @@
   inputs,
   pkgs,
 }: let
-  inherit (pkgs) system;
+  inherit (pkgs) runCommandLocal system;
+  flint = inputs.flint.packages.${system}.default;
 in
-  pkgs.runCommandLocal "lockfile-check" {
+  runCommandLocal "lockfile-check" {
     src = ./.;
-    nativeBuildInputs = [inputs.flint.packages.${system}.default];
+    nativeBuildInputs = [flint];
   } ''
     find "$src" -type f -name 'flake.lock' \
       | xargs flint --fail-if-multiple-versions --lockfile
