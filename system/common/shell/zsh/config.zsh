@@ -1,6 +1,6 @@
-HISTFILE=~/.cache/zsh-history
-export HISTFILESIZE=16384
+export HISTFILE=~/.cache/zsh-history
 export HISTSIZE=16384
+export SAVEHIST=16384
 setopt EXTENDED_HISTORY
 setopt SHARE_HISTORY
 
