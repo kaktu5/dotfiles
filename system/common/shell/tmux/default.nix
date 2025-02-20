@@ -7,15 +7,13 @@
 }: let
   inherit (lib) makeBinPath;
   inherit (pkgs) makeWrapper symlinkJoin tmux writeText;
-  inherit (pkgs.tmuxPlugins) mkTmuxPlugin vim-tmux-navigator yank;
+  inherit (pkgs.tmuxPlugins) fuzzback vim-tmux-navigator yank;
   inherit (theme.colors) bg0 bg3 fg0 purple;
   minimal-tmux-status = inputs.minimal-tmux-status.packages.${pkgs.system}.default;
-  tmux-fuzzback' = mkTmuxPlugin {
-    pluginName = "fuzzback";
-    version = "unstable-2022-11-21";
-    src = inputs.tmux-fuzzback;
-    patches = [./colors.patch];
-    nativeBuildInputs = [makeWrapper];
+  fuzzback' = fuzzback.overrideAttrs (_: {
+    postPatch = ''
+      sed -i '/--color="$4" \\/d' scripts/fuzzback.sh
+    '';
     postInstall = ''
       for f in fuzzback.sh preview.sh supported.sh; do
         chmod +x $target/scripts/$f
@@ -23,14 +21,7 @@
           --prefix PATH : ${makeBinPath (with pkgs; [coreutils gawk gnused])}
       done
     '';
-    meta = with lib; {
-      homepage = "https://github.com/roosta/tmux-fuzzback";
-      description = "Fuzzy search for terminal scrollback";
-      license = licenses.mit;
-      platforms = platforms.unix;
-      maintainers = [maintainers.deejayem];
-    };
-  };
+  });
   config = writeText "tmux-config" ''
     source-file ${./tmux.conf}
 
@@ -49,7 +40,7 @@
     set -g @fuzzback-popup-size "90%"
 
     run-shell ${minimal-tmux-status}/share/tmux-plugins/minimal-tmux-status/minimal.tmux
-    run-shell ${tmux-fuzzback'}/share/tmux-plugins/fuzzback/fuzzback.tmux
+    run-shell ${fuzzback'}/share/tmux-plugins/fuzzback/fuzzback.tmux
     run-shell ${vim-tmux-navigator}/share/tmux-plugins/vim-tmux-navigator/vim-tmux-navigator.tmux
     run-shell ${yank}/share/tmux-plugins/vim-tmux-navigator/vim-tmux-navigator.tmux
   '';

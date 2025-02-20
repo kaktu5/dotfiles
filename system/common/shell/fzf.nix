@@ -31,6 +31,7 @@
     postBuild = ''
       wrapProgram $out/bin/${name} \
         --add-flags "--style minimal" \
+        --add-flags "--border none" \
         --add-flags "--prompt ' '" \
         --add-flags "--color ${colors'}"
     '';

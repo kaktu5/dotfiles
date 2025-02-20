@@ -1,18 +1,21 @@
 {
+  inputs,
   lib,
   pkgs,
   theme,
   ...
 }: let
-  inherit (builtins) toFile;
+  inherit (inputs) zsh-auto-notify;
   inherit (lib) concatStringsSep mapAttrsToList pipe;
-  inherit (pkgs) makeWrapper symlinkJoin writeShellScriptBin;
+  inherit (pkgs) makeWrapper symlinkJoin writeShellScriptBin writeText;
   inherit (theme.colors) bg3;
-  aliases' = toFile "zsh-aliases" (pipe (import ./aliases.nix {inherit lib;}) [
+  aliases = import ./aliases.nix {inherit lib;};
+  aliases' = writeText "zsh-aliases" (pipe aliases [
     (mapAttrsToList (name: value: "alias ${name}=\"${value}\""))
     (concatStringsSep "\n")
   ]);
-  highlights' = toFile "zsh-highlights" (pipe (import ./highlights.nix {inherit theme;}) [
+  highlights = import ./highlights.nix {inherit theme;};
+  highlights' = writeText "zsh-highlights" (pipe highlights [
     (mapAttrsToList (name: value: "ZSH_HIGHLIGHT_STYLES[${name}]='${value}'"))
     (xs: ["typeset -A ZSH_HIGHLIGHT_STYLES"] ++ xs)
     (xs: xs ++ ["ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#${bg3}'"])
@@ -35,11 +38,12 @@
     zsh-defer source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
     zsh-defer source ${zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh
     zsh-defer source ${zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+    zsh-defer source ${zsh-auto-notify}/auto-notify.plugin.zsh
   '');
   zsh' =
     (symlinkJoin rec {
       name = "zsh";
-      paths = with pkgs; [bat duf dust fzf lsd ripgrep zsh];
+      paths = with pkgs; [bat duf dust fzf libnotify lsd ripgrep zsh];
       nativeBuildInputs = [makeWrapper];
       postBuild = ''
         wrapProgram $out/bin/${name} \

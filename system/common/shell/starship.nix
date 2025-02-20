@@ -1,12 +1,13 @@
 {
+  lib,
   pkgs,
   theme,
   ...
 }: let
+  inherit (lib.kkts) writeToml;
   inherit (pkgs) makeWrapper starship symlinkJoin;
   inherit (theme) colors;
-  toToml = (pkgs.formats.toml {}).generate;
-  config = toToml "starship-config" (with colors; {
+  config = writeToml pkgs "starship-config" (with colors; {
     format = "$username@$hostname$directory$nix_shell$git_branch$status$cmd_duration\n$character";
     add_newline = false;
     username = {
@@ -28,12 +29,7 @@
       format = " [ $int](fg:#${red})";
     };
     cmd_duration.format = " [$duration](fg:#${fg0})";
-    character = {
-      format = "$symbol";
-      success_symbol = "[󰘧 ](fg:#${fg0})";
-      error_symbol = "[󰘧 ](fg:#${fg0})";
-      vimcmd_symbol = "[󰘧 ](fg:#${lightBlue})";
-    };
+    character.format = "[󰘧 ](fg:#${fg0})";
   });
   starship' = symlinkJoin rec {
     name = "starship";

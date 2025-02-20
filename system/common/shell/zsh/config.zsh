@@ -1,23 +1,15 @@
+HISTFILE=~/.cache/zsh-history
 export HISTFILESIZE=16384
 export HISTSIZE=16384
 setopt EXTENDED_HISTORY
-setopt HIST_FCNTL_LOCK
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
 setopt SHARE_HISTORY
-unsetopt APPEND_HISTORY
-unsetopt HIST_EXPIRE_DUPS_FIRST
-unsetopt HIST_FIND_NO_DUPS
-unsetopt HIST_IGNORE_ALL_DUPS
-unsetopt HIST_SAVE_NO_DUPS
-HISTFILE=~/.cache/zsh-history
 
 bindkey -v
 export KEYTIMEOUT=1
 
 export AUTO_NOTIFY_THRESHOLD=30
-export AUTO_NOTIFY_TITLE='`%command` has just finished'
-export AUTO_NOTIFY_BODY='It completed in %elapsed seconds with exit code %exit_code'
+export AUTO_NOTIFY_TITLE='`%command` finished'
+export AUTO_NOTIFY_BODY='Completed in %elapseds (%exit_code)'
 
 autoload -U compinit
 zstyle ':completion:*' menu no
@@ -51,5 +43,6 @@ zle -N zle-line-init
 echo -ne '\e[5 q'
 preexec() { echo -ne '\e[5 q'; }
 
+function nd() { nix develop -c zsh; }
 function nr() { nix run "nixpkgs#$1" -- $(shift; echo "$@"); }
 function ns() { nix shell $(printf "nixpkgs#%s " "$@"); }

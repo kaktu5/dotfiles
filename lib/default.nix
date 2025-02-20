@@ -27,6 +27,8 @@ in
             (findFirst (x: x != null) null)
           ];
 
+        writeToml = pkgs: name: str: (pkgs.formats.toml {}).generate name str;
+
         /*
         writers.writeNu = filename: {
           package ? pkgs.nushell,

@@ -125,13 +125,13 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    tmux-fuzzback = {
-      url = "github:roosta/tmux-fuzzback";
-      flake = false;
-    };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zsh-auto-notify = {
+      url = "github:michaelaquilina/zsh-auto-notify";
+      flake = false;
     };
     # dependencies
     flake-compat.url = "github:edolstra/flake-compat";
