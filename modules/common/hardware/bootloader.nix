@@ -13,7 +13,7 @@ in {
     systemd-boot = {
       enable = true;
       editor = false;
-      configurationLimit = 7;
+      configurationLimit = 14;
       memtest86.enable = true;
     };
     timeout = 1;

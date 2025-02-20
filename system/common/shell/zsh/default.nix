@@ -43,7 +43,7 @@
   zsh' =
     (symlinkJoin rec {
       name = "zsh";
-      paths = with pkgs; [bat duf dust fzf libnotify lsd ripgrep zsh];
+      paths = with pkgs; [bat duf dust fzf lsd ripgrep zsh];
       nativeBuildInputs = [makeWrapper];
       postBuild = ''
         wrapProgram $out/bin/${name} \
