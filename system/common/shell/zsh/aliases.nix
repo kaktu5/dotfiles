@@ -1,6 +1,7 @@
 {lib}: let
   inherit (lib) concatStringsSep;
 in {
+  sudo = "sudo ";
   ls = "lsd -1F --group-dirs first --date +'%H:%M:%S %d-%m-%Y'";
   la = "ls -lA";
   lt = "ls --tree";
