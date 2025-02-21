@@ -7,7 +7,19 @@
 }: let
   inherit (inputs) zsh-auto-notify;
   inherit (lib) concatStringsSep mapAttrsToList pipe;
-  inherit (pkgs) makeWrapper symlinkJoin writeShellScriptBin writeText;
+  inherit
+    (pkgs)
+    makeWrapper
+    symlinkJoin
+    writeShellScriptBin
+    writeText
+    zsh-autopair
+    zsh-autosuggestions
+    zsh-defer
+    zsh-fzf-tab
+    zsh-syntax-highlighting
+    zsh-vi-mode
+    ;
   inherit (theme.colors) bg3;
   aliases = import ./aliases.nix {inherit lib;};
   aliases' = writeText "zsh-aliases" (pipe aliases [
@@ -21,7 +33,7 @@
     (xs: xs ++ ["ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#${bg3}'"])
     (concatStringsSep "\n")
   ]);
-  config = writeShellScriptBin ".zshrc" (with pkgs; ''
+  config = writeShellScriptBin ".zshrc" ''
     eval "$(starship init zsh)"
     zvm_after_init_commands+=('eval "$(fzf --zsh)"')
 
@@ -39,7 +51,7 @@
     zsh-defer source ${zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh
     zsh-defer source ${zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     zsh-defer source ${zsh-auto-notify}/auto-notify.plugin.zsh
-  '');
+  '';
   zsh' =
     (symlinkJoin rec {
       name = "zsh";

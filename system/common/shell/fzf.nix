@@ -6,8 +6,8 @@
 }: let
   inherit (lib) concatStringsSep;
   inherit (pkgs) fzf makeWrapper symlinkJoin;
-  inherit (theme) colors;
-  colors' = concatStringsSep "," (with colors; [
+  inherit (theme.colors) bg0 bg3 fg0 lightPurple purple;
+  colors' = concatStringsSep "," [
     "bg:#${bg0}"
     "bg+:#${bg0}"
     "border:#${bg3}"
@@ -23,7 +23,7 @@
     "prompt:#${purple}"
     "query:#${fg0}"
     "spinner:#${purple}"
-  ]);
+  ];
   fzf' = symlinkJoin rec {
     name = "fzf";
     paths = [fzf];
