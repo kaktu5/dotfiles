@@ -7,6 +7,7 @@ in {
   lt = "ls --tree";
   cp = "cp -r";
   scp = "scp -r";
+  rsync = "rsync --info progress2";
   mkdir = "mkdir -p";
   grep = "rg";
   cat = "bat --paging never --style numbers,changes --theme base16";
