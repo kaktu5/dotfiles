@@ -24,8 +24,8 @@ in {
   programs.hyprland = {
     enable = true;
     withUWSM = false;
-    package = pkgs.hyprland;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    package = hyprland;
+    portalPackage = xdg-desktop-portal-hyprland;
   };
   xdg.portal = {
     enable = true;
