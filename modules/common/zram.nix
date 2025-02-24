@@ -1,6 +1,6 @@
 _: {
   zramSwap = {
-    enable = true;
+    enable = false;
     memoryPercent = 25;
     priority = 10;
   };
