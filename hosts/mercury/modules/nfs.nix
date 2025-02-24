@@ -9,6 +9,7 @@ _: {
       options = ["bind"];
     };
   };
+  networking.firewall.allowedTCPPorts = [2049];
   services.nfs.server = {
     enable = true;
     exports = ''
