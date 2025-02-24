@@ -1,12 +1,6 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
-  inherit (config.kkts.system) username;
-in {
-  home-manager.users.${username} = {
+{pkgs, ...}: {
+  homeManager = {
     services.arrpc.enable = true;
-    home.packages = [pkgs.vesktop];
+    home.packages = [pkgs.legcord];
   };
 }
