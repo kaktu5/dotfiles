@@ -12,7 +12,7 @@ _: {
   services.nfs.server = {
     enable = true;
     exports = ''
-      /var/lib/nfs/kkts 127.0.0.1(insecure,root_squash,rw)
+      /var/lib/nfs/kkts 192.168.1.0/24(insecure,root_squash,rw)
     '';
   };
 }
