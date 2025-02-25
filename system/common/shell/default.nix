@@ -1,8 +1,3 @@
-_: {
-  imports = [
-    ./fzf.nix
-    ./starship.nix
-    ./tmux
-    ./zsh
-  ];
+{lib, ...}: {
+  imports = lib.kkts.importAll ./.;
 }

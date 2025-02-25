@@ -1,3 +1,3 @@
 {lib, ...}: {
-  imports = lib.kkts.modules.collect ./.;
+  imports = lib.kkts.importAll ./.;
 }

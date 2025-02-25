@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  inherit (config.kkts.system) username;
+  inherit (config.home) directory;
 in {
   nix = {
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
@@ -22,6 +22,6 @@ in {
     };
   };
   systemd.tmpfiles.rules = [
-    "L /etc/nixos/flake.nix - - - - /home/${username}/dotfiles/flake.nix"
+    "L /etc/nixos/flake.nix - - - - ${directory}/dotfiles/flake.nix"
   ];
 }

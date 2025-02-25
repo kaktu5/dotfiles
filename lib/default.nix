@@ -2,6 +2,7 @@
   inherit (builtins) attrNames filter map match readDir;
   inherit (lib) extend findFirst genAttrs pipe;
   inherit (lib.options) mkOption;
+  inherit (lib.strings) hasPrefix;
   inherit (lib.types) attrsOf submodule;
 in
   extend (
@@ -27,10 +28,22 @@ in
             (findFirst (x: x != null) null)
           ];
 
+        importAll = path:
+          pipe path [
+            readDir
+            attrNames
+            (filter (file:
+              match file
+              != null
+              && !(hasPrefix "_" file)
+              && file != "default.nix"))
+            (map (file: path + "/${file}"))
+          ];
+
         writeToml = pkgs: name: str: (pkgs.formats.toml {}).generate name str;
 
         /*
-        writers.writeNu = filename: {
+        writeNu = pkgs: filename: {
           package ? pkgs.nushell,
           plugins ? [],
         }: script: (writeScriptBin filename (concatStringsSep "\n" [

@@ -37,7 +37,6 @@
     nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     # my flakes
-    colorscheme.url = "github:kaktu5/colorscheme";
     nvf-config = {
       url = "github:kaktu5/nvf-config";
       inputs = {
@@ -65,10 +64,6 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    xanmod-bore-patch = {
-      url = "github:micros24/linux-xanmod-bore";
-      flake = false;
     };
     ###
 

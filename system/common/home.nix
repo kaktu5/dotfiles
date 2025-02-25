@@ -9,8 +9,8 @@
 in {
   imports = [
     inputs.hjem.nixosModules.default
-    (mkAliasOptionModule ["user"] ["users" "users" username])
     (mkAliasOptionModule ["home"] ["hjem" "users" username])
+    (mkAliasOptionModule ["user"] ["users" "users" username])
   ];
   home = {
     enable = true;
