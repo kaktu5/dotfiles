@@ -2,7 +2,7 @@
 # https://infosec.mozilla.org/guidelines/openssh#modern-openssh-67
 # https://www.openssh.org/pq.html
 {lib, ...}: let
-  inherit (lib) singleton;
+  inherit (lib.lists) singleton;
 in {
   services.openssh = {
     enable = true;
