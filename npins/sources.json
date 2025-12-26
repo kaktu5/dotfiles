@@ -1,0 +1,44 @@
+{
+  "pins": {
+    "flake-compat": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nixos",
+        "repo": "flake-compat"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "f275e157c50c3a9a682b4c9b4aa4db7a4cd3b5f2",
+      "url": "https://github.com/nixos/flake-compat/archive/f275e157c50c3a9a682b4c9b4aa4db7a4cd3b5f2.tar.gz",
+      "hash": "sha256-QN1r/zNqvXHwWqlRAnRtFf4CQwIOJx58PtdExIzAw94="
+    },
+    "npins": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "andir",
+        "repo": "npins"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "52904b878c2db61e062b63beb07784d41f98c765",
+      "url": "https://github.com/andir/npins/archive/52904b878c2db61e062b63beb07784d41f98c765.tar.gz",
+      "hash": "sha256-ksOXi7u4bpHyWNHwkUR62fdwKowPW5GqBS7MA7Apwh4="
+    },
+    "statix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "kaktu5",
+        "repo": "statix"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "c4d4719823814a2ecc331cd304ca99796f5c9328",
+      "url": "https://github.com/kaktu5/statix/archive/c4d4719823814a2ecc331cd304ca99796f5c9328.tar.gz",
+      "hash": "sha256-+7f+m2jWTJCqPUmEoZqYrJIgSLcz/30gYu26mOj84UA="
+    }
+  },
+  "version": 7
+}

@@ -1,0 +1,11 @@
+*
+!/internal/
+!/internal/**
+!/npins/
+!/npins/**
+!/.envrc
+!/.gitattributes
+!/.gitignore
+!/flake.lock
+!/flake.nix
+!/license
