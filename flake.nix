@@ -1,6 +1,6 @@
 {
-  outputs = inputs: let
-    inherit (inputs.nixpkgs) lib;
+  outputs = {self, ...} @ inputs: let
+    lib = import ./lib {inherit inputs;};
 
     inherit (lib.attrsets) mapAttrs recursiveUpdate;
     inherit (lib.lists) foldl';
@@ -20,7 +20,12 @@
       devShells.default = import ./internal/devshell.nix {inherit lib pkgs;};
 
       formatter = import ./internal/formatter.nix {inherit lib pkgs;};
-    });
+    })
+    // {
+      inherit lib;
+
+      nixosConfigurations = import ./hosts {inherit inputs lib self sources;};
+    };
 
   inputs = {
     systems = {

@@ -1,6 +1,12 @@
 *
+!/hosts/
+!/hosts/**
 !/internal/
 !/internal/**
+!/lib/
+!/lib/**
+!/modules/
+!/modules/**
 !/npins/
 !/npins/**
 !/.envrc
