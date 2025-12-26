@@ -18,9 +18,6 @@ in {
   networking = {
     nameservers = ["127.0.0.1" "::1"];
 
-    dhcpcd.extraConfig = "nohook resolv.conf";
-    networkmanager.dns = "none";
-
     # prevent DNS leaks, all DNS queries must go through dnscrypt-proxy
     nftables.tables.dnscrypt-proxy = {
       family = "inet";
