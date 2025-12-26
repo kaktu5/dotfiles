@@ -12,6 +12,8 @@ in
         (pkgs)
         alejandra
         deadnix
+        dix
+        nh
         nixd
         npins
         statix
