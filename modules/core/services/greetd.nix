@@ -8,7 +8,7 @@
   inherit (lib.meta) getExe getExe';
   inherit (lib.modules) mkDefault;
 
-  agretty = getExe' pkgs.greetd "agretty";
+  agretty = getExe' pkgs.greetd "agreety";
   shell = getExe kkts.shell;
 in {
   services.greetd = {
