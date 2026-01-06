@@ -12,6 +12,7 @@
 !/.envrc
 !/.gitattributes
 !/.gitignore
+!/.qmlformat.ini
 !/flake.lock
 !/flake.nix
 !/license

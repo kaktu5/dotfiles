@@ -8,6 +8,7 @@ in
   mkShellNoCC {
     name = "dotfiles-devshell";
     packages = attrValues {
+      # nix
       inherit
         (pkgs)
         alejandra
@@ -18,5 +19,8 @@ in
         npins
         statix
         ;
+
+      # qml
+      inherit (pkgs.kdePackages) qtdeclarative;
     };
   }
