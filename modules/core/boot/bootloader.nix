@@ -1,16 +1,21 @@
-# TODO: support aarch64
 {pkgs, ...}: let
   inherit (pkgs) memtest86-efi;
 in {
   boot.loader = {
-    efi.canTouchEfiVariables = true;
     timeout = 1;
+
+    efi.canTouchEfiVariables = true;
+
     limine = {
       enable = true;
-      secureBoot.enable = true;
       enableEditor = false;
+      panicOnChecksumMismatch = true;
+      secureBoot.enable = true;
+
+      resolution = "max";
       maxGenerations = 24;
       style.wallpapers = [];
+
       extraEntries = ''
         /Memtest86
           protocol: efi

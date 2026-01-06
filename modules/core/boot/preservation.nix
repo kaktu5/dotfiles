@@ -1,7 +1,7 @@
 {inputs, ...}: let
-  inherit (inputs) preservation;
+  inherit (inputs.preservation) nixosModules;
 in {
-  imports = [preservation.nixosModules.default];
+  imports = [nixosModules.default];
 
   preservation = {
     enable = true;
