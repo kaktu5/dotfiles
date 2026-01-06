@@ -4,6 +4,7 @@
   pkgs,
   ...
 }: let
+  inherit (config.kkts.meta) userName;
   inherit (config.kkts.theme.fonts) fonts;
   inherit (lib.attrsets) mapAttrs mapAttrsToList;
   inherit (lib.lists) optionals unique;
@@ -24,7 +25,7 @@ in {
       fonts |> mapAttrs (name: font: [font.name] ++ optionals (name != "emoji") common);
   };
 
-  hjem.users.kkts.environment.sessionVariables = {
+  hjem.users.${userName}.environment.sessionVariables = {
     FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
   };
 }

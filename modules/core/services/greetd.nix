@@ -4,19 +4,18 @@
   pkgs,
   ...
 }: let
-  inherit (config.users.users) kkts;
+  inherit (config.kkts.meta) userName;
+  inherit (config.users.users.${userName}) shell;
   inherit (lib.meta) getExe getExe';
   inherit (lib.modules) mkDefault;
-
-  agretty = getExe' pkgs.greetd "agreety";
-  shell = getExe kkts.shell;
+  inherit (pkgs) greetd;
 in {
   services.greetd = {
     enable = true;
     useTextGreeter = true;
     settings.default_session = {
       user = "greeter";
-      command = mkDefault "${agretty} --cmd ${shell}";
+      command = mkDefault "${getExe' greetd "agretty"} --cmd ${getExe shell}";
     };
   };
 }

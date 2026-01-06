@@ -5,6 +5,7 @@
   pkgs,
   ...
 }: let
+  inherit (config.kkts.meta) userName;
   inherit (config.nixpkgs.hostPlatform) system;
   inherit (config.services.displayManager) sessionPackages;
   inherit (lib.lists) map singleton;
@@ -29,7 +30,7 @@ in {
     layout.width = 48;
 
     remember = {
-      default_user = "kkts";
+      default_user = userName;
       username = true;
       session = true;
     };
