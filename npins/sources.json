@@ -35,9 +35,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "a678727578fa4679b3afba0baeb01148743a9d82",
-      "url": "https://github.com/sjhgvr/oisd/archive/a678727578fa4679b3afba0baeb01148743a9d82.tar.gz",
-      "hash": "sha256-A9KHb9VMLvPHJE8jnaVflM8VleWIJ96qhJmeYGpAkds="
+      "revision": "3139049a102009a3601fb49bc77260e7b18d691c",
+      "url": "https://github.com/sjhgvr/oisd/archive/3139049a102009a3601fb49bc77260e7b18d691c.tar.gz",
+      "hash": "sha256-hz+6i6qeqVadC1QjSTvJk1HDUzlbQh5Z+8qEIY4iDb8="
     },
     "statix": {
       "type": "Git",

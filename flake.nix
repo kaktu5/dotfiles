@@ -35,8 +35,15 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    hjem = {
+      url = "github:feel-co/hjem";
+      inputs = {
+        nix-darwin.follows = "";
+        nixpkgs.follows = "nixpkgs";
+        smfh.follows = "";
+      };
+    };
     preservation.url = "github:nix-community/preservation";
-
     tuigreet = {
       url = "github:notashelf/tuigreet";
       inputs.nixpkgs.follows = "nixpkgs";
