@@ -67,8 +67,8 @@ in {
     term7 = cfg.rgb.fg0;
   };
 
-  hex = mapAttrs (_: color: mkHexColorOption <| rgbToHex color) cfg.rgb;
-  hex' = mapAttrs (_: color: mkHexColorOption <| rgbToHex' color) cfg.rgb;
+  hex = cfg.rgb |> mapAttrs (_: color: mkHexColorOption <| rgbToHex color);
+  hex' = cfg.rgb |> mapAttrs (_: color: mkHexColorOption <| rgbToHex' color);
 
   ansi = mapAttrs (_: mkAnsiOption) {
     bg = 0;

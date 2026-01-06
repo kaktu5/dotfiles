@@ -34,6 +34,8 @@
       type = positive;
       inherit default;
     };
+
+  ptToPx = pt: ceil (pt * 4.0 / 3.0);
 in {
   fonts = {
     emoji = mkFontOption {
@@ -61,8 +63,6 @@ in {
       small = mkFontSizeOption 8;
     };
 
-    px = mapAttrs (_: pt:
-      (mkFontSizeOption <| ceil (pt * 4.0 / 3.0)) // {readOnly = true;})
-    cfg.sizes.pt;
+    px = cfg.sizes.pt |> mapAttrs (_: pt: (mkFontSizeOption <| ptToPx pt) // {readOnly = true;});
   };
 }
