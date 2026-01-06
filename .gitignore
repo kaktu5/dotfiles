@@ -13,6 +13,7 @@
 !/.gitattributes
 !/.gitignore
 !/.qmlformat.ini
+!/deno.json
 !/flake.lock
 !/flake.nix
 !/license
