@@ -48,13 +48,13 @@ in {
     fg2 = rgb 185 191 193; # oklab 0.8 -0.005 -0.005
     fg3 = rgb 169 175 177; # oklab 0.75 -0.005 -0.005
 
-    red = rgb 0 0 0;
-    green = rgb 0 0 0;
-    yellow = rgb 0 0 0;
-    orange = rgb 0 0 0;
-    blue = rgb 0 0 0;
-    purple = rgb 0 0 0;
-    cyan = rgb 0 0 0;
+    # colors based on https://github.com/vague-theme/vague.nvim
+    red = rgb 224 131 152;
+    green = rgb 153 183 130;
+    yellow = rgb 245 203 150;
+    blue = rgb 139 169 193;
+    purple = rgb 174 174 209;
+    cyan = rgb 155 180 188;
 
     termBg = cfg.rgb.bg0;
     term0 = cfg.rgb.bg3;
