@@ -20,7 +20,6 @@ in {
         {
           file = "/etc/machine-id";
           inInitrd = true;
-          configureParent = true;
         }
         {
           file = "/var/lib/systemd/random-seed";
