@@ -9,7 +9,6 @@ in {
   networking = {
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
-    resolvconf.enable = false;
   };
 
   environment.etc."resolv.conf".text = ''
