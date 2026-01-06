@@ -12,7 +12,6 @@ in {
           directory = "/var/lib/nixos";
           inInitrd = true;
         }
-        "/var/lib/systemd/coredump"
         "/var/lib/systemd/rfkill"
         "/var/lib/systemd/timers"
         "/var/log"
