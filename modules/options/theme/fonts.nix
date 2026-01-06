@@ -4,7 +4,9 @@
   pkgs,
 }: let
   inherit (lib) types;
+  inherit (lib.attrsets) mapAttrs;
   inherit (lib.options) mkOption;
+  inherit (lib.trivial) ceil;
   inherit (lib.types) str;
   inherit (lib.types.ints) positive;
   inherit (pkgs) _0xproto noto-fonts-monochrome-emoji;
@@ -53,8 +55,14 @@ in {
   };
 
   sizes = {
-    large = mkFontSizeOption 12;
-    medium = mkFontSizeOption 10;
-    small = mkFontSizeOption 8;
+    pt = {
+      large = mkFontSizeOption 12;
+      medium = mkFontSizeOption 10;
+      small = mkFontSizeOption 8;
+    };
+
+    px = mapAttrs (_: pt:
+      (mkFontSizeOption <| ceil (pt * 4.0 / 3.0)) // {readOnly = true;})
+    cfg.sizes.pt;
   };
 }
