@@ -34,5 +34,7 @@
     };
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    preservation.url = "github:nix-community/preservation";
   };
 }
