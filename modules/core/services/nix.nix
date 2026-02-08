@@ -1,16 +1,22 @@
 {
   inputs,
-  lib,
   pkgs,
   ...
 }: let
   inherit (inputs) nixpkgs;
-  inherit (lib.lists) singleton;
+  inherit (pkgs.lixPackageSets.latest) lix;
   inherit (pkgs.writers) writeJSON;
 in {
+  nixpkgs.config = {
+    allowAliases = false;
+    allowUnfree = true;
+  };
+
   nix = {
-    package = pkgs.lix;
+    package = lix;
+
     nixPath = ["nixpkgs=${nixpkgs}"];
+
     settings = {
       experimental-features = [
         "auto-allocate-uids"
@@ -35,30 +41,18 @@ in {
         version = 2;
       };
     };
+
     gc = {
       automatic = true;
       options = "--delete-older-than 14d";
-      dates = ["Sat *-*-* 03:00"];
+      dates = ["Fri *-*-* 03:00"];
       randomizedDelaySec = "15min";
     };
+
     optimise = {
       automatic = true;
-      dates = ["Sat *-*-* 04:00"];
+      dates = ["Fri *-*-* 04:00"];
       randomizedDelaySec = "15min";
     };
-  };
-
-  nixpkgs = {
-    config = {
-      allowAliases = false;
-      allowUnfree = true;
-    };
-    overlays = singleton (_: prev: {
-      inherit
-        (prev.lixPackageSets.latest)
-        lix
-        nix-direnv
-        ;
-    });
   };
 }
