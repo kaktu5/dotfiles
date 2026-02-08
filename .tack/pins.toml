@@ -11,8 +11,8 @@ nixpkgs.url = "channel:nixos-unstable"
 
 nixexprs.url = "github:kaktu5/nixexprs"
 
-hjem = {follows.nix-darwin = "", url = "github:feel-co/hjem"}
-microvm = {follows.spectrum = "", url = "github:microvm-nix/microvm.nix"}
+hjem.url = "github:feel-co/hjem"
+microvm.url = "github:microvm-nix/microvm.nix"
 preservation.url = "github:nix-community/preservation"
 stash.url = "github:notashelf/stash"
 tack.url = "github:manic-systems/tack/next"
