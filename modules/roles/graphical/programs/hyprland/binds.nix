@@ -1,59 +1,94 @@
-{lib, ...}: let
-  inherit (lib.lists) concatMap range;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib.kkts.hyprland) bind dsp;
+  inherit (lib.lists) foldl' range;
+  inherit (lib.meta) getExe;
+  inherit (pkgs) ghostty rofi uwsm;
 
-  term = "ghostty +new-window";
+  ghostty' = "${getExe ghostty} +new-window";
+  rofi' = "${getExe rofi} -show drun -run-command 'uwsm app -- {cmd}'";
+
+  cfg = config.kkts.programs.hyprland.config;
 in {
-  kkts.programs.hyprland.settings = {
-    bind =
-      [
-        ["super" "return" "exec" term]
-        ["super" "space" "exec" "rofi -show drun -run-command 'uwsm app -- {cmd}'"]
+  kkts.programs.hyprland = {
+    binds =
+      {
+        "SUPER + RETURN" = dsp "exec_raw" ghostty';
+        "SUPER + SPACE" = dsp "exec_raw" rofi';
 
-        ["super" "c" "killactive"]
-        ["super" "o" "fullscreen" 1] # maximize
-        ["super" "f" "togglefloating"]
-        ["super" "f" "centerwindow" 1] # respect monitor reserved area
-        ["super shift" "f" "centerwindow" 1] # respect monitor reserved area
-        ["super" "r" "togglesplit"]
-        ["super" "tab" "cyclenext"]
-        ["super shift" "tab" "cyclenext" "prev"]
-        ["super shift" "escape" "exec" "uwsm stop"]
+        "SUPER + C" = dsp "window.close" null;
+        "SUPER + O" = dsp "window.fullscreen" {mode = "maximized";};
+        "SUPER + F" = [
+          (dsp "window.float" {})
+          (dsp "window.center" {})
+        ];
+        "SUPER + SHIFT + F" = dsp "window.center" {};
+        "SUPER + R" = dsp "layout" "togglesplit";
+        "SUPER + SHIFT + ESCAPE" = dsp "exec_raw" "${getExe uwsm} stop";
 
-        ["super" "h" "movefocus" "l"]
-        ["super" "j" "movefocus" "d"]
-        ["super" "k" "movefocus" "u"]
-        ["super" "l" "movefocus" "r"]
+        "SUPER + TAB" = dsp "window.cycle_next" {};
+        "SUPER + SHIFT + TAB" = dsp "window.cycle_next" {next = false;};
 
-        ["super shift" "h" "movewindow" "l"]
-        ["super shift" "j" "movewindow" "d"]
-        ["super shift" "k" "movewindow" "u"]
-        ["super shift" "l" "movewindow" "r"]
-      ]
-      ++ (range 1 8
-        |> concatMap (n: [
-          ["super" n "workspace" n]
-          ["super shift" n "movetoworkspace" n]
-        ]))
-      ++ [
-        ["super" "s" "togglespecialworkspace" "term"]
-        ["super" "b" "togglespecialworkspace" "btop"]
-      ];
+        "SUPER + H" = dsp "focus" {direction = "l";};
+        "SUPER + J" = dsp "focus" {direction = "d";};
+        "SUPER + K" = dsp "focus" {direction = "u";};
+        "SUPER + L" = dsp "focus" {direction = "r";};
 
-    binde = [
-      ["super ctrl" "h" "resizeactive" "-20 0"]
-      ["super ctrl" "j" "resizeactive" "0 20"]
-      ["super ctrl" "k" "resizeactive" "0 -20"]
-      ["super ctrl" "l" "resizeactive" "20 0"]
-    ];
+        "SUPER + SHIFT + H" = dsp "window.move" {direction = "l";};
+        "SUPER + SHIFT + J" = dsp "window.move" {direction = "d";};
+        "SUPER + SHIFT + K" = dsp "window.move" {direction = "u";};
+        "SUPER + SHIFT + L" = dsp "window.move" {direction = "r";};
 
-    bindm = [
-      ["super" "mouse:272" "movewindow"] # lmb
-      ["super" "mouse:273" "resizewindow"] # rmb
-    ];
+        "SUPER + CTRL + H" =
+          bind {repeating = true;}
+          <| dsp "window.resize" {
+            x = -20;
+            y = 0;
+            relative = true;
+          };
+        "SUPER + CTRL + J" =
+          bind {repeating = true;}
+          <| dsp "window.resize" {
+            x = 0;
+            y = 20;
+            relative = true;
+          };
+        "SUPER + CTRL + K" =
+          bind {repeating = true;}
+          <| dsp "window.resize" {
+            x = 0;
+            y = -20;
+            relative = true;
+          };
+        "SUPER + CTRL + L" =
+          bind {repeating = true;}
+          <| dsp "window.resize" {
+            x = 20;
+            y = 0;
+            relative = true;
+          };
 
-    workspace = [
-      ["special:term" "gapsout:120" "on-created-empty:${term}"]
-      ["special:btop" "gapsout:120" "on-created-empty:${term} -e btop"]
-    ];
+        "SUPER + mouse:272" = dsp "window.drag" null;
+        "SUPER + mouse:273" = dsp "window.resize" null;
+      }
+      // (range 1 8
+        |> foldl' (acc: workspace:
+          acc
+          // {
+            "SUPER + ${workspace}" = dsp "focus" {inherit workspace;};
+            "SUPER + SHIFT + ${workspace}" = dsp "window.move" {inherit workspace;};
+          }) {})
+      // {
+        "SUPER + S" = dsp "workspace.toggle_special" "scratchpad";
+      };
+
+    workspaces."special:scratchpad" = {
+      on_created_empty = ghostty';
+      gaps_out = cfg.general.gaps_out * 12;
+    };
   };
 }

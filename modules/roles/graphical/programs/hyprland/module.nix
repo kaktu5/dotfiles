@@ -1,18 +1,15 @@
 {
   config,
   inputs,
-  lib,
   pkgs,
   ...
 }: let
   inherit (config.hjem.users.${userName}.environment.sessionVariables) XCURSOR_SIZE;
   inherit (config.kkts.meta) userName;
-  inherit (config.kkts.programs.hyprland) settings;
+  inherit (config.kkts.programs.hyprland) finalConfig;
   inherit (config.kkts.theme.colors) hex';
   inherit (config.nixpkgs.hostPlatform) system;
   inherit (inputs.nixexprs.legacyPackages.${system}) breezex-cursor;
-  inherit (lib.kkts.formats) hyprlang;
-  inherit (pkgs.writers) writeText;
 
   breezex-cursor' = breezex-cursor.override {
     baseColor = hex'.bg0;
@@ -21,16 +18,14 @@
     xcursorSizes = [XCURSOR_SIZE];
   };
 
-  HYPRLAND_CONFIG =
-    settings
-    |> hyprlang.generate {priorityKeys = ["bezier" "name" "output"];}
-    |> writeText "hyprland-conf";
+  HYPRLAND_CONFIG = pkgs.writeText "hyprland-config.lua" finalConfig;
 in {
   imports = [
+    ./animations.nix
     ./binds.nix
+    ./config.nix
     ./monitors.nix
     ./permissions.nix
-    ./settings.nix
     ./smartgaps.nix
     ./xdg-desktop-portal.nix
   ];

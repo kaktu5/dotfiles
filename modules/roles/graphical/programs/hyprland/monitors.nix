@@ -4,12 +4,11 @@
   ...
 }: let
   inherit (config.kkts.hardware.monitors) monitors;
-  inherit (lib.attrsets) mapAttrsToList;
+  inherit (lib.attrsets) mapAttrs;
 in {
-  kkts.programs.hyprland.settings.monitorv2 =
+  kkts.programs.hyprland.monitors =
     monitors
-    |> mapAttrsToList (output: m: {
-      inherit output;
+    |> mapAttrs (_: m: {
       mode = "${m.resolution.w}x${m.resolution.h}@${m.refreshRate}";
       position = "${m.position.x}x${m.position.y}";
       inherit (m) scale;
