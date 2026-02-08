@@ -8,15 +8,19 @@
   inherit (config.kkts.theme.fonts.fonts) monospace serif;
   inherit (config.kkts.theme.fonts.sizes) pt;
   inherit (lib.generators) toJSON;
+  inherit (lib.strings) concatMapStringsSep;
   inherit (pkgs) qtengine;
   inherit (pkgs.kdePackages) breeze;
 
   colorScheme = import ./colorscheme.nix {inherit config lib pkgs;};
 in {
-  users.users.${userName}.packages = [breeze qtengine];
+  users.users.${userName}.packages = [breeze];
 
   hjem.users.${userName} = {
-    environment.sessionVariables.QT_QPA_PLATFORMTHEME = "qtengine";
+    environment.sessionVariables = {
+      QT_PLUGIN_PATH = [breeze qtengine] |> concatMapStringsSep ":" (pkg: pkg + /lib/qt-6/plugins);
+      QT_QPA_PLATFORMTHEME = "qtengine";
+    };
 
     xdg.config.files."qtengine/config.json" = {
       generator = toJSON {};
