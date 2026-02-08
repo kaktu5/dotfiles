@@ -46,11 +46,11 @@
     "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1008282.331800de5053/nixexprs.tar.xz"
   },
   "oisd": {
-    "lastModified": 1780755151,
-    "narHash": "sha256-dQUJtWijbhGhTDXu+XHlhk+aZ0e2b8lBMU72hkeFsYM=",
+    "lastModified": 1780764166,
+    "narHash": "sha256-GXtjejOHaQIsfZJIPGc5WIAc37IAeEe72lzkmr7ySEs=",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "831dd4e25b973ba5fdbd7685917c0e4470b3e166",
+    "rev": "29b830c08e4450844e9c9b25306eece537065988",
     "type": "github"
   },
   "preservation": {
@@ -94,11 +94,11 @@
     "type": "github"
   },
   "vaultix": {
-    "lastModified": 1780763110,
-    "narHash": "sha256-gsePPZ+MaDo+lTVR7d/x66Q6dAKgKMWykmaPu9/RF7g=",
+    "lastModified": 1780764074,
+    "narHash": "sha256-pvTQC9SZz9ORQC9zKZV8HUBNw/Ig4GxEofnaMHEpRYc=",
     "owner": "kaktu5",
     "repo": "vaultix",
-    "rev": "1b3eefe7a638cc3b5ec63863220b7213ac5b080a",
+    "rev": "92323d03be0de6e6c24f4ec83b4e39ada9b5cece",
     "type": "github"
   }
 }
