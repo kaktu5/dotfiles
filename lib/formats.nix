@@ -41,7 +41,7 @@ in {
       cases = {
         bool = boolToString v;
         float = toString v;
-        int = v;
+        int = "${v}";
         list = "[${concatMapStringsSep "," mkValue v}]";
         null = "null";
         set = mkRecord v;
