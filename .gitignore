@@ -13,6 +13,6 @@
 !/.mdformat.toml
 !/.qmlformat.ini
 !/.taplo.toml
-!/flake.{lock,nix}
+!/flake.nix
 !/license
 !/readme.md
