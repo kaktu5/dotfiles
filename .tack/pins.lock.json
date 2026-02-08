@@ -27,9 +27,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "4d3fb17437944ea57eef2b9e6108ca777b1209ca",
-    "narHash": "sha256-zQk+GqLO+T9taIl1UUt3swvaOksWJxL7PL8K0+Fc/Hs=",
-    "lastModified": 1780588968
+    "rev": "6ad601df0a07d9855c5e8f9b81135ecaf7c287eb",
+    "narHash": "sha256-Ne1/E5XNUq0gleaQz0vW5R4xf/0h/uEZ+bOW1aNjeQk=",
+    "lastModified": 1781389237
   },
   "nixexprs": {
     "type": "github",
@@ -41,17 +41,17 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1011622.a799d3e3886d/nixexprs.tar.xz",
-    "narHash": "sha256-G5B1h4sOH4DN/RZ85xYi6zPm2MHdOrNMeUmMslZ28Qs=",
-    "lastModified": 1780879182
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1014179.9ae611a455b9/nixexprs.tar.xz",
+    "narHash": "sha256-d34lhgOet4IqYMnCxbIvwFBMOyTV6PT4TyNEOP0/ZhU=",
+    "lastModified": 1781223995
   },
   "oisd": {
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "57851ac50f34f4f91a622517ca966b27a876fc8e",
-    "narHash": "sha256-ve3cAuZaOJQnL9J86aivcvCllIpni0mWctYrCOqmGS8=",
-    "lastModified": 1781201216
+    "rev": "f7b8d2c3ff3878f26295f57db0866ddab76deb06",
+    "narHash": "sha256-45LR3yTzXQlRSeQ/tZB3rrZLxxF6ezkxlZjGw/0z4NE=",
+    "lastModified": 1781428036
   },
   "preservation": {
     "type": "github",
@@ -81,17 +81,17 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "8315ae53c25eb8b04445da654f39f763b9692720",
-    "narHash": "sha256-sPIzpQDEx4HnCGMPBrdYaCPoBJmz+UZaqI2uodxmy5o=",
-    "lastModified": 1781151567
+    "rev": "7d1f4757516a0425dbe7088b78366f88ccd1428b",
+    "narHash": "sha256-nP2++i14l0TNH1lp6LrUM3uXYjoTmOqQKXqwZcG6lUQ=",
+    "lastModified": 1781408015
   },
   "tuigreet": {
     "type": "github",
     "owner": "notashelf",
     "repo": "tuigreet",
-    "rev": "b0f35390a25f6ae537d87533614b6fe4c8d13178",
-    "narHash": "sha256-bzBGqsmF1gbkPJw2n2oPsGPHJ278g8v/h2phRwGISaY=",
-    "lastModified": 1780986174
+    "rev": "3d3453c9c75e7548cb158309f06047e0609ea9a7",
+    "narHash": "sha256-4hm0uBfAK8+snE+DXLE7VoVUTZFtLSYIWvAuK7oFo84=",
+    "lastModified": 1781429842
   },
   "vaultix": {
     "type": "github",

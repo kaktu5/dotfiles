@@ -1,11 +1,8 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: let
-  inherit (lib.generators) toKeyValue;
-
   package = pkgs.systemd.override (let
     withCoredump = config.systemd.coredump.enable;
     withResolved = config.services.resolved.enable || config.boot.initrd.services.resolved.enable;
@@ -43,7 +40,7 @@ in {
     enableEmergencyMode = false;
 
     settings.Manager = timeoutConfig;
-    user.extraConfig = toKeyValue {} {
+    user.settings.Manager = {
       inherit (timeoutConfig) DefaultTimeoutStartSec DefaultTimeoutStopSec DefaultTimeoutAbortSec;
     };
 
