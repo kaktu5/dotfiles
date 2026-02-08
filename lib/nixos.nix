@@ -22,16 +22,16 @@
     ++ modulesFromDirRec /${modulesPath}/options
     ++ modulesFromDirRec /${modulesPath}/profiles;
 
-  modulesForRole = let
-    rolesPath = /${modulesPath}/roles;
-    roles = ["bare-metal" "graphical" "headless" "iso" "laptop" "microvm" "server" "workstation"];
+  modulesForTrait = let
+    traitsPath = /${modulesPath}/traits;
+    traits = ["bare-metal" "graphical" "headless" "iso" "laptop" "microvm" "server" "workstation"];
   in
-    genAttrs roles (role: modulesFromDirRec /${rolesPath}/${role});
+    genAttrs traits (trait: modulesFromDirRec /${traitsPath}/${trait});
 
   modulesFor = {
     hostName,
     arch,
-    roles,
+    traits,
     microvms ? {},
   }:
     (singleton {
@@ -40,16 +40,16 @@
     })
     ++ modulesFromDirRec /${hostsPath}/${hostName}
     ++ commonModules
-    ++ concatMap (role: modulesForRole.${role}) roles
+    ++ concatMap (trait: modulesForTrait.${trait}) traits
     ++ optional (microvms != {}) {
       microvm.vms =
         microvms
         |> mapAttrs (hostName: {
           arch,
-          roles ? [],
+          traits ? [],
         }: {
           inherit specialArgs;
-          config.imports = modulesFor {inherit hostName arch roles;};
+          config.imports = modulesFor {inherit hostName arch traits;};
         });
     };
 in {
@@ -57,11 +57,11 @@ in {
     fix f
     |> mapAttrs (hostName: {
       arch,
-      roles ? [],
+      traits ? [],
       microvms ? {},
     }:
       nixosSystem {
         inherit specialArgs;
-        modules = modulesFor {inherit hostName arch roles microvms;};
+        modules = modulesFor {inherit hostName arch traits microvms;};
       });
 }
