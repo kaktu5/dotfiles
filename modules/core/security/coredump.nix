@@ -1,9 +1,15 @@
-{lib, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib.lists) singleton;
+  inherit (lib.meta) getExe';
+  inherit (pkgs) uutils-coreutils-noprefix;
 in {
   boot.kernel.sysctl = {
     "fs.suid_dumpable" = 0;
-    "kernel.core_pattern" = "|/bin/false";
+    "kernel.core_pattern" = "|${getExe' uutils-coreutils-noprefix "false"}";
   };
 
   security.pam.loginLimits = singleton {
@@ -13,11 +19,5 @@ in {
     value = 0;
   };
 
-  systemd.coredump = {
-    enable = false;
-    extraConfig = ''
-      ProcessSizeMax=0
-      Storage=none
-    '';
-  };
+  systemd.coredump.enable = false;
 }
