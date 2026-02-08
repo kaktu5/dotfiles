@@ -1,5 +1,11 @@
-{inputs, ...}: let
+{
+  flake,
+  inputs,
+  ...
+}: let
   inherit (inputs) vaultix;
 in {
   imports = [vaultix.nixosModules.default];
+
+  vaultix.settings = {inherit flake;};
 }
