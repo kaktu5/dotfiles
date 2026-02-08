@@ -7,7 +7,7 @@
   inherit (config.kkts.meta) userName;
   inherit (lib.generators) toGitINI;
   inherit (lib.meta) getExe;
-  inherit (pkgs) git jujutsu;
+  inherit (pkgs) gitMinimal jujutsu;
   inherit (pkgs.writers) writeTOML;
 
   user = {
@@ -17,7 +17,7 @@
 
   gpg = getExe pkgs.gnupg;
 in {
-  users.users.${userName}.packages = [git jujutsu];
+  users.users.${userName}.packages = [gitMinimal jujutsu];
 
   hjem.users.${userName}.xdg.config.files = {
     "jj/config.toml" = {
