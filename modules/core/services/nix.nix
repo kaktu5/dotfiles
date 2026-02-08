@@ -53,4 +53,12 @@ in {
       randomizedDelaySec = "15min";
     };
   };
+
+  # nukes persistent `nix profile` on boot
+  # must be writable so the nix daemon can create internal dirs and symlinks
+  fileSystems."/nix/var/nix/profiles/per-user" = {
+    device = "none";
+    fsType = "tmpfs";
+    options = ["X-mount.mkdir" "mode=755" "size=4k"];
+  };
 }
