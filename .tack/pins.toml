@@ -2,9 +2,9 @@
 channel = "https://channels.nixos.org/{path}/nixexprs.tar.xz"
 
 [all_follow]
-crane = "crane"
-nixpkgs = ["nixpkgs", "nixpkgs-lib"]
-rust-overlay = "rust-overlay"
+crane = []
+nixpkgs = ["nixpkgs-lib"]
+rust-overlay = []
 
 [inputs]
 nixpkgs.url = "channel:nixos-unstable"
