@@ -95,10 +95,10 @@
   },
   "vaultix": {
     "type": "github",
-    "owner": "milieuim",
+    "owner": "kaktu5",
     "repo": "vaultix",
-    "rev": "17bb95fd1c096a6f3ff6d240003440dda18e98e7",
-    "narHash": "sha256-bzakmnHZ4P0IRaDYk/q4JdR/My8klp7iZcialGOtE2A=",
-    "lastModified": 1781183600
+    "rev": "9251a14a8cc5148e356d36f65458fdc6444b0172",
+    "narHash": "sha256-Sg0PgBBP5DD4apvrExqHL1DKsKhj45IhbZphTGkEHQk=",
+    "lastModified": 1782147038
   }
 }
