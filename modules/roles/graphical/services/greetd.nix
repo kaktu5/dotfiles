@@ -8,7 +8,7 @@
   inherit (config.kkts.meta) userName;
   inherit (config.nixpkgs.hostPlatform) system;
   inherit (config.services.displayManager) sessionPackages;
-  inherit (lib.lists) map singleton;
+  inherit (lib.lists) singleton;
   inherit (lib.meta) getExe;
   inherit (pkgs.writers) writeTOML;
 
