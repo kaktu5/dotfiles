@@ -1,6 +1,23 @@
-{pkgs, ...}: let
-  inherit (pkgs) memtest86-efi;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib.lists) optional;
+  inherit (pkgs) memtest86-efi sbctl;
+
+  cfg = config.boot.loader.limine;
+
+  optional' = optional cfg.secureBoot.enable;
 in {
+  preservation.preserveAt."/persist".directories = optional' {
+    directory = "/var/lib/sbctl";
+    mode = "u=rwx,g=,o=";
+  };
+
+  environment.systemPackages = optional' sbctl;
+
   boot.loader = {
     timeout = 1;
 
