@@ -1,5 +1,5 @@
 [shorturls]
-channel = "https://channels.nixos.org/{path}"
+channel = "https://channels.nixos.org/{path}/nixexprs.tar.xz"
 
 [all_follow]
 crane = "crane"
@@ -7,7 +7,7 @@ nixpkgs = ["nixpkgs", "nixpkgs-lib"]
 rust-overlay = "rust-overlay"
 
 [inputs]
-nixpkgs.url = "channel:nixos-unstable/nixexprs.tar.xz"
+nixpkgs.url = "channel:nixos-unstable"
 
 nixexprs.url = "github:kaktu5/nixexprs"
 
@@ -15,7 +15,7 @@ hjem = {follows.nix-darwin = "", url = "github:feel-co/hjem"}
 microvm = {follows.spectrum = "", url = "github:microvm-nix/microvm.nix"}
 preservation.url = "github:nix-community/preservation"
 stash.url = "github:notashelf/stash"
-tack.url = "github:manic-systems/tack"
+tack.url = "github:manic-systems/tack/next"
 tuigreet.url = "github:notashelf/tuigreet"
 vaultix.url = "github:milieuim/vaultix"
 
