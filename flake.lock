@@ -111,11 +111,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777732535,
-        "narHash": "sha256-gaHRkPaGAAjc6D4sZ+/haEKMJGO79tu4ROBlyOjXuco=",
+        "lastModified": 1778659079,
+        "narHash": "sha256-ktYBdfwamZly9P0SSrKbZgJReqcdDckgSlvJJnw39UM=",
         "owner": "feel-co",
         "repo": "hjem",
-        "rev": "ab977051adce0bf9f7c1032327e72f0febda6f7b",
+        "rev": "5e7bf117ed06ccf899bcfc421c8a6de00f825c23",
         "type": "github"
       },
       "original": {
@@ -132,11 +132,11 @@
         "spectrum": []
       },
       "locked": {
-        "lastModified": 1778200184,
-        "narHash": "sha256-WL0cPwbYms7fUVTWnnayo4DhXeNPOfL1a8RDPBuAzBc=",
+        "lastModified": 1778669912,
+        "narHash": "sha256-WT2iimtOBZM/6AcZeBoJU2EgUSaywtlItsEgNkZBda0=",
         "owner": "microvm-nix",
         "repo": "microvm.nix",
-        "rev": "b00d7c12745b15442c618c7e23f2d7442d7a51da",
+        "rev": "a7a7009064cec75d9da652c6723412ce27b9bc44",
         "type": "github"
       },
       "original": {
@@ -167,16 +167,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1777954456,
-        "narHash": "sha256-hGdgeU2Nk87RAuZyYjyDjFL6LK7dAZN5RE9+hrDTkDU=",
+        "lastModified": 1778729098,
+        "narHash": "sha256-17SbusskVZng4nwevRqsWNJf27nMG7UczvtgWTUJttg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "549bd84d6279f9852cae6225e372cc67fb91a4c1",
+        "rev": "39ea44cddd5060b8cd413ed5e13c6af61f302283",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable",
+        "ref": "nixos-unstable-small",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -184,11 +184,11 @@
     "oisd": {
       "flake": false,
       "locked": {
-        "lastModified": 1778319004,
-        "narHash": "sha256-oGvI2NI5TUyJ5DkrQm+ZPJHsl9xCB8Nd2tZQ8JgO9HU=",
+        "lastModified": 1778847696,
+        "narHash": "sha256-OIlMYWcDbH/kjILokBEtx+oMSaQZEaVGX7HLN4fOLos=",
         "owner": "sjhgvr",
         "repo": "oisd",
-        "rev": "237a7ef18eec70d9f02b4c51d71a1710d63e510d",
+        "rev": "f265ffe960bb435be948359ba182f59ade3570fe",
         "type": "github"
       },
       "original": {
@@ -206,11 +206,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776796298,
-        "narHash": "sha256-PcRvlWayisPSjd0UcRQbhG8Oqw78AcPE6x872cPRHN8=",
+        "lastModified": 1778507602,
+        "narHash": "sha256-kTwur1wV+01SdqskVMSo6JMEpg71ps3HpbFY2GsflKs=",
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "rev": "3cfd774b0a530725a077e17354fbdb87ea1c4aad",
+        "rev": "61ab0e80d9c7ab14c256b5b453d8b3fb0189ba0a",
         "type": "github"
       },
       "original": {
@@ -258,11 +258,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777346187,
-        "narHash": "sha256-oVxyGjpiIsrXhWTJVUOs38fZQkLjd0nZGOY9K7Kfot8=",
+        "lastModified": 1778555852,
+        "narHash": "sha256-55EmwooVAS4UpA0oWd5wilKPRqCiHD5BAej9QiNwheY=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "146e7bf7569b8288f24d41d806b9f584f7cfd5b5",
+        "rev": "f29b0f7a9f367e0056b716f8aa137cb41e784444",
         "type": "github"
       },
       "original": {
@@ -301,11 +301,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778080632,
-        "narHash": "sha256-vghGv9P9/5W3qoxGtS8clYMgM9disMrNNBc/NrUlISE=",
+        "lastModified": 1778772168,
+        "narHash": "sha256-Fgvd+4EC59N9UmmFvhYcILxe9nms1el25goZpyXX+Lg=",
         "owner": "notashelf",
         "repo": "stash",
-        "rev": "e2ad638fb24f29061c7aa631c57848ed3ed82dd8",
+        "rev": "c1ca18e332d5e2915e4d7ea25b8779e6a4f979df",
         "type": "github"
       },
       "original": {
@@ -341,11 +341,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1777962859,
-        "narHash": "sha256-uQ3n+OHXOIasEireYS+zTSHzxKYZL+CRF4VSz/mA99M=",
+        "lastModified": 1778842706,
+        "narHash": "sha256-clofLNZWBununCewLVQr86TpVgI/oeAWuIZpE28R1RY=",
         "owner": "notashelf",
         "repo": "tuigreet",
-        "rev": "83b2b88d72ad067be1eb8556168321c4afc45898",
+        "rev": "8e77e88b3d08298e3a369e4a8ebf574ea5d49679",
         "type": "github"
       },
       "original": {

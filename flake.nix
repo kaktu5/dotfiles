@@ -36,7 +36,7 @@
       flake = false;
     };
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
 
     nixexprs = {
       url = "github:kaktu5/nixexprs";
