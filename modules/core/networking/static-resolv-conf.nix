@@ -6,6 +6,8 @@
   inherit (config.networking) nameservers;
   inherit (lib.strings) concatMapStringsSep;
 in {
+  services.resolved.enable = false;
+
   networking = {
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
