@@ -13,6 +13,7 @@
 in {
   fonts = {
     enableDefaultPackages = false;
+
     packages =
       (fonts
         |> mapAttrsToList (_: font: font.package)
@@ -20,7 +21,7 @@ in {
       ++ [material-symbols sarasa-gothic symbols-only];
 
     fontconfig.defaultFonts = let
-      common = ["Symbols Nerd Font Mono" fonts.emoji.name];
+      common = ["Sarasa Mono J" fonts.emoji.name];
     in
       fonts |> mapAttrs (name: font: [font.name] ++ optionals (name != "emoji") common);
   };
