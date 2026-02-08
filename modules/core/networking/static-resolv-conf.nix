@@ -10,7 +10,6 @@ in {
 
   networking = {
     resolvconf.enable = false;
-    dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
   };
 

@@ -1,5 +1,5 @@
 {inputs, ...}: let
-  inherit (inputs.vaultix) nixosModules;
+  inherit (inputs) vaultix;
 in {
-  imports = [nixosModules.default];
+  imports = [vaultix.nixosModules.default];
 }

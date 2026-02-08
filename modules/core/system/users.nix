@@ -3,6 +3,7 @@
 in {
   users = {
     mutableUsers = false;
+
     defaultUserShell = "/run/current-system/sw/bin/nologin";
 
     users = {

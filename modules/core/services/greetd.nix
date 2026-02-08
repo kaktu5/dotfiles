@@ -12,7 +12,9 @@
 in {
   services.greetd = {
     enable = true;
+
     useTextGreeter = true;
+
     settings.default_session = {
       user = "greeter";
       command = mkDefault "${getExe' greetd "agreety"} --cmd ${shell}";

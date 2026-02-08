@@ -10,17 +10,14 @@ in {
     systemPackages = attrValues {
       inherit
         (pkgs)
-        file
-        gnutar
+        inetutils
+        iproute2
         lsof
         procps
-        ripgrep
         util-linux
         uutils-coreutils-noprefix
         uutils-diffutils
         uutils-findutils
-        xz
-        zstd
         ;
     };
 

@@ -8,10 +8,10 @@ in {
   boot.initrd = {
     kernelModules = ["r8169"];
 
-    systemd.network.networks."0-${device}" = networks."0-${device}";
+    systemd.network.networks."00-${device}" = networks."00-${device}";
   };
 
-  systemd.network.networks."0-${device}" = {
+  systemd.network.networks."00-${device}" = {
     matchConfig.Name = device;
     networkConfig = {
       Address = "${address}/24";
