@@ -1,6 +1,7 @@
 *
 !/**/
 
+!/.github/**/*.yml
 !/.vaultix/**
 !/hosts/**
 !/internal/**
