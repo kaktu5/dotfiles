@@ -1,0 +1,9 @@
+*
+!/**/
+
+!/components/**/*.qml
+!/widgets/**/*.qml
+
+!/.gitignore
+!/{Bar,Config,shell}.qml
+!/module.nix
