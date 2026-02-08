@@ -5,29 +5,33 @@
   system,
 }: let
   inherit (lib.attrsets) attrValues;
-  inherit (lib.meta) getExe;
+  inherit (lib.strings) replaceStrings;
   inherit (pkgs) mkShellNoCC writeShellScriptBin;
 
   vaultix' = self.vaultix.app.${system};
 
-  vaultix-edit = writeShellScriptBin "vaultix-edit" "${getExe vaultix'.edit} $@";
-  vaultix-renc = writeShellScriptBin "vaultix-renc" (toString <| getExe vaultix'.renc);
+  vaultix-edit = vaultix'.edit.overrideAttrs (old: {
+    name = "vaultix-edit";
+    buildCommand = replaceStrings ["edit-secret"] ["vaultix-edit"] old.buildCommand;
+  });
+  vaultix-renc = writeShellScriptBin "vaultix-renc" ''
+    dir="$PWD"
+    until [[ -f $dir/flake.nix || $dir == / ]]; do dir="''${dir%/*}"; done
+    cd "$dir"
+    nix run -Lv .#vaultix.app.${system}.renc
+  '';
 in
   mkShellNoCC {
     name = "dotfiles-devshell";
     packages = attrValues {
       # nix
-      inherit
-        (pkgs)
-        age
-        alejandra
-        dix
-        nh
-        nixd
-        ;
-      inherit vaultix-edit vaultix-renc;
+      inherit (pkgs) alejandra dix nh nixd;
 
       # qml
       inherit (pkgs.kdePackages) qtdeclarative;
+
+      # vaultix
+      inherit (pkgs) age;
+      inherit vaultix-edit vaultix-renc;
     };
   }
