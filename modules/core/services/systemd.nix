@@ -3,27 +3,30 @@
   pkgs,
   ...
 }: let
-  package = pkgs.systemd.override (let
-    withCoredump = config.systemd.coredump.enable;
-    withResolved = config.services.resolved.enable || config.boot.initrd.services.resolved.enable;
-    withTimesyncd = config.services.timesyncd.enable;
-  in {
-    inherit withCoredump;
-    withHomed = false;
-    withHostnamed = false;
-    withImportd = false;
-    withLocaled = false;
-    withPasswordQuality = false;
-    withPortabled = false;
-    withRemote = false;
-    inherit withResolved;
-    withSysupdate = false;
-    withTimedated = false;
-    inherit withTimesyncd;
-    withUserDb = false;
-    withNss = withResolved;
-    withKexectools = false;
-  });
+  package =
+    (pkgs.systemd.overrideAttrs (old: {
+      postInstall = (old.postInstall or "") + "rm $out/bin/{halt,init,poweroff,reboot,shutdown}";
+    })).override (let
+      withCoredump = config.systemd.coredump.enable;
+      withResolved = config.services.resolved.enable || config.boot.initrd.services.resolved.enable;
+      withTimesyncd = config.services.timesyncd.enable;
+    in {
+      inherit withCoredump;
+      withHomed = false;
+      withHostnamed = false;
+      withImportd = false;
+      withLocaled = false;
+      withPasswordQuality = false;
+      withPortabled = false;
+      withRemote = false;
+      inherit withResolved;
+      withSysupdate = false;
+      withTimedated = false;
+      inherit withTimesyncd;
+      withUserDb = false;
+      withNss = withResolved;
+      withKexectools = false;
+    });
 
   commonConfig = {
     CtrlAltDelBurstAction = "none";
