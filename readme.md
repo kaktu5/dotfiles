@@ -14,5 +14,4 @@
 
 ## License
 
-This project is licensed under the GNU General Public License version 3 (GPLv3). See the complete license text in the
-[license](license) file.
+This project is licensed under the Mozilla Public License Version 2.0. See the [license](license) file for details.
