@@ -6,6 +6,7 @@
   inherit (config.networking) nameservers;
   inherit (lib.strings) concatMapStringsSep;
 in {
+  boot.initrd.systemd.services.systemd-resolved.enable = false;
   services.resolved.enable = false;
 
   networking = {

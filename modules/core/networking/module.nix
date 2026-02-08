@@ -9,6 +9,7 @@
 in {
   imports = [./static-resolv-conf.nix];
 
+  boot.initrd.systemd.network.wait-online.enable = false;
   systemd.network.wait-online.enable = false;
 
   networking = {

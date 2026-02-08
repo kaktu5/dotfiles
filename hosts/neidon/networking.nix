@@ -1,14 +1,14 @@
 {config, ...}: let
-  inherit (config.networking) hostName;
+  inherit (config.systemd.network) networks;
 
   device = "enp1s0f0";
   address = "10.0.0.2";
   gateway = "10.0.0.1";
 in {
-  boot = {
-    kernelParams = ["ip=${address}::${gateway}:255.255.255.0:${hostName}:${device}:none"];
+  boot.initrd = {
+    kernelModules = ["r8169"];
 
-    initrd.kernelModules = ["r8169"];
+    systemd.network.networks."0-${device}" = networks."0-${device}";
   };
 
   systemd.network.networks."0-${device}" = {
