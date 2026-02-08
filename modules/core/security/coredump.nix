@@ -3,7 +3,7 @@
 in {
   boot.kernel.sysctl = {
     "fs.suid_dumpable" = 0;
-    "kernel.core_pattern" = "/dev/null";
+    "kernel.core_pattern" = "|/bin/false";
   };
 
   security.pam.loginLimits = singleton {
@@ -13,8 +13,11 @@ in {
     value = 0;
   };
 
-  systemd.coredump.extraConfig = ''
-    ProcessSizeMax=0
-    Storage=none
-  '';
+  systemd.coredump = {
+    enable = false;
+    extraConfig = ''
+      ProcessSizeMax=0
+      Storage=none
+    '';
+  };
 }
