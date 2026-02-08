@@ -3,7 +3,7 @@
     lib = import ./lib {inherit inputs;};
 
     inherit (lib.attrsets) mapAttrs zipAttrsWith;
-    inherit (lib.lists) foldl' map;
+    inherit (lib.lists) foldl';
     inherit (lib.trivial) mergeAttrs;
 
     systems = import inputs.systems;
