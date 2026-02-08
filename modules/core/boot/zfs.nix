@@ -1,6 +1,6 @@
 {
   boot.zfs = {
     devNodes = "/dev/disk/by-partuuid";
-    forceImportRoot = false;
+    forceImportRoot = false; # remove after 26.11 releases
   };
 }

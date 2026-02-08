@@ -1,3 +1,7 @@
 {
-  console.keyMap = "pl";
+  console = {
+    earlySetup = true;
+
+    keyMap = "pl";
+  };
 }
