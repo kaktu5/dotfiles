@@ -2,14 +2,15 @@
   outputs = {self, ...} @ inputs: let
     lib = import ./lib {inherit inputs;};
 
-    inherit (lib.attrsets) mapAttrs recursiveUpdate;
-    inherit (lib.lists) foldl';
+    inherit (lib.attrsets) mapAttrs zipAttrsWith;
+    inherit (lib.lists) foldl' map;
+    inherit (lib.trivial) mergeAttrs;
 
     systems = import inputs.systems;
-    mapSystems = systems: f: (foldl' (acc: system: (f system
-      |> mapAttrs (_: value: {${system} = value;})
-      |> recursiveUpdate acc)) {}
-    systems);
+    mapSystems = systems: f:
+      systems
+      |> map (s: f s |> mapAttrs (_: v: {${s} = v;}))
+      |> zipAttrsWith (_: foldl' mergeAttrs {});
 
     sources = import ./npins/default.nix;
   in
