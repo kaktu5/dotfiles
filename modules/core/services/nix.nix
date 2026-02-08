@@ -31,6 +31,9 @@ in {
       keep-outputs = true;
       warn-dirty = false;
 
+      log-format = "multiline-with-logs";
+      log-lines = 64;
+
       flake-registry = writeJSON "flake-registry-empty.json" {
         flakes = [];
         version = 2;
