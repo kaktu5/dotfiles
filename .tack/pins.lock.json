@@ -40,17 +40,17 @@
     "type": "github"
   },
   "nixpkgs": {
-    "lastModified": 1780344360,
-    "narHash": "sha256-2fYATYjjbsF2ri3reTWXgBkrmwK5Hpj23CsTEdLA2fo=",
+    "lastModified": 1780879182,
+    "narHash": "sha256-G5B1h4sOH4DN/RZ85xYi6zPm2MHdOrNMeUmMslZ28Qs=",
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1008282.331800de5053/nixexprs.tar.xz"
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1011622.a799d3e3886d/nixexprs.tar.xz"
   },
   "oisd": {
-    "lastModified": 1780764166,
-    "narHash": "sha256-GXtjejOHaQIsfZJIPGc5WIAc37IAeEe72lzkmr7ySEs=",
+    "lastModified": 1780906493,
+    "narHash": "sha256-zMo+ZUEzEJMLS69jcqj+yyDPC7t882ErQl0mr7/Ibos=",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "29b830c08e4450844e9c9b25306eece537065988",
+    "rev": "8f482b016bb8ce23d7ee2b9fd56f4690584d9e55",
     "type": "github"
   },
   "preservation": {
