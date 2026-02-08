@@ -10,11 +10,19 @@ in {
         |> replaceStrings ["/" "-" "."] ["-" "\\x2d" "\\x2e"])
       + ".${suffix}";
 
-  mkGraphicalTargetService = recursiveUpdate {
-    after = ["graphical-session.target"];
-    partOf = ["graphical-session.target"];
-    wantedBy = ["graphical-session.target"];
+  mkGraphicalTargetService = {
+    after ? [],
+    partOf ? [],
+    wantedBy ? [],
+    ...
+  } @ attrs:
+    attrs
+    |> (a: removeAttrs a ["after" "partOf" "wantedBy"])
+    |> recursiveUpdate {
+      after = ["graphical-session.target"] ++ after;
+      partOf = ["graphical-session.target"] ++ partOf;
+      wantedBy = ["graphical-session.target"] ++ wantedBy;
 
-    serviceConfig.Restart = "on-failure";
-  };
+      serviceConfig.Restart = "on-failure";
+    };
 }

@@ -9,21 +9,20 @@
   inherit (config.kkts.theme.fonts.fonts) monospace;
   inherit (config.kkts.theme.fonts.sizes) pt;
   inherit (lib.generators) toKeyValue;
+  inherit (lib.kkts.systemd) mkGraphicalTargetService;
   inherit (lib.lists) range;
   inherit (lib.meta) getExe;
-  inherit (lib.modules) mkForce;
   inherit (pkgs) ghostty;
 in {
   users.users.${userName}.packages = [ghostty];
 
   hjem.users.${userName} = {
-    systemd.services.ghostty = {
+    systemd.services.ghostty = mkGraphicalTargetService {
       aliases = ["app-com.mitchellh.ghostty.service"];
-      after = ["dbus.socket" "graphical-session.target"];
+      after = ["dbus.socket"];
       requires = ["dbus.socket"];
-      wantedBy = ["graphical-session.target"];
 
-      path = mkForce [];
+      enableDefaultPath = false;
 
       serviceConfig = {
         Type = "notify-reload";
