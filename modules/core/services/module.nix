@@ -1,4 +1,6 @@
-{
+{lib, ...}: let
+  inherit (lib.modules) mkForce;
+in {
   imports = [
     ./systemd.nix
 
@@ -8,5 +10,5 @@
     ./userborn.nix
   ];
 
-  services.speechd.enable = false;
+  services.speechd.enable = mkForce false;
 }
