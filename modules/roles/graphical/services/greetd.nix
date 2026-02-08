@@ -8,18 +8,16 @@
   inherit (config.kkts.meta) userName;
   inherit (config.nixpkgs.hostPlatform) system;
   inherit (config.services.displayManager) sessionPackages;
-  inherit (lib.lists) singleton;
-  inherit (lib.meta) getExe;
-  inherit (pkgs.writers) writeTOML;
-
   inherit (inputs.tuigreet.packages.${system}) tuigreet;
+  inherit (lib.meta) getExe;
+  inherit (pkgs) hyprland;
+  inherit (pkgs.writers) writeTOML;
 in {
-  preservation.preserveAt."/persist".directories = singleton {
-    directory = "/var/cache/tuigreet";
-    mode = "755";
-    user = "greeter";
-    group = "greeter";
-  };
+  systemd.tmpfiles.rules = [
+    "d /var/cache/tuigreet 0755 greeter greeter -"
+    "F /var/cache/tuigreet/lastuser 0644 greeter greeter - ${userName}"
+    "F /var/cache/tuigreet/lastsession-path 0644 greeter greeter - ${hyprland}/share/wayland-sessions/hyprland-uwsm.desktop"
+  ];
 
   environment.etc."tuigreet/config.toml".source = writeTOML "tuigreet-config.toml" {
     display = {
@@ -30,7 +28,6 @@ in {
     layout.width = 48;
 
     remember = {
-      default_user = userName;
       username = true;
       session = true;
     };
