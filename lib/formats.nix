@@ -44,24 +44,34 @@ in {
   in
     mkCategory attrs;
 
-  nuon.generate = {}: attrs: let
-    mkValue = v: let
-      cases = {
-        bool = boolToString v;
-        float = toString v;
-        int = "${v}";
-        list = "[${concatMapStringsSep "," mkValue v}]";
-        null = "null";
-        set = mkRecord v;
-      };
-    in
-      cases.${typeOf' v} or "\"${toString v}\"";
+  nuon = {
+    closure = args: body: {
+      _type = "closure";
+      inherit args body;
+    };
 
-    mkRecord = attrs: "{${
-      attrs
-      |> mapAttrsToList (k: v: "${k}:${mkValue v}")
-      |> concatStringsSep ","
-    }}";
-  in
-    mkRecord attrs;
+    generate = {}: attrs: let
+      mkValue = v:
+        if isAttrs v && v._type or "" == "closure"
+        then "{|${concatStringsSep "," v.args}|${v.body}}"
+        else let
+          cases = {
+            bool = boolToString v;
+            float = toString v;
+            int = "${v}";
+            list = "[${concatMapStringsSep "," mkValue v}]";
+            null = "null";
+            set = mkRecord v;
+          };
+        in
+          cases.${typeOf' v} or "\"${toString v}\"";
+
+      mkRecord = attrs: "{${
+        attrs
+        |> mapAttrsToList (k: v: "${k}:${mkValue v}")
+        |> concatStringsSep ","
+      }}";
+    in
+      mkRecord attrs;
+  };
 }
