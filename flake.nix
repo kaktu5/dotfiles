@@ -62,6 +62,7 @@
     vaultix = {
       url = "github:milieuim/vaultix";
       inputs = {
+        flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
         nixpkgs.follows = "nixpkgs";
         pre-commit-hooks.inputs = {
           gitignore.inputs.nixpkgs.follows = "nixpkgs";
