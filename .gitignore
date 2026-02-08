@@ -1,4 +1,6 @@
 *
+!/.vaultix/
+!/.vaultix/**
 !/hosts/
 !/hosts/**
 !/internal/
@@ -7,8 +9,6 @@
 !/lib/**
 !/modules/
 !/modules/**
-!/secrets/
-!/secrets/**
 !/.envrc
 !/.gitignore
 !/.qmlformat.ini

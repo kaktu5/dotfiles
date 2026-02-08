@@ -7,6 +7,6 @@ in
   vaultix.configure {
     nodes = self.nixosConfigurations;
     identity = "~/.ssh/id_ed25519";
-    cache = "secrets/.vaultix-renc";
+    cache = ".vaultix";
     systems = import systems;
   }
