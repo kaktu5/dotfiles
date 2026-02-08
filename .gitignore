@@ -1,4 +1,6 @@
 *
+!/.github/
+!/.github/**
 !/.vaultix/
 !/.vaultix/**
 !/hosts/
