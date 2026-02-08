@@ -5,11 +5,30 @@
   ...
 }: let
   inherit (inputs) dnscrypt-settings oisd;
-  inherit (lib.attrsets) genAttrs;
-  inherit (lib.kkts.formats) dnsCryptStamps;
-  inherit (lib.strings) readFile;
+  inherit (lib.attrsets) genAttrs listToAttrs nameValuePair;
+  inherit (lib.lists) filter ifilter0 zipListsWith;
+  inherit (lib.strings) hasPrefix readFile removePrefix splitString trim;
+  inherit (lib.trivial) mod;
 
-  quad9Stamps = dnsCryptStamps.parse <| readFile (dnscrypt-settings + /dnscrypt/quad9-resolvers-dnscrypt.md);
+  parse = str: let
+    lines =
+      str
+      |> splitString "\n"
+      |> filter (l: hasPrefix "##" l || hasPrefix "sdns://" l);
+
+    headers =
+      lines
+      |> ifilter0 (i: _: mod i 2 == 0)
+      |> map (removePrefix "##")
+      |> map trim;
+    stamps =
+      lines
+      |> ifilter0 (i: _: mod i 2 == 1)
+      |> map trim;
+  in
+    zipListsWith nameValuePair headers stamps |> listToAttrs;
+
+  quad9Stamps = parse <| readFile (dnscrypt-settings + /dnscrypt/quad9-resolvers-dnscrypt.md);
 
   cfg = config.services.dnscrypt-proxy.settings;
 in {

@@ -1,7 +1,7 @@
 {lib}: let
   inherit (lib.attrsets) attrNames isAttrs isDerivation mapAttrsToList;
-  inherit (lib.lists) elem filter foldl' subtractLists toList;
-  inherit (lib.strings) concatMapStringsSep concatStringsSep hasPrefix removePrefix splitString trim typeOf;
+  inherit (lib.lists) elem filter subtractLists toList;
+  inherit (lib.strings) concatMapStringsSep concatStringsSep typeOf;
   inherit (lib.trivial) boolToString;
 
   typeOf' = v:
@@ -11,31 +11,6 @@
     then "derivation"
     else typeOf v;
 in {
-  dnsCryptStamps.parse = str: let
-    isNameLine = hasPrefix "##";
-    parseName = l: trim (removePrefix "##" l);
-    isStampLine = hasPrefix "sdns://";
-    parseStamp = trim;
-
-    parseLine = acc: l:
-      if isNameLine l
-      then acc // {currentName = parseName l;}
-      else if isStampLine l && acc.currentName != null
-      then
-        acc
-        // {
-          stamps = acc.stamps // {${acc.currentName} = parseStamp l;};
-          currentName = null;
-        }
-      else acc;
-
-    initialAcc = {
-      stamps = {};
-      currentName = null;
-    };
-  in
-    (str |> splitString "\n" |> foldl' parseLine initialAcc).stamps;
-
   hyprlang.generate = {priorityKeys ? []}: attrs: let
     orderKeys = keys: let
       priorityKeys' = priorityKeys |> filter (key: elem key keys);
