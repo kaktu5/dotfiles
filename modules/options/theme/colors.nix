@@ -55,10 +55,10 @@
   });
 in {
   rgb = mapAttrs (_: mkRgbColorOption) {
-    bg0 = rgb 0 0 0; # oklab 0 0 0
-    bg1 = rgb 2 2 2; # oklab 0.08 0 0
-    bg2 = rgb 13 13 13; # oklab 0.16 0 0
-    bg3 = rgb 31 31 31; # oklab 0.24 0 0
+    bg0 = rgb 5 8 8; # oklab 0.130 0.006 210
+    bg1 = rgb 7 10 10; # oklab 0.140 0.006 210
+    bg2 = rgb 11 15 16; # oklab 0.165 0.006 210
+    bg3 = rgb 16 19 20; # oklab 0.185 0.006 210
 
     fg0 = rgb 217 223 225; # oklab 0.9 -0.005 -0.005
     fg1 = rgb 201 207 209; # oklab 0.85 -0.005 -0.005
