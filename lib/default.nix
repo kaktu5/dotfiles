@@ -1,4 +1,7 @@
-{inputs}: let
+{
+  inputs,
+  self,
+}: let
   inherit (inputs) nixpkgs;
   inherit (nixpkgs.lib.fixedPoints) fix;
 in
@@ -9,6 +12,6 @@ in
         colors = import ./colors.nix {inherit lib;};
         formats = import ./formats.nix {inherit lib;};
         modules = import ./modules.nix {inherit lib;};
-        nixos = import ./nixos.nix {inherit lib;};
+        nixos = import ./nixos.nix {inherit inputs lib self;};
       };
     })

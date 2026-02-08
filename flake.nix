@@ -5,7 +5,7 @@
     nixpkgs,
     ...
   } @ inputs: let
-    lib = import ./lib {inherit inputs;};
+    lib = import ./lib {inherit inputs self;};
 
     inherit (lib.attrsets) mapAttrs zipAttrsWith;
     inherit (lib.lists) foldl';
@@ -26,7 +26,7 @@
     // {
       inherit lib;
 
-      nixosConfigurations = import ./hosts {inherit inputs lib self;};
+      nixosConfigurations = import ./hosts {inherit lib;};
 
       vaultix = import ./internal/vaultix.nix {inherit inputs self;};
     };
@@ -45,6 +45,13 @@
         nix-darwin.follows = "";
         nixpkgs.follows = "nixpkgs";
         smfh.follows = "";
+      };
+    };
+    microvm = {
+      url = "github:microvm-nix/microvm.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        spectrum.follows = "";
       };
     };
     preservation.url = "github:nix-community/preservation";

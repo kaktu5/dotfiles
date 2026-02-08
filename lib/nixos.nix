@@ -1,54 +1,71 @@
-{lib}: let
+{
+  inputs,
+  lib,
+  self,
+}: let
+  inherit (inputs) microvm;
   inherit (lib) nixosSystem;
-  inherit (lib.asserts) assertOneOf;
-  inherit (lib.attrsets) attrNames listToAttrs mapAttrs nameValuePair;
+  inherit (lib.attrsets) genAttrs mapAttrs;
   inherit (lib.fixedPoints) fix;
-  inherit (lib.kkts.modules) modulesFromDirectoryRecursive;
-  inherit (lib.lists) all concatLists concatMap map singleton;
+  inherit (lib.kkts.modules) modulesFromDirRec;
+  inherit (lib.lists) concatMap optionals singleton;
 
+  specialArgs = {
+    inherit inputs lib;
+    flake = self;
+  };
+
+  hostsPath = ../hosts;
   modulesPath = ../modules;
 
-  coreModules = modulesFromDirectoryRecursive (modulesPath + /core);
-  optionModules = modulesFromDirectoryRecursive (modulesPath + /options);
-  profileModules = modulesFromDirectoryRecursive (modulesPath + /profiles);
+  commonModules =
+    modulesFromDirRec /${modulesPath}/core
+    ++ modulesFromDirRec /${modulesPath}/options
+    ++ modulesFromDirRec /${modulesPath}/profiles;
 
-  modulesByRole = let
-    path = modulesPath + /roles;
-    roles = ["graphical" "headless" "iso" "laptop" "microvm" "server" "workstation"];
+  modulesForRole = let
+    rolesPath = /${modulesPath}/roles;
+    roles = ["bare-metal" "graphical" "headless" "iso" "laptop" "microvm" "server" "workstation"];
   in
-    roles
-    |> map (role: nameValuePair role (modulesFromDirectoryRecursive (path + /${role})))
-    |> listToAttrs;
-in
-  fix (self: {
-    mkSystem = {
-      hostName,
-      system,
-      roles ? [],
-      extraModules ? [],
-      specialArgs ? {},
-    }:
-      assert (roles |> all (role: assertOneOf "role" role (attrNames modulesByRole))); let
-        hostModules = modulesFromDirectoryRecursive ../hosts/${hostName};
-        roleModules = roles |> concatMap (role: modulesByRole.${role});
-      in
-        nixosSystem {
-          inherit system specialArgs;
-          modules = concatLists [
-            (singleton {
-              networking = {inherit hostName;};
-              nixpkgs.hostPlatform = {inherit system;};
-            })
-            hostModules
-            coreModules
-            optionModules
-            profileModules
-            roleModules
-            extraModules
-          ];
-        };
+    genAttrs roles (role: modulesFromDirRec /${rolesPath}/${role});
 
-    mkSystemsFromAttrs = sharedAttrs: hostsAttrs: (hostsAttrs
-      |> mapAttrs (hostName: hostAttrs:
-        self.mkSystem (hostAttrs // {inherit hostName;} // sharedAttrs)));
-  })
+  modulesFor = {
+    hostName,
+    arch,
+    roles,
+    microvms ? {},
+  }:
+    (singleton {
+      networking = {inherit hostName;};
+      nixpkgs.hostPlatform.system = "${arch}-linux";
+    })
+    ++ modulesFromDirRec /${hostsPath}/${hostName}
+    ++ commonModules
+    ++ concatMap (role: modulesForRole.${role}) roles
+    ++ optionals (microvms != {}) [
+      microvm.nixosModules.host
+      {
+        microvm.vms =
+          microvms
+          |> mapAttrs (hostName: {
+            arch,
+            roles ? [],
+          }: {
+            inherit specialArgs;
+            config.imports = modulesFor {inherit hostName arch roles;};
+          });
+      }
+    ];
+in {
+  mkHosts = f:
+    fix f
+    |> mapAttrs (hostName: {
+      arch,
+      roles ? [],
+      microvms ? {},
+    }:
+      nixosSystem {
+        inherit specialArgs;
+        modules = modulesFor {inherit hostName arch roles microvms;};
+      });
+}

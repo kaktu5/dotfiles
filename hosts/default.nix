@@ -1,18 +1,19 @@
-{
-  inputs,
-  lib,
-  self,
-}: let
-  inherit (lib.kkts.nixos) mkSystemsFromAttrs;
-
-  specialArgs = {
-    inherit inputs lib;
-    flake = self;
-  };
+{lib}: let
+  inherit (lib.kkts.nixos) mkHosts;
 in
-  mkSystemsFromAttrs {inherit specialArgs;} {
+  mkHosts (self: {
+    # lenovo m715q, ryzen 3 pro 2200ge, 16gb
     neidon = {
-      system = "x86_64-linux";
+      arch = "x86_64";
       roles = ["headless" "server"];
+      microvms = {inherit (self) nissee thatmo;};
     };
-  }
+    nissee = {
+      inherit (self.neidon) arch;
+      roles = ["microvm"];
+    };
+    thatmo = {
+      inherit (self.neidon) arch;
+      roles = ["microvm"];
+    };
+  })

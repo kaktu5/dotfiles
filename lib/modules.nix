@@ -7,7 +7,7 @@
   inherit (lib.trivial) pathExists;
 in
   fix (self: {
-    modulesFromDirectoryRecursive = dir: let
+    modulesFromDirRec = dir: let
       defaultPath = dir + /module.nix;
       processDir = dir:
         readDir dir
@@ -15,7 +15,7 @@ in
           path = dir + /${name};
         in
           if type == "directory"
-          then self.modulesFromDirectoryRecursive path
+          then self.modulesFromDirRec path
           else if type == "regular" && hasSuffix ".nix" name
           then [path]
           else [])
