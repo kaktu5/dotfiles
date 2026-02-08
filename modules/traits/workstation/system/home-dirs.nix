@@ -20,12 +20,15 @@
 in {
   preservation.preserveAt."/persist".users.${userName}.directories =
     [
+      {
+        directory = "projects";
+        mountOptions = ["exec"];
+      }
       "documents"
       "dotfiles"
       "downloads"
       "images"
       "music"
-      "projects"
       "videos"
     ]
     ++ mapWithBase (stripHome xdg.data.directory) [
