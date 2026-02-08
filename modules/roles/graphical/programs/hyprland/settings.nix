@@ -1,8 +1,13 @@
-{config, ...}: let
-  inherit (config.kkts.theme.colors.hex) bg0 bg1 bg3;
+{
+  config,
+  lib,
+  ...
+}: let
+  inherit (config.kkts.theme.colors) hex;
   inherit (config.kkts.theme.fonts.fonts) sansSerif;
+  inherit (lib.attrsets) mapAttrs;
 
-  rgb = hex: "rgb(${hex})";
+  hex' = hex |> mapAttrs (_: v: "rgb(${v})");
 in {
   kkts.programs.hyprland.settings = {
     exec-once = ["uwsm finalize"];
@@ -14,8 +19,8 @@ in {
       gaps_out = 8;
       float_gaps = 8;
 
-      "col.inactive_border" = rgb bg1;
-      "col.active_border" = rgb bg3;
+      "col.inactive_border" = hex'.bg1;
+      "col.active_border" = hex'.bg3;
 
       allow_tearing = true;
 
@@ -67,7 +72,7 @@ in {
 
       initial_workspace_tracking = 1; # single-shot
 
-      background_color = rgb bg0;
+      background_color = hex'.bg0;
 
       on_focus_under_fullscreen = 1; # takes over
 
