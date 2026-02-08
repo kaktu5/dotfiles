@@ -12,6 +12,8 @@ in {
   nix = {
     package = lix;
 
+    channel.enable = false;
+
     nixPath = ["nixpkgs=${nixpkgs}"];
 
     settings = {
@@ -60,7 +62,7 @@ in {
   };
 
   # nukes persistent `nix profile` on boot
-  # must be writable so the nix daemon can create internal dirs and symlinks
+  # must be writable so the nix daemon can create internal dirs
   fileSystems."/nix/var/nix/profiles/per-user" = {
     device = "none";
     fsType = "tmpfs";
