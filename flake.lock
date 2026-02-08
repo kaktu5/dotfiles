@@ -146,6 +146,26 @@
         "type": "github"
       }
     },
+    "nixexprs": {
+      "inputs": {
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773909758,
+        "narHash": "sha256-7eVb3s7prnTLfeUcIFbPuKg3ye6ZeABPlYXPT+yReBU=",
+        "owner": "kaktu5",
+        "repo": "nixexprs",
+        "rev": "8091baffb3cb25925c9244ca04d0b794685df6ac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kaktu5",
+        "repo": "nixexprs",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1773734432,
@@ -220,6 +240,7 @@
         "dnscrypt-settings": "dnscrypt-settings",
         "hjem": "hjem",
         "microvm": "microvm",
+        "nixexprs": "nixexprs",
         "nixpkgs": "nixpkgs",
         "oisd": "oisd",
         "preservation": "preservation",

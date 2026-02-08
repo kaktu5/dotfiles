@@ -39,6 +39,11 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nixexprs = {
+      url = "github:kaktu5/nixexprs";
+      inputs.systems.follows = "systems";
+    };
+
     hjem = {
       url = "github:feel-co/hjem";
       inputs = {
