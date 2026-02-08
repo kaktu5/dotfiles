@@ -25,7 +25,8 @@
     withKexectools = false;
   });
 
-  timeoutConfig = {
+  commonConfig = {
+    CtrlAltDelBurstAction = "none";
     DefaultTimeoutStartSec = "10s";
     DefaultTimeoutStopSec = "10s";
     DefaultTimeoutAbortSec = "10s";
@@ -35,7 +36,11 @@ in {
   boot.initrd.systemd = {
     emergencyAccess = false;
 
-    settings.Manager = timeoutConfig;
+    settings.Manager = commonConfig;
+
+    services.debug-shell.enable = false;
+
+    suppressedUnits = ["ctrl-alt-del.target"];
   };
 
   systemd = {
@@ -43,14 +48,23 @@ in {
 
     enableEmergencyMode = false;
 
-    settings.Manager = timeoutConfig;
+    settings.Manager = commonConfig;
     user.settings.Manager = {
-      inherit (timeoutConfig) DefaultTimeoutStartSec DefaultTimeoutStopSec DefaultTimeoutAbortSec;
+      inherit (commonConfig) DefaultTimeoutStartSec DefaultTimeoutStopSec DefaultTimeoutAbortSec;
     };
 
     services = {
       "autovt@".enable = false;
       "getty@".enable = false;
+      debug-shell.enable = false;
     };
+
+    targets = {
+      hibernate.enable = false;
+      hybrid-sleep.enable = false;
+      noop.unitConfig.DefaultDependencies = false;
+    };
+
+    ctrlAltDelUnit = "noop.target";
   };
 }
