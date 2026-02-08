@@ -1,5 +1,10 @@
-{inputs, ...}: let
+{
+  inputs,
+  lib,
+  ...
+}: let
   inherit (inputs) preservation;
+  inherit (lib.lists) singleton;
 in {
   imports = [preservation.nixosModules.default];
 
@@ -19,19 +24,11 @@ in {
         "/var/log"
       ];
 
-      files = [
-        {
-          file = "/etc/machine-id";
-          inInitrd = true;
-        }
-        {
-          file = "/var/lib/systemd/random-seed";
-          inInitrd = true;
-          configureParent = true;
-        }
-      ];
+      files = singleton {
+        file = "/var/lib/systemd/random-seed";
+        inInitrd = true;
+        configureParent = true;
+      };
     };
   };
-
-  systemd.suppressedSystemUnits = ["systemd-machine-id-commit.service"];
 }
