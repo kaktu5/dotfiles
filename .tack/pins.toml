@@ -15,7 +15,7 @@ hjem.url = "github:feel-co/hjem"
 microvm.url = "github:microvm-nix/microvm.nix"
 preservation.url = "github:nix-community/preservation"
 stash.url = "github:notashelf/stash"
-tack.url = "github:manic-systems/tack/next"
+tack.url = "github:manic-systems/tack"
 tuigreet.url = "github:notashelf/tuigreet"
 vaultix.url = "github:milieuim/vaultix"
 
