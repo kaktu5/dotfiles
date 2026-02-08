@@ -100,5 +100,13 @@
     "rev": "9251a14a8cc5148e356d36f65458fdc6444b0172",
     "narHash": "sha256-Sg0PgBBP5DD4apvrExqHL1DKsKhj45IhbZphTGkEHQk=",
     "lastModified": 1782147038
+  },
+  "xdg-utils-nu": {
+    "type": "github",
+    "owner": "manic-systems",
+    "repo": "xdg-utils.nu",
+    "rev": "6ea11d7c9d81eeb3f359c31b47e55c8c2815c2a2",
+    "narHash": "sha256-0pRjp2avoEDOzZV5BMGvAj6/RGUap+/I/ReQOzr8qWk=",
+    "lastModified": 1778873155
   }
 }
