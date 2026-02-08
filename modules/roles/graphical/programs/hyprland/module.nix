@@ -1,13 +1,25 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }: let
+  inherit (config.hjem.users.${userName}.environment.sessionVariables) XCURSOR_SIZE;
   inherit (config.kkts.meta) userName;
   inherit (config.kkts.programs.hyprland) settings;
+  inherit (config.kkts.theme.colors) hex';
+  inherit (config.nixpkgs.hostPlatform) system;
+  inherit (inputs.nixexprs.legacyPackages.${system}) breezex-cursor;
   inherit (lib.kkts.formats) hyprlang;
   inherit (pkgs.writers) writeText;
+
+  breezex-cursor' = breezex-cursor.override {
+    baseColor = hex'.bg0;
+    outlineColor = hex'.fg0;
+    watchColor = hex'.bg0;
+    xcursorSizes = [XCURSOR_SIZE];
+  };
 
   HYPRLAND_CONFIG =
     settings
@@ -22,6 +34,8 @@ in {
     ./smartgaps.nix
     ./xdg-desktop-portal.nix
   ];
+
+  users.users.${userName}.packages = [breezex-cursor'];
 
   programs.hyprland = {
     enable = true;
