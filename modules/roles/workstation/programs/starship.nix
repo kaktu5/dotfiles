@@ -85,23 +85,13 @@ in {
       vi_normal = "block";
     };
 
-    extraEntries = {
-      nixLvl = entryAnywhere ''
-        mut nix_lvl = ""
-        if ($env | get NIX_SHELL_LEVEL? | is-not-empty) and ($env.NIX_SHELL_LEVEL != "1") {
-          $nix_lvl = $env.NIX_SHELL_LEVEL
-        }
-        $env.NIX_LVL = $nix_lvl
-      '';
-
-      starship = entryAnywhere ''
-        # https://github.com/starship/starship/issues/5423
-        load-env {
-          PROMPT_INDICATOR_VI_INSERT: "",
-          PROMPT_INDICATOR_VI_NORMAL: "",
-        }
-        source ${starship-nu}
-      '';
-    };
+    extraEntries.starship = entryAnywhere ''
+      # https://github.com/starship/starship/issues/5423
+      load-env {
+        PROMPT_INDICATOR_VI_INSERT: "",
+        PROMPT_INDICATOR_VI_NORMAL: "",
+      }
+      source ${starship-nu}
+    '';
   };
 }
