@@ -12,12 +12,10 @@ in
       inherit
         (pkgs)
         alejandra
-        deadnix
         dix
         nh
         nixd
         npins
-        statix
         ;
 
       # qml

@@ -13,9 +13,7 @@
     sources = import ./npins/default.nix;
   in
     mapSystems (import inputs.systems) (system: let
-      pkgs = inputs.nixpkgs.legacyPackages.${system}.extend (
-        import ./internal/overlay.nix {inherit sources;}
-      );
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
     in {
       devShells.default = import ./internal/devshell.nix {inherit lib pkgs;};
 

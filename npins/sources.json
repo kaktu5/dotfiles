@@ -13,19 +13,6 @@
       "url": "https://github.com/quad9dns/dnscrypt-settings/archive/4aaff82a48388e4bd312f3850e1aa63816da6708.tar.gz",
       "hash": "sha256-YuJ1n9ObvUmM1jrbV9YPcghvgvYJMarv/m0OGTk9lAA="
     },
-    "flake-compat": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "nixos",
-        "repo": "flake-compat"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
-      "url": "https://github.com/nixos/flake-compat/archive/5edf11c44bc78a0d334f6334cdaf7d60d732daab.tar.gz",
-      "hash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns="
-    },
     "oisd": {
       "type": "Git",
       "repository": {
@@ -38,19 +25,6 @@
       "revision": "592e25a9d6e75ab0712e7756e5fc39b5f7b22275",
       "url": "https://github.com/sjhgvr/oisd/archive/592e25a9d6e75ab0712e7756e5fc39b5f7b22275.tar.gz",
       "hash": "sha256-ihuVWJu2N2AM1EazGutcicjvhh2ZhbL2UMYSURUp8Xs="
-    },
-    "statix": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "kaktu5",
-        "repo": "statix"
-      },
-      "branch": "master",
-      "submodules": false,
-      "revision": "c4d4719823814a2ecc331cd304ca99796f5c9328",
-      "url": "https://github.com/kaktu5/statix/archive/c4d4719823814a2ecc331cd304ca99796f5c9328.tar.gz",
-      "hash": "sha256-+7f+m2jWTJCqPUmEoZqYrJIgSLcz/30gYu26mOj84UA="
     }
   },
   "version": 7
