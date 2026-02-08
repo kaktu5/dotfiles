@@ -9,6 +9,7 @@
   specialArgs = {
     inherit inputs lib sources;
     flake = self;
+    inherit self; # vaultix
   };
 in
   mkSystemsFromAttrs {inherit specialArgs;} {

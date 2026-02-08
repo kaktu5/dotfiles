@@ -9,6 +9,8 @@
 !/modules/**
 !/npins/
 !/npins/**
+!/secrets/
+!/secrets/**
 !/.envrc
 !/.gitattributes
 !/.gitignore

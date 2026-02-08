@@ -5,5 +5,6 @@
     ./locale.nix
     ./system.nix
     ./users.nix
+    ./vaultix.nix
   ];
 }

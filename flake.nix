@@ -5,6 +5,7 @@
     inherit (lib.attrsets) mapAttrs recursiveUpdate;
     inherit (lib.lists) foldl';
 
+    systems = import inputs.systems;
     mapSystems = systems: f: (foldl' (acc: system: (f system
       |> mapAttrs (_: value: {${system} = value;})
       |> recursiveUpdate acc)) {}
@@ -12,10 +13,10 @@
 
     sources = import ./npins/default.nix;
   in
-    mapSystems (import inputs.systems) (system: let
+    mapSystems systems (system: let
       pkgs = inputs.nixpkgs.legacyPackages.${system};
     in {
-      devShells.default = import ./internal/devshell.nix {inherit lib pkgs;};
+      devShells.default = import ./internal/devshell.nix {inherit lib pkgs self system;};
 
       formatter = import ./internal/formatter.nix {inherit lib pkgs;};
     })
@@ -23,6 +24,8 @@
       inherit lib;
 
       nixosConfigurations = import ./hosts {inherit inputs lib self sources;};
+
+      vaultix = import ./internal/vaultix.nix {inherit inputs self systems;};
     };
 
   inputs = {
@@ -45,6 +48,17 @@
     tuigreet = {
       url = "github:notashelf/tuigreet";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    vaultix = {
+      url = "github:milieuim/vaultix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        pre-commit-hooks.inputs = {
+          gitignore.inputs.nixpkgs.follows = "nixpkgs";
+          nixpkgs.follows = "nixpkgs";
+        };
+        rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
+      };
     };
   };
 }
