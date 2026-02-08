@@ -18,11 +18,11 @@
     },
     "crane": {
       "locked": {
-        "lastModified": 1769737823,
-        "narHash": "sha256-DrBaNpZ+sJ4stXm+0nBX7zqZT9t9P22zbk6m5YhQxS4=",
+        "lastModified": 1773857772,
+        "narHash": "sha256-5xsK26KRHf0WytBtsBnQYC/lTWDhQuT57HJ7SzuqZcM=",
         "owner": "ipetkov",
         "repo": "crane",
-        "rev": "b2f45c3830aa96b7456a4c4bc327d04d7a43e1ba",
+        "rev": "b556d7bbae5ff86e378451511873dfd07e4504cd",
         "type": "github"
       },
       "original": {
@@ -237,6 +237,7 @@
     },
     "root": {
       "inputs": {
+        "crane": "crane",
         "dnscrypt-settings": "dnscrypt-settings",
         "hjem": "hjem",
         "microvm": "microvm",
@@ -244,6 +245,7 @@
         "nixpkgs": "nixpkgs",
         "oisd": "oisd",
         "preservation": "preservation",
+        "stash": "stash",
         "systems": "systems",
         "tuigreet": "tuigreet",
         "vaultix": "vaultix"
@@ -266,6 +268,29 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "stash": {
+      "inputs": {
+        "crane": [
+          "crane"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773075307,
+        "narHash": "sha256-XA81ulyWl7ZWSiC/vAmVtKIe72aepEoqfVvxtqPj5dY=",
+        "owner": "notashelf",
+        "repo": "stash",
+        "rev": "208359dc0c0b97b25adfbaa8a33c0b54fda9d8d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "notashelf",
+        "repo": "stash",
         "type": "github"
       }
     },
@@ -305,7 +330,9 @@
     "vaultix": {
       "inputs": {
         "advisory-db": "advisory-db",
-        "crane": "crane",
+        "crane": [
+          "crane"
+        ],
         "flake-parts": "flake-parts",
         "nixpkgs": [
           "nixpkgs"

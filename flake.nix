@@ -60,6 +60,13 @@
       };
     };
     preservation.url = "github:nix-community/preservation";
+    stash = {
+      url = "github:notashelf/stash";
+      inputs = {
+        crane.follows = "crane";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     tuigreet = {
       url = "github:notashelf/tuigreet";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -67,6 +74,7 @@
     vaultix = {
       url = "github:milieuim/vaultix";
       inputs = {
+        crane.follows = "crane";
         flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
         nixpkgs.follows = "nixpkgs";
         pre-commit-hooks.inputs = {
@@ -85,5 +93,8 @@
       url = "github:sjhgvr/oisd";
       flake = false;
     };
+
+    # not used directly, pinned only to deduplicate transitive deps
+    crane.url = "github:ipetkov/crane";
   };
 }
