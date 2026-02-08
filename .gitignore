@@ -7,8 +7,6 @@
 !/lib/**
 !/modules/
 !/modules/**
-!/npins/
-!/npins/**
 !/secrets/
 !/secrets/**
 !/.envrc
