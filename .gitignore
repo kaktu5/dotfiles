@@ -1,12 +1,12 @@
 *
 !/**/
 
-!/.vaultix/**
 !/.tack/{default.nix,pins.lock.json,pins.toml}
-!/hosts/**
-!/internal/**
-!/lib/**
-!/modules/**
+!/.vaultix/**
+!/hosts/**/*.nix
+!/internal/**/*.nix
+!/lib/**/*.nix
+!/modules/**/{.gitignore,*.age,*.nix}
 
 !/.envrc
 !/.gitattributes
