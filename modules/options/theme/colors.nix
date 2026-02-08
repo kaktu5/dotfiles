@@ -3,39 +3,56 @@
   lib,
 }: let
   inherit (lib.attrsets) mapAttrs;
-  inherit (lib.kkts.colors) rgb rgbToHex rgbToHex';
+  inherit (lib.lists) elemAt;
   inherit (lib.options) mkOption;
+  inherit (lib.strings) stringToCharacters;
+  inherit (lib.trivial) mod;
   inherit (lib.types) ints str submodule;
 
   cfg = config.kkts.theme.colors;
 
-  mkRgbColorOption = default:
-    mkOption {
-      type = submodule {
-        options = let
-          t = mkOption {type = ints.between 0 255;};
-        in {
-          r = t;
-          g = t;
-          b = t;
-        };
+  toHex = n: let
+    digits = stringToCharacters "0123456789abcdef";
+    high = elemAt digits (n / 16);
+    low = elemAt digits (mod n 16);
+  in
+    high + low;
+
+  rgb = r: g: b: {inherit r g b;};
+
+  rgbToHex = {
+    r,
+    g,
+    b,
+  }:
+    toHex r + toHex g + toHex b;
+
+  rgbToHex' = rgb: "#" + rgbToHex rgb;
+
+  mkRgbColorOption = default: (mkOption {
+    type = submodule {
+      options = let
+        t = mkOption {type = ints.between 0 255;};
+      in {
+        r = t;
+        g = t;
+        b = t;
       };
-      inherit default;
     };
+    inherit default;
+  });
 
-  mkHexColorOption = default:
-    mkOption {
-      type = str;
-      inherit default;
-      readOnly = true;
-    };
+  mkHexColorOption = default: (mkOption {
+    type = str;
+    inherit default;
+    readOnly = true;
+  });
 
-  mkAnsiOption = default:
-    mkOption {
-      type = ints.between 0 15;
-      inherit default;
-      readOnly = true;
-    };
+  mkAnsiOption = default: (mkOption {
+    type = ints.between 0 15;
+    inherit default;
+    readOnly = true;
+  });
 in {
   rgb = mapAttrs (_: mkRgbColorOption) {
     bg0 = rgb 0 0 0; # oklab 0 0 0
@@ -56,20 +73,29 @@ in {
     purple = rgb 174 174 209;
     cyan = rgb 155 180 188;
 
-    termBg = cfg.rgb.bg0;
-    term0 = cfg.rgb.bg3;
-    term1 = cfg.rgb.red;
-    term2 = cfg.rgb.green;
-    term3 = cfg.rgb.yellow;
-    term4 = cfg.rgb.blue;
-    term5 = cfg.rgb.purple;
-    term6 = cfg.rgb.cyan;
-    term7 = cfg.rgb.fg0;
+    # ANSI indices
+    "0" = cfg.rgb.bg3;
+    "1" = cfg.rgb.red;
+    "2" = cfg.rgb.green;
+    "3" = cfg.rgb.yellow;
+    "4" = cfg.rgb.blue;
+    "5" = cfg.rgb.purple;
+    "6" = cfg.rgb.cyan;
+    "7" = cfg.rgb.fg0;
+    "8" = cfg.rgb.bg3;
+    "9" = cfg.rgb.red;
+    "10" = cfg.rgb.green;
+    "11" = cfg.rgb.yellow;
+    "12" = cfg.rgb.blue;
+    "13" = cfg.rgb.purple;
+    "14" = cfg.rgb.cyan;
+    "15" = cfg.rgb.fg0;
   };
 
   hex = cfg.rgb |> mapAttrs (_: color: mkHexColorOption <| rgbToHex color);
   hex' = cfg.rgb |> mapAttrs (_: color: mkHexColorOption <| rgbToHex' color);
 
+  # ANSI named aliases
   ansi = mapAttrs (_: mkAnsiOption) {
     bg = 0;
     fg = 7;

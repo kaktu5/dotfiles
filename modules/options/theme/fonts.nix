@@ -1,8 +1,11 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
 }: let
+  inherit (config.nixpkgs.hostPlatform) system;
+  inherit (inputs.nixexprs.legacyPackages.${system}) space-mono;
   inherit (lib) types;
   inherit (lib.attrsets) mapAttrs;
   inherit (lib.options) mkOption;
@@ -10,7 +13,6 @@
   inherit (lib.types) str;
   inherit (lib.types.ints) positive;
   inherit (pkgs) _0xproto noto-fonts-monochrome-emoji;
-  inherit (pkgs.nerd-fonts) space-mono; # TODO: package Space Mono without nerd font patches
 
   cfg = config.kkts.theme.fonts;
 
@@ -29,11 +31,10 @@
     };
   };
 
-  mkFontSizeOption = default:
-    mkOption {
-      type = positive;
-      inherit default;
-    };
+  mkFontSizeOption = default: (mkOption {
+    type = positive;
+    inherit default;
+  });
 
   ptToPx = pt: ceil (pt * 4.0 / 3.0);
 in {
@@ -49,7 +50,7 @@ in {
     };
 
     sansSerif = mkFontOption {
-      name = "SpaceMono Nerd Font Mono";
+      name = "SpaceMono";
       package = space-mono;
     };
 
