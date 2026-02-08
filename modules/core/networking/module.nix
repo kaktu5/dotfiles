@@ -9,7 +9,11 @@
 in {
   imports = [./static-resolv-conf.nix];
 
+  systemd.network.wait-online.enable = false;
+
   networking = {
+    useNetworkd = true;
+
     hostId = substring 0 8 (hashString "md5" hostName);
 
     dhcpcd.wait = "background";
