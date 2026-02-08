@@ -1,19 +1,23 @@
 {
-  outputs = {self, ...} @ inputs: let
+  outputs = {
+    self,
+    systems,
+    nixpkgs,
+    ...
+  } @ inputs: let
     lib = import ./lib {inherit inputs;};
 
     inherit (lib.attrsets) mapAttrs zipAttrsWith;
     inherit (lib.lists) foldl';
     inherit (lib.trivial) mergeAttrs;
 
-    systems = import inputs.systems;
     mapSystems = systems: f:
       systems
       |> map (s: f s |> mapAttrs (_: v: {${s} = v;}))
       |> zipAttrsWith (_: foldl' mergeAttrs {});
   in
-    mapSystems systems (system: let
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
+    mapSystems (import systems) (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
     in {
       devShells.default = import ./internal/devshell.nix {inherit lib pkgs self system;};
 
@@ -24,7 +28,7 @@
 
       nixosConfigurations = import ./hosts {inherit inputs lib self;};
 
-      vaultix = import ./internal/vaultix.nix {inherit inputs self systems;};
+      vaultix = import ./internal/vaultix.nix {inherit inputs self;};
     };
 
   inputs = {
