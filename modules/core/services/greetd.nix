@@ -6,7 +6,7 @@
 }: let
   inherit (config.kkts.meta) userName;
   inherit (config.users.users.${userName}) shell;
-  inherit (lib.meta) getExe';
+  inherit (lib.meta) getExe getExe';
   inherit (lib.modules) mkDefault;
   inherit (pkgs) greetd;
 in {
@@ -17,7 +17,7 @@ in {
 
     settings.default_session = {
       user = "greeter";
-      command = mkDefault "${getExe' greetd "agreety"} --cmd ${shell}";
+      command = mkDefault "${getExe' greetd "agreety"} --cmd ${getExe shell}";
     };
   };
 }
