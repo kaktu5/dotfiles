@@ -12,14 +12,8 @@
   inherit (lib.meta) getExe;
   inherit (pkgs) hyprland;
   inherit (pkgs.writers) writeTOML;
-in {
-  systemd.tmpfiles.rules = [
-    "d /var/cache/tuigreet 0755 greeter greeter -"
-    "F /var/cache/tuigreet/lastuser 0644 greeter greeter - ${userName}"
-    "F /var/cache/tuigreet/lastsession-path 0644 greeter greeter - ${hyprland}/share/wayland-sessions/hyprland-uwsm.desktop"
-  ];
 
-  environment.etc."tuigreet/config.toml".source = writeTOML "tuigreet-config.toml" {
+  configPath = writeTOML "tuigreet-config.toml" {
     display = {
       show_time = true;
       time_format = "%a, %b %d, %H:%M:%S";
@@ -35,9 +29,13 @@ in {
     secret.mode = "characters";
 
     session.sessions_dirs = sessionPackages |> map (pkg: pkg + /share/wayland-sessions);
-
-    power.use_setsid = true;
   };
+in {
+  systemd.tmpfiles.rules = [
+    "d /var/cache/tuigreet 0755 greeter greeter -"
+    "F /var/cache/tuigreet/lastuser 0644 greeter greeter - ${userName}"
+    "F /var/cache/tuigreet/lastsession-path 0644 greeter greeter - ${hyprland}/share/wayland-sessions/hyprland-uwsm.desktop"
+  ];
 
-  services.greetd.settings.default_session.command = getExe tuigreet;
+  services.greetd.settings.default_session.command = "${getExe tuigreet} --config ${configPath}";
 }
