@@ -32,7 +32,11 @@
     DefaultDeviceTimeoutSec = "10s";
   };
 in {
-  boot.initrd.systemd.settings.Manager = timeoutConfig;
+  boot.initrd.systemd = {
+    emergencyAccess = false;
+
+    settings.Manager = timeoutConfig;
+  };
 
   systemd = {
     inherit package;
