@@ -1,8 +1,10 @@
 {lib}: let
-  inherit (lib.attrsets) attrNames isAttrs isDerivation mapAttrsToList;
+  inherit (builtins) isString;
+  inherit (lib.attrsets) attrNames collect isAttrs isDerivation mapAttrsRecursive mapAttrsToList;
   inherit (lib.lists) elem filter subtractLists toList;
-  inherit (lib.strings) concatMapStringsSep concatStringsSep typeOf;
+  inherit (lib.strings) concatMapStringsSep concatStringsSep escape replaceString typeOf;
   inherit (lib.trivial) boolToString;
+  inherit (lib.generators) mkKeyValueDefault mkValueStringDefault toINI;
 
   typeOf' = v:
     if v == null
@@ -74,4 +76,19 @@ in {
     in
       mkRecord attrs;
   };
+
+  qsettings.generate = {}: let
+    mkKeyValue = key: value:
+      if isAttrs value
+      then
+        value
+        |> mapAttrsRecursive (path: val: let
+          key' = [key] ++ path |> concatStringsSep "\\" |> escape ["="];
+          val' = val |> mkValueStringDefault {} |> replaceString "\n" "\\n";
+        in "${key'}=${val'}")
+        |> collect isString
+        |> concatStringsSep "\n"
+      else mkKeyValueDefault {} "=" key value;
+  in
+    toINI {inherit mkKeyValue;};
 }
