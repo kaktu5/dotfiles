@@ -6,35 +6,48 @@
   inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
   inherit (config.users.users.${userName}) home;
+  inherit (lib.attrsets) mapAttrs;
   inherit (lib.generators) toKeyValue;
+  inherit (lib.lists) isList;
+  inherit (lib.strings) removePrefix;
+
+  mapWithBase = prefix: value:
+    if isList value
+    then value |> map (dir: "${prefix}/${dir}")
+    else value |> mapAttrs (_: dir: "${prefix}/${dir}");
+
+  stripHome = removePrefix "${home}/";
 in {
-  preservation.preserveAt."/persist".users.${userName}.directories = [
-    "documents"
-    "dotfiles"
-    "downloads"
-    "music"
-    "pictures"
-    "projects"
-    "videos"
-  ];
+  preservation.preserveAt."/persist".users.${userName}.directories =
+    [
+      "documents"
+      "dotfiles"
+      "downloads"
+      "images"
+      "music"
+      "projects"
+      "videos"
+    ]
+    ++ mapWithBase (stripHome xdg.data.directory) [
+      "cargo"
+      "gradle"
+    ];
 
   hjem.users.${userName} = {
-    environment.sessionVariables = {
-      CARGO_HOME = xdg.data.directory + "/cargo";
-      GRADLE_USER_HOME = xdg.data.directory + "/gradle";
+    environment.sessionVariables = mapWithBase xdg.data.directory {
+      CARGO_HOME = "cargo";
+      GRADLE_USER_HOME = "gradle";
     };
 
     xdg.config.files."user-dirs.dirs" = {
-      generator = toKeyValue {mkKeyValue = k: v: "${k}=\"${v}\"";};
-      value = {
-        XDG_DOCUMENTS_DIR = home + "/documents";
-        XDG_DOWNLOAD_DIR = home + "/downloads";
-        XDG_MUSIC_DIR = home + "/music";
-        XDG_PICTURES_DIR = home + "/pictures";
-        XDG_VIDEOS_DIR = home + "/videos";
-        XDG_DESKTOP_DIR = home;
-        XDG_PUBLICSHARE_DIR = home;
-        XDG_TEMPLATES_DIR = home;
+      generator = toKeyValue {mkKeyValue = k: v: "${k}='${v}'";};
+      value = mapWithBase home {
+        XDG_DOCUMENTS_DIR = "documents";
+        XDG_DOWNLOAD_DIR = "downloads";
+        XDG_MUSIC_DIR = "music";
+        XDG_PICTURES_DIR = "images";
+        XDG_PROJECTS_DIR = "projects";
+        XDG_VIDEOS_DIR = "videos";
       };
     };
   };
