@@ -1,4 +1,9 @@
-let
+{
+  lib,
+  ...
+}: let
+  inherit (lib.generators) toKeyValue;
+
   timeoutConfig = {
     DefaultTimeoutStartSec = "10s";
     DefaultTimeoutStopSec = "10s";
@@ -12,13 +17,9 @@ in {
     enableEmergencyMode = false;
 
     settings.Manager = timeoutConfig;
-    user.extraConfig = ''
-      DefaultTimeoutStartSec=10s
-      DefaultTimeoutStopSec=10s
-      DefaultTimeoutAbortSec=10s
-    '';
-
-    network.wait-online.enable = false;
+    user.extraConfig = toKeyValue {} {
+      inherit (timeoutConfig) DefaultTimeoutStartSec DefaultTimeoutStopSec DefaultTimeoutAbortSec;
+    };
 
     services = {
       "autovt@".enable = false;
