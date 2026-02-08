@@ -1,9 +1,11 @@
 {
+  inputs,
   lib,
   pkgs,
   self,
   system,
 }: let
+  inherit (inputs.tack.packages.${system}) tack;
   inherit (lib.attrsets) attrValues;
   inherit (lib.strings) replaceStrings;
   inherit (pkgs) mkShellNoCC writeShellScriptBin;
@@ -23,13 +25,14 @@ in
     name = "dotfiles-devshell";
     packages = attrValues {
       # nix
+      inherit tack;
       inherit (pkgs) alejandra dix nh nixd;
 
       # qml
       inherit (pkgs.kdePackages) qtdeclarative;
 
       # vaultix
-      inherit (pkgs) age;
       inherit vaultix-edit vaultix-renc;
+      inherit (pkgs) age;
     };
   }

@@ -28,7 +28,7 @@
   in
     zipListsWith nameValuePair headers stamps |> listToAttrs;
 
-  quad9Stamps = parse <| readFile (dnscrypt-settings + /dnscrypt/quad9-resolvers-dnscrypt.md);
+  quad9Stamps = parse <| readFile "${dnscrypt-settings}/dnscrypt/quad9-resolvers-dnscrypt.md";
 
   cfg = config.services.dnscrypt-proxy.settings;
 in {
@@ -75,7 +75,7 @@ in {
 
       block_unqualified = true;
       block_undelegated = true;
-      blocked_names.blocked_names_file = oisd + /domainswild_big.txt;
+      blocked_names.blocked_names_file = "${oisd}/domainswild_big.txt";
 
       cache_size = 8192;
       cache_min_ttl = 15 * 60;
