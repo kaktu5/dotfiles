@@ -6,10 +6,7 @@ let
     DefaultDeviceTimeoutSec = "10s";
   };
 in {
-  boot.initrd.systemd = {
-    enable = true;
-    settings.Manager = timeoutConfig;
-  };
+  boot.initrd.systemd.settings.Manager = timeoutConfig;
 
   systemd = {
     enableEmergencyMode = false;
