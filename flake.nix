@@ -11,8 +11,6 @@
       systems
       |> map (s: f s |> mapAttrs (_: v: {${s} = v;}))
       |> zipAttrsWith (_: foldl' mergeAttrs {});
-
-    sources = import ./npins/default.nix;
   in
     mapSystems systems (system: let
       pkgs = inputs.nixpkgs.legacyPackages.${system};
@@ -24,7 +22,7 @@
     // {
       inherit lib;
 
-      nixosConfigurations = import ./hosts {inherit inputs lib self sources;};
+      nixosConfigurations = import ./hosts {inherit inputs lib self;};
 
       vaultix = import ./internal/vaultix.nix {inherit inputs self systems;};
     };
@@ -60,6 +58,15 @@
         };
         rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
       };
+    };
+
+    dnscrypt-settings = {
+      url = "github:quad9dns/dnscrypt-settings";
+      flake = false;
+    };
+    oisd = {
+      url = "github:sjhgvr/oisd";
+      flake = false;
     };
   };
 }

@@ -24,7 +24,6 @@ in
         dix
         nh
         nixd
-        npins
         ;
       inherit vaultix-edit vaultix-renc;
 

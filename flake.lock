@@ -31,6 +31,22 @@
         "type": "github"
       }
     },
+    "dnscrypt-settings": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1723218826,
+        "narHash": "sha256-YuJ1n9ObvUmM1jrbV9YPcghvgvYJMarv/m0OGTk9lAA=",
+        "owner": "quad9dns",
+        "repo": "dnscrypt-settings",
+        "rev": "4aaff82a48388e4bd312f3850e1aa63816da6708",
+        "type": "github"
+      },
+      "original": {
+        "owner": "quad9dns",
+        "repo": "dnscrypt-settings",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -138,6 +154,22 @@
         "type": "github"
       }
     },
+    "oisd": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771788691,
+        "narHash": "sha256-aiwV19I9lh9jeSofqT0R+4CO71VnkgN0I0smVXJpBDk=",
+        "owner": "sjhgvr",
+        "repo": "oisd",
+        "rev": "63915432c94fd88eb0a55c893f138f51222b8c0d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sjhgvr",
+        "repo": "oisd",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -177,8 +209,10 @@
     },
     "root": {
       "inputs": {
+        "dnscrypt-settings": "dnscrypt-settings",
         "hjem": "hjem",
         "nixpkgs": "nixpkgs",
+        "oisd": "oisd",
         "preservation": "preservation",
         "systems": "systems",
         "tuigreet": "tuigreet",

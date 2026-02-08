@@ -2,12 +2,11 @@
   inputs,
   lib,
   self,
-  sources,
 }: let
   inherit (lib.kkts.nixos) mkSystemsFromAttrs;
 
   specialArgs = {
-    inherit inputs lib sources;
+    inherit inputs lib;
     flake = self;
     inherit self; # vaultix
   };

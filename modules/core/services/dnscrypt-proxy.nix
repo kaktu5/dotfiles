@@ -2,14 +2,14 @@
 # https://github.com/dnscrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
 {
   config,
+  inputs,
   lib,
-  sources,
   ...
 }: let
+  inherit (inputs) dnscrypt-settings oisd;
   inherit (lib.attrsets) genAttrs;
   inherit (lib.kkts.formats) dnsCryptStamps;
   inherit (lib.strings) readFile;
-  inherit (sources) dnscrypt-settings oisd;
 
   quad9Stamps = dnsCryptStamps.parse <| readFile (dnscrypt-settings + /dnscrypt/quad9-resolvers-dnscrypt.md);
 

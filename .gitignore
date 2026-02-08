@@ -12,7 +12,6 @@
 !/secrets/
 !/secrets/**
 !/.envrc
-!/.gitattributes
 !/.gitignore
 !/.qmlformat.ini
 !/deno.json
