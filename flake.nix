@@ -67,7 +67,10 @@
     };
     tuigreet = {
       url = "github:notashelf/tuigreet";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        crane.follows = "crane";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     vaultix = {
       url = "github:milieuim/vaultix";
