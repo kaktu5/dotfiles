@@ -40,6 +40,7 @@ in {
     mkValue = v: let
       cases = {
         bool = boolToString v;
+        float = toString v;
         int = v;
         list = "[${concatMapStringsSep "," mkValue v}]";
         null = "null";
