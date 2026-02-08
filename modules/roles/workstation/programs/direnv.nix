@@ -7,8 +7,8 @@
   inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
   inherit (lib.kkts.formats.nuon) closure;
-  inherit (lib.meta) getExe';
-  inherit (pkgs) direnv nix-direnv uutils-coreutils-noprefix;
+  inherit (lib.meta) getExe getExe';
+  inherit (pkgs) bash direnv nix-direnv uutils-coreutils-noprefix;
   inherit (pkgs.formats) toml;
 in {
   users.users.${userName}.packages = [direnv];
@@ -20,9 +20,11 @@ in {
       "direnv/direnv.toml" = {
         generator = (toml {}).generate "direnv-direnv-toml";
         value.global = {
+          bash_path = getExe bash;
           disable_stdin = true;
           strict_env = true;
-          warn_timeout = "15s";
+          warn_timeout = "0s";
+          hide_env_diff = true;
         };
       };
 
