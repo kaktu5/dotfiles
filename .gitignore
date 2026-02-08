@@ -10,8 +10,8 @@
 
 !/.envrc
 !/.gitignore
+!/.mdformat.toml
 !/.qmlformat.ini
-!/deno.json
 !/flake.{lock,nix}
 !/license
 !/readme.md
