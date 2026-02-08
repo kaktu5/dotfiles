@@ -1,7 +1,7 @@
 {
   imports = [
     ./bootloader.nix
-    ./kernel.nix
+    ./initrd.nix
     ./preservation.nix
     ./zfs.nix
   ];
