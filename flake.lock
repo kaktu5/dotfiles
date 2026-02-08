@@ -317,14 +317,17 @@
     "systems": {
       "flake": false,
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-ZnKft8ZoyDmRW8feDrENyYQoWmpXjqakk9LL2yMigQg=",
-        "path": "internal/systems.nix",
-        "type": "path"
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "type": "github"
       },
       "original": {
-        "path": "internal/systems.nix",
-        "type": "path"
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "type": "github"
       }
     },
     "tuigreet": {

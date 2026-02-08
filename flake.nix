@@ -32,7 +32,7 @@
 
   inputs = {
     systems = {
-      url = "path:internal/systems.nix";
+      url = "github:nix-systems/default-linux";
       flake = false;
     };
 
