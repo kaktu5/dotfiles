@@ -8,7 +8,7 @@ in {
 
     man = {
       enable = true;
-      caches.enable = true;
+      cache.enable = true;
 
       mandoc.enable = true;
       man-db.enable = false;
