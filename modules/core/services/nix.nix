@@ -1,9 +1,11 @@
 {
   inputs,
+  lib,
   pkgs,
   ...
 }: let
   inherit (inputs) nixpkgs;
+  inherit (lib.modules) mkDefault;
   inherit (pkgs.lixPackageSets.latest) lix;
   inherit (pkgs.writers) writeJSON;
 in {
@@ -28,8 +30,11 @@ in {
       trusted-users = ["@wheel"];
       accept-flake-config = false;
 
-      keep-outputs = true;
+      keep-derivations = mkDefault false;
+      use-xdg-base-directories = true;
+
       warn-dirty = false;
+      warn-import-from-derivation = true;
 
       log-format = "multiline-with-logs";
       log-lines = 64;
