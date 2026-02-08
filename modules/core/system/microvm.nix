@@ -3,14 +3,14 @@
   inputs,
   ...
 }: let
-  inherit (inputs.microvm) nixosModules;
+  inherit (inputs) microvm;
 
   cfg = config.microvm;
 in {
-  imports = [nixosModules.host];
+  imports = [microvm.nixosModules.host];
 
   microvm.host = {
-    enable = cfg != {};
+    enable = cfg.vms != {};
 
     startupTimeout = 2 * 60;
 
