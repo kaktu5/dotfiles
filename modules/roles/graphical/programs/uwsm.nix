@@ -8,5 +8,5 @@
   inherit (lib.strings) concatMapAttrsStringSep;
 in {
   hjem.users.${userName}.xdg.config.files."uwsm/env".text =
-    sessionVariables |> concatMapAttrsStringSep "\n" (n: v: "export ${n}=\"${v}\"");
+    sessionVariables |> concatMapAttrsStringSep "\n" (n: v: "export ${n}='${v}'");
 }
