@@ -15,7 +15,7 @@ in {
     useTextGreeter = true;
     settings.default_session = {
       user = "greeter";
-      command = mkDefault "${getExe' greetd "agretty"} --cmd ${getExe shell}";
+      command = mkDefault "${getExe' greetd "agreety"} --cmd ${getExe shell}";
     };
   };
 }
