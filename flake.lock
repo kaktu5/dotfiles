@@ -146,17 +146,12 @@
       }
     },
     "nixexprs": {
-      "inputs": {
-        "systems": [
-          "systems"
-        ]
-      },
       "locked": {
-        "lastModified": 1775924692,
-        "narHash": "sha256-nq24ST9D39NCMkb7Z4AB1QIw5kjDLeubOzgzczRgB8k=",
+        "lastModified": 1779103368,
+        "narHash": "sha256-ixBcU7iqq02dW8vX5l7OZw0oAz4sSUvQAsRMr0+WWPI=",
         "owner": "kaktu5",
         "repo": "nixexprs",
-        "rev": "aa2977c7008123f6ad066cda5d10360e67019378",
+        "rev": "2e56dea465ab5b7dc85940575d50e628b3d1cad6",
         "type": "github"
       },
       "original": {
@@ -245,7 +240,6 @@
         "oisd": "oisd",
         "preservation": "preservation",
         "stash": "stash",
-        "systems": "systems",
         "tuigreet": "tuigreet",
         "vaultix": "vaultix"
       }
@@ -311,22 +305,6 @@
       "original": {
         "owner": "notashelf",
         "repo": "stash",
-        "type": "github"
-      }
-    },
-    "systems": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default-linux",
         "type": "github"
       }
     },

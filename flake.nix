@@ -1,12 +1,12 @@
 {
   outputs = {
     self,
-    systems,
     nixpkgs,
     ...
   } @ inputs: let
-    lib = import ./lib {inherit inputs self;};
+    systems = ["aarch64-linux" "x86_64-linux"];
 
+    lib = import ./lib {inherit inputs self;};
     inherit (lib.attrsets) mapAttrs zipAttrsWith;
     inherit (lib.lists) foldl';
 
@@ -15,7 +15,7 @@
       |> map (s: f s |> mapAttrs (_: v: {${s} = v;}))
       |> zipAttrsWith (_: foldl' (a: b: a // b) {});
   in
-    mapSystems (import systems) (system: let
+    mapSystems systems (system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       devShells.default = import ./internal/devshell.nix {inherit lib pkgs self system;};
@@ -27,21 +27,13 @@
 
       nixosConfigurations = import ./hosts {inherit lib;};
 
-      vaultix = import ./internal/vaultix.nix {inherit inputs self;};
+      vaultix = import ./internal/vaultix.nix {inherit inputs self systems;};
     };
 
   inputs = {
-    systems = {
-      url = "github:nix-systems/default-linux";
-      flake = false;
-    };
-
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixexprs = {
-      url = "github:kaktu5/nixexprs";
-      inputs.systems.follows = "systems";
-    };
+    nixexprs.url = "github:kaktu5/nixexprs";
 
     hjem = {
       url = "github:feel-co/hjem";
@@ -95,7 +87,7 @@
       flake = false;
     };
 
-    # not used directly, pinned only to deduplicate transitive deps
+    # not used directly, pinned only to deduplicate transitive dependencies
     crane.url = "github:ipetkov/crane";
   };
 }
