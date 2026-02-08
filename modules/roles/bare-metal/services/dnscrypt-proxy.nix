@@ -58,6 +58,7 @@ in {
 
   services.dnscrypt-proxy = {
     enable = true;
+
     upstreamDefaults = false;
     settings = {
       listen_addresses = ["127.0.0.1:53" "[::1]:53"];
@@ -70,12 +71,22 @@ in {
       ];
       static = genAttrs cfg.server_names (name: {stamp = quad9Stamps.${name};});
 
-      blocked_names.blocked_names_file = oisd + /domainswild_big.txt;
-
       dnscrypt_ephemeral_keys = true;
 
+      block_unqualified = true;
+      block_undelegated = true;
+      blocked_names.blocked_names_file = oisd + /domainswild_big.txt;
+
       cache_size = 8192;
-      cache_min_ttl = 60 * 60;
+      cache_min_ttl = 15 * 60;
+      cache_max_ttl = 12 * 60 * 60;
+      cache_neg_min_ttl = 60;
+      cache_neg_max_ttl = 15 * 60;
+
+      nx_log = {
+        file = "/dev/stdout";
+        format = "ltsv";
+      };
     };
   };
 }
