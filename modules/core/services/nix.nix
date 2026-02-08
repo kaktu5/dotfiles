@@ -50,13 +50,7 @@ in {
     gc = {
       automatic = true;
       options = "--delete-older-than 14d";
-      dates = ["Fri *-*-* 03:00"];
-      randomizedDelaySec = "15min";
-    };
-
-    optimise = {
-      automatic = true;
-      dates = ["Fri *-*-* 04:00"];
+      dates = ["Sat *-*-* 03:00"];
       randomizedDelaySec = "15min";
     };
   };
