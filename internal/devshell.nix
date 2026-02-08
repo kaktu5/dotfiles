@@ -23,6 +23,9 @@
 in
   mkShellNoCC {
     name = "dotfiles-devshell";
+
+    env.TACK_NIX_CONF_TOKENS = "1";
+
     packages = attrValues {
       # nix
       inherit tack;
