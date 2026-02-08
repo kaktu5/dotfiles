@@ -15,9 +15,7 @@
     buildCommand = replaceStrings ["edit-secret"] ["vaultix-edit"] old.buildCommand;
   });
   vaultix-renc = writeShellScriptBin "vaultix-renc" ''
-    dir="$PWD"
-    until [[ -f $dir/flake.nix || $dir == / ]]; do dir="''${dir%/*}"; done
-    cd "$dir"
+    cd "$(git rev-parse --show-toplevel)"
     nix run -Lv .#vaultix.app.${system}.renc
   '';
 in
