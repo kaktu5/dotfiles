@@ -3,12 +3,11 @@
   lib,
   self,
 }: let
-  inherit (inputs) microvm;
   inherit (lib) nixosSystem;
   inherit (lib.attrsets) genAttrs mapAttrs;
   inherit (lib.fixedPoints) fix;
   inherit (lib.kkts.modules) modulesFromDirRec;
-  inherit (lib.lists) concatMap optionals singleton;
+  inherit (lib.lists) concatMap optional singleton;
 
   specialArgs = {
     inherit inputs lib;
@@ -42,20 +41,17 @@
     ++ modulesFromDirRec /${hostsPath}/${hostName}
     ++ commonModules
     ++ concatMap (role: modulesForRole.${role}) roles
-    ++ optionals (microvms != {}) [
-      microvm.nixosModules.host
-      {
-        microvm.vms =
-          microvms
-          |> mapAttrs (hostName: {
-            arch,
-            roles ? [],
-          }: {
-            inherit specialArgs;
-            config.imports = modulesFor {inherit hostName arch roles;};
-          });
-      }
-    ];
+    ++ optional (microvms != {}) {
+      microvm.vms =
+        microvms
+        |> mapAttrs (hostName: {
+          arch,
+          roles ? [],
+        }: {
+          inherit specialArgs;
+          config.imports = modulesFor {inherit hostName arch roles;};
+        });
+    };
 in {
   mkHosts = f:
     fix f
