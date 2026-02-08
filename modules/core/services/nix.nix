@@ -7,11 +7,6 @@
   inherit (pkgs.lixPackageSets.latest) lix;
   inherit (pkgs.writers) writeJSON;
 in {
-  nixpkgs.config = {
-    allowAliases = false;
-    allowUnfree = true;
-  };
-
   nix = {
     package = lix;
 

@@ -1,6 +1,3 @@
-# https://blog.stribik.technology/2015/01/04/secure-secure-shell.html
-# https://infosec.mozilla.org/guidelines/openssh#modern-openssh-67
-# https://www.openssh.org/pq.html
 {lib, ...}: let
   inherit (lib.lists) singleton;
 in {

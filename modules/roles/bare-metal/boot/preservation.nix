@@ -1,12 +1,14 @@
 {inputs, ...}: let
-  inherit (inputs.preservation) nixosModules;
+  inherit (inputs) preservation;
 in {
-  imports = [nixosModules.default];
+  imports = [preservation.nixosModules.default];
 
   preservation = {
     enable = true;
+
     preserveAt."/persist" = {
       commonMountOptions = ["x-gdu.hide" "x-gvfs-hide"];
+
       directories = [
         {
           directory = "/var/lib/nixos";
@@ -16,6 +18,7 @@ in {
         "/var/lib/systemd/timers"
         "/var/log"
       ];
+
       files = [
         {
           file = "/etc/machine-id";

@@ -5,7 +5,7 @@ in
     # lenovo m715q, ryzen 3 pro 2200ge, 16gb
     neidon = {
       arch = "x86_64";
-      roles = ["headless" "server"];
+      roles = ["bare-metal" "headless" "server"];
       microvms = {inherit (self) nissee thatmo;};
     };
     nissee = {

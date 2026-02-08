@@ -7,9 +7,7 @@
   inherit (lib.lists) optional;
   inherit (pkgs) memtest86-efi sbctl;
 
-  cfg = config.boot.loader.limine;
-
-  optional' = optional cfg.secureBoot.enable;
+  optional' = optional config.boot.loader.limine.secureBoot.enable;
 in {
   preservation.preserveAt."/persist".directories = optional' {
     directory = "/var/lib/sbctl";
@@ -26,8 +24,9 @@ in {
     limine = {
       enable = true;
       enableEditor = false;
-      panicOnChecksumMismatch = true;
+
       secureBoot.enable = true;
+      panicOnChecksumMismatch = true;
 
       resolution = "max";
       maxGenerations = 24;

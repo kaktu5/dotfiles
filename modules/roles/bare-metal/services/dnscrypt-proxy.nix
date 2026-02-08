@@ -1,5 +1,3 @@
-# https://github.com/quad9dns/dnscrypt-settings/blob/main/dnscrypt/quad9-resolvers-dnscrypt.md
-# https://github.com/dnscrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
 {
   config,
   inputs,
