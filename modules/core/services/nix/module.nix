@@ -1,14 +1,22 @@
 {
+  config,
   inputs,
   lib,
   pkgs,
   ...
 }: let
+  inherit (config.vaultix.secrets) nix-access-tokens;
   inherit (inputs) nixpkgs;
   inherit (lib.modules) mkDefault;
   inherit (pkgs.lixPackageSets.latest) lix;
   inherit (pkgs.writers) writeJSON;
 in {
+  vaultix.secrets.nix-access-tokens = {
+    file = ./access-tokens.age;
+    group = "wheel";
+    mode = "440";
+  };
+
   nix = {
     package = lix;
 
@@ -46,6 +54,8 @@ in {
         version = 2;
       };
     };
+
+    extraOptions = "!include ${nix-access-tokens.path}";
 
     gc = {
       automatic = true;
