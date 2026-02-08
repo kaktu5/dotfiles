@@ -7,14 +7,14 @@
 }: let
   inherit (inputs.tack.packages.${system}) tack;
   inherit (lib.attrsets) attrValues;
-  inherit (lib.strings) replaceStrings;
   inherit (pkgs) mkShellNoCC writeShellScriptBin;
 
   vaultix' = self.vaultix.app.${system};
 
-  vaultix-edit = vaultix'.edit.overrideAttrs (old: {
+  vaultix-edit = vaultix'.edit.overrideAttrs (_: {
     name = "vaultix-edit";
-    buildCommand = replaceStrings ["edit-secret"] ["vaultix-edit"] old.buildCommand;
+    destination = "/bin/vaultix-edit";
+    meta.mainProgram = "vaultix-edit";
   });
   vaultix-renc = writeShellScriptBin "vaultix-renc" ''
     cd "$(git rev-parse --show-toplevel)"
