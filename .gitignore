@@ -3,8 +3,8 @@
 
 !/.tack/{default.nix,pins.lock.json,pins.toml}
 !/.vaultix/**
+!/flake/**/*.nix
 !/hosts/**/*.nix
-!/internal/**/*.nix
 !/lib/**/*.nix
 !/modules/**/{.gitignore,*.age,*.nix}
 
