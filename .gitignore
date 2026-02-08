@@ -1,8 +1,8 @@
 *
 !/**/
 
-!/.github/**/*.yml
 !/.vaultix/**
+!/.tack/{default.nix,pins.lock.json,pins.toml}
 !/hosts/**
 !/internal/**
 !/lib/**
@@ -12,6 +12,7 @@
 !/.gitignore
 !/.mdformat.toml
 !/.qmlformat.ini
+!/.taplo.toml
 !/flake.{lock,nix}
 !/license
 !/readme.md

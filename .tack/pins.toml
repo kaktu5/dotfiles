@@ -1,0 +1,23 @@
+[shorturls]
+channels = "https://channels.nixos.org/{path}"
+
+[all_follow]
+crane = "crane"
+nixpkgs = "nixpkgs"
+rust-overlay = "rust-overlay"
+
+[inputs]
+nixpkgs.url = "channels:nixos-unstable/nixexprs.tar.xz"
+
+nixexprs.url = "github:kaktu5/nixexprs"
+
+hjem.url = "github:feel-co/hjem"
+microvm.url = "github:microvm-nix/microvm.nix"
+preservation.url = "github:nix-community/preservation"
+stash.url = "github:notashelf/stash"
+tack.url = "github:manic-systems/tack"
+tuigreet.url = "github:notashelf/tuigreet"
+vaultix.url = "github:milieuim/vaultix"
+
+dnscrypt-settings = {type = "fetch", url = "github:quad9dns/dnscrypt-settings"}
+oisd = {type = "fetch", url = "github:sjhgvr/oisd"}
