@@ -19,9 +19,9 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "89d0beea9068903aeb9998f52b741c69d4e32aa1",
-    "narHash": "sha256-5uEX8TEZ5kI+bnil/T2jtRlxiADcyeD9mX8gOwQIEVs=",
-    "lastModified": 1781430841
+    "rev": "3b110d0e7c07a5652019223bd7f7b872b86f06a4",
+    "narHash": "sha256-1cMArpPnPvjKYNMsMRwtAxQ6ngPnIg/Wt3ohS95fbwY=",
+    "lastModified": 1782071069
   },
   "microvm": {
     "type": "github",
@@ -49,9 +49,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "4cd2dbf93fd6660d15add3519cb222cec16ddb0e",
-    "narHash": "sha256-aa08Kcw6mPZEhZkAMbkBeQW5S9M4saTzUQ5LndnBJYQ=",
-    "lastModified": 1782044023
+    "rev": "6a8af8b6ffd9f4fa34315f37892ce05e882a7e0a",
+    "narHash": "sha256-ClYrpdjfFNOlGb3RSKVLnlyzn/eqm0aapzC8VQ6qsKs=",
+    "lastModified": 1782137685
   },
   "preservation": {
     "type": "github",
@@ -81,9 +81,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "00ebd72cbdd267b41130907f6a517d475069c8a0",
-    "narHash": "sha256-KhJb0NWLhj8AkD8uWEbXt179YlFLemk0OgOltw4jEk8=",
-    "lastModified": 1782001180
+    "rev": "d61ffcb1ea96fe0bb4157aabc0ad9a337a376417",
+    "narHash": "sha256-HOie9E1cVjloXbRt+Frz8ZalsU/sklhklBr2yHyclm8=",
+    "lastModified": 1782105670
   },
   "tuigreet": {
     "type": "github",
