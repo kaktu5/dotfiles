@@ -13,4 +13,10 @@ in
       arch = "x86_64";
       traits = ["bare-metal" "headless" "server"];
     };
+
+    # lenovo thinkpad x13 gen 2, ryzen 5 pro 5650u, 16gb
+    vall = {
+      arch = "x86_64";
+      traits = ["bare-metal" "graphical" "laptop" "workstation"];
+    };
   })
