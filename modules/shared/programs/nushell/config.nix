@@ -24,12 +24,6 @@ in {
       edit_mode = "vi";
       cursor_shape.vi_normal = "block";
 
-      completions = {
-        algorithm = "fuzzy";
-        quick = false;
-        use_ls_colors = false;
-      };
-
       footer_mode = 24;
       table = {
         mode = "none";

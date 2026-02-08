@@ -7,7 +7,7 @@
   inherit (config.kkts.programs.nushell) finalConfig;
   inherit (pkgs) nushell;
 in {
-  imports = [./config.nix];
+  imports = [./completions.nix ./config.nix];
 
   preservation.preserveAt."/persist".users.${userName}.files = [".config/nushell/history.sqlite3"];
 
