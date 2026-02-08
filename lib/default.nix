@@ -14,5 +14,6 @@ in
         formats = import ./formats.nix {inherit lib;};
         modules = import ./modules.nix {inherit lib;};
         nixos = import ./nixos.nix {inherit inputs lib self;};
+        systemd = import ./systemd.nix {inherit lib;};
       };
     })
