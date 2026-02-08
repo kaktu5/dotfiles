@@ -15,10 +15,6 @@ in {
       commonMountOptions = ["x-gdu.hide" "x-gvfs-hide"];
 
       directories = [
-        {
-          directory = "/var/lib/nixos";
-          inInitrd = true;
-        }
         "/var/lib/systemd/rfkill"
         "/var/lib/systemd/timers"
         "/var/log"
