@@ -29,7 +29,8 @@ in
       inherit (pkgs) alejandra dix nh nixd;
 
       # qml
-      inherit (pkgs.kdePackages) qtdeclarative;
+      inherit (pkgs) quickshell;
+      inherit (pkgs.qt6) qtdeclarative;
 
       # vaultix
       inherit vaultix-edit vaultix-renc;
