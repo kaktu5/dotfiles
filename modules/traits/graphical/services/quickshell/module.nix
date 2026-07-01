@@ -11,19 +11,19 @@
   inherit (lib.fileset) toSource unions;
   inherit (lib.kkts.systemd) mkGraphicalTargetService;
   inherit (lib.meta) getExe;
-  inherit (pkgs) quickshell runCommand writeTextDir;
+  inherit (pkgs) quickshell symlinkJoin writeTextDir;
 
   srcDir = toSource {
     root = ./.;
     fileset = unions [
-      ./components
-      ./widgets
       ./Bar.qml
+      ./components
       ./shell.qml
+      ./widgets
     ];
   };
 
-  configFile = writeTextDir "kkts-shell-Config-qml" ''
+  configFile = writeTextDir "Config.qml" ''
     pragma Singleton
 
     import QtQuick
@@ -56,12 +56,13 @@
     }
   '';
 
-  configDir = runCommand "kkts-shell-config-dir" {} ''
-    cp --symbolic-link --archive ${srcDir} $out
-    chmod --recursive +w $out
-    ln --symbolic ${configFile} $out/Config.qml
-  '';
+  configDir = symlinkJoin {
+    name = "kkts-shell-config-dir";
+    paths = [srcDir configFile];
+  };
 in {
+  persistence.users.${userName}.directories = [".local/cache/quickshell"];
+
   hjem.users.${userName}.systemd.services.kkts-shell = mkGraphicalTargetService {
     environment = {
       QS_CONFIG_PATH = configDir;
