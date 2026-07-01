@@ -1,27 +1,7 @@
-{
-  lib,
-  pkgs,
-  ...
-}: let
-  inherit (lib.attrsets) attrValues;
+{lib, ...}: let
   inherit (lib.modules) mkForce;
 in {
   environment = {
-    systemPackages = attrValues {
-      inherit
-        (pkgs)
-        bash
-        inetutils
-        iproute2
-        lsof
-        procps
-        util-linux
-        uutils-coreutils-noprefix
-        uutils-diffutils
-        uutils-findutils
-        ;
-    };
-
     corePackages = mkForce [];
     defaultPackages = mkForce [];
   };
