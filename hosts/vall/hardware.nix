@@ -2,6 +2,8 @@
   hardware.enableRedistributableFirmware = true;
 
   boot = {
+    lanzaboote.measuredBoot.pcrs = [0 1 2 3 4 7];
+
     kernelParams = ["acpi_backlight=native"];
 
     initrd.kernelModules = [
