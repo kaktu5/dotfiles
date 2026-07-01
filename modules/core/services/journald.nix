@@ -5,10 +5,9 @@
 }: let
   inherit (lib.lists) optional;
   inherit (lib.modules) mkDefault;
-
-  isVolatile = config.services.journald.settings.Journal.Storage == "volatile";
+  isPersistent = config.services.journald.settings.Journal.Storage == "persistent";
 in {
-  persistence.directories = optional isVolatile "/var/log/journal";
+  persistence.directories = optional isPersistent "/var/log/journal";
 
   services.journald.settings.Journal = {
     Storage = mkDefault "persistent";
