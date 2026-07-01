@@ -9,7 +9,7 @@
   inherit (lib.trivial) floor;
 in {
   boot = {
-    kernelParams = ["quiet" "splash"];
+    kernelParams = ["quiet"];
 
     plymouth = {
       enable = true;
