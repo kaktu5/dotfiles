@@ -1,0 +1,684 @@
+diff --git a/maintainers/maintainer-list.nix b/maintainers/maintainer-list.nix
+--- a/maintainers/maintainer-list.nix
++++ b/maintainers/maintainer-list.nix
+@@ -14964,6 +14964,13 @@
+     githubId = 32744028;
+     keys = [ { fingerprint = "7577 13A4 9609 0C2F 51C4  018C B5C8 89A2 F195 28F6"; } ];
+   };
++  karol-broda = {
++    name = "Karol Broda";
++    email = "me@karolbroda.com";
++    matrix = "@karolbroda:matrix.karolbroda.com";
++    github = "karol-broda";
++    githubId = 122811026;
++  };
+   karpfediem = {
+     name = "Karpfen";
+     github = "karpfediem";
+diff --git a/pkgs/by-name/mi/millennium/package.nix b/pkgs/by-name/mi/millennium/package.nix
+new file mode 100644
+--- /dev/null
++++ b/pkgs/by-name/mi/millennium/package.nix
+@@ -0,0 +1,186 @@
++{
++  cmake,
++  ninja,
++  pkg-config,
++  bun,
++  rustPlatform,
++  nodejs,
++  fetchFromGitHub,
++  nix-update-script,
++  writableTmpDirAsHomeHook,
++
++  lib,
++  stdenvNoCC,
++  stdenv,
++  pkgsi686Linux,
++  libx11,
++  libxi,
++  libxtst,
++  re2,
++
++}:
++pkgsi686Linux.stdenv.mkDerivation (finalAttrs: {
++  pname = "millennium";
++  version = "3.6.1";
++
++  __structuredAttrs = true;
++  strictDeps = true;
++
++  src = fetchFromGitHub {
++    owner = "SteamClientHomebrew";
++    repo = "Millennium";
++    tag = "v${finalAttrs.version}";
++    hash = "sha256-sNpoyJ+IjrTiDGfX2QiKVg4jkrJR7n9PdBeOYJSS4n8=";
++  };
++
++  nativeBuildInputs = [
++    cmake
++    ninja
++    pkg-config
++    bun
++    nodejs
++  ];
++
++  cmakeFlags = [
++    (lib.cmakeBool "DISTRO_NIX" true)
++    (lib.cmakeBool "MILLENNIUM_BUILD_TESTS" false)
++  ];
++
++  typescript-deps = stdenvNoCC.mkDerivation {
++    pname = "millennium-typescript-deps";
++    inherit (finalAttrs) src version;
++
++    sourceRoot = "${finalAttrs.src.name}/src/typescript";
++
++    nativeBuildInputs = [
++      writableTmpDirAsHomeHook
++      bun
++    ];
++
++    buildPhase = ''
++      bun install  --frozen-lockfile \
++        --ignore-scripts \
++        --no-progress \
++        --os="*" \
++        --cpu="*"
++
++      (cd ttc && bun node_modules/.bin/rollup -c)
++    '';
++
++    installPhase = ''
++      mkdir -p $out
++      for dir in "./." "ttc"  "sdk" "frontend"; do
++          mkdir -p "$out/src/typescript/$dir"
++          cp -r "$dir/node_modules" "$out/src/typescript/$dir/node_modules"
++      done
++
++      cp -r "ttc/dist" "$out/src/typescript/ttc/dist"
++    '';
++
++    outputHashMode = "recursive";
++    outputHashAlgo = "sha256";
++    outputHash = "sha256-c3aw+Nznk5ciamIQ+7l7MwB0e7pezzZTtMP97z5U1e4=";
++  };
++
++  millennium-64-bit-libs = stdenv.mkDerivation (finalAttrs64: {
++    pname = "millennium-64-bit";
++    inherit (finalAttrs) src version;
++
++    nativeBuildInputs = finalAttrs.nativeBuildInputs ++ [
++      rustPlatform.cargoSetupHook
++      rustPlatform.rust.cargo
++      rustPlatform.rust.rustc
++    ];
++
++    cargoRoot = "src/instrumentation/loopback";
++    cargoDeps = rustPlatform.fetchCargoVendor {
++      inherit (finalAttrs64) src cargoRoot;
++      hash = "sha256-8XGEBVYgNYEgkfR67m5pKxCEovSAhctAWoB87Y5JAuM=";
++    };
++
++    buildInputs = [
++      libx11
++      libxi
++      libxtst
++      re2
++    ];
++
++    cmakeFlags = finalAttrs.cmakeFlags ++ [
++      (lib.cmakeBool "MILLENNIUM_NIX_64BIT" true)
++    ];
++
++    installPhase = ''
++      runHook preInstall
++      mkdir -p $out/lib/
++      install -Dm555 libmillennium_hhx64.so           $out/lib/libmillennium_hhx64.so
++      install -Dm555 libmillennium_pvs64              $out/lib/libmillennium_pvs64
++      install -Dm555 libmillennium_bootstrap_hhx64.so $out/lib/libmillennium_bootstrap_hhx64.so
++      runHook postInstall
++    '';
++  });
++
++  buildInputs = [
++    pkgsi686Linux.libx11
++    pkgsi686Linux.libxi
++    pkgsi686Linux.libxtst
++    pkgsi686Linux.openssl
++    pkgsi686Linux.curl
++    pkgsi686Linux.minizip-ng
++    pkgsi686Linux.bzip2
++    pkgsi686Linux.xz
++    pkgsi686Linux.zstd
++    pkgsi686Linux.nlohmann_json
++    pkgsi686Linux.zlib
++    pkgsi686Linux.luajit
++  ];
++
++  postPatch = ''
++    substituteInPlace src/system/environment.cc \
++      --replace-fail "/usr/lib/millennium/libmillennium_x86.so" "${placeholder "out"}/lib/libmillennium_x86.so"
++    substituteInPlace src/bootstrap/linux/libmillennium_bootstrap.c \
++      --replace-fail "/usr/lib/millennium/libmillennium_x86.so" "${placeholder "out"}/lib/libmillennium_x86.so"
++
++    cp -r ${finalAttrs.typescript-deps}/src .
++    chmod -R u+w src/typescript/ttc/dist
++
++    patchShebangs src/typescript/node_modules
++    for dir in "ttc/" "sdk/" "frontend/"; do
++        (cd "src/typescript/$dir" && bun run build)
++    done
++
++  '';
++
++  installPhase = ''
++    runHook preInstall
++    mkdir -p $out/lib/
++    install -Dm555 libmillennium_x86.so           $out/lib/libmillennium_x86.so
++    install -Dm555 libmillennium_luavm_x86        $out/lib/libmillennium_luavm_x86
++    install -Dm555 libmillennium_bootstrap_x86.so $out/lib/libmillennium_bootstrap_x86.so
++    cp -r ${finalAttrs.millennium-64-bit-libs}/lib/* $out/lib/
++    runHook postInstall
++  '';
++
++  postFixup = ''
++    patchelf --force-rpath --set-rpath \
++      "$(patchelf --print-rpath $out/lib/libmillennium_x86.so)" $out/lib/libmillennium_x86.so
++    patchelf --force-rpath --set-rpath \
++      "$(patchelf --print-rpath $out/lib/libmillennium_bootstrap_x86.so)" $out/lib/libmillennium_bootstrap_x86.so
++  '';
++
++  passthru.updateScript = nix-update-script {
++    extraArgs = [
++      "--subpackage=typescript-deps"
++    ];
++  };
++
++  meta = {
++    homepage = "https://github.com/SteamClientHomebrew/Millennium";
++    license = lib.licenses.mit;
++    description = "Modding framework to create, manage and use themes/plugins for Steam";
++    longDescription = "An open-source low-code modding framework to create, manage and use themes/plugins for the desktop Steam Client without any low-level internal interaction or overhead";
++
++    maintainers = [ lib.maintainers.DrymarchonShaun ];
++    platforms = [ "i686-linux" ];
++  };
++
++})
+diff --git a/pkgs/by-name/rh/rhythia/add-aarch64-linux-export-preset.patch b/pkgs/by-name/rh/rhythia/add-aarch64-linux-export-preset.patch
+new file mode 100644
+--- /dev/null
++++ b/pkgs/by-name/rh/rhythia/add-aarch64-linux-export-preset.patch
+@@ -0,0 +1,88 @@
++diff --git a/export_presets.cfg b/export_presets.cfg
++index d69582c..fef6cf2 100644
++--- a/export_presets.cfg
+++++ b/export_presets.cfg
++@@ -1,7 +1,8 @@
++ [runnable_presets]
++ 
++ "Windows Desktop"="Windows Desktop"
++-Linux="Linux"
+++"Linux x86_64"="Linux x86_64"
+++"Linux AArch64"="Linux AArch64"
++ macOS="macOS"
++ 
++ [preset.0]
++@@ -80,7 +81,7 @@ dotnet/embed_build_outputs=false
++ 
++ [preset.1]
++ 
++-name="Linux"
+++name="Linux x86_64"
++ platform="Linux"
++ dedicated_server=false
++ custom_features=""
++@@ -129,6 +130,55 @@ dotnet/embed_build_outputs=false
++ 
++ [preset.2]
++ 
+++name="Linux AArch64"
+++platform="Linux"
+++dedicated_server=false
+++custom_features=""
+++export_filter="all_resources"
+++include_filter="user/*"
+++exclude_filter=""
+++export_path="../../../Desktop/Linux/Rhythia.zip"
+++patches=PackedStringArray()
+++patch_delta_encoding=false
+++patch_delta_compression_level_zstd=19
+++patch_delta_min_reduction=0.1
+++patch_delta_include_filters="*"
+++patch_delta_exclude_filters=""
+++encryption_include_filters=""
+++encryption_exclude_filters=""
+++seed=0
+++encrypt_pck=false
+++encrypt_directory=false
+++script_export_mode=2
+++
+++[preset.2.options]
+++
+++custom_template/debug=""
+++custom_template/release=""
+++debug/export_console_wrapper=1
+++binary_format/embed_pck=true
+++texture_format/s3tc_bptc=true
+++texture_format/etc2_astc=false
+++shader_baker/enabled=false
+++binary_format/architecture="arm64"
+++ssh_remote_deploy/enabled=false
+++ssh_remote_deploy/host="user@host_ip"
+++ssh_remote_deploy/port="22"
+++ssh_remote_deploy/extra_args_ssh=""
+++ssh_remote_deploy/extra_args_scp=""
+++ssh_remote_deploy/run_script="#!/usr/bin/env bash
+++export DISPLAY=:0
+++unzip -o -q \"{temp_dir}/{archive_name}\" -d \"{temp_dir}\"
+++\"{temp_dir}/{exe_name}\" {cmd_args}"
+++ssh_remote_deploy/cleanup_script="#!/usr/bin/env bash
+++pkill -x -f \"{temp_dir}/{exe_name} {cmd_args}\"
+++rm -rf \"{temp_dir}\""
+++dotnet/include_scripts_content=false
+++dotnet/include_debug_symbols=true
+++dotnet/embed_build_outputs=false
+++
+++[preset.3]
+++
++ name="macOS"
++ platform="macOS"
++ dedicated_server=false
++@@ -150,7 +200,7 @@ encrypt_pck=false
++ encrypt_directory=false
++ script_export_mode=2
++ 
++-[preset.2.options]
+++[preset.3.options]
++ 
++ export/distribution_type=1
++ binary_format/architecture="universal"
+diff --git a/pkgs/by-name/rh/rhythia/deps.json b/pkgs/by-name/rh/rhythia/deps.json
+new file mode 100644
+--- /dev/null
++++ b/pkgs/by-name/rh/rhythia/deps.json
+@@ -0,0 +1,77 @@
++[
++  {
++    "pname": "DiscordRichPresence",
++    "version": "1.6.1.70",
++    "hash": "sha256-uXTNIWfZU7Gf/JpXQ5ufKA3SQdXYSkg3yLm5yCrBDd8="
++  },
++  {
++    "pname": "Godot.SourceGenerators",
++    "version": "4.7.2",
++    "hash": "sha256-1vUbZvoXVQvPy8OKrjQOcfHHKYskI23wk15O3NZ0VL4="
++  },
++  {
++    "pname": "GodotSharp",
++    "version": "4.7.2",
++    "hash": "sha256-+iwW5s5rjTyJAbvK/xWVZdxzJn74QGh9IBUh4I9l4Ok="
++  },
++  {
++    "pname": "GodotSharpEditor",
++    "version": "4.7.2",
++    "hash": "sha256-X29rwmPebDQ8wXQ2ToKO89E7qEXdFOBJ+oNne2oHWss="
++  },
++  {
++    "pname": "Microsoft.Extensions.Primitives",
++    "version": "5.0.1",
++    "hash": "sha256-e4uoLnUSmON4If9qJh78+4z14IzW9qCu5YkqLdQqWQU="
++  },
++  {
++    "pname": "Newtonsoft.Json",
++    "version": "13.0.1",
++    "hash": "sha256-K2tSVW4n4beRPzPu3rlVaBEMdGvWSv/3Q1fxaDh4Mjo="
++  },
++  {
++    "pname": "Octokit",
++    "version": "14.0.0",
++    "hash": "sha256-pTSI7Tz5VFd4Ydx1laE+VkZfhsl7Rbgw42PBqhyVvyI="
++  },
++  {
++    "pname": "Semver",
++    "version": "3.0.0",
++    "hash": "sha256-nX5ka27GY6pz9S73H6sLSQCrnAyyI9xDVdzrtlMp4BQ="
++  },
++  {
++    "pname": "sqlite-net-pcl",
++    "version": "1.9.172",
++    "hash": "sha256-0PTcOwm4k8bMeLm5+z0iWjy379KYdQXjqkaBGBR20cc="
++  },
++  {
++    "pname": "SQLitePCLRaw.bundle_green",
++    "version": "2.1.2",
++    "hash": "sha256-7858BCblsCoALR11Q7ejjPKHk7johTjWxgndHwUYNws="
++  },
++  {
++    "pname": "SQLitePCLRaw.core",
++    "version": "2.1.2",
++    "hash": "sha256-bbymML2TTQJDKZbYXoiyYJnF6mh/PjKrzDkqWhLaHaY="
++  },
++  {
++    "pname": "SQLitePCLRaw.lib.e_sqlite3",
++    "version": "2.1.2",
++    "hash": "sha256-34lJgnGvODwrjn9WTkkBIg2jzYph/ARi1QSiKedCyUo="
++  },
++  {
++    "pname": "SQLitePCLRaw.provider.e_sqlite3",
++    "version": "2.1.2",
++    "hash": "sha256-e56+FgxEHqV3SGQx0ZAqzlscPxNUPXJ8Ls9rtqET1S4="
++  },
++  {
++    "pname": "Tomlyn",
++    "version": "0.20.0",
++    "hash": "sha256-BGEzKBaxmeHQgr80k8xbTFzpDcMvy+oUsb3vQptQS5E="
++  },
++  {
++    "pname": "Updatum",
++    "version": "1.3.2",
++    "hash": "sha256-eou+7GMaEZZ3wepGSUvi+W6Gp/94uDoKvyGFjWFIUPQ="
++  }
++]
+diff --git a/pkgs/by-name/rh/rhythia/enable-s3tc-bptc-image-compression.patch b/pkgs/by-name/rh/rhythia/enable-s3tc-bptc-image-compression.patch
+new file mode 100644
+--- /dev/null
++++ b/pkgs/by-name/rh/rhythia/enable-s3tc-bptc-image-compression.patch
+@@ -0,0 +1,12 @@
++diff --git a/project.godot b/project.godot
++index b22af13..f6eaa4c 100644
++--- a/project.godot
+++++ b/project.godot
++@@ -85,6 +85,7 @@ common/physics_ticks_per_second=120
++ 
++ [rendering]
++ 
+++textures/vram_compression/import_s3tc_bptc=true
++ textures/vram_compression/import_etc2_astc=true
++ textures/lossless_compression/force_png=true
++ environment/defaults/default_clear_color=Color(0.0885599, 0.08855992, 0.08855987, 1)
+diff --git a/pkgs/by-name/rh/rhythia/package.nix b/pkgs/by-name/rh/rhythia/package.nix
+new file mode 100644
+--- /dev/null
++++ b/pkgs/by-name/rh/rhythia/package.nix
+@@ -0,0 +1,172 @@
++{
++  alsa-lib,
++  autoPatchelfHook,
++  buildDotnetModule,
++  copyDesktopItems,
++  dbus,
++  dotnetCorePackages,
++  fetchFromGitHub,
++  fontconfig,
++  godotPackages_4_7,
++  lib,
++  libGL,
++  libx11,
++  libxcursor,
++  libxext,
++  libxi,
++  libxinerama,
++  libxkbcommon,
++  libxrandr,
++  libxrender,
++  makeDesktopItem,
++  pulseaudio,
++  stdenv,
++  udev,
++  vulkan-loader,
++  wayland,
++}:
++
++let
++  perSystem =
++    {
++      "aarch64-linux" = {
++        exportPreset = "Linux AArch64";
++        dataDir = "data_Rhythia_linuxbsd_arm64";
++      };
++      "x86_64-linux" = {
++        exportPreset = "Linux x86_64";
++        dataDir = "data_Rhythia_linuxbsd_x86_64";
++      };
++    }
++    .${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
++
++  inherit (perSystem) exportPreset dataDir;
++
++  godot = godotPackages_4_7.godot-mono.override {
++    useDotnetFromEnv = true;
++  };
++in
++
++buildDotnetModule (finalAttrs: {
++  pname = "rhythia";
++  version = "0.2.0";
++
++  src = fetchFromGitHub {
++    owner = "Rhythia";
++    repo = "Client";
++    rev = finalAttrs.version;
++    hash = "sha256-09dGEC9w3MHHvGzQAlQbI9Cg8ywNsZ5k8rBcHvDbnDg=";
++    fetchLFS = true;
++  };
++
++  __structuredAttrs = true;
++  strictDeps = true;
++
++  patches = [
++    ./add-aarch64-linux-export-preset.patch
++    ./enable-s3tc-bptc-image-compression.patch
++  ];
++
++  postPatch = ''
++    rm dotnet-tools.json
++  '';
++
++  nugetDeps = ./deps.json;
++
++  dotnet-sdk = dotnetCorePackages.sdk_10_0-source;
++
++  buildInputs = [
++    stdenv.cc.cc.lib
++  ];
++
++  nativeBuildInputs = [
++    autoPatchelfHook
++    copyDesktopItems
++    godot
++  ];
++
++  desktopItems = [
++    (makeDesktopItem {
++      name = "Rhythia";
++      desktopName = "Rhythia";
++      genericName = finalAttrs.meta.description;
++      comment = finalAttrs.meta.description;
++      icon = "Rhythia";
++      exec = "Rhythia";
++      categories = [ "Game" ];
++      keywords = [
++        "rhythm"
++        "rhythia"
++      ];
++      singleMainWindow = true;
++      terminal = false;
++      prefersNonDefaultGPU = true;
++    })
++  ];
++
++  buildPhase = ''
++    runHook preBuild
++
++    export HOME=$(mktemp -d)
++    mkdir -p "$HOME"/.local/share/godot/
++    ln -s "${godot.export-templates-bin}"/share/godot/export_templates "$HOME"/.local/share/godot/
++
++    mkdir -p ./build
++    godot4.7-mono --headless --export-release "${exportPreset}" ./build/Rhythia
++
++    runHook postBuild
++  '';
++
++  installPhase = ''
++    runHook preInstall
++
++    install -Dm 755 -t $out/libexec ./build/Rhythia
++    install -Dm 755 -t $out/libexec/${dataDir} ./build/${dataDir}/*
++
++    install -Dm 644 ./textures/icon.svg $out/share/icons/hicolor/scalable/apps/Rhythia.svg
++    install -dm 755 $out/bin
++
++    ln -s $out/libexec/Rhythia $out/bin/Rhythia
++    ln -s $out/bin/Rhythia $out/bin/rhythia
++
++    runHook postInstall
++  '';
++
++  postFixup = ''
++    patchelf --add-rpath "$out/libexec:${
++      lib.makeLibraryPath [
++        alsa-lib
++        dbus
++        fontconfig
++        libGL
++        libx11
++        libxcursor
++        libxext
++        libxi
++        libxinerama
++        libxkbcommon
++        libxrandr
++        libxrender
++        pulseaudio
++        udev
++        vulkan-loader
++        wayland
++      ]
++    }" $out/libexec/Rhythia
++  '';
++
++  meta = {
++    homepage = "https://wiki.rhythia.net/";
++    description = "Aim-based rhythm game client built in Godot 4";
++    license = lib.licenses.agpl3Only;
++    platforms = [
++      "aarch64-linux"
++      "x86_64-linux"
++    ];
++    maintainers = with lib.maintainers; [
++      karol-broda
++      poz
++    ];
++    mainProgram = "Rhythia";
++  };
++})
+diff --git a/pkgs/by-name/st/steamWithMillennium/package.nix b/pkgs/by-name/st/steamWithMillennium/package.nix
+new file mode 100644
+--- /dev/null
++++ b/pkgs/by-name/st/steamWithMillennium/package.nix
+@@ -0,0 +1,44 @@
++{
++  lib,
++  millennium,
++  steam,
++  extraPkgs ? pkgs: [ ],
++  extraLibraries ? pkgs: [ ],
++  extraProfile ? "",
++  extraPreBwrapCmds ? "",
++  extraBwrapArgs ? [ ],
++  extraArgs ? "",
++  extraEnv ? { },
++  privateTmp ? true,
++  ...
++}:
++(steam.override (prevArgs: {
++  extraPkgs = pkgs: (prevArgs.extraPkgs or (_: [ ])) pkgs ++ extraPkgs pkgs;
++  extraPreBwrapCmds = (prevArgs.extraPreBwrapCmds or "") + extraPreBwrapCmds;
++  extraBwrapArgs = (prevArgs.extraBwrapArgs or [ ]) ++ extraBwrapArgs;
++  extraArgs = (prevArgs.extraArgs or "") + extraArgs;
++  extraEnv = (prevArgs.extraEnv or { }) // extraEnv;
++
++  # If privateTmp is false (the non-default value) in either the steam package or this package, use false
++  privateTmp = (prevArgs.privateTmp or true) && privateTmp;
++
++  extraLibraries =
++    pkgs: (prevArgs.extraLibraries or (_: [ ])) pkgs ++ extraLibraries pkgs ++ [ millennium ];
++
++  extraProfile =
++    (prevArgs.extraProfile or "")
++    + extraProfile
++    + ''
++      mkdir -p "$HOME"/.local/share/Steam/ubuntu12_{32,64}
++      ln -sf ${millennium}/lib/libmillennium_bootstrap_x86.so "$HOME/.local/share/Steam/ubuntu12_32/libXtst.so.6"
++      ln -sf ${millennium}/lib/libmillennium_bootstrap_hhx64.so "$HOME/.local/share/Steam/ubuntu12_64/libXtst.so.6"
++    '';
++})).overrideAttrs
++  (old: {
++    pname = "steam-with-millennium";
++    meta = old.meta // {
++      description = "${old.meta.description} (with Millennium theming support)";
++      maintainers = [ lib.maintainers.DrymarchonShaun ];
++      teams = [ ];
++    };
++  })
+diff --git a/pkgs/development/tools/godot/common.nix b/pkgs/development/tools/godot/common.nix
+--- a/pkgs/development/tools/godot/common.nix
++++ b/pkgs/development/tools/godot/common.nix
+@@ -79,6 +79,7 @@
+   # https://github.com/godotengine/godot/pull/73504
+   withWayland ? stdenv.hostPlatform.isLinux,
+   withX11 ? stdenv.hostPlatform.isLinux,
++  useDotnetFromEnv ? false,
+   wslay,
+   zip,
+   zstd,
+@@ -595,7 +596,7 @@
+               sdl3
+             ]
+           )
+-          ++ lib.optionals (editor && withMono) dotnet-sdk.packages
++          ++ lib.optionals ((!useDotnetFromEnv) && editor && withMono) dotnet-sdk.packages
+           ++ lib.optional withAlsa alsa-lib
+           ++ lib.optional (withX11 || withWayland) libxkbcommon
+           ++ lib.optionals withX11 [
+@@ -757,7 +758,7 @@
+           inherit updateScript;
+           tests =
+             mkTests finalAttrs.finalPackage dotnet-sdk
+-            // lib.optionalAttrs (editor && withMono) {
++            // lib.optionalAttrs ((!useDotnetFromEnv) && editor && withMono) {
+               sdk-override = mkTests finalAttrs.finalPackage dotnet-sdk_alt;
+             };
+         }
+@@ -833,7 +834,7 @@
+             installPhase = ''
+               runHook preInstall
+ 
+-              mkdir -p "$out"/{bin,libexec,share/applications,nix-support}
++              mkdir -p "$out"/{bin,libexec,share/applications}
+ 
+               cp -d "$unwrapped"/bin/* "$out"/bin/
+               ln -s "$unwrapped"/libexec/* "$out"/libexec/
+@@ -844,6 +845,9 @@
+               substituteInPlace "$out/share/applications/org.godotengine.Godot${lib.versions.majorMinor version}${suffix}.desktop" \
+                 --replace-fail "Exec=$unwrapped/bin/godot${suffix}" "Exec=$out/bin/godot${suffix}"
+               ln -s "$unwrapped"/share/icons $out/share/
++            ''
++            + lib.optionalString (!useDotnetFromEnv) ''
++              mkdir -p "$out"/nix-support
+ 
+               # ensure dotnet hooks get run
+               echo "${finalAttrs.dotnet-sdk}" >> "$out"/nix-support/propagated-build-inputs
+@@ -850,7 +854,8 @@
+ 
+               wrapProgram "$out"/libexec/${binary} \
+                 --prefix PATH : "${lib.makeBinPath [ finalAttrs.dotnet-sdk ]}"
+-
++            ''
++            + ''
+               runHook postInstall
+             '';
+ 

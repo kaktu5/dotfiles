@@ -1,0 +1,95 @@
+diff --git a/nix/modules/nixos.nix b/nix/modules/nixos.nix
+--- a/nix/modules/nixos.nix
++++ b/nix/modules/nixos.nix
+@@ -323,8 +323,8 @@
+       extraUtilsCommand.enable =
+         mkEnableOption ""
+         // {
+-          default = !config.boot.initrd.systemd.enable;
+-          defaultText = literalExpression "!config.boot.initrd.systemd.enable";
++          default = false;
++          defaultText = literalExpression "false";
+           description = "Whether to place nixos-core in extraUtils for the stage-1 wrapper";
+         };
+ 
+@@ -332,8 +332,8 @@
+         enable =
+           mkEnableOption ""
+           // {
+-            default = !config.boot.initrd.systemd.enable;
+-            defaultText = literalExpression "!config.boot.initrd.systemd.enable";
++            default = false;
++            defaultText = literalExpression "false";
+             description = ''
+               Whether to create {option}`system.build.bootStage1` wrapper with `nixos-core` available.
+ 
+@@ -400,8 +400,8 @@
+         enable =
+           mkEnableOption ""
+           // {
+-            default = !config.boot.initrd.systemd.enable;
+-            defaultText = literalExpression "!config.boot.initrd.systemd.enable";
++            default = false;
++            defaultText = literalExpression "false";
+             description = ''
+               Whether to override {option}`system.build.initialRamdisk` with
+               nixos-core's initrd, which embeds the stage-1 wrapper as {file}`/init`.
+@@ -425,8 +425,8 @@
+             description = "Whether to replace legacy bootloader installer with nixos-core";
+           };
+ 
+-        package = mkOption {
+-          type = package;
++        script = mkOption {
++          type = lines;
+           default = getExe' cfg.package "init-script-builder";
+           defaultText = literalExpression "$${getExe' cfg.package \"init-script-builder\"}";
+           description = "The bootloader installer package to use";
+@@ -465,8 +465,6 @@
+         script = mkOption {
+           type = lines;
+           default = ''
+-            install -m 0700 -d /root
+-            install -m 0755 -d /home
+             export NIXOS_CORE_STATE_DIR=${escapeShellArg cfg.stateDir}
+             ${getExe' cfg.package "update-users-groups"} ${usersSpec}
+           '';
+@@ -478,8 +476,8 @@
+         enable =
+           mkEnableOption ""
+           // {
+-            default = config.boot.initrd.systemd.enable;
+-            defaultText = literalExpression "config.boot.initrd.systemd.enable";
++            default = true;
++            defaultText = literalExpression "true";
+             description = ''
+               Whether to wire nixos-init-compatible setup into stage2 for the
+               systemd-initrd path. When enabled, stage2 receives flags to set up
+@@ -516,7 +514,7 @@
+         bootStage2 = mkIf cfg.components.bootStage2.enable (mkForce cfg.components.bootStage2.package);
+ 
+         # Bootloader Installer
+-        installBootLoader = mkIf cfg.components.bootloaderInstaller.enable (mkForce cfg.components.bootloaderInstaller.package);
++        installBootLoader = mkIf cfg.components.bootloaderInstaller.enable (mkForce cfg.components.bootloaderInstaller.script);
+ 
+         # /etc Activation
+         etcActivationCommands = mkIf cfg.components.etcActivation.enable (mkForce cfg.components.etcActivation.script);
+diff --git a/nix/vm-tests/persistence.nix b/nix/vm-tests/persistence.nix
+--- a/nix/vm-tests/persistence.nix
++++ b/nix/vm-tests/persistence.nix
+@@ -180,7 +180,6 @@
+       # We could even consider simply not supporting tmpfs tbh?
+       btrfs = {
+         imports = [common];
+-        boot.initrd.systemd.enable = true;
+         networking.hostId = "b7f50001";
+         virtualisation.fileSystems = {
+           "/persist" = {
+@@ -254,7 +253,6 @@
+ 
+       systemd = {
+         imports = [common];
+-        boot.initrd.systemd.enable = true;
+         networking.hostId = "cafef00d";
+         virtualisation.fileSystems = {
+           "/persist".options = ["x-systemd.makefs"];

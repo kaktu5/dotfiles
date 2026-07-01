@@ -55,9 +55,9 @@
     "type": "github",
     "owner": "amaanq",
     "repo": "helium-flake",
-    "rev": "43de6c46d8a8a7b0eba2106079850f90fc317717",
-    "narHash": "sha256-1SpT9YE6CCiAnVLoeVFHpl2fzBXEvJU0IAqp/H1jo80=",
-    "lastModified": 1793394484
+    "rev": "01339298dd9165e961a6975e35364eb49fe929e8",
+    "narHash": "sha256-jVx5cGTxU862QnrWyQrz1nkc4NHF81ZRpicjQ9JEX4o=",
+    "lastModified": 1793407847
   },
   "hjem": {
     "type": "github",
@@ -127,13 +127,13 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "13d9c52c1ea8275e5c5b99878f96a8435bebad9f",
-    "narHash": "sha256-zWTz3A7cZyjCV8a9z/d20cDborKQgt+2YfDLIsnZkVQ=",
-    "lastModified": 1792822547,
+    "rev": "f6d88810c1b082568d195c0c025b34b7bb7a3a61",
+    "narHash": "sha256-ge22NAvGv5CzsamFUGMHUtpf46H4A4U9iOQDQicNCxY=",
+    "lastModified": 1793420539,
     "patched": {
-      "path": "/nix/store/gx07yvpkhp3a9qzf2325f970hxpc075l-source",
-      "narHash": "sha256-icIlkiOHVeEgoqGxpVugnDo5wjRl3N1seuv4kDPcdgU=",
-      "lastModified": 1792822547,
+      "path": "/nix/store/g80mp5x3x1c2gmyjrq5qi2jnf8pc648w-source",
+      "narHash": "sha256-mGixhugVsgllPvAjS15NHwqfiUBZSkyCSR8kMRWvYHE=",
+      "lastModified": 1793420539,
       "patches": [
         {
           "source": "patches/nixos-core/dont-create-home-dirs.patch",
@@ -190,9 +190,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "b3342e74ec83b86fc3e8c963ad7f5a3d2c37f434",
-    "narHash": "sha256-F+ivHdfQMhzPzSDxXxOFBk3AsnUGhr/P1TIocU7VrwY=",
-    "lastModified": 1793390897
+    "rev": "a6db03e3c83ad2d4dba96b803b89aef8417342c4",
+    "narHash": "sha256-ZObwX317OlI0+THGmwovoIveTM6PJseXWX6lFkHhCl0=",
+    "lastModified": 1793441158
   },
   "rust-overlay": {
     "type": "github",
@@ -206,9 +206,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "ae4e10ee310a169ebeca050fd3a4d778f5f4e008",
-    "narHash": "sha256-lIjyz0oblEd74AfJviLzijEgefoE10CbrCqk4fAJycY=",
-    "lastModified": 1793365221
+    "rev": "e23a2e52e369636d3f753c1e6a1929a9c2f23cf6",
+    "narHash": "sha256-GmTLGnYVdPmmh/DRfL3hQDChNnJoYw31F0zmmbG2sjc=",
+    "lastModified": 1793433204
   },
   "xdg-utils-nu": {
     "type": "github",
