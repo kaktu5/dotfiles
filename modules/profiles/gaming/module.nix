@@ -28,13 +28,6 @@ in {
       default = [];
     };
 
-    steam = {
-      enable = mkEnableOption "steam";
-
-      games = mkOption {
-        type = listOf <| enum ["factorio"];
-        default = [];
-      };
-    };
+    steam.enable = mkEnableOption "steam";
   };
 }

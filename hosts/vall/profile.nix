@@ -4,9 +4,6 @@
 
     games = ["minecraft" "osu"];
 
-    steam = {
-      enable = true;
-      games = ["factorio"];
-    };
+    steam.enable = true;
   };
 }

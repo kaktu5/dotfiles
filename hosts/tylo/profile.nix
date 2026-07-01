@@ -4,9 +4,6 @@
 
     games = ["kerbal-space-program" "minecraft" "osu" "zenless-zone-zero"];
 
-    steam = {
-      enable = true;
-      games = ["factorio"];
-    };
+    steam.enable = true;
   };
 }
