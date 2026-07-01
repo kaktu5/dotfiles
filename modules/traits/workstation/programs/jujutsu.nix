@@ -8,12 +8,12 @@
   inherit (config.hjem.users.${userName}.environment.sessionVariables) EDITOR;
   inherit (config.kkts.meta) userName;
   inherit (lib.generators) toGitINI;
-  inherit (pkgs) gitMinimal jujutsu;
+  inherit (pkgs) gitMinimal jujutsu watchman;
   inherit (pkgs.writers) writeTOML writeText;
 in {
   preservation.preserveAt."/persist".users.${userName}.directories = ["${xdg.config.directory}/jj/repos"];
 
-  users.users.${userName}.packages = [gitMinimal jujutsu];
+  users.users.${userName}.packages = [gitMinimal jujutsu watchman];
 
   hjem.users.${userName}.xdg.config.files = {
     "jj/config.toml" = {
@@ -45,6 +45,11 @@ in {
           init = ["git" "init"];
           push = ["git" "push"];
           remote = ["git" "remote"];
+        };
+
+        fsmonitor = {
+          backend = "watchman";
+          watchman.register-snapshot-trigger = true;
         };
       };
     };
