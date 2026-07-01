@@ -3,33 +3,48 @@
   pkgs,
   ...
 }: let
-  commonConfig = {
-    CtrlAltDelBurstAction = "none";
-    DefaultTimeoutStartSec = "10s";
-    DefaultTimeoutStopSec = "10s";
-    DefaultTimeoutAbortSec = "10s";
-    DefaultDeviceTimeoutSec = "10s";
+  package = import ./package.nix {inherit config pkgs;};
+
+  timeout = "10s";
+
+  timeouts = {
+    DefaultTimeoutAbortSec = timeout;
+    DefaultTimeoutStartSec = timeout;
+    DefaultTimeoutStopSec = timeout;
   };
+
+  manager =
+    timeouts
+    // {
+      CtrlAltDelBurstAction = "none";
+      DefaultDeviceTimeoutSec = timeout;
+    };
 in {
   boot.initrd.systemd = {
-    settings.Manager = commonConfig;
+    settings.Manager = manager;
 
     services.debug-shell.enable = false;
-
-    suppressedUnits = ["ctrl-alt-del.target"];
+    targets.ctrl-alt-del.enable = false;
   };
 
   systemd = {
-    package = import ./package.nix {inherit config pkgs;};
+    inherit package;
+
+    settings.Manager = manager;
+    user.settings.Manager = timeouts;
 
     enableEmergencyMode = false;
+    ctrlAltDelUnit = "/dev/null";
 
-    settings.Manager = commonConfig;
-    user.settings.Manager = {
-      inherit (commonConfig) DefaultTimeoutStartSec DefaultTimeoutStopSec DefaultTimeoutAbortSec;
+    services = {
+      "autovt@".enable = false;
+      debug-shell.enable = false;
     };
 
-    ctrlAltDelUnit = "noop.target";
+    targets = {
+      hibernate.enable = false;
+      hybrid-sleep.enable = false;
+    };
 
     slices.background.sliceConfig = {
       CPUWeight = "idle";
@@ -39,18 +54,6 @@ in {
 
       ManagedOOMMemoryPressure = "kill";
       ManagedOOMSwap = "kill";
-    };
-
-    services = {
-      "autovt@".enable = false;
-      # "getty@".enable = false; # TODO: disable tty
-      debug-shell.enable = false;
-    };
-
-    targets = {
-      hibernate.enable = false;
-      hybrid-sleep.enable = false;
-      noop.unitConfig.DefaultDependencies = false;
     };
   };
 }

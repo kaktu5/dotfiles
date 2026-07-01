@@ -6,7 +6,7 @@
   withTimesyncd = config.services.timesyncd.enable;
 in
   (pkgs.systemd.overrideAttrs (old: {
-    patches = (old.patches or []) ++ [./dont-check-usr-populated.patch ./remove-tmpfiles-d-home-conf.patch];
+    patches = (old.patches or []) ++ [./remove-tmpfiles-d-home-conf.patch];
     postInstall = (old.postInstall or "") + "rm $out/bin/{halt,init,poweroff,reboot,shutdown}";
   })).override {
     withCoredump = false;
