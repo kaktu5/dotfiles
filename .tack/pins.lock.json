@@ -27,9 +27,9 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "723942f3c6fe2320de6fdfef48840b440dc3c825",
-    "narHash": "sha256-VUREiWuujJTuiE5gAKCoR1KhaovrPb+NAkcAhDnFx+I=",
-    "lastModified": 1784409697
+    "rev": "da98f49312a31468137759756319324cdfb47f98",
+    "narHash": "sha256-oRa9hS/Mrw0ENKar89vej8A8B2t62klF6Bh83NgaUnw=",
+    "lastModified": 1784518440
   },
   "lanzaboote": {
     "type": "github",
@@ -73,17 +73,25 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1027867.d407951447dc/nixexprs.tar.xz",
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1037713.241313f4e8e5/nixexprs.tar.xz",
+    "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+    "narHash": "sha256-WhdsTtaih3DgTPP/PX023b36UNQyMzEoi6GkPyGx0y4="
+  },
+  "nixpkgs-xanmod": {
+    "type": "github",
+    "owner": "nixos",
+    "repo": "nixpkgs",
     "rev": "d407951447dcd00442e97087bf374aad70c04cea",
-    "narHash": "sha256-FGQ8TfSm9WviNE/fQAWsKs+y4GkX8fU4EScewpw54Y8="
+    "narHash": "sha256-8i/87eeoqiGE4yOTjwSA3Eh/ziJRQEmd/unYU+K27sk=",
+    "lastModified": 1783224372
   },
   "oisd": {
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "750452debe0c6d7807d2b7bcb4e958d158e84ecb",
-    "narHash": "sha256-iik4/jDRxtBUxdnVyUuZEYduyj6OlQP2HPPoH8anJYk=",
-    "lastModified": 1784547994
+    "rev": "7569912ec44604f079ff13a0ea6005def920ca7c",
+    "narHash": "sha256-tKn1yC+4sKrl2sVavh1uikOqRawb0RmBF2fuP172Qw4=",
+    "lastModified": 1784551267
   },
   "preservation": {
     "type": "github",
