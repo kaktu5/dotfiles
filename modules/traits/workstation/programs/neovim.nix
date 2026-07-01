@@ -1,0 +1,18 @@
+{
+  config,
+  inputs,
+  lib,
+  ...
+}: let
+  inherit (config.kkts.meta) userName;
+  inherit (config.nixpkgs.hostPlatform) system;
+  inherit (inputs.nf.packages.${system}) neovim;
+  inherit (lib.meta) getExe;
+in {
+  users.users.${userName}.packages = [neovim];
+
+  hjem.users.${userName}.environment.sessionVariables = {
+    EDITOR = getExe neovim;
+    VISUAL = getExe neovim;
+  };
+}

@@ -9,6 +9,7 @@ rust-overlay = []
 [inputs]
 nixpkgs.url = "channel:nixos-unstable"
 
+nf.url = "github:kaktu5/nf"
 nixexprs.url = "github:kaktu5/nixexprs"
 
 hjem.url = "github:feel-co/hjem"
