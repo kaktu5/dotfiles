@@ -10,23 +10,27 @@
     kernelModules = ["iwlwifi" "kvm-amd"];
   };
 
-  kkts.hardware = {
-    cpu.amd.enable = true;
-    gpu.amd.enable = true;
+  kkts = {
+    hardware = {
+      cpu.amd.enable = true;
+      gpu.amd.enable = true;
 
-    monitors = {
-      primaryMonitor = "eDP-1";
+      monitors = {
+        primaryMonitor = "eDP-1";
 
-      monitors.eDP-1 = {
-        resolution = {
-          w = 1920;
-          h = 1200;
+        monitors.eDP-1 = {
+          resolution = {
+            w = 1920;
+            h = 1200;
+          };
+          refreshRate = 60;
+          variableRefreshRate = true;
         };
-        refreshRate = 60;
-        variableRefreshRate = true;
       };
+
+      wifi.enable = true;
     };
 
-    wifi.enable = true;
+    programs.hyprland.devices."tpps/2-elan-trackpoint".sensitivity = -0.5;
   };
 }

@@ -34,6 +34,8 @@
 
   curveToLua = k: v: "hl.curve('${k}', ${toLua' v})";
 
+  deviceToLua = name: v: "hl.device(${toLua' ({inherit name;} // v)})";
+
   eventToLua = k: v: "hl.on('${k}', ${v})";
 
   monitorToLua = output: attrs: let
@@ -88,6 +90,11 @@ in {
       default = {};
     };
 
+    devices = mkOption {
+      type = attrsOf anything;
+      default = {};
+    };
+
     events = mkOption {
       type = attrsOf anything;
       default = {};
@@ -134,6 +141,7 @@ in {
           binds = entryAnywhere (cfg.binds |> concatMapAttrsStringSep "\n" bindToLua);
           config = entryAnywhere "hl.config(${toLua' cfg.config})";
           curves = entryBefore ["animations"] (cfg.curves |> concatMapAttrsStringSep "\n" curveToLua);
+          devices = entryAnywhere (cfg.devices |> concatMapAttrsStringSep "\n" deviceToLua);
           events = entryAnywhere (cfg.events |> concatMapAttrsStringSep "\n" eventToLua);
           monitors = entryAnywhere (cfg.monitors |> concatMapAttrsStringSep "\n" monitorToLua);
           permissions = entryAnywhere (cfg.permissions |> concatMapAttrsStringSep "\n" permissionToLua);
