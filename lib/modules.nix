@@ -14,7 +14,7 @@ in {
       readDir dir
       |> mapAttrsToList (
         name: type: let
-          path = dir + /${name};
+          path = /${dir}/${name};
         in
           if type == "directory"
           then self.modulesFromDirRec path
