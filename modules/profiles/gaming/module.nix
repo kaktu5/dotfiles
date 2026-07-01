@@ -15,7 +15,6 @@ in {
     ./minecraft.nix
     ./osu.nix
     ./steam.nix
-    ./zenless-zone-zero.nix
   ];
 
   options.kkts.profiles.gaming = {
@@ -24,7 +23,7 @@ in {
     mangohud.enable = mkEnableOption "mangohud" // {default = cfg.enable;};
 
     games = mkOption {
-      type = listOf <| enum ["kerbal-space-program" "minecraft" "osu" "zenless-zone-zero"];
+      type = listOf <| enum ["kerbal-space-program" "minecraft" "osu"];
       default = [];
     };
 

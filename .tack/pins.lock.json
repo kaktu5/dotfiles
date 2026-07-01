@@ -1,6 +1,5 @@
 {
   "$declared": {
-    "aagl-gtk-on-nix": "github:ezkea/aagl-gtk-on-nix",
     "affinity-nix": "github:mrshmllow/affinity-nix",
     "breezex-cursor": "github:ful1e5/breezex_cursor",
     "cade": "github:manic-systems/cade",
@@ -25,14 +24,6 @@
     "space-mono": "github:googlefonts/spacemono",
     "tack": "github:manic-systems/tack",
     "xdg-utils-nu": "github:manic-systems/xdg-utils.nu"
-  },
-  "aagl-gtk-on-nix": {
-    "type": "github",
-    "owner": "ezkea",
-    "repo": "aagl-gtk-on-nix",
-    "rev": "0968049e240f2eed9a3e3ee92bc3e06ca41d9b96",
-    "narHash": "sha256-T7WQ3yqqkEyTric9XNRHNfsHhw39jYVSLv7QhSD+avQ=",
-    "lastModified": 1794424204
   },
   "affinity-nix": {
     "type": "github",
