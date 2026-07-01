@@ -14,12 +14,16 @@
 !/hosts/**/*.age
 !/hosts/**/*.json
 !/hosts/**/*.nix
+!/hosts/**/*.nu
+!/hosts/**/*.patch
 
 !/lib/**/*.nix
 
 !/modules/**/*.age
 !/modules/**/*.json
 !/modules/**/*.nix
+!/modules/**/*.nu
+!/modules/**/*.patch
 
 !/resources/**/*.nix
 
