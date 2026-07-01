@@ -2,21 +2,6 @@
   inherit (config.ids) gids;
   inherit (config.users) groups;
 in {
-  fileSystems = {
-    "/" = {
-      device = "none";
-      fsType = "tmpfs";
-      options = ["mode=755" "size=2G" "nodev" "noexec" "nosuid"];
-    };
-
-    "/boot".options = ["umask=077" "noexec" "nosuid"];
-
-    "/persist" = {
-      options = ["noexec" "nosuid"];
-      neededForBoot = true;
-    };
-  };
-
   boot.specialFileSystems = {
     "/dev/shm".options = ["noexec"];
 
