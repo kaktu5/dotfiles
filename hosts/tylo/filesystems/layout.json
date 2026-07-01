@@ -1,0 +1,39 @@
+{
+  "boot": {
+    "zfs": {
+      "pools": {
+        "nixos-fcc151a0": {
+          "devNodes": "/dev/mapper"
+        }
+      }
+    },
+    "initrd": {
+      "luks": {
+        "devices": {
+          "nixos": {
+            "device": "/dev/disk/by-uuid/af174d4b-39fb-424b-b6fd-764b143848d3",
+            "allowDiscards": true
+          }
+        }
+      }
+    }
+  },
+  "fileSystems": {
+    "/boot": {
+      "device": "/dev/disk/by-uuid/12CE-A600",
+      "fsType": "vfat"
+    },
+    "/nix": {
+      "device": "nixos-fcc151a0/nix",
+      "fsType": "zfs"
+    },
+    "/nix/store": {
+      "device": "nixos-fcc151a0/nix/store",
+      "fsType": "zfs"
+    },
+    "/persist": {
+      "device": "nixos-fcc151a0/persist",
+      "fsType": "zfs"
+    }
+  }
+}
