@@ -1,10 +1,9 @@
 {
-  inputs,
+  inputs',
   lib,
   pkgs,
-  system,
 }: let
-  inherit (inputs.nix-secrets.packages.${system}) nix-secrets;
+  inherit (inputs'.nix-secrets.packages) nix-secrets;
   inherit (lib.attrsets) attrValues;
   inherit (lib.meta) getExe;
   inherit (pkgs) mkShellNoCC;

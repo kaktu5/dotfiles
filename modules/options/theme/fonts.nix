@@ -1,11 +1,10 @@
 {
   config,
-  inputs,
+  inputs',
   lib,
   pkgs,
 }: let
-  inherit (config.nixpkgs.hostPlatform) system;
-  inherit (inputs.nixexprs.legacyPackages.${system}) space-mono;
+  inherit (inputs'.nixexprs.legacyPackages) space-mono;
   inherit (lib) types;
   inherit (lib.attrsets) mapAttrs;
   inherit (lib.options) mkOption;

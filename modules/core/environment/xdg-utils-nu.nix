@@ -1,11 +1,9 @@
 {
-  config,
-  inputs,
+  inputs',
   lib,
   ...
 }: let
-  inherit (config.nixpkgs.hostPlatform) system;
-  inherit (inputs.xdg-utils-nu.packages.${system}) xdg-utils-nu-uutils;
+  inherit (inputs'.xdg-utils-nu.packages) xdg-utils-nu-uutils;
   inherit (lib.lists) singleton;
 in {
   nixpkgs.overlays = singleton (_: _: {

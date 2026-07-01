@@ -1,13 +1,12 @@
 {
   config,
-  inputs,
+  inputs',
   lib,
   ...
 }: let
   inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
-  inherit (config.nixpkgs.hostPlatform) system;
-  inherit (inputs.nf.packages.${system}) neovim;
+  inherit (inputs'.nf.packages) neovim;
   inherit (lib.meta) getExe;
 in {
   preservation.preserveAt."/persist".users.${userName}.directories = [

@@ -1,14 +1,13 @@
 {
   config,
-  inputs,
+  inputs',
   lib,
   pkgs,
   ...
 }: let
   inherit (config.hjem.users.${userName}.xdg) state;
   inherit (config.kkts.meta) userName;
-  inherit (config.nixpkgs.hostPlatform) system;
-  inherit (inputs.cade.packages.${system}) cade;
+  inherit (inputs'.cade.packages) cade;
   inherit (lib.kkts.dag) entryAnywhere;
   inherit (lib.meta) getExe;
   inherit (pkgs) runCommand;

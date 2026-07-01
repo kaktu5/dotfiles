@@ -1,11 +1,6 @@
-{
-  config,
-  inputs,
-  ...
-}: let
-  inherit (config.nixpkgs.hostPlatform) system;
-  inherit (inputs.nixos-core) nixosModules;
-  inherit (inputs.nixos-core.packages.${system}) nixos-core;
+{inputs', ...}: let
+  inherit (inputs'.nixos-core) nixosModules;
+  inherit (inputs'.nixos-core.packages) nixos-core;
 in {
   imports = [nixosModules.default];
 
@@ -18,3 +13,15 @@ in {
     };
   };
 }
+/*
+system = {
+  activationScripts = {
+    binsh = mkForce "";
+    usrbinenv = mkForce "";
+  };
+  nixos.core = {
+    components.bootStage2.setupFhs = false;
+  };
+};
+*/
+

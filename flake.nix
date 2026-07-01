@@ -1,22 +1,15 @@
 {
   outputs = {self}: let
-    systems = ["aarch64-linux" "x86_64-linux"];
-
     inputs = import ./.tack;
 
     lib = import ./lib {inherit inputs self;};
-    inherit (lib.attrsets) mapAttrs zipAttrsWith;
-    inherit (lib.lists) foldl';
-
-    mapSystems = systems: f:
-      systems
-      |> map (s: f s |> mapAttrs (_: v: {${s} = v;}))
-      |> zipAttrsWith (_: foldl' (a: b: a // b) {});
+    inherit (lib.kkts.flake) mapSystems selectSystem;
   in
-    mapSystems systems (system: let
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
+    mapSystems ["aarch64-linux" "x86_64-linux"] (system: let
+      inputs' = inputs |> selectSystem system ["legacyPackages" "packages"];
+      pkgs = inputs'.nixpkgs.legacyPackages;
     in {
-      devShells.default = import ./flake/devshell.nix {inherit inputs lib pkgs system;};
+      devShells.default = import ./flake/devshell.nix {inherit inputs' lib pkgs;};
 
       formatter = import ./flake/formatter.nix {inherit lib pkgs;};
 

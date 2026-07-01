@@ -1,13 +1,12 @@
 {
   config,
-  inputs,
+  inputs',
   lib,
   ...
 }: let
   inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
-  inherit (config.nixpkgs.hostPlatform) system;
-  inherit (inputs.aagl-gtk-on-nix.packages.${system}) sleepy-launcher;
+  inherit (inputs'.aagl-gtk-on-nix.packages) sleepy-launcher;
   inherit (lib.modules) mkIf;
 
   cfg = config.kkts.profiles.gaming.zenless-zone-zero;

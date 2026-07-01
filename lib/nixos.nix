@@ -6,11 +6,14 @@
   inherit (lib) nixosSystem;
   inherit (lib.attrsets) genAttrs mapAttrs;
   inherit (lib.fixedPoints) fix;
+  inherit (lib.kkts.flake) selectSystem;
   inherit (lib.kkts.modules) modulesFromDirRec;
   inherit (lib.lists) concatMap optional singleton;
 
-  specialArgs = {
-    inherit inputs lib;
+  mkSpecialArgs = system: let
+    inputs' = inputs |> selectSystem system ["legacyPackages" "packages"];
+  in {
+    inherit inputs inputs' lib;
     flake = self;
   };
 
@@ -30,13 +33,13 @@
 
   modulesFor = {
     hostName,
-    arch,
+    system,
     traits,
     microvms ? {},
   }:
     (singleton {
       networking = {inherit hostName;};
-      nixpkgs.hostPlatform.system = "${arch}-linux";
+      nixpkgs.hostPlatform = {inherit system;};
     })
     ++ modulesFromDirRec /${hostsPath}/${hostName}
     ++ commonModules
@@ -48,7 +51,7 @@
           arch,
           traits ? [],
         }: {
-          inherit specialArgs;
+          specialArgs = mkSpecialArgs system;
           config.imports = modulesFor {inherit hostName arch traits;};
         });
     };
@@ -59,9 +62,11 @@ in {
       arch,
       traits ? [],
       microvms ? {},
-    }:
+    }: let
+      system = "${arch}-linux";
+    in
       nixosSystem {
-        inherit specialArgs;
-        modules = modulesFor {inherit hostName arch traits microvms;};
+        specialArgs = mkSpecialArgs system;
+        modules = modulesFor {inherit hostName system traits microvms;};
       });
 }

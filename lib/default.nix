@@ -10,6 +10,7 @@ in
     // {
       kkts = {
         dag = import ./dag.nix {inherit lib;};
+        flake = import ./flake.nix {inherit lib;};
         generators = import ./generators.nix {inherit lib;};
         hyprland = import ./hyprland.nix {inherit lib;};
         modules = import ./modules.nix {inherit lib;};
