@@ -33,5 +33,7 @@
         variableRefreshRate = true;
       };
     };
+
+    wifi.enable = true;
   };
 }
