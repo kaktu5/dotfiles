@@ -1,8 +1,10 @@
+# TODO: fix
 {
-  boot.kernel.sysctl.use_tempaddr = 2;
+  # boot.kernel.sysctl.use_tempaddr = 2;
 
   networking.useNetworkd = true;
 
+  /*
   systemd.network.links."10-mac-random" = {
     matchConfig.Type = "ether wlan wwan";
 
@@ -24,4 +26,5 @@
 
     dhcpV4Config.Anonymize = true;
   };
+  */
 }
