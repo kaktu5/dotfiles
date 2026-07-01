@@ -1,7 +1,6 @@
 {
   config,
   inputs,
-  pkgs,
   ...
 }: let
   inherit (config.hjem.users.${userName}.environment.sessionVariables) XCURSOR_SIZE;
@@ -17,8 +16,6 @@
     watchColor = hex'.bg0;
     xcursorSizes = [XCURSOR_SIZE];
   };
-
-  HYPRLAND_CONFIG = pkgs.writeText "hyprland-config.lua" finalConfig;
 in {
   imports = [
     ./animations.nix
@@ -37,15 +34,17 @@ in {
     withUWSM = true;
   };
 
-  hjem.users.${userName}.environment.sessionVariables = {
-    inherit HYPRLAND_CONFIG;
+  hjem.users.${userName} = {
+    xdg.config.files."hypr/hyprland.lua".text = finalConfig;
 
-    XCURSOR_SIZE = 24;
-    XCURSOR_THEME = "BreezeX";
+    environment.sessionVariables = {
+      XCURSOR_SIZE = 24;
+      XCURSOR_THEME = "BreezeX";
 
-    CLUTTER_BACKEND = "wayland";
-    GDK_BACKEND = "wayland,x11,*";
-    QT_QPA_PLATFORM = "wayland;xcb";
-    SDL_VIDEODRIVER = "wayland";
+      CLUTTER_BACKEND = "wayland";
+      GDK_BACKEND = "wayland,x11,*";
+      QT_QPA_PLATFORM = "wayland;xcb";
+      SDL_VIDEODRIVER = "wayland";
+    };
   };
 }
