@@ -9,7 +9,6 @@
   inherit (inputs) nixpkgs;
   inherit (lib.modules) mkDefault;
   inherit (pkgs.lixPackageSets.latest) lix;
-  inherit (pkgs.writers) writeJSON;
 in {
   persistence = {
     directories = ["/var/cache/nix"];
@@ -22,30 +21,32 @@ in {
 
     channel.enable = false;
 
-    nixPath = ["nixpkgs=${nixpkgs}"];
-
     settings = {
-      experimental-features = ["auto-allocate-uids" "cgroups" "coerce-integers" "flakes" "nix-command" "pipe-operator"];
+      accept-flake-config = false;
+      experimental-features = [
+        "auto-allocate-uids"
+        "cgroups"
+        "coerce-integers"
+        "flakes"
+        "nix-command"
+        "pipe-operator"
+      ];
+      flake-registry = null;
+      nix-path = ["nixpkgs=${nixpkgs}"];
+
+      allowed-users = ["@wheel"];
+      trusted-users = ["@wheel"];
 
       auto-allocate-uids = true;
       use-cgroups = true;
-      allowed-users = ["@wheel"];
-      trusted-users = ["@wheel"];
-      accept-flake-config = false;
 
       keep-derivations = mkDefault false;
       use-xdg-base-directories = true;
 
+      log-format = "multiline-with-logs";
+      log-lines = 32;
       warn-dirty = false;
       warn-import-from-derivation = true;
-
-      log-format = "multiline-with-logs";
-      log-lines = 64;
-
-      flake-registry = writeJSON "flake-registry-empty.json" {
-        flakes = [];
-        version = 2;
-      };
     };
 
     gc = {
