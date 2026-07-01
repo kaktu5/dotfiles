@@ -18,6 +18,7 @@ in
       NH_NO_CHECKS = "1"; # I know what I'm doing
       NIX_SECRETS_NIX_EVAL_COMMAND = "${getExe' lix "nix-instantiate"} --eval --raw --expr '{{input}}'";
       NIX_SECRETS_STORAGE_PATH = "/var/home/dotfiles/secrets";
+      QS_CONFIG_PATH = "/var/home/dotfiles/modules/traits/graphical/services/quickshell";
       TACK_NIX_CONF_TOKENS = "1";
     };
 
