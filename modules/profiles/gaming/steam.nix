@@ -11,7 +11,6 @@
   inherit (lib.lists) singleton;
   inherit (lib.modules) mkIf;
   inherit (pkgs) proton-ge-bin steamWithMillennium;
-  inherit (pkgs.ktu5) dwproton-bin;
 
   # based on https://github.com/saygo-png/nixos/blob/74f5016059374be45b27f44744fc346363c99146/modules/xdgDirsEnforcement.nix
   package = steamWithMillennium.override {
@@ -48,7 +47,7 @@ in
 
       localNetworkGameTransfers.openFirewall = true;
 
-      extraCompatPackages = [dwproton-bin proton-ge-bin];
+      extraCompatPackages = [proton-ge-bin];
     };
 
     hjem.users.${userName}.xdg.data.files."steam/.config/millennium/config.json" = {
