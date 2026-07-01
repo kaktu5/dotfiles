@@ -51,9 +51,9 @@
     "type": "github",
     "owner": "kaktu5",
     "repo": "nf",
-    "rev": "f000a585b130a331498d9968f4ea8a7042821085",
-    "narHash": "sha256-lRQre9/esvw42iqQyU8U1SymqhIbAFNdZhwffiQwzEo=",
-    "lastModified": 1784231166
+    "rev": "141bc4921cbf7a929ea758d7babab3223cf2972a",
+    "narHash": "sha256-ovIGfA4++AJ1qTxyp40cHeRdEUlRi0Lj0cmoYJ8PfDY=",
+    "lastModified": 1784377578
   },
   "nixexprs": {
     "type": "github",
