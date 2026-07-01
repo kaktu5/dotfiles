@@ -17,9 +17,9 @@ in {
     group = "users";
   };
 
-  preservation.preserveAt."/persist".users.${userName}.files = singleton {
-    file = ".ssh/known_hosts";
-    mode = "600";
+  preservation.preserveAt."/persist".users.${userName}.directories = singleton {
+    directory = ".ssh";
+    mode = "700";
   };
 
   users.users.${userName} = {
