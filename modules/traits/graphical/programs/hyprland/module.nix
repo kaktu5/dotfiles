@@ -21,6 +21,7 @@ in {
     ./animations.nix
     ./binds.nix
     ./config.nix
+    ./hypridle.nix
     ./monitors.nix
     ./permissions.nix
     ./smartgaps.nix
