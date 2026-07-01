@@ -34,6 +34,7 @@
 !/.mdformat.toml
 !/.qmlformat.ini
 !/.rustfmt.toml
+!/.stylua.toml
 !/.taplo.toml
 !/alejandra.toml
 !/flake.nix

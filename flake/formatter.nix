@@ -13,13 +13,14 @@ in
 
     runtimeInputs = attrValues {
       inherit alejandra rustfmt;
-      inherit (pkgs) fd mdformat taplo;
+      inherit (pkgs) fd mdformat stylua taplo;
       inherit (pkgs.qt6) qtdeclarative;
     };
 
     runtimeEnv.RUST_LOG = "warn";
 
     text = ''
+      fd "$@" -t f -e lua -X stylua
       fd "$@" -t f -e md -X mdformat
       fd "$@" -t f -e nix -E .tack/default.nix -X alejandra --quiet 
       fd "$@" -t f -e qml -E Config.qml -x qmlformat --inplace
