@@ -2,33 +2,15 @@
   config,
   inputs,
   lib,
+  pkgs,
   ...
 }: let
-  inherit (inputs) dnscrypt-settings oisd;
-  inherit (lib.attrsets) genAttrs listToAttrs nameValuePair;
-  inherit (lib.lists) filter ifilter0 zipListsWith;
-  inherit (lib.strings) hasPrefix readFile removePrefix splitString trim;
-  inherit (lib.trivial) mod;
+  inherit (inputs) oisd;
+  inherit (lib.attrsets) genAttrs ;
+  inherit (lib.strings) concatStringsSep ;
+  inherit (pkgs) runCommand;
 
-  parse = str: let
-    lines =
-      str
-      |> splitString "\n"
-      |> filter (l: hasPrefix "##" l || hasPrefix "sdns://" l);
-
-    headers =
-      lines
-      |> ifilter0 (i: _: mod i 2 == 0)
-      |> map (removePrefix "##")
-      |> map trim;
-    stamps =
-      lines
-      |> ifilter0 (i: _: mod i 2 == 1)
-      |> map trim;
-  in
-    zipListsWith nameValuePair headers stamps |> listToAttrs;
-
-  quad9Stamps = parse <| readFile "${dnscrypt-settings}/dnscrypt/quad9-resolvers-dnscrypt.md";
+  quad9Stamps = import ./quad9-dns-stamps.nix {inherit inputs lib;};
 
   cfg = config.services.dnscrypt-proxy.settings;
 in {
@@ -75,7 +57,12 @@ in {
 
       block_unqualified = true;
       block_undelegated = true;
-      blocked_names.blocked_names_file = "${oisd}/domainswild_big.txt";
+      blocked_names.blocked_names_file = runCommand "blocked-names" {} ''
+        cat ${oisd}/domainswild2_big.txt > $out
+        cat >> $out <<EOF
+          ${import ./extra-blocked-names.nix |> concatStringsSep "\n"}
+        EOF
+      '';
 
       cache_size = 8192;
       cache_min_ttl = 15 * 60;

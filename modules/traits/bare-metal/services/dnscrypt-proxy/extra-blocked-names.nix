@@ -1,0 +1,21 @@
+[
+  # https://github.com/ezkea/aagl-gtk-on-nix/blob/af94408291ad477cae8eed964981ab41f90eb184/module/hosts.nix
+  "apm-log-upload-os.hoyoverse.com"
+  "cdp.cloud.unity3d.com"
+  "devlog-upload.mihoyo.com"
+  "dump.gamesafe.qq.com"
+  "hkrpg-log-upload-os.hoyoverse.com"
+  "log-upload-os.hoyoverse.com"
+  "log-upload-os.mihoyo.com"
+  "log-upload.mihoyo.com"
+  "overseauspider.yuanshen.com"
+  "pc.crashsight.wetest.net"
+  "prd-lender.cdp.internal.unity3d.com"
+  "public-data-api.mihoyo.com"
+  "remote-config-proxy-prd.uca.cloud.unity3d.com"
+  "sg-public-data-api.hoyoverse.com"
+  "thind-gke-usc.prd.data.corp.unity3d.com"
+  "thind-prd-knob.data.ie.unity3d.com"
+  "uspider.yuanshen.com"
+  "zzz-log-upload-os.hoyoverse.com"
+]
