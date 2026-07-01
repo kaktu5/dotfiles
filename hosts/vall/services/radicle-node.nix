@@ -29,7 +29,7 @@ in {
     systemd.services.radicle-node = mkUserTargetService {
       serviceConfig = {
         Environment = "RAD_HOME=${home}/.local/share/radicle";
-        ExecStart = "${radicle-node}/bin/radicle-node --log-logger systemd";
+        ExecStart = "${radicle-node}/bin/radicle-node --force --log-logger systemd";
       };
     };
 
