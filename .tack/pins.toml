@@ -12,6 +12,7 @@ nixpkgs.url = "channel:nixos-unstable"
 nixexprs.url = "github:kaktu5/nixexprs"
 
 hjem.url = "github:feel-co/hjem"
+lanzaboote.url = "github:nix-community/lanzaboote"
 microvm.url = "github:microvm-nix/microvm.nix"
 # nixos-core.url = "github:manic-systems/nixos-core"
 nixos-core.url = "github:kaktu5/nixos-core"
