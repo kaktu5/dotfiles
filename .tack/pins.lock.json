@@ -19,9 +19,9 @@
     "type": "github",
     "owner": "ipetkov",
     "repo": "crane",
-    "rev": "7930f6c291de6f83c257839d434592aa085f290a",
-    "narHash": "sha256-TkTWNhJV/8Wk3czlbz4bwHZkFCaCHPsOy+oJe4PUiXg=",
-    "lastModified": 1784564969
+    "rev": "2c71e194474d13de031d729b729c968ddbe3507f",
+    "narHash": "sha256-MPaRdVkf6zZP5fCPxYCi8Dr4pZzgmXzg8T9nVEbp3Mw=",
+    "lastModified": 1785782307
   },
   "dnscrypt-settings": {
     "type": "github",
@@ -30,6 +30,14 @@
     "rev": "4aaff82a48388e4bd312f3850e1aa63816da6708",
     "narHash": "sha256-YuJ1n9ObvUmM1jrbV9YPcghvgvYJMarv/m0OGTk9lAA=",
     "lastModified": 1723218826
+  },
+  "fenix": {
+    "type": "github",
+    "owner": "nix-community",
+    "repo": "fenix",
+    "rev": "d17fa5c004217ac6e51da9a8c2d2b79b0ed37109",
+    "narHash": "sha256-4FDhl7ybhL5qhJw1X2IviFJ2MERnzV7X1HlJhFeSBXU=",
+    "lastModified": 1785919363
   },
   "hjem": {
     "type": "github",
@@ -81,17 +89,17 @@
   },
   "nixos-core": {
     "type": "github",
-    "owner": "kaktu5",
+    "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "9c4fe1b001acce5ef083cc7b2ed0cf73eab33365",
-    "narHash": "sha256-Hdekkyj5xe6EUj1DgoBRIWzEI0A5ETVREaRgN20aHb0=",
-    "lastModified": 1785407718
+    "rev": "27099d734184ff9d83cb6921f1d4edd2849b2413",
+    "narHash": "sha256-j1htlu4Gf+o/Uplx3A+GrtvkyffYaj5NuG7pWLnUWRU=",
+    "lastModified": 1785579075
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1050399.279b4a8275f0/nixexprs.tar.xz",
-    "rev": "279b4a8275f032c566576b3f181fa0f27197f588",
-    "narHash": "sha256-qemNveuexlWhK0Qc6Y8o+gtSVTIj5xljzTAXQZxTHWA="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1051473.2fcb964de67f/nixexprs.tar.xz",
+    "rev": "2fcb964de67fcf60b43471c55d5d99e61a9ccb5a",
+    "narHash": "sha256-OETwiymkMwunF+pfL25DzLMF2/YpMcJUjVd9qZ0YdsM="
   },
   "nixpkgs-xanmod": {
     "type": "github",
@@ -105,9 +113,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "69db5d5713e949f483f0a9cd804044e919500127",
-    "narHash": "sha256-kw3p8OZXRp+nTB9Arj+F+GQopN7u2DbiM7X8yQg4IJs=",
-    "lastModified": 1786439238
+    "rev": "79cf32dc803ece82a683e6326d21a594138d619f",
+    "narHash": "sha256-Mew0lgpwbp1OwdMNttSRKQZPxrSDkNOcGrALDK49jv8=",
+    "lastModified": 1786471601
   },
   "preservation": {
     "type": "github",

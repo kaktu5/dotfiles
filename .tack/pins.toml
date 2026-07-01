@@ -22,7 +22,7 @@ hjem.url = "github:feel-co/hjem"
 lanzaboote.url = "github:nix-community/lanzaboote"
 microvm.url = "github:microvm-nix/microvm.nix"
 nix-secrets.url = "github:unnamed-systems/nix-secrets"
-nixos-core.url = "github:kaktu5/nixos-core"            # nixos-core.url = "github:manic-systems/nixos-core"
+nixos-core.url = "github:manic-systems/nixos-core"
 xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 
 dnscrypt-settings = {type = "fetch", url = "github:quad9dns/dnscrypt-settings"}
