@@ -63,13 +63,14 @@ in {
         use ls_impl [ls, ll]
       '';
 
-      sudo = entryAnywhere ''
-        def sudo [f: closure]: any -> any {
-          let wrapped = $"from nuon | do (view source $f) | to nuon"
+      run0 = entryAnywhere ''
+        def --wrapped run0 [...args] {
+          let command = $"$in | from nuon | ($args | str join " ") | to nuon"
           $in
-            | to nuon
-            | ^sudo nu --commands $wrapped --stdin --config $nu.config-path
-            | from nuon
+          | default null
+          | to nuon
+          | ^run0 --background "" --pipe -- nu --stdin --config $nu.config-path --commands $command
+          | from nuon
         }
       '';
     };
