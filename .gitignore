@@ -23,7 +23,7 @@
 
 !/resources/**/*.nix
 
-!/.envrc
+!/.cade
 !/.gitattributes
 !/.mdformat.toml
 !/.qmlformat.ini
