@@ -51,9 +51,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "lanzaboote",
-    "rev": "c1c5edd31802d181c8aa2c71588995d93425d650",
-    "narHash": "sha256-sr4Kfp6yaXUeyKL6n0Y8/ElcR3momIRC20HFc+LF22s=",
-    "lastModified": 1790423250
+    "rev": "ba33415d747d8dedd2931af107521634f1f2e8a8",
+    "narHash": "sha256-v5+DBEGnMC6phAf+/Rt7EtxjIDzy+NMKdHJIFJGh5qc=",
+    "lastModified": 1790853984
   },
   "license-list-data": {
     "type": "github",
@@ -107,31 +107,31 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "4434fb7858b05864cbb3e484d4ae044c7a34ce65",
-    "narHash": "sha256-50PWMf5J8aZfjEkr/AN8NpnMCsdZf8D52TwPUzaj2mw=",
-    "lastModified": 1790529944
+    "rev": "81590b0cad964baec77c05294e24fcc53d5a4ec4",
+    "narHash": "sha256-tfqyNBUyHpDX4AaNtE8YQkQbG73bkRqqCm8TEbtKBf0=",
+    "lastModified": 1790670188
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1080855.7a0f122f5090/nixexprs.tar.zst",
-    "rev": "7a0f122f5090cf4c2ade2a13a0e229d4e19ba71f",
-    "narHash": "sha256-EvoKOTtoIJ7Xflls2Nfo5WDcqjFJB0kuzwOz0nLWs0w="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1083223.c59305bab206/nixexprs.tar.zst",
+    "rev": "c59305bab2065cfecc4944690d9eedbb56f3a9fa",
+    "narHash": "sha256-VBA0QerzzmL+4wxgtwiCdiLwLpJg2/9xOxhgO3BRJQA="
   },
   "oisd": {
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "52e89a04c4383d6004fed2fc1658875c4bd6c79e",
-    "narHash": "sha256-mlQLlQwAMhXx5EsKUVqFfSBkUER81KgFAxFiiMglVA0=",
-    "lastModified": 1790611647
+    "rev": "2f534eb9d77d5aee61292ae8a20482039546056b",
+    "narHash": "sha256-1xANA8VCn6qF5Az5vlVn1vCopEMoiFzyqS4iPGYad3w=",
+    "lastModified": 1790867407
   },
   "rust-overlay": {
     "type": "github",
     "owner": "oxalica",
     "repo": "rust-overlay",
-    "rev": "1fb104a12a8667045559b2575d6d448ae2fbd99b",
-    "narHash": "sha256-aL/ogiN7qZCGeNovS1f9hX73jwYIKb4Pcq6AZm57WtY=",
-    "lastModified": 1789889921
+    "rev": "edea2d6f98b1e5f64ce5ac21e19a96c603c20b8c",
+    "narHash": "sha256-26FbceKgybcbwkIvs2yHsF5jHcWLEkITYg5g9WPSy64=",
+    "lastModified": 1790495762
   },
   "xdg-utils-nu": {
     "type": "github",
