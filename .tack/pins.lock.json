@@ -54,9 +54,9 @@
     "type": "github",
     "owner": "amaanq",
     "repo": "helium-flake",
-    "rev": "cd495e8607666e5bb4381be5aef2db0b171b4aa1",
-    "narHash": "sha256-wMCQcg9MIDnYVLpfxrGq3972BXNHrGGaufeEKL/c/Xo=",
-    "lastModified": 1793010284
+    "rev": "c81f2a0b0b62bd9ac63a4db382fc5d61263d1253",
+    "narHash": "sha256-JK7KcDzslwangCgo2n6UNPR5dEgtFIe9wx5qFZYcgfg=",
+    "lastModified": 1793233101
   },
   "hjem": {
     "type": "github",
@@ -86,17 +86,17 @@
     "type": "github",
     "owner": "spdx",
     "repo": "license-list-data",
-    "rev": "f715b3660bb164c3d0b81cba9ce94e3c558c4048",
-    "narHash": "sha256-7Rj8k8UdBIC6C03i/3luSsGFphoOE2sJeb8UMbUtU98=",
-    "lastModified": 1793128802
+    "rev": "617f1a78824394ada7525017d98c6fb215aad09b",
+    "narHash": "sha256-k34DJkECz9k3DcV1Z68RMKogmSHwIve9HnLBMNM6BVg=",
+    "lastModified": 1793217033
   },
   "microvm-nix": {
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "4876e2ae2de6ce225f4ccf664ae441128aa3f03a",
-    "narHash": "sha256-0DS+A3BsygKRpKe0qmUWVDSfKqpIHZCpHJagAklE0o4=",
-    "lastModified": 1792810338
+    "rev": "b7bd556974fa8a171b5b639200e81d52244dfde4",
+    "narHash": "sha256-ErGIqtoWEX9KKC8NFtJDx2pGGG02Cr6LGxrvzLd2sqA=",
+    "lastModified": 1793281488
   },
   "nf": {
     "type": "git",
@@ -179,9 +179,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "42a4d36ac6e004ec4b3ebd8833d2afbcd5939aad",
-    "narHash": "sha256-qv2KWtF5gj+HNokuvOqrUigEYEq233l9BdRdT2tTI+w=",
-    "lastModified": 1793200057
+    "rev": "f2c38a276b91590552d4520e6acbc77d390824c8",
+    "narHash": "sha256-IwKxq0E/NVZ43w45KuSST4Qyuz6j7pehfBxzMOw1M8E=",
+    "lastModified": 1793286423
   },
   "rust-overlay": {
     "type": "github",
@@ -195,9 +195,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "f7cce4f7e53c9482661b158824522fefef2d7920",
-    "narHash": "sha256-vOIIx/QU6xEjMZTMZM8GNNXS/p4Idvw8V09KT5zNwTI=",
-    "lastModified": 1792630541
+    "rev": "c5b02fb90d4ec5f74e90710e4d2aa335b1d6c280",
+    "narHash": "sha256-jIDNBwu9nXXu7iGWiQ9QpUIeC0IzloDdYuqvzlBfqr4=",
+    "lastModified": 1793235360
   },
   "xdg-utils-nu": {
     "type": "github",
