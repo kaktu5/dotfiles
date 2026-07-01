@@ -50,5 +50,5 @@ oisd.url = "github:sjhgvr/oisd"
 [inputs.sources]
 breezex-cursor = { tag = "v{version}", url = "github:ful1e5/breezex_cursor" }
 dwproton-bin = { tag = "dwproton-{version}", type = "fixed", unpack = "tarball", url = "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-{version}/dwproton-{version}-x86_64.tar.xz" }
-osu-tachyon-bin = { tag = "{version}-tachyon", type = "fixed", url = "https://github.com/ppy/osu/releases/download/{version}-tachyon/osu.AppImage" }
+osu-bin = { tag = "{version}-*", type = "fixed", url = "https://github.com/ppy/osu/releases/download/{tag}/osu.AppImage" }
 space-mono.url = "github:googlefonts/spacemono"

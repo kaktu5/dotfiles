@@ -5,19 +5,23 @@
   buildFHSEnv,
 }: let
   inherit (appimageTools) appimage-exec extract;
-  inherit (inputs) osu-tachyon-bin;
-  inherit (inputs._meta.osu-tachyon-bin) tag;
+  inherit (inputs) osu-bin;
+  inherit (inputs._meta.osu-bin) tag;
   inherit (lib.attrsets) attrValues;
   inherit (lib.licenses) cc-by-nc-40 mit unfreeRedistributable;
+  inherit (lib.lists) head last;
   inherit (lib.sourceTypes) binaryNativeCode;
-  inherit (lib.strings) removeSuffix;
+  inherit (lib.strings) splitString;
 
-  pname = "osu-tachyon-bin";
-  version = removeSuffix "-tachyon" tag;
+  pname = "osu-bin";
+
+  parts = splitString "-" tag;
+  version = head parts;
+  stream = last parts;
 
   contents = extract {
     inherit pname version;
-    src = osu-tachyon-bin;
+    src = osu-bin;
   };
 in
   buildFHSEnv {
@@ -49,7 +53,7 @@ in
 
     profile = ''
       export OSU_EXTERNAL_UPDATE_PROVIDER=1
-      export OSU_EXTERNAL_UPDATE_STREAM=tachyon
+      export OSU_EXTERNAL_UPDATE_STREAM=${stream}
       export vblank_mode=''${vblank_mode:-0}
     '';
 

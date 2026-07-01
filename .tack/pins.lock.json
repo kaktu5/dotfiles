@@ -20,7 +20,7 @@
     "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "obsidian-bases-tasks": "git+https://rosa.radicle.network/z4FC12ufxa84RxepxeNMXm5PJUycy.git",
     "oisd": "github:sjhgvr/oisd",
-    "osu-tachyon-bin": "https://github.com/ppy/osu/releases/download/{version}-tachyon/osu.AppImage",
+    "osu-bin": "https://github.com/ppy/osu/releases/download/{tag}/osu.AppImage",
     "space-mono": "github:googlefonts/spacemono",
     "tack": "github:manic-systems/tack",
     "xdg-utils-nu": "github:manic-systems/xdg-utils.nu"
@@ -230,13 +230,14 @@
       "outHash": "sha256-YJ8/qVfrVfJB/YfTO1DfN/e2W49vS690MQCDkDumx6M="
     }
   },
-  "osu-tachyon-bin": {
+  "osu-bin": {
     "type": "fixed",
-    "url": "https://github.com/ppy/osu/releases/download/2026.1114.0-tachyon/osu.AppImage",
-    "sha256": "sha256-3HtE1ZkXhg2xmObsm4lDGjkajVn5UMEsJYc/uq3mXt8=",
+    "url": "https://github.com/ppy/osu/releases/download/2026.1117.0-lazer/osu.AppImage",
+    "sha256": "sha256-TrvLW1gcA28WeFUAr1yNE60ebZMZb9Nr6PJFwqDqHS0=",
     "unpack": "file",
-    "tag": "2026.1114.0-tachyon",
-    "version": "2026.1114.0"
+    "tag": "2026.1117.0-lazer",
+    "version": "2026.1117.0"
+  },
   },
   "rust-overlay": {
     "type": "github",
