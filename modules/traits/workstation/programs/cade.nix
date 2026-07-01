@@ -8,11 +8,15 @@
   inherit (config.hjem.users.${userName}.xdg) state;
   inherit (config.kkts.meta) userName;
   inherit (config.nixpkgs.hostPlatform) system;
+  inherit (config.users.users.${userName}) home;
   inherit (inputs.cade.packages.${system}) cade;
   inherit (lib.kkts.dag) entryAnywhere;
   inherit (lib.meta) getExe;
+  inherit (lib.strings) removePrefix;
   inherit (pkgs) runCommand;
   inherit (pkgs.writers) writeTOML;
+
+  stripHome = removePrefix "${home}/";
 
   cadeConfig = writeTOML "cade-config" {
     verbosity = "normal";
@@ -22,7 +26,7 @@
 
   nushellHook = runCommand "cade-hook-nu" {} "${getExe cade} --config ${cadeConfig} hook nushell > $out";
 in {
-  preservation.preserveAt."/persist".users.${userName}.directories = ["${state.directory}/cade"];
+  preservation.preserveAt."/persist".users.${userName}.directories = [(stripHome "${state.directory}/cade")];
 
   users.users.${userName}.packages = [cade];
 

@@ -11,8 +11,9 @@ in {
       root.hashedPassword = "!";
 
       ${userName} = {
-        uid = 1000;
         isNormalUser = true;
+        uid = 1000;
+        home = "/var/home";
         extraGroups = ["wheel"];
       };
     };
