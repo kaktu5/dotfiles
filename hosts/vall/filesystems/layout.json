@@ -20,9 +20,15 @@
     }
   },
   "fileSystems": {
+    "/": {
+      "device": "none",
+      "fsType": "tmpfs",
+      "options": ["mode=755", "size=20%", "nodev", "noexec", "nosuid"]
+    },
     "/boot": {
       "device": "/dev/disk/by-uuid/12CE-A600",
-      "fsType": "vfat"
+      "fsType": "vfat",
+      "options": ["umask=077", "noexec", "nosuid"]
     },
     "/nix": {
       "device": "nixos-017ebd57/nix",
@@ -34,7 +40,14 @@
     },
     "/persist": {
       "device": "nixos-017ebd57/persist",
-      "fsType": "zfs"
+      "fsType": "zfs",
+      "options": ["noexec", "nosuid"],
+      "neededForBoot": true
+    }
+  },
+  "kkts": {
+    "persistence": {
+      "store": "/persist"
     }
   }
 }
