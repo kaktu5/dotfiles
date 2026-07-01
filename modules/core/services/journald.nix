@@ -1,5 +1,17 @@
 {
-  persistence.directories = ["/var/log/journal"];
+  config,
+  lib,
+  ...
+}: let
+  inherit (lib.lists) optional;
+  inherit (lib.modules) mkDefault;
 
-  services.journald.settings.Journal.MaxRetentionSec = "2week";
+  isVolatile = config.services.journald.settings.Journal.Storage == "volatile";
+in {
+  persistence.directories = optional isVolatile "/var/log/journal";
+
+  services.journald.settings.Journal = {
+    Storage = mkDefault "persistent";
+    MaxRetentionSec = "2week";
+  };
 }
