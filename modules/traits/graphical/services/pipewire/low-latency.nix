@@ -35,12 +35,6 @@ in {
     security.rtkit = {inherit (cfg) enable;};
 
     services.pipewire = {
-      enable = true;
-
-      alsa.enable = true;
-      jack.enable = true;
-      pulse.enable = true;
-
       extraConfig = mkIf' {
         pipewire."90-low-latency" = {
           "context.properties"."default.clock.min-quantum" = quantum;
