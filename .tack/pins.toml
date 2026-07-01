@@ -13,6 +13,8 @@ names = ["flake-compat", "tack"]
 
 [groups]
 data.type = "fetch"
+neovim-opt = { fetch_mode = "build", type = "fetch" }
+neovim-start = { fetch_mode = "build", type = "fetch" }
 sources.type = "fetch"
 
 [inputs.nixos]
@@ -21,7 +23,6 @@ nixpkgs = { patches = [
 ], url = "channel:nixos-unstable" }
 
 [inputs.firstparty]
-nf.url = "rad:z3EZi6d3LccUz1s6UmMfuoPJfMdZ"
 obsidian-bases-tasks.url = "rad:z4FC12ufxa84RxepxeNMXm5PJUycy"
 
 [inputs.thirdparty]
@@ -33,6 +34,7 @@ helium-flake.url = "github:amaanq/helium-flake"
 hjem.url = "github:feel-co/hjem"
 lanzaboote = { omit_inputs = ["pre-commit"], url = "github:nix-community/lanzaboote" }
 microvm-nix = { omit_inputs = ["spectrum"], url = "github:microvm-nix/microvm.nix" }
+mnw.url = "github:gerg-l/mnw"
 ncro.url = "github:manic-systems/ncro"
 nh.url = "github:nix-community/nh"
 nix-secrets.url = "github:unnamed-systems/nix-secrets"
@@ -51,3 +53,19 @@ breezex-cursor = { tag = "v{version}", url = "github:ful1e5/breezex_cursor" }
 dwproton-bin = { tag = "dwproton-{version}", type = "fixed", unpack = "tarball", url = "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-{version}/dwproton-{version}-x86_64.tar.xz" }
 osu-bin = { tag = "{version}-*", type = "fixed", url = "https://github.com/ppy/osu/releases/download/{tag}/osu.AppImage" }
 space-mono.url = "github:googlefonts/spacemono"
+
+[inputs.neovim-start]
+blink-lib.url = "github:saghen/blink.lib"
+canola-nvim.url = "github:barrettruth/canola.nvim/canola"
+fidget-nvim = { tag = "v{version}", url = "github:j-hui/fidget.nvim" }
+lz-n = { tag = "v{version}", url = "github:lumen-oss/lz.n" }
+nvim-web-devicons.url = "github:nvim-tree/nvim-web-devicons"
+oxocarbon-nvim.url = "github:nyoom-engineering/oxocarbon.nvim"
+plenary-nvim = { tag = "v{version}", url = "github:nvim-lua/plenary.nvim" }
+
+[inputs.neovim-opt]
+blink-indent = { tag = "v{version}", url = "github:saghen/blink.indent" }
+conform-nvim = { tag = "v{version}", url = "github:stevearc/conform.nvim" }
+nvim-colorizer-lua.url = "github:norcalli/nvim-colorizer.lua"
+nvim-lint.url = "github:mfussenegger/nvim-lint"
+telescope-nvim = { tag = "v{version}", url = "github:nvim-telescope/telescope.nvim" }

@@ -1,0 +1,6 @@
+!/neovim/**/*.lua
+
+!/.luarc.json
+!/package.nix
+!/selene.toml
+!/vim.yml

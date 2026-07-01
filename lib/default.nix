@@ -2,12 +2,13 @@
   inputs,
   self,
 }: let
-  inherit (inputs) nixpkgs override-utils;
+  inherit (inputs) mnw nixpkgs override-utils;
   inherit (nixpkgs.lib.fixedPoints) fix;
 in
   fix (lib:
     nixpkgs.lib
     // {
+      mnw = mnw.lib;
       overrideUtils = override-utils.lib;
 
       kkts = {

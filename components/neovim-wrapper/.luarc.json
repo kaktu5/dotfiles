@@ -1,0 +1,7 @@
+{
+  "runtime.version": "LuaJIT",
+  "runtime.path": ["neovim/lua/?.lua", "neovim/lua/?/init.lua"],
+  "diagnostics.globals": ["LZN", "vim"],
+  "workspace.checkThirdParty": false,
+  "workspace.library": ["$VIMRUNTIME"]
+}

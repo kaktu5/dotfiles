@@ -1,0 +1,5 @@
+base: lua52
+
+globals:
+  LZN: {any: true}
+  vim: {any: true}
