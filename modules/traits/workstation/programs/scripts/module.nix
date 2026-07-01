@@ -8,7 +8,7 @@
   inherit (lib.kkts.dag) entryAnywhere;
   inherit (lib.kkts.strings) replaceVars;
   inherit (lib.meta) getExe;
-  inherit (pkgs) gitMinimal runCommandLocal;
+  inherit (pkgs) fd runCommandLocal;
 
   spdxTexts = runCommandLocal "spdx-texts" {} ''
     shopt -s extglob
@@ -20,6 +20,7 @@
   '';
 in {
   kkts.programs.nushell.extraEntries = {
+    cloc = entryAnywhere <| replaceVars ./cloc.nu {fd = getExe fd;};
     license = entryAnywhere <| replaceVars ./license.nu {inherit spdxTexts;};
   };
 }
