@@ -1,7 +1,7 @@
 diff --git a/maintainers/maintainer-list.nix b/maintainers/maintainer-list.nix
 --- a/maintainers/maintainer-list.nix
 +++ b/maintainers/maintainer-list.nix
-@@ -14964,6 +14964,13 @@
+@@ -14921,6 +14921,13 @@
      githubId = 32744028;
      keys = [ { fingerprint = "7577 13A4 9609 0C2F 51C4  018C B5C8 89A2 F195 28F6"; } ];
    };
@@ -43,7 +43,7 @@ new file mode 100644
 +}:
 +pkgsi686Linux.stdenv.mkDerivation (finalAttrs: {
 +  pname = "millennium";
-+  version = "3.6.1";
++  version = "3.6.2";
 +
 +  __structuredAttrs = true;
 +  strictDeps = true;
@@ -52,7 +52,7 @@ new file mode 100644
 +    owner = "SteamClientHomebrew";
 +    repo = "Millennium";
 +    tag = "v${finalAttrs.version}";
-+    hash = "sha256-sNpoyJ+IjrTiDGfX2QiKVg4jkrJR7n9PdBeOYJSS4n8=";
++    hash = "sha256-We8OIJP/5q0nv2RVHQYfjRaHK6ZQuSM88eKa9BezUPk=";
 +  };
 +
 +  nativeBuildInputs = [
@@ -101,7 +101,7 @@ new file mode 100644
 +
 +    outputHashMode = "recursive";
 +    outputHashAlgo = "sha256";
-+    outputHash = "sha256-c3aw+Nznk5ciamIQ+7l7MwB0e7pezzZTtMP97z5U1e4=";
++    outputHash = "sha256-HrgEEmrBjirAkOv6v2qe3XWsNlNuCUOTbOkUfUuCRP4=";
 +  };
 +
 +  millennium-64-bit-libs = stdenv.mkDerivation (finalAttrs64: {

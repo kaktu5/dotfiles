@@ -1,6 +1,6 @@
 diff --git a/pkgs/by-name/mi/millennium/package.nix b/pkgs/by-name/mi/millennium/package.nix
 new file mode 100644
-index 0000000000000..7d4c3c0086ec2
+index 0000000000000..6acf67f6d627a
 --- /dev/null
 +++ b/pkgs/by-name/mi/millennium/package.nix
 @@ -0,0 +1,186 @@
@@ -27,7 +27,7 @@ index 0000000000000..7d4c3c0086ec2
 +}:
 +pkgsi686Linux.stdenv.mkDerivation (finalAttrs: {
 +  pname = "millennium";
-+  version = "3.6.1";
++  version = "3.6.2";
 +
 +  __structuredAttrs = true;
 +  strictDeps = true;
@@ -36,7 +36,7 @@ index 0000000000000..7d4c3c0086ec2
 +    owner = "SteamClientHomebrew";
 +    repo = "Millennium";
 +    tag = "v${finalAttrs.version}";
-+    hash = "sha256-sNpoyJ+IjrTiDGfX2QiKVg4jkrJR7n9PdBeOYJSS4n8=";
++    hash = "sha256-We8OIJP/5q0nv2RVHQYfjRaHK6ZQuSM88eKa9BezUPk=";
 +  };
 +
 +  nativeBuildInputs = [
@@ -85,7 +85,7 @@ index 0000000000000..7d4c3c0086ec2
 +
 +    outputHashMode = "recursive";
 +    outputHashAlgo = "sha256";
-+    outputHash = "sha256-c3aw+Nznk5ciamIQ+7l7MwB0e7pezzZTtMP97z5U1e4=";
++    outputHash = "sha256-HrgEEmrBjirAkOv6v2qe3XWsNlNuCUOTbOkUfUuCRP4=";
 +  };
 +
 +  millennium-64-bit-libs = stdenv.mkDerivation (finalAttrs64: {

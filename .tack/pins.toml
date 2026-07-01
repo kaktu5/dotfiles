@@ -34,11 +34,7 @@ nixos-core = { patches = [
   "patches/nixos-core/dont-create-home-dirs.patch",
   "patches/nixos-core/fixes.patch",
 ], url = "github:manic-systems/nixos-core" }
-tack = { patches = [
-  "github:manic-systems/tack/pull/191",
-  "github:manic-systems/tack/pull/192",
-  "github:manic-systems/tack/pull/196",
-], url = "github:manic-systems/tack" }
+tack.url = "github:manic-systems/tack" 
 xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 
 dnscrypt-settings = { type = "fetch", url = "github:quad9dns/dnscrypt-settings" }

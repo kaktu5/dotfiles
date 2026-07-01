@@ -168,21 +168,21 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1105037.1c89083e451e/nixexprs.tar.zst?rev=1c89083e451e891152365b799595cf7790a43325&lastModified=1793341285",
-    "rev": "1c89083e451e891152365b799595cf7790a43325",
-    "narHash": "sha256-LOv16TsMYV2/8BUYnhSxHkOASe7es2ORbqMeLlZJ8Hc=",
-    "lastModified": 1793341285,
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1107793.1d060086d60c/nixexprs.tar.zst?rev=1d060086d60cb76a40cf37109f979d88a5bd6396&lastModified=1793726008",
+    "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
+    "narHash": "sha256-iNjybNORi/2+shilhMlkNr01UHWKOHRGzQyIyvobs9o=",
+    "lastModified": 1793726008,
     "patched": {
-      "path": "/nix/store/4kznaa30qq0gc7fljisvxa89wqvs47vd-source",
-      "narHash": "sha256-LUZ9KI2lOCFP0xI3RClIXjbedtcNkCele/jns5g/6mk=",
-      "lastModified": 1793341285,
+      "path": "/nix/store/d30fmvcqk7bam0rnz38rfssgm7ax8jh2-source",
+      "narHash": "sha256-858l83Pxom3Em0iC3v7Iokjj71DqwHi5qodmaWYU2Ls=",
+      "lastModified": 1793726008,
       "patches": [
         {
           "source": "github:nixos/nixpkgs/pull/538226",
           "url": "https://github.com/nixos/nixpkgs/pull/538226",
           "file": "patches/nixpkgs/pr-538226.patch",
-          "sha256": "cc24ee17ca1a82364d1376657e16003e62cc9a0f85275f800b04de5a01532b2a",
-          "head": "ec98cf8848f2f02023231bbda5098dc9bbdc4a4d"
+          "sha256": "31f7c6f0405cf91d94f3d37584fb5ac543dea8888928b32dd13e81cbde276d90",
+          "head": "4e6076943313191f61c2221156969f4337d1b778"
         },
         {
           "source": "github:nixos/nixpkgs/pull/562711",
@@ -192,7 +192,7 @@
           "head": "541a11ede9c3b84a896a196bfbd6557150ee7915"
         }
       ],
-      "diff": "4270af8a032a383ea238090fa43777e45567e41b67c2ea77268e6cca17bc2e5b"
+      "diff": "c9fb5c0c62f73b436ed7162a7f8476df16bc8013a565fa9d34111d04499e1d47"
     }
   },
   "obsidian-bases-tasks": {
@@ -207,12 +207,12 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "56208f43a6dbbfd6cbef98a703283a8e0ce6b3d8",
-    "narHash": "sha256-uCeNFf1FM2wZZP4/8/OR64qs7dZB7mj2DwL17c8TSSg=",
-    "lastModified": 1793739955,
+    "rev": "b9a09d7dac03364ef7ad042de0c4414a7ccdf77a",
+    "narHash": "sha256-nR+lZCzLLwuVuvda/qtmhWb24vJBfmd/z2S7iSKHWMk=",
+    "lastModified": 1793804706,
     "archive": {
-      "hash": "sha256-qTbK0M1vS0yUragbij8OarKNBOuDo91AoC6hCaDmO3Q=",
-      "outHash": "sha256-Dj9a3HO+X1AAgfkK1tJUVr/hYWQSDodjYPNN+eYRg3o="
+      "hash": "sha256-kvHnz33GATvwWlC46uBx5R44qHvzeQVIBQ+tvgG2F0Q=",
+      "outHash": "sha256-yR7n2mM+ApKDETam6vE0bEuFijkTkfHxBmi7Mp19n5M="
     }
   },
   "rust-overlay": {
@@ -227,38 +227,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "aea40b8c73e6e7552229d87885fde8d1f69a060a",
-    "narHash": "sha256-MkkhlJZhaUzGRu1XbAg2y77B9/qUZZaItZRv3e6Hinc=",
-    "lastModified": 1793636072,
-    "patched": {
-      "path": "/nix/store/ic3mr8wiiz0i88vb1985swff02zycj7p-source",
-      "narHash": "sha256-WFAX4R64cjol4+w1KPTTnq58qm5G/QXCInxLY1pIVIk=",
-      "lastModified": 1793636072,
-      "patches": [
-        {
-          "source": "github:manic-systems/tack/pull/191",
-          "url": "https://github.com/manic-systems/tack/pull/191",
-          "file": "patches/tack/pr-191.patch",
-          "sha256": "f81eb2953d0b264bff229ab5bea8288c988b8f59f7fb8ff2383326b616d14aa5",
-          "head": "d9ef1bdeec589f9a69090939ba00c8206b534487"
-        },
-        {
-          "source": "github:manic-systems/tack/pull/192",
-          "url": "https://github.com/manic-systems/tack/pull/192",
-          "file": "patches/tack/pr-192.patch",
-          "sha256": "47869d70a1af5e3e797af6a46fa0299a37e12a9e284f07fd0677d8ee579291f0",
-          "head": "14f62e5d8094303c6823655c6f30a2a2f485f086"
-        },
-        {
-          "source": "github:manic-systems/tack/pull/196",
-          "url": "https://github.com/manic-systems/tack/pull/196",
-          "file": "patches/tack/pr-196.patch",
-          "sha256": "9fdd8afdf954ff201e6d19f35a579af0b4d1c131d9813d1d59f96f7a029201bf",
-          "head": "d2f523b172d22aaec9d179d8a8bc01eb1c50392f"
-        }
-      ],
-      "diff": "267ebd8d6d90bb1f8c10f4c632b39a6efb4aba170fbfabc2790b1896c0eb2adf"
-    }
+    "rev": "4ec7cc54362fdc2aa062ccb38b5b826b31921261",
+    "narHash": "sha256-WFAX4R64cjol4+w1KPTTnq58qm5G/QXCInxLY1pIVIk=",
+    "lastModified": 1793758878
   },
   "xdg-utils-nu": {
     "type": "github",
