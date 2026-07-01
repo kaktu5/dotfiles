@@ -21,9 +21,10 @@ in {
       |> attrValues
       |> toposort (a: b: elem a.name b.after);
   in
-    if sorted ? result
-    then {result = map (v: {inherit (v) name data;}) sorted.result;}
-    else sorted;
+    if sorted ? result then
+      {result = map (v: {inherit (v) name data;}) sorted.result;}
+    else
+      sorted;
 
   mapEntryData = f: mapAttrs (n: v: v // {data = f n v.data;});
 
@@ -35,9 +36,10 @@ in {
   resolveWith = f: dag: let
     sorted = self.topoSort dag;
   in
-    if sorted ? result
-    then map (e: f e.name e.data) sorted.result
-    else throw "DAG cycle detected involving: ${sorted.cycle |> concatMapStringsSep ", " (e: e.name)}";
+    if sorted ? result then
+      map (e: f e.name e.data) sorted.result
+    else
+      throw "DAG cycle detected involving: ${sorted.cycle |> concatMapStringsSep ", " (e: e.name)}";
 
   resolveStr = dag:
     dag

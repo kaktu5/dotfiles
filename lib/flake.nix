@@ -10,11 +10,11 @@ in {
   selectSystem = system: outputs: inputs:
     inputs
     |> mapAttrs (_: input:
-      if (input._type or null) == "flake"
-      then
+      if (input._type or null) == "flake" then
         input
         |> filterAttrs (k: _: elem k outputs)
         |> mapAttrs (_: v: v.${system})
         |> (o: input // o)
-      else input);
+      else
+        input);
 }

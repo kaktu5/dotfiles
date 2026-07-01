@@ -14,12 +14,13 @@
   generator = toKeyValue {
     mkKeyValue = mkKeyValueDefault {
       mkValueString = v:
-        if isBool v
-        then
-          if v
-          then "1"
-          else "0"
-        else mkValueStringDefault {} v;
+        if isBool v then
+          if v then
+            "1"
+          else
+            "0"
+        else
+          mkValueStringDefault {} v;
     } "=";
   };
 in

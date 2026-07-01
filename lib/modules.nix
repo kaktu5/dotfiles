@@ -8,19 +8,20 @@
   self = lib.kkts.modules;
 in {
   modulesFromDirRec = dir:
-    if pathExists /${dir}/module.nix
-    then [/${dir}/module.nix]
+    if pathExists /${dir}/module.nix then
+      [/${dir}/module.nix]
     else
       readDir dir
       |> mapAttrsToList (
         name: type: let
           path = /${dir}/${name};
         in
-          if type == "directory"
-          then self.modulesFromDirRec path
-          else if type == "regular" && hasSuffix ".nix" name
-          then [path]
-          else []
+          if type == "directory" then
+            self.modulesFromDirRec path
+          else if type == "regular" && hasSuffix ".nix" name then
+            [path]
+          else
+            []
       )
       |> concatLists;
 }

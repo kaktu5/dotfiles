@@ -19,17 +19,19 @@
 
   bindToLua = k: v: let
     norm =
-      if isString v
-      then bind {} v
-      else if isList v
-      then bind {} v
-      else v;
+      if isString v then
+        bind {} v
+      else if isList v then
+        bind {} v
+      else
+        v;
     body =
-      if isString norm.dispatcher
-      then norm.dispatcher
-      else "function()\n${
-        norm.dispatcher |> concatMapStringsSep "\n" (d: "hl.dispatch(${d})")
-      }\nend";
+      if isString norm.dispatcher then
+        norm.dispatcher
+      else
+        "function()\n${
+          norm.dispatcher |> concatMapStringsSep "\n" (d: "hl.dispatch(${d})")
+        }\nend";
   in "hl.bind('${k}', ${body}, ${toLua' norm.flags})";
 
   curveToLua = k: v: "hl.curve('${k}', ${toLua' v})";

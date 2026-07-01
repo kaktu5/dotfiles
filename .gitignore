@@ -35,6 +35,7 @@
 !/.qmlformat.ini
 !/.rustfmt.toml
 !/.taplo.toml
+!/alejandra.toml
 !/flake.nix
 !/license
 !/readme.md

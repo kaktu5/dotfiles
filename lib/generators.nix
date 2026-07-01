@@ -7,11 +7,12 @@
   inherit (lib.generators) mkKeyValueDefault mkValueStringDefault toINI;
 
   typeOf' = v:
-    if v == null
-    then "null"
-    else if isDerivation v
-    then "derivation"
-    else typeOf v;
+    if v == null then
+      "null"
+    else if isDerivation v then
+      "derivation"
+    else
+      typeOf v;
 in {
   toHyprlang = {
     priorityKeys ? [],
@@ -41,9 +42,10 @@ in {
         attrs.${key}
         |> toList
         |> concatMapStringsSep "\n" (v:
-          if isAttrs v && !isDerivation v
-          then "${key}{\n${mkCategory v}\n}"
-          else "${key}=${mkValue v}"))
+          if isAttrs v && !isDerivation v then
+            "${key}{\n${mkCategory v}\n}"
+          else
+            "${key}=${mkValue v}"))
       |> concatStringsSep "\n";
   in
     mkCategory attrs;
@@ -71,8 +73,7 @@ in {
 
   toQSettings = {}: let
     mkKeyValue = key: value:
-      if isAttrs value
-      then
+      if isAttrs value then
         value
         |> mapAttrsRecursive (path: val: let
           key' = [key] ++ path |> concatStringsSep "\\" |> escape ["="];
@@ -80,19 +81,22 @@ in {
         in "${key'}=${val'}")
         |> collect isString
         |> concatStringsSep "\n"
-      else mkKeyValueDefault {} "=" key value;
+      else
+        mkKeyValueDefault {} "=" key value;
   in
     toINI {inherit mkKeyValue;};
 
   toSshConfig = {}: attrs: let
     toKeyValue = k: v:
-      if isBool v
-      then "  ${k} ${
-        if v
-        then "yes"
-        else "no"
-      }"
-      else "  ${k} ${v}";
+      if isBool v then
+        "  ${k} ${
+          if v then
+            "yes"
+          else
+            "no"
+        }"
+      else
+        "  ${k} ${v}";
 
     formatHost = host: config: "Host ${host}\n" + (config |> mapAttrsToList toKeyValue |> concatStringsSep "\n");
   in

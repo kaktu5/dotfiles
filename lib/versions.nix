@@ -9,9 +9,10 @@ in {
     z = days + 719468;
     era =
       div (
-        if z >= 0
-        then z
-        else z - 146096
+        if z >= 0 then
+          z
+        else
+          z - 146096
       )
       146097;
     doe = z - era * 146097;
@@ -21,15 +22,17 @@ in {
     mp = div (5 * doy + 2) 153;
     d = doy - div (153 * mp + 2) 5 + 1;
     m =
-      if mp < 10
-      then mp + 3
-      else mp - 9;
+      if mp < 10 then
+        mp + 3
+      else
+        mp - 9;
     year =
       y
       + (
-        if m <= 2
-        then 1
-        else 0
+        if m <= 2 then
+          1
+        else
+          0
       );
     date =
       [year m d]
