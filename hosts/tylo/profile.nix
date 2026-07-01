@@ -2,6 +2,8 @@
   kkts.profiles.gaming = {
     enable = true;
 
+    minecraft.enable = true;
+
     osu.enable = true;
 
     steam = {

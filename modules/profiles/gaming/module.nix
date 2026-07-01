@@ -11,6 +11,7 @@ in {
   imports = [
     ./config.nix
     ./mangohud.nix
+    ./minecraft.nix
     ./osu.nix
     ./steam.nix
     ./zenless-zone-zero.nix
@@ -20,6 +21,8 @@ in {
     enable = mkEnableOption "gaming profile";
 
     mangohud.enable = mkEnableOption "mangohud" // {default = cfg.enable;};
+
+    minecraft.enable = mkEnableOption "Minecraft";
 
     osu.enable = mkEnableOption "osu! Tachyon";
 
