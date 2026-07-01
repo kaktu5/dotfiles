@@ -70,9 +70,9 @@
     "type": "git",
     "url": "https://rosa.radicle.network/z3445hwtrioJCAisuAosBXvcTqVR2.git",
     "ref": "HEAD",
-    "rev": "1e304eea65729fac0bba71e26f1b4e5b029376c8",
-    "narHash": "sha256-fC3nsw6Wo8LluE95snoGS+B3vxl2XP/D5qQfVJlxxS0=",
-    "lastModified": 1791557661
+    "rev": "3616fd9a887ea99ad5e45e6e781008948bf50b4e",
+    "narHash": "sha256-UIdpk+3+ER27KGj+N1GLRlB3xfO7Sbz3xupdlHDrikY=",
+    "lastModified": 1791749876
   },
   "lanzaboote": {
     "type": "github",
