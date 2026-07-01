@@ -8,6 +8,8 @@
   inherit (config.vaultix) secrets;
   inherit (lib.lists) singleton;
   inherit (pkgs) openssh;
+
+  pub = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICrm08yLyJn1TpTvnEuyyuSp60hD2Z8oOXZgsA/sbHPa";
 in {
   vaultix.secrets.id = {
     file = ./id.age;
@@ -20,11 +22,15 @@ in {
     mode = "600";
   };
 
-  users.users.${userName}.packages = [openssh];
+  users.users.${userName} = {
+    packages = [openssh];
+
+    openssh.authorizedKeys.keys = [pub];
+  };
 
   hjem.users.${userName}.files = {
-    ".ssh/ssh-key.pub" = {
-      text = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICrm08yLyJn1TpTvnEuyyuSp60hD2Z8oOXZgsA/sbHPa";
+    ".ssh/id.pub" = {
+      text = pub;
       type = "copy";
       permissions = "644";
     };
