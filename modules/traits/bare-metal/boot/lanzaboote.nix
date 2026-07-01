@@ -37,7 +37,7 @@ in {
         editor = false;
       };
 
-      bootCounting.initialTries = 1;
+      bootCounting.initialTries = 2;
 
       autoGenerateKeys.enable = true;
       autoEnrollKeys = {
