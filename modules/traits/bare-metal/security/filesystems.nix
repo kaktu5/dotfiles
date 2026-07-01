@@ -6,7 +6,7 @@ in {
     "/" = {
       device = "none";
       fsType = "tmpfs";
-      options = ["mode=755" "size=512M" "nodev" "noexec" "nosuid"];
+      options = ["mode=755" "size=2G" "nodev" "noexec" "nosuid"];
     };
 
     "/boot".options = ["umask=077" "noexec" "nosuid"];
