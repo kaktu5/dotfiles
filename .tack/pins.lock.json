@@ -29,9 +29,9 @@
     "type": "github",
     "owner": "ezkea",
     "repo": "aagl-gtk-on-nix",
-    "rev": "412700c008b31afa56597e3c1f79735ef394bbc6",
-    "narHash": "sha256-hJRzVwJAeY/ZKe55G3ErOeIg663M6UevUhG+2Xt0D3o=",
-    "lastModified": 1794237553
+    "rev": "0968049e240f2eed9a3e3ee92bc3e06ca41d9b96",
+    "narHash": "sha256-T7WQ3yqqkEyTric9XNRHNfsHhw39jYVSLv7QhSD+avQ=",
+    "lastModified": 1794424204
   },
   "affinity-nix": {
     "type": "github",
@@ -59,9 +59,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "27fb0673c096460652ab4e3b1908d80a9c449597",
-    "narHash": "sha256-mEIH9wqp2xbjQ+zx9iGQirAUwvD4NKUuiNimoGY8xUI=",
-    "lastModified": 1794239728
+    "rev": "195795d8cd9ad24bb1dc01c1074f6ea65f9dd869",
+    "narHash": "sha256-/knskto2VV0NQ5iCfQuF4fZ5KZw/fOMY5Q3JVs861cY=",
+    "lastModified": 1794388636
   },
   "dnscrypt-settings": {
     "type": "github",
@@ -87,9 +87,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "fenix",
-    "rev": "ca76a73ea01846db922226eb1b0e79edcc1ac84d",
-    "narHash": "sha256-+HNx0p53q+xTeRdLQHD8+BI/ONTyZCwvp1PnSc2q9Bo=",
-    "lastModified": 1794321494
+    "rev": "0738efb391fea6fe32c886f5bac8e8ab90af3c81",
+    "narHash": "sha256-WKnOgZ2VYIx1H3oeAeOq5CctswSlKH2SsiQh9iugCrI=",
+    "lastModified": 1794495277
   },
   "helium-flake": {
     "type": "github",
@@ -111,9 +111,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "lanzaboote",
-    "rev": "4b98333073bdaf9b1b5dd7d87c2dab96883b234e",
-    "narHash": "sha256-aefPlhND0AelMxBw8g1R0JZKpm/Wkamhj49sbR60pHw=",
-    "lastModified": 1792270892
+    "rev": "2857d5b105c8c41a3f9535aeef544aa7b17ee32e",
+    "narHash": "sha256-l7z9fKPK6ydFFuq3ZmCoRGS+osRrqjZLyOd1ZW5VaOo=",
+    "lastModified": 1794426370
   },
   "license-list-data": {
     "type": "github",
@@ -139,9 +139,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "ncro",
-    "rev": "7b1ff495b884fe955d36e1f8b87ed0491b33fa38",
-    "narHash": "sha256-vdj4674VD2Hf0iKv0JMME2Kblrm0dYFfJ4pZbG6Uki0=",
-    "lastModified": 1794268615
+    "rev": "1e7d0637a28e4d100381b1248fc0dfe15c367aad",
+    "narHash": "sha256-IkzejeEUm6Wm7O4SpPRovFfWNoLQ/R08vnwSGiZVuxE=",
+    "lastModified": 1794486500
   },
   "nf": {
     "type": "git",
@@ -155,9 +155,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nh",
-    "rev": "d165bcc2d41a5c5c0aed4def351a9d770a3e1f69",
-    "narHash": "sha256-Hr/0O3CpOWGrvIkBMRko/TyXPjVB8Hsf7xhjbFHF6sc=",
-    "lastModified": 1794170686
+    "rev": "26438120191b8802e8af775e0ca39caba7cd95c3",
+    "narHash": "sha256-MZk0y+/pHzZahqL162aLfTaHaeNVa4rONRyRFnPPsGs=",
+    "lastModified": 1794468073
   },
   "nix-secrets": {
     "type": "github",
@@ -227,12 +227,12 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "eeb6711dfcf1be7f7e2ad7dfd53b64affe10575f",
-    "narHash": "sha256-oA5DoQpkQbUZkpD69W6epfY/M7sR6MOw3Q1gxx/fB9U=",
-    "lastModified": 1794345512,
+    "rev": "90c78fec96d0bbc17175416efdc0f884722cbeab",
+    "narHash": "sha256-dYhhtoJD+TGp20C52tFemU335OvwgwixW9x1tdyA0dE=",
+    "lastModified": 1794508523,
     "archive": {
-      "hash": "sha256-qMlmzJF7iK7+rKXcPAdcygO8rjx2RPM+uRPWiD5BiwI=",
-      "outHash": "sha256-EUsz4OpS7igPEY+O3ZGpxBZg642I93VTdb546vIMRZg="
+      "hash": "sha256-HfLTOGU6J09FFP7N1hZeLET+GvNNGkGnu4xC8e++IJs=",
+      "outHash": "sha256-uLpoQyjGmxxsMUFlvTJKUxIy44OpjhJKrFJrJdmGwe0="
     }
   },
   "osu-tachyon-bin": {
@@ -267,13 +267,13 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "f59bc3e6679df14d402e40bf895cc2533bae4ca2",
-    "narHash": "sha256-ZK5sfTsvSo9VYEi8mAVtfu5FUFvMYoGMn6+CYzS1pPU=",
-    "lastModified": 1794242539,
+    "rev": "c107b0fc252b0b33b01e6b7d6111aaaedc49613e",
+    "narHash": "sha256-bdNCaHUF3c8hgsYw6FCI+lGcZanZIDxt2Sefu5AsERY=",
+    "lastModified": 1794450976,
     "patched": {
-      "path": "/nix/store/g35ji8k7gaxn9q4shv4s68f772anbwb3-source",
-      "narHash": "sha256-m+rIAlmXUyvVfHO8HkK1KHQKLo2Qdj4tKu5hBenAWnQ=",
-      "lastModified": 1794242539,
+      "path": "/nix/store/s4zm5sdcz3k75n9zpj69xzly8kw7p6f6-source",
+      "narHash": "sha256-UQHznL+Vt/pQPu2Sc9qGTPxoJdCxrpRdZnyLK2lIMqM=",
+      "lastModified": 1794450976,
       "patches": [
         {
           "source": "github:manic-systems/tack/pull/209",
