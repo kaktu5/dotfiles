@@ -20,7 +20,7 @@ in {
     installPackage = false;
     extraPackages = [age];
 
-    nixEvalCommand = "${getExe nix.package} eval --raw --read-only";
+    nixEvalCommand = "${getExe nix.package} --no-eval-cache eval --raw --read-only {{input}}";
 
     identityPaths = ["/persist/etc/nix-secrets/key"];
     defaultRecipients = [hostName];
