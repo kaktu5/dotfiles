@@ -18,5 +18,6 @@ in
         nixos = import ./nixos.nix {inherit inputs lib self;};
         strings = import ./strings.nix {inherit lib;};
         systemd = import ./systemd.nix {inherit lib;};
+        versions = import ./versions.nix {inherit lib;};
       };
     })

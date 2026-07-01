@@ -11,19 +11,20 @@ rust-overlay = []
 [omit_inputs]
 names = ["flake-compat", "tack"]
 
-[groups.fetch]
-fetch_mode = "build"
-type = "fetch"
+[groups]
+data.type = "fetch"
+sources.type = "fetch"
 
-[inputs]
+[inputs.nixos]
 nixpkgs = { patches = [
   "github:nixos/nixpkgs/pull/562711", # rhythia
 ], url = "channel:nixos-unstable" }
 
-kaktu5pkgs.url = "rad:z3445hwtrioJCAisuAosBXvcTqVR2"
+[inputs.firstparty]
 nf.url = "rad:z3EZi6d3LccUz1s6UmMfuoPJfMdZ"
 obsidian-bases-tasks.url = "rad:z4FC12ufxa84RxepxeNMXm5PJUycy"
 
+[inputs.thirdparty]
 aagl-gtk-on-nix.url = "github:ezkea/aagl-gtk-on-nix"
 affinity-nix.url = "github:mrshmllow/affinity-nix"
 cade.url = "github:manic-systems/cade?rev=3211f782a53f94842bbb8782de03a2c5d85c793d" # cade.url = "github:manic-systems/cade"
@@ -39,10 +40,16 @@ nixos-core = { patches = [
   "patches/nixos-core/dont-create-home-dirs.patch",
   "patches/nixos-core/fixes.patch",
 ], url = "github:manic-systems/nixos-core" }
-tack.url = "github:manic-systems/tack"
+tack = { patches = ["github:manic-systems/tack/pull/209"], url = "github:manic-systems/tack" }
 xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 
-dnscrypt-settings = { type = "fetch", url = "github:quad9dns/dnscrypt-settings" }
+[inputs.data]
+dnscrypt-settings.url = "github:quad9dns/dnscrypt-settings"
+license-list-data.url = "github:spdx/license-list-data"
+oisd.url = "github:sjhgvr/oisd"
 
-license-list-data = { group = "fetch", url = "github:spdx/license-list-data" }
-oisd = { group = "fetch", url = "github:sjhgvr/oisd" }
+[inputs.sources]
+breezex-cursor = { tag = "v{version}", url = "github:ful1e5/breezex_cursor" }
+dwproton-bin = { tag = "dwproton-{version}", type = "fixed", unpack = "tarball", url = "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-{version}/dwproton-{version}-x86_64.tar.xz" }
+osu-tachyon-bin = { tag = "{version}-tachyon", type = "fixed", url = "https://github.com/ppy/osu/releases/download/{version}-tachyon/osu.AppImage" }
+space-mono.url = "github:googlefonts/spacemono"

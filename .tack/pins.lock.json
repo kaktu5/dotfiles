@@ -2,12 +2,13 @@
   "$declared": {
     "aagl-gtk-on-nix": "github:ezkea/aagl-gtk-on-nix",
     "affinity-nix": "github:mrshmllow/affinity-nix",
+    "breezex-cursor": "github:ful1e5/breezex_cursor",
     "cade": "github:manic-systems/cade?rev=3211f782a53f94842bbb8782de03a2c5d85c793d",
     "dnscrypt-settings": "github:quad9dns/dnscrypt-settings",
+    "dwproton-bin": "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-{version}/dwproton-{version}-x86_64.tar.xz",
     "fenix": "github:nix-community/fenix",
     "helium-flake": "github:amaanq/helium-flake",
     "hjem": "github:feel-co/hjem",
-    "kaktu5pkgs": "git+https://rosa.radicle.network/z3445hwtrioJCAisuAosBXvcTqVR2.git",
     "lanzaboote": "github:nix-community/lanzaboote",
     "license-list-data": "github:spdx/license-list-data",
     "microvm-nix": "github:microvm-nix/microvm.nix",
@@ -19,6 +20,8 @@
     "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "obsidian-bases-tasks": "git+https://rosa.radicle.network/z4FC12ufxa84RxepxeNMXm5PJUycy.git",
     "oisd": "github:sjhgvr/oisd",
+    "osu-tachyon-bin": "https://github.com/ppy/osu/releases/download/{version}-tachyon/osu.AppImage",
+    "space-mono": "github:googlefonts/spacemono",
     "tack": "github:manic-systems/tack",
     "xdg-utils-nu": "github:manic-systems/xdg-utils.nu"
   },
@@ -26,9 +29,9 @@
     "type": "github",
     "owner": "ezkea",
     "repo": "aagl-gtk-on-nix",
-    "rev": "fd3ebb4300888301dedfcd3bebaa6e5820701ea8",
-    "narHash": "sha256-xbYK7Qw0/MUuzbn7ViKmln+cXsunhJjkC4XP2dpHJOA=",
-    "lastModified": 1793811875
+    "rev": "412700c008b31afa56597e3c1f79735ef394bbc6",
+    "narHash": "sha256-hJRzVwJAeY/ZKe55G3ErOeIg663M6UevUhG+2Xt0D3o=",
+    "lastModified": 1794237553
   },
   "affinity-nix": {
     "type": "github",
@@ -37,6 +40,20 @@
     "rev": "0013d501101e91f9ba16b198d48b2cbeec6f5d80",
     "narHash": "sha256-X2bD4itaupSjjXf7gGCGyftRCGYtSfkXx3lI5kX14bs=",
     "lastModified": 1793921726
+  },
+  "breezex-cursor": {
+    "type": "github",
+    "owner": "ful1e5",
+    "repo": "breezex_cursor",
+    "rev": "912514f31a4a52b59dcd87d8d103443c5afb99eb",
+    "narHash": "sha256-P9LgQb3msq6YydK5RIk5yykUd9SL2GQbC4aH4F8LUF0=",
+    "lastModified": 1719895426,
+    "archive": {
+      "hash": "sha256-0sQA9/fbBvkbkyrHhhQPKoHNIN7LdZ3qO2ghrbK/kQI=",
+      "outHash": "sha256-ILicShR52Grg/Zy+NGy6JgojMX+rIVzgTWXgCZa+g5Y="
+    },
+    "tag": "v2.0.1",
+    "version": "2.0.1"
   },
   "cade": {
     "type": "github",
@@ -58,37 +75,37 @@
       "outHash": "sha256-GrsYhrYYZrMNSTMYjJpG5X0uwFEh47DNZFyzatWsaMY="
     }
   },
+  "dwproton-bin": {
+    "type": "fixed",
+    "url": "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-11.0-16/dwproton-11.0-16-x86_64.tar.xz",
+    "sha256": "sha256-ZXsOZu+wqYJCFbwIh6aPdYNVUXzE6qsxZMAZu2y5Umg=",
+    "unpack": "tarball",
+    "tag": "dwproton-11.0-16",
+    "version": "11.0-16"
+  },
   "fenix": {
     "type": "github",
     "owner": "nix-community",
     "repo": "fenix",
-    "rev": "73d5d48c1a5a12d37fc5d2eaf2667b050ce6c29a",
-    "narHash": "sha256-GqPS8gncHM8UKtLIFBRELQEA3jn+plxd8/XLfS4zdBE=",
-    "lastModified": 1793973596
+    "rev": "f8e0414b287d4a5c674ba9a7dd3fbe47d563246c",
+    "narHash": "sha256-s0LM0VgI+LQF+hqO96lyqfpyrux6xS8CgcxTjv+g8qU=",
+    "lastModified": 1794239082
   },
   "helium-flake": {
     "type": "github",
     "owner": "amaanq",
     "repo": "helium-flake",
-    "rev": "a7a4fc5016d1f33abfa534fa494dae540a7b7ef8",
-    "narHash": "sha256-Mt7SC8lr9XisvIsPGSIqHWLeM2x5sVB+Qtx5SYcWxlI=",
-    "lastModified": 1793905744
+    "rev": "72d88147285f4a2dd183460f6d06b1709823749c",
+    "narHash": "sha256-DhKcqLTODYxr/mstPAgink4lTj1a1p3DAce41cfeWm4=",
+    "lastModified": 1794230081
   },
   "hjem": {
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "8408642aa3035135fa6d70269dc93e0814e2a4f6",
-    "narHash": "sha256-hmlUXxCk6On7Hrop/TyS3//dgI2BLvaN4TEsOq1ma+Y=",
-    "lastModified": 1793333241
-  },
-  "kaktu5pkgs": {
-    "type": "git",
-    "url": "https://rosa.radicle.network/z3445hwtrioJCAisuAosBXvcTqVR2.git",
-    "ref": "HEAD",
-    "rev": "339b59152d8378a98035c946b752735059839e02",
-    "narHash": "sha256-JSqoGAmc3XbU+0GOdLjXEotJMUU7IKwjVKgOS9TSA5s=",
-    "lastModified": 1793045794
+    "rev": "28cec3017cc94842f919f8f294c8b7136216b79b",
+    "narHash": "sha256-tttNqwFIXsClznNv3uEltACsfBm8xIDo9bPl+BHqYZc=",
+    "lastModified": 1794190356
   },
   "lanzaboote": {
     "type": "github",
@@ -122,9 +139,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "ncro",
-    "rev": "2f6b57783cddf80d91b8828b9a29c248ccbbc5c7",
-    "narHash": "sha256-XYoLYHQtYrlxUqKk4zO/f7xmgryySj2yrr1FYz3cwwY=",
-    "lastModified": 1793630289
+    "rev": "714238e2c37c6ad166493167c23a3b93f9e6df55",
+    "narHash": "sha256-YgXNdmhiuKU0rIY8LbykYLc+GmeK345SvVPQ0qDo5/E=",
+    "lastModified": 1794234979
   },
   "nf": {
     "type": "git",
@@ -138,9 +155,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nh",
-    "rev": "c063ba16c9d954a0f42ba9be5fb2b5810a4de8fc",
-    "narHash": "sha256-YTRHibnanvLrmGPVMowNbKkbrksxBW3hErla5Kis/mo=",
-    "lastModified": 1793576535
+    "rev": "d165bcc2d41a5c5c0aed4def351a9d770a3e1f69",
+    "narHash": "sha256-Hr/0O3CpOWGrvIkBMRko/TyXPjVB8Hsf7xhjbFHF6sc=",
+    "lastModified": 1794170686
   },
   "nix-secrets": {
     "type": "github",
@@ -210,29 +227,64 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "a085d9b2d19100005e07acac7fcc0a58c280e712",
-    "narHash": "sha256-+spHo/QX50C1rum9xlCT4NBgk9QIVko+KbvaK4hxpxw=",
-    "lastModified": 1794048139,
+    "rev": "6a10df01a060e3dbfb5f59bf136f926b86d5bd71",
+    "narHash": "sha256-BfQRs156BmkYl6wzBZ5ppPq4t8fJivCgXsQYByxWJds=",
+    "lastModified": 1794249363,
     "archive": {
-      "hash": "sha256-da8FmMbbWe1AL/kycrkJqw4Is5qYnPFXqRh/idcSPDc=",
-      "outHash": "sha256-m6iB+L2h2ElyTW2QimVZP+vZYwXTgs+FLw7oVOVWKlI="
+      "hash": "sha256-OfZO1uOq0NP1NYbqZcs+GLeq0W0Q5YJsDmqcv4Pi1Rw=",
+      "outHash": "sha256-Ha5BWZ9YLHJN2TRuWYhcrFTL/vMR8wNJGkbnbKfcN8w="
     }
+  },
+  "osu-tachyon-bin": {
+    "type": "fixed",
+    "url": "https://github.com/ppy/osu/releases/download/2026.1026.0-tachyon/osu.AppImage",
+    "sha256": "sha256-gF6wrkVfdSolzYXX/Y9ZHqjlKD7fwbm7eJ1NrdQuiwA=",
+    "unpack": "file",
+    "tag": "2026.1026.0-tachyon",
+    "version": "2026.1026.0"
   },
   "rust-overlay": {
     "type": "github",
     "owner": "oxalica",
     "repo": "rust-overlay",
-    "rev": "87ffb7f777aef2e2647fd8fd718a5b3cbc825588",
-    "narHash": "sha256-vQHkG9lwSHJI3MVnyilP50hWW3TNnBWFTbLIurWgPhI=",
-    "lastModified": 1792087235
+    "rev": "b70538330f20adc9665afa2976471eb5b85ebd1f",
+    "narHash": "sha256-J+4v+Olc/2mN/bSc9CuAQ/PB7c0w1mzDJK8JvS7rKmM=",
+    "lastModified": 1794216702
+  },
+  "space-mono": {
+    "type": "github",
+    "owner": "googlefonts",
+    "repo": "spacemono",
+    "rev": "329858c2c4dbd3476f972a4ae00624b018cf4b81",
+    "narHash": "sha256-qIeq90N3Mh8MBeZZp1QfBj33zTQNiv8k2vec1nFrdNY=",
+    "lastModified": 1737126260,
+    "archive": {
+      "hash": "sha256-0DqY5uGiNrEZunLB87ROzGdZgKqZO19dJEotppa/CG8=",
+      "outHash": "sha256-MRRwQHlBlmjcDLT6wgqsUSVF6H288gZ0xR3mYjsy5zo="
+    }
   },
   "tack": {
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "cd02f41558f0ccf8b1ae67fd96950ed0e6553129",
-    "narHash": "sha256-NkEQK3h5pn39Cj4zMf/EYoxUo0/SNnkR0yGaYvJ96DA=",
-    "lastModified": 1794039014
+    "rev": "f59bc3e6679df14d402e40bf895cc2533bae4ca2",
+    "narHash": "sha256-ZK5sfTsvSo9VYEi8mAVtfu5FUFvMYoGMn6+CYzS1pPU=",
+    "lastModified": 1794242539,
+    "patched": {
+      "path": "/nix/store/g35ji8k7gaxn9q4shv4s68f772anbwb3-source",
+      "narHash": "sha256-m+rIAlmXUyvVfHO8HkK1KHQKLo2Qdj4tKu5hBenAWnQ=",
+      "lastModified": 1794242539,
+      "patches": [
+        {
+          "source": "github:manic-systems/tack/pull/209",
+          "url": "https://github.com/manic-systems/tack/pull/209",
+          "file": "patches/tack/pr-209.patch",
+          "sha256": "8f51041e3b71d723726f962872fec6af900628394fd4f9324c9db208b0e20f8d",
+          "head": "e6395e780fd98795b27088b5280e4f792498aca9"
+        }
+      ],
+      "diff": "0150bdd3e19aa768755bc51fc55e428ecece3097091e77263474a2e398da85a1"
+    }
   },
   "xdg-utils-nu": {
     "type": "github",

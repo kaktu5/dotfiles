@@ -11,11 +11,10 @@
   inherit (lib.lists) concatMap optional singleton;
 
   mkSpecialArgs = system: let
-    inputs' = inputs |> selectSystem system ["legacyPackages" "packages"];
-  in {
-    inherit inputs inputs' lib;
     flake = self;
-  };
+    flake' = flake // {packages = flake.packages.${system};};
+    inputs' = inputs |> selectSystem system ["legacyPackages" "packages"];
+  in {inherit flake flake' inputs inputs' lib;};
 
   hostsPath = ../hosts;
   modulesPath = ../modules;

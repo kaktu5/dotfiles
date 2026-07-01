@@ -26,13 +26,12 @@
 │       ├── microvm/
 │       ├── server/
 │       └── workstation/
+├── pkgs/                - Custom package collection
 └── secrets/             - Encrypted secrets managed via nix-secrets
 ```
 
 ## Related projects
 
-- [kaktu5pkgs](https://radicle.network/nodes/rosa.radicle.network/rad:z3445hwtrioJCAisuAosBXvcTqVR2) - a custom Nix
-  package collection
 - [nf](https://radicle.network/nodes/rosa.radicle.network/rad:z3EZi6d3LccUz1s6UmMfuoPJfMdZ) - my personal Neovim
   configuration
 

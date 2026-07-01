@@ -1,7 +1,6 @@
 *
 !/**/
 !.gitignore
-
 !/.tack/default.nix
 !/.tack/diffs/*.diff
 !/.tack/patches/**/*.patch
@@ -24,6 +23,8 @@
 !/modules/**/*.nix
 !/modules/**/*.nu
 !/modules/**/*.patch
+
+!/pkgs/*.nix
 
 !/secrets/**/*.enc
 

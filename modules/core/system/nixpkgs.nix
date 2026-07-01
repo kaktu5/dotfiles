@@ -1,10 +1,10 @@
 {
-  inputs,
+  flake,
   lib,
   pkgs,
   ...
 }: let
-  inherit (inputs.kaktu5pkgs.overlays) kaktu5pkgs;
+  inherit (flake.overlays) ktu5;
   inherit (lib.lists) singleton;
 in {
   nixpkgs = {
@@ -16,7 +16,7 @@ in {
     };
 
     overlays = [
-      kaktu5pkgs
+      ktu5
     ];
   };
 

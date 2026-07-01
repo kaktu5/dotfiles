@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: EUPL-1.2
 # tack-managed resolver. delete this line to take ownership; tack will leave it alone afterwards.
-# tack-resolver: patched patchedDiff tag version signedBy groups archive defaultType
+# tack-resolver: patched patchedDiff tag version signedBy groups archive defaultType nestedGroups
 
 let
   inherit (builtins)
@@ -50,10 +50,31 @@ let
     else
       value;
 
+  isPinGroup =
+    entry:
+    isAttrs entry
+    && entry != { }
+    && !(entry ? url)
+    && all isAttrs (attrValues entry)
+    && any (pin: pin ? url) (attrValues entry);
+
+  flattenInputs =
+    inputs:
+    foldl' (
+      acc: name:
+      let
+        entry = inputs.${name};
+      in
+      acc
+      // (
+        if isPinGroup entry then mapAttrs (_: pin: pin // { group = name; }) entry else { ${name} = entry; }
+      )
+    ) { } (attrNames inputs);
+
   pinsOf =
     toml:
     mapAttrs (_: pin: if pin ? group then (toml.groups or { }).${pin.group} or { } // pin else pin) (
-      toml.inputs or { }
+      flattenInputs (toml.inputs or { })
     );
 
   knownTypes = [

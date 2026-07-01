@@ -8,7 +8,7 @@
   inherit (config.kkts.profiles) gaming;
   inherit (lib.lists) elem singleton;
   inherit (lib.modules) mkIf;
-  inherit (pkgs.ktu5) osu-lazer-bin;
+  inherit (pkgs.ktu5) osu-tachyon-bin;
 in
   mkIf (gaming.enable && elem "osu" gaming.games) {
     persistence.users.${userName} = {
@@ -20,7 +20,5 @@ in
       };
     };
 
-    users.users.${userName}.packages = [
-      (osu-lazer-bin.override {releaseStream = "tachyon";})
-    ];
+    users.users.${userName}.packages = [osu-tachyon-bin];
   }
