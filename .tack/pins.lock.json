@@ -141,6 +141,14 @@
     "narHash": "sha256-26FbceKgybcbwkIvs2yHsF5jHcWLEkITYg5g9WPSy64=",
     "lastModified": 1790495762
   },
+  "tack": {
+    "type": "github",
+    "owner": "manic-systems",
+    "repo": "tack",
+    "rev": "48db62a88aa1ccd91fedd157987ed18163bddc80",
+    "narHash": "sha256-M6WiozaXm4M13w6ygfqo+OwMsIgqVwbiGSwosXd3WAM=",
+    "lastModified": 1790877215
+  },
   "xdg-utils-nu": {
     "type": "github",
     "owner": "manic-systems",
