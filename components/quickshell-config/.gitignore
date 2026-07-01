@@ -4,5 +4,5 @@
 !/Bar.qml
 !/Config.qml
 !/Osd.qml
-!/module.nix
+!/package.nix
 !/shell.qml

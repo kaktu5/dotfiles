@@ -1,17 +1,14 @@
 {
-  config,
   lib,
-  pkgs,
-  ...
+  symlinkJoin,
+  writeTextDir,
+  monitors,
+  theme,
 }: let
-  inherit (config.kkts.hardware.monitors) primaryMonitor;
-  inherit (config.kkts.meta) userName;
-  inherit (config.kkts.theme.colors) hex';
-  inherit (config.kkts.theme.fonts.sizes) pt;
   inherit (lib.fileset) toSource unions;
-  inherit (lib.kkts.systemd) mkGraphicalTargetService;
-  inherit (lib.meta) getExe;
-  inherit (pkgs) quickshell symlinkJoin writeTextDir;
+  inherit (monitors) primaryMonitor;
+  inherit (theme.colors) hex';
+  inherit (theme.fonts.sizes) pt;
 
   srcDir = toSource {
     root = ./.;
@@ -56,24 +53,8 @@
       }
     }
   '';
-
-  configDir = symlinkJoin {
-    name = "quickshell-config-dir";
+in
+  symlinkJoin {
+    name = "quickshell-config";
     paths = [srcDir configFile];
-  };
-in {
-  persistence.users.${userName}.directories = [".local/cache/quickshell"];
-
-  hjem.users.${userName}.systemd.services.quickshell = mkGraphicalTargetService {
-    environment = {
-      QS_CONFIG_PATH = configDir;
-      QS_DISABLE_FILE_WATCHER = "1";
-      QS_NO_RELOAD_POPUP = "1";
-    };
-
-    serviceConfig = {
-      ExecStart = getExe quickshell;
-      Slice = "graphical.slice";
-    };
-  };
-}
+  }
