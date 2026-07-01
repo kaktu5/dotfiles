@@ -59,9 +59,9 @@
     "type": "git",
     "url": "https://rosa.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
     "ref": "HEAD",
-    "rev": "406a81c1d02c6309f947c929833415643ffa2a3a",
-    "narHash": "sha256-uORhJkYcl7NuroZeL58BiBXsCsJvPBG61O2cs2M72hM=",
-    "lastModified": 1784920964
+    "rev": "710ecd298b8ea18a851561541892a322bbbaf386",
+    "narHash": "sha256-46S0vFtg3v9Y0YXFe6HOFp3EgStrHMEA23aoGZdVRWs=",
+    "lastModified": 1784982672
   },
   "nixexprs": {
     "type": "github",
