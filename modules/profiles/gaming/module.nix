@@ -10,6 +10,7 @@
 in {
   imports = [
     ./config.nix
+    ./kerbal-space-program.nix
     ./mangohud.nix
     ./minecraft.nix
     ./osu.nix
@@ -21,6 +22,8 @@ in {
     enable = mkEnableOption "gaming profile";
 
     mangohud.enable = mkEnableOption "mangohud" // {default = cfg.enable;};
+
+    kerbalSpaceProgram.enable = mkEnableOption "Kerbal Space Program";
 
     minecraft.enable = mkEnableOption "Minecraft";
 
