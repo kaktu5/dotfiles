@@ -8,13 +8,14 @@
   inherit (config.kkts.meta) userName;
   inherit (inputs) lanzaboote;
   inherit (lib.lists) optionals singleton;
+  inherit (lib.modules) mkIf;
   inherit (pkgs) sbctl tpm2-tools;
 
   cfg = config.boot.lanzaboote;
 in {
   imports = [lanzaboote.nixosModules.default];
 
-  persistence = {
+  persistence = mkIf cfg.enable {
     directories =
       singleton {
         target = cfg.pkiBundle;
@@ -32,7 +33,7 @@ in {
       ];
   };
 
-  users.users.${userName}.packages = [sbctl tpm2-tools];
+  users.users.${userName}.packages = optionals cfg.enable [sbctl tpm2-tools];
 
   boot = {
     loader.efi.canTouchEfiVariables = true;
@@ -60,7 +61,6 @@ in {
 
       measuredBoot = {
         enable = true;
-
         pcrlockPolicy = "/var/lib/systemd/pcrlock/policy.json";
       };
     };
