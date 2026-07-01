@@ -9,8 +9,7 @@
     bantime-increment = {
       enable = true;
       multipliers = "1 7 14";
-      maxtime = "${24 * 14 + 12}h";
-      rndtime = "12h";
+      maxtime = "${24 * 14}h";
     };
   };
 }
