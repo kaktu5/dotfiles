@@ -9,11 +9,15 @@
 in {
   imports = [
     ./config.nix
+    ./mangohud.nix
     ./steam.nix
   ];
 
   options.kkts.profiles.gaming = {
     enable = mkEnableOption "gaming profile";
+
+    mangohud.enable = mkEnableOption "mangohud" // {default = cfg.enable;};
+
     steam.enable = mkEnableOption "steam";
   };
 }
