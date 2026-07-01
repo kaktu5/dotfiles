@@ -1,6 +1,21 @@
 {
   "$declared": {
-    "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
+    "aagl-gtk-on-nix": "github:ezkea/aagl-gtk-on-nix",
+    "cade": "github:manic-systems/cade?rev=3211f782a53f94842bbb8782de03a2c5d85c793d",
+    "dnscrypt-settings": "github:quad9dns/dnscrypt-settings",
+    "helium-flake": "github:amaanq/helium-flake",
+    "hjem": "github:feel-co/hjem",
+    "lanzaboote": "github:nix-community/lanzaboote",
+    "license-list-data": "github:spdx/license-list-data",
+    "microvm": "github:microvm-nix/microvm.nix",
+    "nf": "git+https://iris.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
+    "nix-secrets": "github:unnamed-systems/nix-secrets",
+    "nixexprs": "github:kaktu5/nixexprs",
+    "nixos-core": "github:manic-systems/nixos-core",
+    "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
+    "oisd": "github:sjhgvr/oisd",
+    "tack": "github:manic-systems/tack",
+    "xdg-utils-nu": "github:manic-systems/xdg-utils.nu"
   },
   "aagl-gtk-on-nix": {
     "type": "github",
@@ -82,14 +97,6 @@
     "narHash": "sha256-33a6iTG1uFv12/zV8yo5VvdpftMNQms6TIHhMCVN6zE=",
     "lastModified": 1790526615
   },
-  "millennium": {
-    "type": "github",
-    "owner": "steamclienthomebrew",
-    "repo": "millennium",
-    "rev": "847e0dad6c33ab9f11bdd4e7ca2e90cd26aef416",
-    "narHash": "sha256-kk+bzZx7d+noy1YPrbt2Z0GBUzxKykU/+1clGCIPHQ8=",
-    "lastModified": 1790520975
-  },
   "nf": {
     "type": "git",
     "url": "https://iris.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
@@ -146,9 +153,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "2f534eb9d77d5aee61292ae8a20482039546056b",
-    "narHash": "sha256-1xANA8VCn6qF5Az5vlVn1vCopEMoiFzyqS4iPGYad3w=",
-    "lastModified": 1790867407
+    "rev": "556c2cd1623138bf08ff51554d30153c0b8989df",
+    "narHash": "sha256-D+gCYnu1X5TORcg2voijAM/H/FUxeHs70tJMJ9hDzZ0=",
+    "lastModified": 1790878083
   },
   "rust-overlay": {
     "type": "github",
