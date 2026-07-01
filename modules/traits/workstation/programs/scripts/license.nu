@@ -1,47 +1,35 @@
-module license_m {
-  def license-id []: string -> string {
-    $in | path basename | str replace ".txt" ""
+module license {
+  const spdx_dir = "@spdxTexts@"
+
+  def spdx-ids []: nothing -> list<string> {
+    ls --short-names $spdx_dir | get name | sort
   }
 
-  def find-license [id: string]: nothing -> string {
-    let target = ($id | str lowercase)
-    let matches: list<string> = (
-      ls "@texts@"
-      | get name
-      | where {|f| ($f | license-id | str lowercase) == $target}
-    )
-    $matches | get 0?
+  def find-license [spdx: string]: nothing -> oneof<path, nothing> {
+    let target = $spdx | str lowercase
+    let id = spdx-ids | where {|id| ($id | str lowercase) == $target } | get 0?
+    if $id != null { $spdx_dir | path join $id }
   }
 
-  export def "license find" [filter?: string]: nothing -> table<id: string> {
-    let ids = (
-      ls "@texts@"
-      | get name
-      | each {license-id}
-      | sort
-    )
-
-    if ($filter | is-empty) {
-      $ids | wrap id
-    } else {
-      $ids | where {$in | str contains -i $filter} | wrap id
-    }
-  }
-
-  export def "license init" [
-    id: string # SPDX identifier
-    --output(-o): string = "license"
+  # Initialize a license file
+  export def main [
+    spdx: string@spdx-ids # SPDX identifier
+    --output(-o): path = "license" # Where to write the license
+    --force(-f) # Overwrite the output file if it exists
   ]: nothing -> nothing {
-    let file = (find-license $id)
+    let file = find-license $spdx
 
-    if ($file | is-empty) {
-      print -e $"Unknown SPDX identifier: ($id)"
-      exit 1
+    if $file == null {
+      error make {
+        msg: $"Unknown SPDX identifier: ($spdx)"
+        label: {
+          text: "not a known SPDX license"
+          span: (metadata $spdx).span
+        }
+      }
     }
 
-    cp $file $output
+    open --raw $file | save --force=$force $output
   }
-
-  export def license []: nothing -> nothing {}
 }
-use license_m *
+use license
