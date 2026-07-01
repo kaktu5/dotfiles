@@ -9,10 +9,16 @@
   inherit (config) nix;
   inherit (config.networking) hostName;
   inherit (inputs) nix-secrets;
+  inherit (lib.lists) singleton;
   inherit (lib.meta) getExe;
   inherit (pkgs) age;
 in {
   imports = [nix-secrets.nixosModules.default];
+
+  preservation.preserveAt."/persist".files = singleton {
+    file = "/etc/nix-secrets/key";
+    mode = "400";
+  };
 
   security.nix-secrets = {
     enable = true;
@@ -22,7 +28,7 @@ in {
 
     nixEvalCommand = "${getExe nix.package} eval --raw --read-only";
 
-    identityPaths = ["/etc/age/keys"];
+    identityPaths = ["/etc/nix-secrets/key"];
     defaultRecipients = [hostName];
 
     storage = flake + /secrets;
