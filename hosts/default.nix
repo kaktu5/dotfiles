@@ -13,4 +13,10 @@ in
       arch = "x86_64";
       traits = ["bare-metal" "graphical" "laptop" "workstation"];
     };
+
+    # vps, 2 vcpus, 2gb
+    hale = {
+      arch = "x86_64";
+      traits = ["bare-metal" "headless" "server"];
+    };
   })
