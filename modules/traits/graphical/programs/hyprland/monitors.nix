@@ -10,8 +10,8 @@ in {
     monitors
     |> mapAttrs (_: m: {
       mode = "${m.resolution.w}x${m.resolution.h}@${m.refreshRate}";
-      position = "${m.position.x}x${m.position.y}";
       inherit (m) scale;
+      position = "${m.position.x}x${m.position.y}";
       transform =
         {
           "0" = 0;
@@ -19,5 +19,9 @@ in {
           "180" = 2;
           "270" = 3;
         }."${m.rotation}";
+      vrr =
+        if m.variableRefreshRate
+        then 2 # fullscreen only
+        else 0; # off
     });
 }

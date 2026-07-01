@@ -1,5 +1,5 @@
 {lib, ...}: let
-  inherit (lib.options) mkOption;
+  inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.types) attrsOf enum float int nullOr str submodule;
   inherit (lib.types.ints) positive;
 in {
@@ -39,6 +39,8 @@ in {
             type = enum [0 90 180 270];
             default = 0;
           };
+
+          variableRefreshRate = mkEnableOption "variable refresh rate support";
         };
       });
       default = {};

@@ -28,6 +28,7 @@
           h = 1200;
         };
         refreshRate = 60;
+        variableRefreshRate = true;
       };
     };
   };
