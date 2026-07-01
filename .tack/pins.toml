@@ -17,7 +17,7 @@ preservation.url = "github:nix-community/preservation"
 stash.url = "github:notashelf/stash"
 tack.url = "github:manic-systems/tack"
 tuigreet.url = "github:notashelf/tuigreet"
-vaultix.url = "github:kaktu5/vaultix"
+vaultix.url = "github:milieuim/vaultix"
 xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 
 dnscrypt-settings = {type = "fetch", url = "github:quad9dns/dnscrypt-settings"}
