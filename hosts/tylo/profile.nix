@@ -2,17 +2,11 @@
   kkts.profiles.gaming = {
     enable = true;
 
-    kerbalSpaceProgram.enable = true;
-
-    minecraft.enable = true;
-
-    osu.enable = true;
+    games = ["kerbal-space-program" "minecraft" "osu" "zenless-zone-zero"];
 
     steam = {
       enable = true;
       games = ["factorio"];
     };
-
-    zenlessZoneZero.enable = true;
   };
 }

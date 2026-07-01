@@ -2,7 +2,7 @@
   kkts.profiles.gaming = {
     enable = true;
 
-    osu.enable = true;
+    games = ["minecraft" "osu"];
 
     steam = {
       enable = true;
