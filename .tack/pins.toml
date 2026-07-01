@@ -13,6 +13,8 @@ nixexprs.url = "github:kaktu5/nixexprs"
 
 hjem.url = "github:feel-co/hjem"
 microvm.url = "github:microvm-nix/microvm.nix"
+# nixos-core.url = "github:manic-systems/nixos-core"
+nixos-core.url = "github:kaktu5/nixos-core"
 preservation.url = "github:nix-community/preservation"
 stash.url = "github:notashelf/stash"
 tack.url = "github:manic-systems/tack"

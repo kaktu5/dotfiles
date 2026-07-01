@@ -39,6 +39,14 @@
     "narHash": "sha256-8UdlGALIa9qBHNfMBSqdukQspgKJDwul55Cr6c8ZAGw=",
     "lastModified": 1780940893
   },
+  "nixos-core": {
+    "type": "github",
+    "owner": "kaktu5",
+    "repo": "nixos-core",
+    "rev": "3c820efbadfcd81a12c7b503f7c67dc168238ad0",
+    "narHash": "sha256-5+pK/jC0HAjOro4gjMjKN56B6gFWFDY7pcI3lYcwxqA=",
+    "lastModified": 1783016346
+  },
   "nixpkgs": {
     "type": "tarball",
     "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1024265.b5aa0fbd5389/nixexprs.tar.xz",
