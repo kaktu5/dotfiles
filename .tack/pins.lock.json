@@ -3,7 +3,7 @@
     "aagl-gtk-on-nix": "github:ezkea/aagl-gtk-on-nix",
     "affinity-nix": "github:mrshmllow/affinity-nix",
     "breezex-cursor": "github:ful1e5/breezex_cursor",
-    "cade": "github:manic-systems/cade?rev=3211f782a53f94842bbb8782de03a2c5d85c793d",
+    "cade": "github:manic-systems/cade",
     "dnscrypt-settings": "github:quad9dns/dnscrypt-settings",
     "dwproton-bin": "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-{version}/dwproton-{version}-x86_64.tar.xz",
     "fenix": "github:nix-community/fenix",
@@ -59,9 +59,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "3211f782a53f94842bbb8782de03a2c5d85c793d",
-    "narHash": "sha256-Xrwc9hgghoOp2ySoBY1Mbyyi8mkR/HBHdFQ+5ATfikU=",
-    "lastModified": 1788925586
+    "rev": "27fb0673c096460652ab4e3b1908d80a9c449597",
+    "narHash": "sha256-mEIH9wqp2xbjQ+zx9iGQirAUwvD4NKUuiNimoGY8xUI=",
+    "lastModified": 1794239728
   },
   "dnscrypt-settings": {
     "type": "github",
@@ -87,17 +87,17 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "fenix",
-    "rev": "f8e0414b287d4a5c674ba9a7dd3fbe47d563246c",
-    "narHash": "sha256-s0LM0VgI+LQF+hqO96lyqfpyrux6xS8CgcxTjv+g8qU=",
-    "lastModified": 1794239082
+    "rev": "ca76a73ea01846db922226eb1b0e79edcc1ac84d",
+    "narHash": "sha256-+HNx0p53q+xTeRdLQHD8+BI/ONTyZCwvp1PnSc2q9Bo=",
+    "lastModified": 1794321494
   },
   "helium-flake": {
     "type": "github",
     "owner": "amaanq",
     "repo": "helium-flake",
-    "rev": "72d88147285f4a2dd183460f6d06b1709823749c",
-    "narHash": "sha256-DhKcqLTODYxr/mstPAgink4lTj1a1p3DAce41cfeWm4=",
-    "lastModified": 1794230081
+    "rev": "20568958fc47239af0a4ac7441bc52357ca95f7d",
+    "narHash": "sha256-0dKSs9yz1zJ5Fr1ouWRoc3pCSm16Dq1NiGe0INkDKJc=",
+    "lastModified": 1794313532
   },
   "hjem": {
     "type": "github",
@@ -139,9 +139,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "ncro",
-    "rev": "714238e2c37c6ad166493167c23a3b93f9e6df55",
-    "narHash": "sha256-YgXNdmhiuKU0rIY8LbykYLc+GmeK345SvVPQ0qDo5/E=",
-    "lastModified": 1794234979
+    "rev": "7b1ff495b884fe955d36e1f8b87ed0491b33fa38",
+    "narHash": "sha256-vdj4674VD2Hf0iKv0JMME2Kblrm0dYFfJ4pZbG6Uki0=",
+    "lastModified": 1794268615
   },
   "nf": {
     "type": "git",
@@ -227,21 +227,21 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "6a10df01a060e3dbfb5f59bf136f926b86d5bd71",
-    "narHash": "sha256-BfQRs156BmkYl6wzBZ5ppPq4t8fJivCgXsQYByxWJds=",
-    "lastModified": 1794249363,
+    "rev": "eeb6711dfcf1be7f7e2ad7dfd53b64affe10575f",
+    "narHash": "sha256-oA5DoQpkQbUZkpD69W6epfY/M7sR6MOw3Q1gxx/fB9U=",
+    "lastModified": 1794345512,
     "archive": {
-      "hash": "sha256-OfZO1uOq0NP1NYbqZcs+GLeq0W0Q5YJsDmqcv4Pi1Rw=",
-      "outHash": "sha256-Ha5BWZ9YLHJN2TRuWYhcrFTL/vMR8wNJGkbnbKfcN8w="
+      "hash": "sha256-qMlmzJF7iK7+rKXcPAdcygO8rjx2RPM+uRPWiD5BiwI=",
+      "outHash": "sha256-EUsz4OpS7igPEY+O3ZGpxBZg642I93VTdb546vIMRZg="
     }
   },
   "osu-tachyon-bin": {
     "type": "fixed",
-    "url": "https://github.com/ppy/osu/releases/download/2026.1026.0-tachyon/osu.AppImage",
-    "sha256": "sha256-gF6wrkVfdSolzYXX/Y9ZHqjlKD7fwbm7eJ1NrdQuiwA=",
+    "url": "https://github.com/ppy/osu/releases/download/2026.1110.0-tachyon/osu.AppImage",
+    "sha256": "sha256-r/0qhHPUFnBQnZix4MNiGUBhU5S3ptSxnHfJsG9aKoo=",
     "unpack": "file",
-    "tag": "2026.1026.0-tachyon",
-    "version": "2026.1026.0"
+    "tag": "2026.1110.0-tachyon",
+    "version": "2026.1110.0"
   },
   "rust-overlay": {
     "type": "github",
@@ -290,8 +290,8 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "xdg-utils.nu",
-    "rev": "58a66bd16f7b73b4c208fc49ba5c9be94288a5c1",
-    "narHash": "sha256-22zcu35CtaStsViRyu11iiARkIbDFzBo2b74VAWwpDE=",
-    "lastModified": 1792820624
+    "rev": "e4541a6ac913bd271e4af643864b66ab9792a906",
+    "narHash": "sha256-bn0+cdlefJhWJR0jNPJIM2dNhpPiX7SRsMuwqzegpEA=",
+    "lastModified": 1794264376
   }
 }
