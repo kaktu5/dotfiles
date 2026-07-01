@@ -127,7 +127,19 @@
     "repo": "nixos-core",
     "rev": "81590b0cad964baec77c05294e24fcc53d5a4ec4",
     "narHash": "sha256-tfqyNBUyHpDX4AaNtE8YQkQbG73bkRqqCm8TEbtKBf0=",
-    "lastModified": 1790670188
+    "lastModified": 1790670188,
+    "patched": {
+      "path": "/nix/store/dcqvvk6iixsj33zfv293v5hk7hzf5xcm-source",
+      "narHash": "sha256-+Ztmvw91Rx3C77ASUpJX8TBrFP+X3YJ6q2LDk4bMmgs=",
+      "lastModified": 1790670188,
+      "patches": [
+        {
+          "source": "patches/nixos-core/dont-create-home-dirs.patch",
+          "file": "patches/nixos-core/dont-create-home-dirs.patch",
+          "sha256": "7e9422e43bc7be59836d3b0cec9d0911681698293a7bfc3163d51269a86ac686"
+        }
+      ]
+    }
   },
   "nixpkgs": {
     "type": "tarball",

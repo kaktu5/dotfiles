@@ -23,7 +23,9 @@ hjem.url = "github:feel-co/hjem"
 lanzaboote = {follows.pre-commit = "", url = "github:nix-community/lanzaboote"}
 microvm = {follows.spectrum = "", url = "github:microvm-nix/microvm.nix"}
 nix-secrets.url = "github:unnamed-systems/nix-secrets"
-nixos-core.url = "github:manic-systems/nixos-core"
+nixos-core = {patches = [
+  "patches/nixos-core/dont-create-home-dirs.patch",
+], url = "github:manic-systems/nixos-core"}
 tack.url = "github:manic-systems/tack"
 xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 

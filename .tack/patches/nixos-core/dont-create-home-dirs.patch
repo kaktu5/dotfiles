@@ -1,0 +1,25 @@
+From caa0372ca569f29dfbe7567293fdf3db2569278c Mon Sep 17 00:00:00 2001
+From: kaktu5 <108426150+kaktu5@users.noreply.github.com>
+Date: Fri, 2 Oct 2026 17:11:03 +0200
+Subject: [PATCH] dont create home dirs
+
+---
+ nix/modules/nixos.nix | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/nix/modules/nixos.nix b/nix/modules/nixos.nix
+index 92afe97..dd5cc90 100644
+--- a/nix/modules/nixos.nix
++++ b/nix/modules/nixos.nix
+@@ -465,8 +465,6 @@ in {
+         script = mkOption {
+           type = lines;
+           default = ''
+-            install -m 0700 -d /root
+-            install -m 0755 -d /home
+             export NIXOS_CORE_STATE_DIR=${escapeShellArg cfg.stateDir}
+             ${getExe' cfg.package "update-users-groups"} ${usersSpec}
+           '';
+-- 
+2.55.0
+
