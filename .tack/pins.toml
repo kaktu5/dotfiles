@@ -23,6 +23,7 @@ helium-flake.url = "github:amaanq/helium-flake"
 hjem.url = "github:feel-co/hjem"
 lanzaboote = { omit_inputs = ["pre-commit"], url = "github:nix-community/lanzaboote" }
 microvm-nix = { omit_inputs = ["spectrum"], url = "github:microvm-nix/microvm.nix" }
+nh.url = "github:nix-community/nh"
 nix-secrets.url = "github:unnamed-systems/nix-secrets"
 nixos-core = { patches = [
   "patches/nixos-core/dont-create-home-dirs.patch",

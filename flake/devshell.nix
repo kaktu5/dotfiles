@@ -3,6 +3,7 @@
   lib,
   pkgs,
 }: let
+  inherit (inputs'.nh.packages) nh;
   inherit (inputs'.nix-secrets.packages) nix-secrets;
   inherit (inputs'.tack.packages) tack;
   inherit (lib.attrsets) attrValues;
@@ -27,8 +28,8 @@ in
       inherit (pkgs) age;
 
       # nix
-      inherit nix-secrets tack;
-      inherit (pkgs) alejandra dix nh nixd;
+      inherit nh nix-secrets tack ;
+      inherit (pkgs) alejandra dix nixd;
 
       # qml
       inherit (pkgs) quickshell;
