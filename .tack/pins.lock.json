@@ -11,17 +11,17 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "d119b4f3d1199209f571b7bfdeebc0cf20c04ae6",
-    "narHash": "sha256-7PKZV/3rH0SYioQUBWBVE2f4pJoqe4hbyrSLFRaH/e8=",
-    "lastModified": 1786834477
+    "rev": "3211f782a53f94842bbb8782de03a2c5d85c793d",
+    "narHash": "sha256-Xrwc9hgghoOp2ySoBY1Mbyyi8mkR/HBHdFQ+5ATfikU=",
+    "lastModified": 1788925586
   },
   "crane": {
     "type": "github",
     "owner": "ipetkov",
     "repo": "crane",
-    "rev": "692f7e9ef2ece8125b466f66f2af532b3edaed0d",
-    "narHash": "sha256-lWhBbBvC05/xwivKBBiM2YNizpmgqCgyOIzomvRuwxs=",
-    "lastModified": 1787326676
+    "rev": "eb35abda9f232cc6610b1d1e3200d15c49b7ac54",
+    "narHash": "sha256-Y1/TTVXjYXGF068IThQH9fPSZ0SIE74PABlUxnWTUH0=",
+    "lastModified": 1788465171
   },
   "dnscrypt-settings": {
     "type": "github",
@@ -51,9 +51,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "lanzaboote",
-    "rev": "d2326588612480c96d5fefb885f57b4660a85584",
-    "narHash": "sha256-C4/tvPY34n/YfQZUIMRNAHzidAG+qUaU6qBqd07OS2c=",
-    "lastModified": 1788173567
+    "rev": "03bc477f555adfe314af48ec0d3554f10d3390d8",
+    "narHash": "sha256-VkqjGPfG3aQGv+cgS/VbwNIR7yiXoLcUJih/tAdLv50=",
+    "lastModified": 1788769372
   },
   "microvm": {
     "type": "github",
@@ -91,31 +91,31 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "1793b22bfe73e077ecce0ead2d8ab51ca54efdf7",
-    "narHash": "sha256-BNHNzU37v7zoUqKH/7fI3LA2ttFEbl2LxBtC+t7SlEE=",
-    "lastModified": 1788804738
+    "rev": "c65bbdee8d52c1219a721a39b7427b82ea377b9f",
+    "narHash": "sha256-UU72d6f9S0qBXaVTYL8vmLhIVuugSFONQL2zYQzcP30=",
+    "lastModified": 1788952165
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1068089.c043004d1c69/nixexprs.tar.zst",
-    "rev": "c043004d1c6985732bcc1cbc5a9c9aecbbb4e0f0",
-    "narHash": "sha256-PRK1fSEiAcO29DkUoOlsVLGYRK3h1YKVr+qQJB0VcYQ="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1070770.8ce4ef6cb6f8/nixexprs.tar.zst",
+    "rev": "8ce4ef6cb6f871616146b9fe26d2a5ae594e94fe",
+    "narHash": "sha256-q+GdZ3yq4Y2LXHRK0vKTM32Hwy7RCgUgy+hjwZLI5pY="
   },
   "oisd": {
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "81f5b0d3caf13c574faf13a313a2c299604bf4fd",
-    "narHash": "sha256-7nsXhlAbKEcK0wu6H8NZdGf4KsOir2prGVN1YGUFrsg=",
-    "lastModified": 1788708264
+    "rev": "2ccbd16bbeff15c30a8425287a24a00122a6983a",
+    "narHash": "sha256-9QoCYv8yVp1ILQBVAkfyTqm4CwLQZeO82+ej5nnBsZU=",
+    "lastModified": 1789049415
   },
   "rust-overlay": {
     "type": "github",
     "owner": "oxalica",
     "repo": "rust-overlay",
-    "rev": "89e26eeaafa88a2ede4778734acc794ff0299beb",
-    "narHash": "sha256-c20YZQKzQ27qC6Wh729fWRTpI7oV4+7Ur4icKssD4Wc=",
-    "lastModified": 1788077403
+    "rev": "4748ec2f5ed4a881474ed4c98aa71a5308cdac8d",
+    "narHash": "sha256-pcqbpV4ZI79al6KAlr+WJjaEo/PYfgctRlG43D5BSJM=",
+    "lastModified": 1788678114
   },
   "xdg-utils-nu": {
     "type": "github",
