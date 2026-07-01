@@ -1,3 +1,3 @@
 {
-  boot.initrd.compressorArgs = ["-T0" "-9"];
+  boot.initrd.compressorArgs = ["-9" "-T0"];
 }
