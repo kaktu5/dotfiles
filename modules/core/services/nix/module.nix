@@ -5,6 +5,8 @@
   pkgs,
   ...
 }: let
+  inherit (config.hjem.users.${userName}) xdg;
+  inherit (config.kkts.meta) userName;
   inherit (config.vaultix.secrets) nix-access-tokens;
   inherit (inputs) nixpkgs;
   inherit (lib.modules) mkDefault;
@@ -16,6 +18,8 @@ in {
     group = "wheel";
     mode = "440";
   };
+
+  preservation.preserveAt."/persist".users.${userName}.directories = ["${xdg.cache.directory}/nix"];
 
   nix = {
     package = lix;
@@ -62,6 +66,17 @@ in {
       options = "--delete-older-than 14d";
       dates = ["Sat *-*-* 03:00"];
       randomizedDelaySec = "15min";
+    };
+
+    optimise.automatic = true;
+  };
+
+  systemd = {
+    timers.nix-optimise.enable = false;
+
+    services.nix-gc = {
+      wants = ["nix-optimise.service"];
+      before = ["nix-optimise.service"];
     };
   };
 
