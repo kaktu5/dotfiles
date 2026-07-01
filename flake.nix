@@ -9,11 +9,11 @@
       inputs' = inputs |> selectSystem system ["legacyPackages" "packages"];
       pkgs = inputs'.nixpkgs.legacyPackages;
     in {
+      apps = import ./flake/apps.nix {inherit lib pkgs;};
+
       devShells.default = import ./flake/devshell.nix {inherit inputs' lib pkgs;};
 
       formatter = import ./flake/formatter.nix {inherit inputs' lib pkgs;};
-
-      packages = import ./flake/packages {inherit pkgs;};
     })
     // {
       inherit lib;

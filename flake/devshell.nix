@@ -9,10 +9,10 @@
   inherit (inputs'.tack.packages) tack;
   inherit (lib.attrsets) attrValues;
   inherit (lib.meta) getExe';
-  inherit (pkgs) mkShellNoCC;
+  inherit (pkgs) mkShell;
   inherit (pkgs.lixPackageSets.latest) lix;
 in
-  mkShellNoCC {
+  mkShell {
     name = "dotfiles-devshell";
 
     env = {
@@ -35,7 +35,7 @@ in
 
       # rust
       inherit rustfmt;
-      inherit (pkgs) clippy rust-analyzer;
+      inherit (pkgs) cargo clippy rust-analyzer;
 
       # toml
       inherit (pkgs) taplo;

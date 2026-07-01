@@ -1,0 +1,5 @@
+!/src/**/*.rs
+
+!/Cargo.lock
+!/Cargo.toml
+!/package.nix
