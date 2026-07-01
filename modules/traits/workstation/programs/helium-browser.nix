@@ -83,7 +83,11 @@ in {
 
           completed_onboarding = true;
         };
+
+        browser.custom_chrome_frame = false;
       };
+      type = "copy";
+      permissions = "600";
     };
 
     mime-apps.default-applications = toMimeMap {
