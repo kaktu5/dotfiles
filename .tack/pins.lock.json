@@ -13,6 +13,7 @@
     "nix-secrets": "github:unnamed-systems/nix-secrets",
     "nixos-core": "github:manic-systems/nixos-core",
     "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
+    "obsidian-bases-tasks": "git+https://rosa.radicle.network/z4FC12ufxa84RxepxeNMXm5PJUycy.git",
     "oisd": "github:sjhgvr/oisd",
     "tack": "github:manic-systems/tack",
     "xdg-utils-nu": "github:manic-systems/xdg-utils.nu"
@@ -135,12 +136,12 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1087755.e7439b6b14ad/nixexprs.tar.zst?rev=e7439b6b14ad3cc35d05608ebca9bce01a25f5f8&lastModified=1791456040",
-    "rev": "e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
-    "narHash": "sha256-gRZ/s8WQJ2CsXdhcDVQH34qxuL0MuMCOs3aBiK1Prsw=",
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1089111.6510408d147d/nixexprs.tar.zst?rev=6510408d147d8c5e6d76043e899e9251756f6a75&lastModified=1791594108",
+    "rev": "6510408d147d8c5e6d76043e899e9251756f6a75",
+    "narHash": "sha256-V0WmebqwEeAVZMqxfv7Dq7hpKkPPM19W50xQf3D1Kf4=",
     "patched": {
-      "path": "/nix/store/zp60vlzcvwj3h3m92p2ilhg7q7snap0l-source",
-      "narHash": "sha256-+PQkJYk17rsXHYIWpYHiQgrlVAQhcJMF047cLUqPzJ0=",
+      "path": "/nix/store/b95qxbh11nfh2i49dyfdhigi6is239xx-source",
+      "narHash": "sha256-62bcfsvwVDM/RJ3x5e3C3V2FvXW565aV3Gxqt4bN9xk=",
       "lastModified": 315532800,
       "patches": [
         {
@@ -160,13 +161,21 @@
       ]
     }
   },
+  "obsidian-bases-tasks": {
+    "type": "git",
+    "url": "https://rosa.radicle.network/z4FC12ufxa84RxepxeNMXm5PJUycy.git",
+    "ref": "HEAD",
+    "rev": "5d5598e578784eddf8be12932b9cfd5e5f60cfaa",
+    "narHash": "sha256-mLEg5Ifmzx7fbfT3vp6TEdr1W0biuY59TEibc9+x5ig=",
+    "lastModified": 1791720860
+  },
   "oisd": {
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "66cbf85a900d1c9c218e55296735278dbe605b62",
-    "narHash": "sha256-XoMjU3GhFd09K6zIlZWU+n8LsMLsQlsXrj1ALwOpj2I=",
-    "lastModified": 1791551166
+    "rev": "1dc59d0a993470231635fd7516197f89affb57b3",
+    "narHash": "sha256-xQTNlF+jy1/UO52943+Bn7drrRe+WcisOdMtYZBeMag=",
+    "lastModified": 1791709598
   },
   "rust-overlay": {
     "type": "github",
@@ -180,9 +189,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "4a8b68df58488b311840eb0244c75b4857871789",
-    "narHash": "sha256-ST/08SMwfjtXeP/+72GJYVFkO2xT6PDU5ofh9Gh9IJ8=",
-    "lastModified": 1791058919
+    "rev": "5957ec0bd3df490a06dab467337152ae75977585",
+    "narHash": "sha256-dkuO01AoiMwzwY5DtEPDRyQYKjD3RRPZ8evLLYfEeY4=",
+    "lastModified": 1791612427
   },
   "xdg-utils-nu": {
     "type": "github",

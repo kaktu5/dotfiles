@@ -15,6 +15,7 @@ nixpkgs = {patches = [
 
 kaktu5pkgs.url = "rad:z3445hwtrioJCAisuAosBXvcTqVR2"
 nf.url = "rad:z3EZi6d3LccUz1s6UmMfuoPJfMdZ"
+obsidian-bases-tasks.url = "rad:z4FC12ufxa84RxepxeNMXm5PJUycy"
 
 aagl-gtk-on-nix = {omit_inputs = [
   "flake-compat",
