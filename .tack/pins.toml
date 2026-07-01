@@ -24,7 +24,6 @@ microvm.url = "github:microvm-nix/microvm.nix"
 nix-secrets.url = "github:unnamed-systems/nix-secrets"
 nixos-core.url = "github:kaktu5/nixos-core"            # nixos-core.url = "github:manic-systems/nixos-core"
 stash.url = "github:notashelf/stash"
-tack.url = "github:manic-systems/tack"
 xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 
 dnscrypt-settings = {type = "fetch", url = "github:quad9dns/dnscrypt-settings"}

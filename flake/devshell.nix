@@ -5,7 +5,6 @@
   system,
 }: let
   inherit (inputs.nix-secrets.packages.${system}) nix-secrets;
-  inherit (inputs.tack.packages.${system}) tack;
   inherit (lib.attrsets) attrValues;
   inherit (lib.meta) getExe;
   inherit (pkgs) mkShellNoCC;
@@ -27,8 +26,8 @@ in
       inherit (pkgs) age;
 
       # nix
-      inherit nix-secrets tack;
-      inherit (pkgs) alejandra dix nh nixd;
+      inherit nix-secrets;
+      inherit (pkgs) alejandra dix nh nixd tack;
 
       # qml
       inherit (pkgs) quickshell;
