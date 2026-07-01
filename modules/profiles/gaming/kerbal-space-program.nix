@@ -9,7 +9,7 @@
   inherit (config.users.users.${userName}) home;
   inherit (lib.attrsets) attrValues;
   inherit (lib.generators) toJSON;
-  inherit (lib.lists) singleton;
+  inherit (lib.lists) elem singleton;
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
   inherit (pkgs) buildFHSEnv ckan makeDesktopItem;
@@ -56,7 +56,7 @@
     categories = ["Game" "Simulation"];
   };
 in
-  mkIf (gaming.enable && gaming.kerbalSpaceProgram.enable) {
+  mkIf (gaming.enable && elem "kerbal-space-program" gaming.games) {
     persistence.users.${userName} = {
       directories = [".local/share/CKAN/downloads" ".local/share/CKAN/repos"];
       files = [".local/share/CKAN/builds-ksp.json"];

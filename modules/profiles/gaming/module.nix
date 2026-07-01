@@ -23,11 +23,10 @@ in {
 
     mangohud.enable = mkEnableOption "mangohud" // {default = cfg.enable;};
 
-    kerbalSpaceProgram.enable = mkEnableOption "Kerbal Space Program";
-
-    minecraft.enable = mkEnableOption "Minecraft";
-
-    osu.enable = mkEnableOption "osu! Tachyon";
+    games = mkOption {
+      type = listOf <| enum ["kerbal-space-program" "minecraft" "osu" "zenless-zone-zero"];
+      default = [];
+    };
 
     steam = {
       enable = mkEnableOption "steam";
@@ -37,7 +36,5 @@ in {
         default = [];
       };
     };
-
-    zenlessZoneZero.enable = mkEnableOption "Zenless Zone Zero";
   };
 }

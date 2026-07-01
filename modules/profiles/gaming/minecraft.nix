@@ -6,13 +6,13 @@
 }: let
   inherit (config.kkts.meta) userName;
   inherit (config.kkts.profiles) gaming;
-  inherit (lib.lists) singleton;
+  inherit (lib.lists) elem singleton;
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
   inherit (lib.strings) concatStringsSep;
   inherit (pkgs) bubblewrap makeWrapper prismlauncher symlinkJoin;
 in
-  mkIf (gaming.enable && gaming.minecraft.enable) {
+  mkIf (gaming.enable && elem "minecraft" gaming.games) {
     persistence.users.${userName}.directories = [".local/share/PrismLauncher"];
 
     users.users.${userName}.packages = singleton (symlinkJoin {

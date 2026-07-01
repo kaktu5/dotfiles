@@ -8,10 +8,10 @@
   inherit (config.kkts.profiles) gaming;
   inherit (config.nixpkgs.config) allowUnfree;
   inherit (inputs'.nixexprs.packages) osu-lazer-bin;
-  inherit (lib.lists) singleton;
+  inherit (lib.lists) elem singleton;
   inherit (lib.modules) mkIf;
 in
-  mkIf (gaming.enable && gaming.osu.enable) {
+  mkIf (gaming.enable && elem "osu" gaming.games) {
     persistence.users.${userName} = {
       directories = [".local/share/osu"];
 
