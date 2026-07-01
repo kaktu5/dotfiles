@@ -1,3 +1,0 @@
-{
-  imports = [./remote-unlock.nix];
-}
