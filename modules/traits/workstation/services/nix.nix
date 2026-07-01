@@ -7,10 +7,7 @@ in {
     mode = "440";
   };
 
-  persistence.users.${userName}.directories = [
-    ".local/state/nix-output-monitor"
-    ".local/state/tack"
-  ];
+  persistence.users.${userName}.directories = [".local/state/rom" ".local/state/tack"];
 
   nix = {
     settings = {
