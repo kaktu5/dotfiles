@@ -141,22 +141,6 @@
     "narHash": "sha256-rTiX4SZ9Sjei3WzsW25nDTZweMRzA7ZunspkhDXkZfY=",
     "lastModified": 1785878583
   },
-  "tuigreet": {
-    "type": "github",
-    "owner": "notashelf",
-    "repo": "tuigreet",
-    "rev": "68e8e3146b0112f8112a2e7e65ae34938fbbe667",
-    "narHash": "sha256-7WNPBwWfptUZWmEwyLUXPSDs3bA/Q+LW12zLY9SD/gE=",
-    "lastModified": 1785834583
-  },
-  "watt": {
-    "type": "github",
-    "owner": "notashelf",
-    "repo": "watt",
-    "rev": "db522b64c0ce29724edb7e91ecdc4fb71c8a96b8",
-    "narHash": "sha256-1w8NCqJLMIO9H9bpCOHIcuMzPANX8fI3TzgY3+V5+HA=",
-    "lastModified": 1785244524
-  },
   "xdg-utils-nu": {
     "type": "github",
     "owner": "manic-systems",
