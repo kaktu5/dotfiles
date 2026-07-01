@@ -10,7 +10,7 @@
   inherit (pkgs) kitty rofi uwsm;
 
   kitty' = "${getExe kitty} --single-instance";
-  rofi' = "${getExe rofi} -show drun -run-command 'uwsm app -- {cmd}'";
+  rofi' = "${getExe rofi} -show drun -run-command '${getExe uwsm} app -- {cmd}'";
 
   cfg = config.kkts.programs.hyprland.config;
 in {
