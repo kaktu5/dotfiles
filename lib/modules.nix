@@ -7,21 +7,20 @@
 
   self = lib.kkts.modules;
 in {
-  modulesFromDirRec = dir: let
-    defaultPath = dir + /module.nix;
-    processDir = dir:
+  modulesFromDirRec = dir:
+    if pathExists /${dir}/module.nix
+    then [/${dir}/module.nix]
+    else
       readDir dir
-      |> mapAttrsToList (name: type: let
-        path = dir + /${name};
-      in
-        if type == "directory"
-        then self.modulesFromDirRec path
-        else if type == "regular" && hasSuffix ".nix" name
-        then [path]
-        else [])
+      |> mapAttrsToList (
+        name: type: let
+          path = dir + /${name};
+        in
+          if type == "directory"
+          then self.modulesFromDirRec path
+          else if type == "regular" && hasSuffix ".nix" name
+          then [path]
+          else []
+      )
       |> concatLists;
-  in
-    if pathExists defaultPath
-    then [defaultPath]
-    else processDir dir;
 }
