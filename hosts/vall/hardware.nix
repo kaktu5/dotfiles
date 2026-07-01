@@ -15,16 +15,20 @@
     ];
   };
 
-  kkts.hardware.monitors = {
-    primaryMonitor = "eDP-1";
+  kkts.hardware = {
+    cpu.amd.enable = true;
+    gpu.amd.enable = true;
 
-    monitors.eDP-1 = {
-      resolution = {
-        w = 1920;
-        h = 1200;
+    monitors = {
+      primaryMonitor = "eDP-1";
+
+      monitors.eDP-1 = {
+        resolution = {
+          w = 1920;
+          h = 1200;
+        };
+        refreshRate = 60;
       };
-      # scale = 1.20;
-      refreshRate = 60;
     };
   };
 }
