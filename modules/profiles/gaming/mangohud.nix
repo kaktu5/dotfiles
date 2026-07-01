@@ -30,11 +30,9 @@ in
       inherit generator;
       value = {
         cpu_mhz = true;
-        cpu_power = true;
         cpu_temp = true;
 
         gpu_core_clock = true;
-        gpu_power = true;
         gpu_temp = true;
 
         ram = true;
