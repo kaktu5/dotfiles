@@ -6,8 +6,8 @@
 }: let
   inherit (inputs) oisd;
   inherit (lib.attrsets) genAttrs;
-  inherit (lib.strings) concatStringsSep;
-  inherit (pkgs) runCommand;
+  inherit (lib.strings) concatMapStrings;
+  inherit (pkgs) concatText writeText;
 
   quad9Stamps = import ./quad9-dns-stamps.nix {inherit inputs lib;};
 
@@ -19,7 +19,7 @@
   ];
 in {
   networking = {
-    nameservers = ["127.0.0.1" "::1"];
+    nameservers = ["::1"];
 
     # prevent DNS leaks, all DNS queries must go through dnscrypt-proxy
     nftables.tables.dnscrypt-proxy = {
@@ -47,7 +47,7 @@ in {
 
     upstreamDefaults = false;
     settings = {
-      listen_addresses = ["127.0.0.1:53" "[::1]:53"];
+      listen_addresses = ["[::1]:53"];
 
       inherit server_names;
       static = genAttrs server_names (name: {stamp = quad9Stamps.${name};});
@@ -56,12 +56,12 @@ in {
 
       block_unqualified = true;
       block_undelegated = true;
-      blocked_names.blocked_names_file = runCommand "blocked-names" {} ''
-        cat ${oisd}/domainswild2_big.txt > $out
-        cat >> $out <<EOF
-          ${import ./extra-blocked-names.nix |> concatStringsSep "\n"}
-        EOF
-      '';
+      blocked_names.blocked_names_file = concatText "blocked-names" [
+        "${oisd}/domainswild2_big.txt"
+        (import ./extra-blocked-names.nix
+          |> concatMapStrings (name: "${name}\n")
+          |> writeText "extra-blocked-names")
+      ];
 
       cache_size = 8192;
       cache_min_ttl = 15 * 60;
