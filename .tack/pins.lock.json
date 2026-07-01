@@ -43,9 +43,9 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "7cd7f1c567beaf5527781e0b51647a98acde54e6",
-    "narHash": "sha256-hMgbN6InoW+S5G/cqGrVwHUmOJcGIT/yUg1Xe6y7t8Q=",
-    "lastModified": 1787194407
+    "rev": "d248f0e4f7abd6e1f0eb9ace778dd7928481943e",
+    "narHash": "sha256-UrAlku7KST0DT+j1bdVGYI8tCz23PWL88uGMer3IZ2U=",
+    "lastModified": 1787500880
   },
   "lanzaboote": {
     "type": "github",
@@ -75,9 +75,9 @@
     "type": "github",
     "owner": "unnamed-systems",
     "repo": "nix-secrets",
-    "rev": "0f247c2d186bf6a17a57eb4bcc612efed68b92c1",
-    "narHash": "sha256-svyQ4SepN3KGwJ3EUA9ugfzRMvopQFjjxapfXbHYIrg=",
-    "lastModified": 1786298256
+    "rev": "13f36151f772f3e12217ce4f510ed90aff295042",
+    "narHash": "sha256-+ygP+/5a0zPdkGAuVGUiiUAg12NY6E8tZMcjJHPArvo=",
+    "lastModified": 1787424906
   },
   "nixexprs": {
     "type": "github",
@@ -91,15 +91,15 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "27099d734184ff9d83cb6921f1d4edd2849b2413",
-    "narHash": "sha256-j1htlu4Gf+o/Uplx3A+GrtvkyffYaj5NuG7pWLnUWRU=",
-    "lastModified": 1785579075
+    "rev": "2759f02d6bb7d1b5bcf4ae99038ab54148f91698",
+    "narHash": "sha256-yd7gLFMW3tDMFsaX+yBVWys2Aux7l4PLUfkwt5fcPCo=",
+    "lastModified": 1787390698
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1058091.ffb3c9b700e7/nixexprs.tar.zst",
-    "rev": "ffb3c9b700e759be2ef13237c9d8f953b32a1e46",
-    "narHash": "sha256-M5/r2v++FjVhdsxXYMb4BDJ5YLAdCWFt3aZotcshocA="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1059570.2c423e03bbaf/nixexprs.tar.zst",
+    "rev": "2c423e03bbafcff28bfadc6781a4a8257f205cb5",
+    "narHash": "sha256-95aJfHyQTLWslCXFVNB0odgmVkpdmDezQwTg9mhqV1E="
   },
   "nixpkgs-xanmod": {
     "type": "github",
@@ -113,9 +113,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "e82ce325de47abfbc9569bee35c06c66557ba7c3",
-    "narHash": "sha256-xPT7s3jE3Gvp/ItOSnTHYjeoXans1Bp4uTvr1pCAcz0=",
-    "lastModified": 1787389575
+    "rev": "0bed40dc378f7e89137f351e783265536debe73f",
+    "narHash": "sha256-7P4L8ZTUQfRkESpif6JjndPXgfJ9ljY9v71DqS+CX5k=",
+    "lastModified": 1787506616
   },
   "preservation": {
     "type": "github",
@@ -137,8 +137,8 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "xdg-utils.nu",
-    "rev": "7c0d37b3256210b9ad2af6c26f6c82ca7f7e2bc8",
-    "narHash": "sha256-tNKAqo34nF1QxD5LG5po3pBCCcp5f0O6hZxNvrxweGo=",
-    "lastModified": 1784518445
+    "rev": "e733a932144474ff91b48e36ba743093d8b5c88f",
+    "narHash": "sha256-yFur+gCRO9+qha5gEKs3wWpwl0+g4BYccecbB5dKZPI=",
+    "lastModified": 1787362788
   }
 }
