@@ -1,6 +1,14 @@
-{lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
+  inherit (config.kkts) keys;
+  inherit (config.kkts.meta) userName;
   inherit (lib.lists) singleton;
 in {
+  users.users.${userName}.openssh.authorizedKeys.keys = [keys.users.${userName}];
+
   services.openssh = {
     enable = true;
     allowSFTP = false;

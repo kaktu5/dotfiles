@@ -7,7 +7,7 @@
 in
   vaultix.configure {
     nodes = self.nixosConfigurations;
-    identity = "/run/vaultix/id";
+    identity = "/run/vaultix/kaktu5-key";
     cache = ".vaultix";
     inherit systems;
   }

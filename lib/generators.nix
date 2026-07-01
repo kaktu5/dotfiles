@@ -3,7 +3,7 @@
   inherit (lib.attrsets) attrNames collect isAttrs isDerivation mapAttrsRecursive mapAttrsToList;
   inherit (lib.lists) elem filter subtractLists toList;
   inherit (lib.strings) concatMapStringsSep concatStringsSep escape replaceString typeOf;
-  inherit (lib.trivial) boolToString;
+  inherit (lib.trivial) boolToString isBool;
   inherit (lib.generators) mkKeyValueDefault mkValueStringDefault toINI;
 
   typeOf' = v:
@@ -81,4 +81,18 @@ in {
       else mkKeyValueDefault {} "=" key value;
   in
     toINI {inherit mkKeyValue;};
+
+  toSshConfig = {}: attrs: let
+    toKeyValue = k: v:
+      if isBool v
+      then "  ${k} ${
+        if v
+        then "yes"
+        else "no"
+      }"
+      else "  ${k} ${v}";
+
+    formatHost = host: config: "Host ${host}\n" + (config |> mapAttrsToList toKeyValue |> concatStringsSep "\n");
+  in
+    attrs |> mapAttrsToList formatHost |> concatStringsSep "\n";
 }
