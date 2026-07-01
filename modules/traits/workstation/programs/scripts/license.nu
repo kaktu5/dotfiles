@@ -1,4 +1,4 @@
-module license {
+module license_m {
   const spdx_dir = "@spdxTexts@"
 
   def spdx-ids []: nothing -> list<string> {
@@ -12,7 +12,7 @@ module license {
   }
 
   # Initialize a license file
-  export def main [
+  export def license [
     spdx: string@spdx-ids # SPDX identifier
     --output(-o): path = "license" # Where to write the license
     --force(-f) # Overwrite the output file if it exists
@@ -32,4 +32,4 @@ module license {
     open --raw $file | save --force=$force $output
   }
 }
-use license
+use license_m *
