@@ -2,12 +2,6 @@
   inherit (lib.kkts.nixos) mkHosts;
 in
   mkHosts (_: {
-    # lenovo m715q, ryzen 3 pro 2200ge, 16gb
-    neidon = {
-      arch = "x86_64";
-      traits = ["bare-metal" "headless" "server"];
-    };
-
     # gigabyte b550 gaming x v2, ryzen 7 5700g, 32gb
     tylo = {
       arch = "x86_64";
