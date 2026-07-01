@@ -7,13 +7,7 @@
   inherit (lib.attrsets) attrValues;
   inherit (lib.lists) singleton;
 
-  modules.shadow = {
-    owner = "kaktu5";
-    repo = "nixpkgs";
-    rev = "566ad15d1862bda6b90f0ebac8a7525d8c35c3e2";
-    narHash = "sha256-6MnBYjS2MKisY3Dz9i7XzwnIunsx8g8hcdsf1qEJXB0=";
-    module = "/programs/shadow.nix";
-  };
+  modules = {};
 
   transcendModules =
     modules

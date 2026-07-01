@@ -71,7 +71,7 @@ in {
 
     services = {
       "autovt@".enable = false;
-      "getty@".enable = false;
+      # "getty@".enable = false; # TODO: disable tty
       debug-shell.enable = false;
     };
 
