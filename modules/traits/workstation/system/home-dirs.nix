@@ -52,6 +52,4 @@ in {
       };
     };
   };
-
-  systemd.tmpfiles.rules = ["L+ /etc/nixos/flake.nix - - - - ${home}/dotfiles/flake.nix"];
 }
