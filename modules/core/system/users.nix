@@ -1,5 +1,7 @@
 {config, ...}: let
   inherit (config.kkts.meta) userName;
+
+  home = "/var/home";
 in {
   users = {
     mutableUsers = false;
@@ -13,9 +15,14 @@ in {
       ${userName} = {
         isNormalUser = true;
         uid = 1000;
-        home = "/var/home";
+        inherit home;
         extraGroups = ["wheel"];
       };
     };
   };
+
+  # not `users.users.${userName}.home`, that forces `users.users`,
+  # which pulls in `fileSystems` via `boot.supportedFilesystems`, which
+  # infinitely recurses if hjem's `xdg.*.directory` is used in `fileSystems.<name>`
+  hjem.users.${userName}.directory = home;
 }

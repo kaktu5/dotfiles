@@ -3,8 +3,8 @@
   inputs,
   ...
 }: let
+  inherit (config.hjem.users.${userName}) directory;
   inherit (config.kkts.meta) userName;
-  inherit (config.users.users.${userName}) home;
   inherit (inputs.hjem) nixosModules;
 in {
   imports = [nixosModules.default];
@@ -12,9 +12,6 @@ in {
   hjem = {
     clobberByDefault = true;
 
-    users.${userName} = {
-      directory = home;
-      xdg.cache.directory = home + "/.local/cache";
-    };
+    users.${userName}.xdg.cache.directory = directory + "/.local/cache";
   };
 }
