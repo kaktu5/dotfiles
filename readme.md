@@ -25,7 +25,7 @@ Flakes and configs I learned and "borrowed" from:
 
 - [fufexan/nix-gaming](https://github.com/fufexan/nix-gaming)
 - [notashelf/nyx](https://github.com/notashelf/nyx)
-- [poz/niksos](https://nix.poz.pet/poz/niksos)
+- [poz/niksos](https://nix.poz.pet)
 - [sioodmy/dotfiles](https://github.com/sioodmy/dotfiles)
 
 ## License
