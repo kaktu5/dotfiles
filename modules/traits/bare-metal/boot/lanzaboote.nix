@@ -7,19 +7,32 @@
 }: let
   inherit (config.kkts.meta) userName;
   inherit (inputs) lanzaboote;
-  inherit (lib.lists) singleton;
-  inherit (pkgs) sbctl;
+  inherit (lib.lists) optional singleton;
+  inherit (pkgs) sbctl tpm2-tools;
 
   cfg = config.boot.lanzaboote;
 in {
   imports = [lanzaboote.nixosModules.default];
 
-  preservation.preserveAt."/persist".directories = singleton {
-    directory = cfg.pkiBundle;
-    mode = "u=rwx,g=,o=";
+  preservation.preserveAt."/persist" = {
+    directories =
+      singleton {
+        directory = cfg.pkiBundle;
+        mode = "u=rwx,g=,o=";
+      }
+      ++ optional cfg.measuredBoot.enable {
+        directory = cfg.measuredBoot.pcrlockDirectory;
+        mode = "u=rwx,g=,o=";
+      };
+
+    files = optional cfg.measuredBoot.enable {
+      file = cfg.measuredBoot.pcrlockPolicy;
+      mode = "u=rw,g=,o=";
+      configureParent = true;
+    };
   };
 
-  users.users.${userName}.packages = [sbctl];
+  users.users.${userName}.packages = [sbctl tpm2-tools];
 
   boot = {
     loader.efi.canTouchEfiVariables = true;
@@ -44,6 +57,8 @@ in {
         enable = true;
         autoReboot = true;
       };
+
+      measuredBoot.enable = true;
     };
   };
 }
