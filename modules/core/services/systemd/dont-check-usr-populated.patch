@@ -1,0 +1,29 @@
+From 127abec048a058db5635d72d5b58962d15d27051 Mon Sep 17 00:00:00 2001
+From: kaktu5 <108426150+kaktu5@users.noreply.github.com>
+Date: Thu, 30 Jul 2026 11:43:51 +0200
+Subject: [PATCH] don't refuse to boot when /usr is unpopulated
+
+---
+ src/core/main.c | 6 ------
+ 1 file changed, 6 deletions(-)
+
+diff --git a/src/core/main.c b/src/core/main.c
+index 84f3b029e1..362b0023a0 100644
+--- a/src/core/main.c
++++ b/src/core/main.c
+@@ -2683,12 +2683,6 @@ static int initialize_runtime(
+                 install_crash_handler();
+ 
+                 if (!skip_setup) {
+-                        /* Check that /usr/ is either on the same file system as / or mounted already. */
+-                        if (dir_is_empty("/usr", /* ignore_hidden_or_backup= */ true) > 0) {
+-                                *ret_error_message = "Refusing to run in unsupported environment where /usr/ is not populated";
+-                                return -ENOEXEC;
+-                        }
+-
+                         /* Pull credentials from various sources into a common credential directory (we do
+                          * this here, before setting up the machine ID, so that we can use credential info
+                          * for setting up the machine ID) */
+-- 
+2.55.0
+
