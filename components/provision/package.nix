@@ -18,5 +18,7 @@ in
     };
     cargoLock.lockFile = finalAttrs.src + /Cargo.lock;
 
+    doCheck = false;
+
     meta.mainProgram = package.name;
   })

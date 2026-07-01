@@ -4,6 +4,12 @@ name = "provision"
 version = "0.0.0"
 
 [dependencies]
+misstep = "0.4.1"
+nix = { features = ["fs", "mount", "sched", "user"], version = "0.31.3" }
+owo-colors = "4.4.0"
+pound = "0.6.1"
+serde = { features = ["derive"], version = "1.0.229" }
+serde_json = "1.0.154"
 
 [profile.dev]
 debug = "line-tables-only"
@@ -20,3 +26,20 @@ pedantic = { level = "warn", priority = -1 }
 
 blanket_clippy_restriction_lints = "allow"
 restriction = { level = "warn", priority = -1 }
+
+arbitrary_source_item_ordering = "allow"
+arithmetic_side_effects = "allow"
+doc_paragraphs_missing_punctuation = "allow"
+host_endian_bytes = "allow"
+implicit_return = "allow"
+min_ident_chars = "allow"
+missing_docs_in_private_items = "allow"
+missing_errors_doc = "allow"
+needless_borrowed_reference = "allow"
+question_mark_used = "allow"
+ref_patterns = "allow"
+return_and_then = "allow"
+separated_literal_suffix = "allow"
+single_call_fn = "allow"
+std_instead_of_alloc = "allow"
+std_instead_of_core = "allow"
