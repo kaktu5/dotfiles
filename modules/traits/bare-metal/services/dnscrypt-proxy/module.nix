@@ -1,5 +1,4 @@
 {
-  config,
   inputs,
   lib,
   pkgs,
@@ -12,7 +11,12 @@
 
   quad9Stamps = import ./quad9-dns-stamps.nix {inherit inputs lib;};
 
-  cfg = config.services.dnscrypt-proxy.settings;
+  server_names = [
+    "dnscrypt-ip4-nofilter-pri"
+    "dnscrypt-ip4-nofilter-alt"
+    "dnscrypt-ip6-nofilter-pri"
+    "dnscrypt-ip6-nofilter-alt"
+  ];
 in {
   networking = {
     nameservers = ["127.0.0.1" "::1"];
@@ -45,13 +49,8 @@ in {
     settings = {
       listen_addresses = ["127.0.0.1:53" "[::1]:53"];
 
-      server_names = [
-        "dnscrypt-ip4-nofilter-pri"
-        "dnscrypt-ip4-nofilter-alt"
-        "dnscrypt-ip6-nofilter-pri"
-        "dnscrypt-ip6-nofilter-alt"
-      ];
-      static = genAttrs cfg.server_names (name: {stamp = quad9Stamps.${name};});
+      inherit server_names;
+      static = genAttrs server_names (name: {stamp = quad9Stamps.${name};});
 
       dnscrypt_ephemeral_keys = true;
 
