@@ -1,5 +1,6 @@
 {
   lib,
+  cryptsetup,
   dosfstools,
   kmod,
   systemd,
@@ -11,7 +12,7 @@
   inherit (writers) writeNuBin;
 in
   writeNuBin "tmpfs-zfs" ''
-    $env.PATH = "${makeBinPath [dosfstools kmod systemd util-linux zfs]}"
+    $env.PATH = "${makeBinPath [cryptsetup dosfstools kmod systemd util-linux zfs]}"
 
     ${readFile ./tmpfs-zfs.nu}
   ''
