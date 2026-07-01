@@ -4,6 +4,7 @@
 !/components/**/*.qml
 !/widgets/**/*.qml
 
-!/.gitignore
-!/{Bar,Config,shell}.qml
+!/Bar.qml
+!/Config.qml
 !/module.nix
+!/shell.qml

@@ -21,6 +21,8 @@ PanelWindow {
     middleSection: []
 
     bottomSection: [
+      Battery {
+      },
       Clock {
       }
     ]

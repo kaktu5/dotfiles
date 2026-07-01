@@ -57,13 +57,13 @@
   '';
 
   configDir = symlinkJoin {
-    name = "kkts-shell-config-dir";
+    name = "quickshell-config-dir";
     paths = [srcDir configFile];
   };
 in {
   persistence.users.${userName}.directories = [".local/cache/quickshell"];
 
-  hjem.users.${userName}.systemd.services.kkts-shell = mkGraphicalTargetService {
+  hjem.users.${userName}.systemd.services.quickshell = mkGraphicalTargetService {
     environment = {
       QS_CONFIG_PATH = configDir;
       QS_DISABLE_FILE_WATCHER = "1";
