@@ -5,18 +5,11 @@
   ...
 }: let
   inherit (config.hjem.users.${userName}) xdg;
+  inherit (config.hjem.users.${userName}.environment.sessionVariables) EDITOR;
   inherit (config.kkts.meta) userName;
   inherit (lib.generators) toGitINI;
-  inherit (lib.meta) getExe;
   inherit (pkgs) gitMinimal jujutsu;
   inherit (pkgs.writers) writeTOML;
-
-  user = {
-    name = "kaktu5";
-    email = "108426150+kaktu5@users.noreply.github.com";
-  };
-
-  gpg = getExe pkgs.gnupg;
 in {
   preservation.preserveAt."/persist".users.${userName}.directories = ["${xdg.config.directory}/jj/repos"];
 
@@ -26,18 +19,22 @@ in {
     "jj/config.toml" = {
       generator = writeTOML "jj-config-toml";
       value = {
-        inherit user;
+        user = {
+          name = "kaktu5";
+          email = "108426150+kaktu5@users.noreply.github.com";
+        };
+
+        # TODO:
+        # templates.draft_commit_description =
 
         ui = {
           default-command = "status";
           paginate = "never";
+          editor = EDITOR;
         };
 
-        signing = {
-          behavior = "own";
-          backend = "gpg";
-          backends.gpg.program = gpg;
-        };
+        # TODO: sign using Sequoia-PGP
+        # signing = {};
 
         aliases = {
           fresh = ["new" "trunk()"];
@@ -54,13 +51,11 @@ in {
 
     "git/config" = {
       generator = toGitINI;
-      value = {
-        inherit user;
+      value.url = {
+        "git@github.com:".insteadOf = "github:";
 
-        commit.gpgsign = true;
-        gpg.openpgp.program = gpg;
-
-        url."git@github.com:".insteadOf = "github:";
+        "https://codeberg.org/".insteadOf = "codeberg:";
+        "https://gitlab.com/".insteadOf = "gitlab:";
       };
     };
   };
