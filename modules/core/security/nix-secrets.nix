@@ -5,6 +5,7 @@
   pkgs,
   ...
 }: let
+  inherit (config.kkts.persistence) store;
   inherit (config.networking) hostName;
   inherit (inputs) nix-secrets;
   inherit (pkgs) age;
@@ -17,7 +18,7 @@ in {
     installPackage = false;
     extraPackages = [age];
 
-    identityPaths = ["/persist/etc/nix-secrets/key"];
+    identityPaths = ["${store}/etc/nix-secrets/key"];
     defaultRecipients = [hostName];
 
     storage = flake + /secrets;

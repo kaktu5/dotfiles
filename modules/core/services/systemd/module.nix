@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: let
+  inherit (config.kkts.persistence) store;
+
   package = import ./package.nix {inherit config pkgs;};
 
   timeout = "10s";
@@ -26,7 +28,7 @@ in {
   };
 
   fileSystems."/var/lib/systemd/credential.secret" = {
-    device = "/persist/var/lib/systemd/credential.secret";
+    device = "${store}/var/lib/systemd/credential.secret";
     fsType = "none";
     options = ["bind"];
   };

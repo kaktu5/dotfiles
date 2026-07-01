@@ -5,6 +5,7 @@
 }: let
   inherit (config.kkts) keys;
   inherit (config.kkts.meta) userName;
+  inherit (config.kkts.persistence) store;
   inherit (lib.lists) singleton;
 in {
   users.users.${userName}.openssh.authorizedKeys.keys = [keys.users.${userName}];
@@ -45,7 +46,7 @@ in {
     };
 
     hostKeys = singleton {
-      path = "/persist/etc/ssh/host-key";
+      path = "${store}/etc/ssh/host-key";
       type = "ed25519";
     };
   };
