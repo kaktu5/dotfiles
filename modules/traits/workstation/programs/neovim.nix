@@ -4,14 +4,13 @@
   lib,
   ...
 }: let
-  inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
   inherit (inputs'.nf.packages) neovim;
   inherit (lib.meta) getExe;
 in {
-  preservation.preserveAt."/persist".users.${userName}.directories = [
-    "${xdg.cache.directory}/neovim"
-    "${xdg.state.directory}/neovim"
+  persistence.users.${userName}.directories = [
+    ".local/cache/neovim"
+    ".local/state/neovim"
   ];
 
   users.users.${userName}.packages = [neovim];

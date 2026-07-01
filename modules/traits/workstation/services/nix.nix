@@ -1,5 +1,4 @@
 {config, ...}: let
-  inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
   inherit (config.security.nix-secrets.secrets) nix-access-tokens;
 in {
@@ -8,9 +7,9 @@ in {
     mode = "440";
   };
 
-  preservation.preserveAt."/persist".users.${userName}.directories = [
-    "${xdg.state.directory}/nix-output-monitor"
-    "${xdg.state.directory}/tack"
+  persistence.users.${userName}.directories = [
+    ".local/state/nix-output-monitor"
+    ".local/state/tack"
   ];
 
   nix = {

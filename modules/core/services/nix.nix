@@ -5,17 +5,16 @@
   pkgs,
   ...
 }: let
-  inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
   inherit (inputs) nixpkgs;
   inherit (lib.modules) mkDefault;
   inherit (pkgs.lixPackageSets.latest) lix;
   inherit (pkgs.writers) writeJSON;
 in {
-  preservation.preserveAt."/persist" = {
+  persistence = {
     directories = ["/var/cache/nix"];
 
-    users.${userName}.directories = ["${xdg.cache.directory}/nix"];
+    users.${userName}.directories = [".local/cache/nix"];
   };
 
   nix = {

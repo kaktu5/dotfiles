@@ -3,14 +3,13 @@
   pkgs,
   ...
 }: let
-  inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
   inherit (pkgs) kicad;
 in {
-  preservation.preserveAt."/persist".users.${userName}.directories = [
-    "${xdg.cache.directory}/kicad"
-    "${xdg.config.directory}/kicad"
-    "${xdg.data.directory}/kicad"
+  persistence.users.${userName}.directories = [
+    ".local/cache/kicad"
+    ".local/data/kicad"
+    ".config/kicad"
   ];
   
   users.users.${userName}.packages = [kicad];

@@ -4,14 +4,13 @@
   pkgs,
   ...
 }: let
-  inherit (config.hjem.users.${userName}) xdg;
   inherit (config.hjem.users.${userName}.environment.sessionVariables) EDITOR;
   inherit (config.kkts.meta) userName;
   inherit (lib.generators) toGitINI;
   inherit (pkgs) gitMinimal jujutsu watchman;
   inherit (pkgs.writers) writeTOML writeText;
 in {
-  preservation.preserveAt."/persist".users.${userName}.directories = ["${xdg.config.directory}/jj/repos"];
+  persistence.users.${userName}.directories = [".config/jj/repos"];
 
   users.users.${userName}.packages = [gitMinimal jujutsu watchman];
 
@@ -47,10 +46,12 @@ in {
           remote = ["git" "remote"];
         };
 
+        /*
         fsmonitor = {
           backend = "watchman";
           watchman.register-snapshot-trigger = true;
         };
+        */
       };
     };
 

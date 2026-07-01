@@ -5,7 +5,6 @@
   pkgs,
   ...
 }: let
-  inherit (config.hjem.users.${userName}.xdg) state;
   inherit (config.kkts.meta) userName;
   inherit (inputs'.cade.packages) cade;
   inherit (lib.kkts.dag) entryAnywhere;
@@ -21,7 +20,7 @@
 
   nushellHook = runCommand "cade-hook-nu" {} "${getExe cade} --config ${cadeConfig} hook nushell > $out";
 in {
-  preservation.preserveAt."/persist".users.${userName}.directories = ["${state.directory}/cade"];
+  persistence.users.${userName}.directories = [".local/state/cade"];
 
   users.users.${userName}.packages = [cade];
 

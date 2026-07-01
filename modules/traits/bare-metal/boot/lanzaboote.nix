@@ -14,21 +14,20 @@
 in {
   imports = [lanzaboote.nixosModules.default];
 
-  preservation.preserveAt."/persist" = {
+  persistence = {
     directories =
       singleton {
-        directory = cfg.pkiBundle;
-        mode = "u=rwx,g=,o=";
+        target = cfg.pkiBundle;
+        mode = "700";
       }
       ++ optional cfg.measuredBoot.enable {
-        directory = cfg.measuredBoot.pcrlockDirectory;
-        mode = "u=rwx,g=,o=";
+        target = cfg.measuredBoot.pcrlockDirectory;
+        mode = "700";
       };
 
     files = optional cfg.measuredBoot.enable {
-      file = cfg.measuredBoot.pcrlockPolicy;
-      mode = "u=rw,g=,o=";
-      configureParent = true;
+      target = cfg.measuredBoot.pcrlockPolicy;
+      mode = "600";
     };
   };
 

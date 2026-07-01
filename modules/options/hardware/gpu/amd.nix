@@ -3,9 +3,7 @@
   lib,
   ...
 }: let
-  inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
-  inherit (lib.kkts.paths) prefixEach;
   inherit (lib.modules) mkIf mkMerge;
   inherit (lib.options) mkEnableOption;
 
@@ -19,9 +17,9 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     {
-      preservation.preserveAt."/persist".users.${userName}.directories = prefixEach xdg.cache.directory [
-        "mesa_shader_cache"
-        "radv_builtin_shaders"
+      persistence.users.${userName}.directories = [
+        ".local/cache/mesa_shader_cache"
+        ".local/cache/radv_builtin_shaders"
       ];
 
       services.xserver.videoDrivers = ["amdgpu"];

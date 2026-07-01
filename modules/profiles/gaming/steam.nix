@@ -4,7 +4,6 @@
   pkgs,
   ...
 }: let
-  inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
   inherit (config.kkts.profiles) gaming;
   inherit (config.kkts.profiles.gaming.steam) games;
@@ -13,9 +12,9 @@
   inherit (pkgs) proton-ge-bin;
 in
   mkIf (gaming.enable && gaming.steam.enable) {
-    preservation.preserveAt."/persist".users.${userName}.directories = flatten [
+    persistence.users.${userName}.directories = flatten [
       {
-        directory = "${xdg.data.directory}/Steam";
+        target = ".local/share/Steam";
         mountOptions = ["exec"];
       }
 

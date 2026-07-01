@@ -1,7 +1,7 @@
 {pkgs, ...}: let
   inherit (pkgs) virtiofsd;
 in {
-  preservation.preserveAt."/persist".directories = ["/var/lib/libvirt"];
+  persistence.directories = ["/var/lib/libvirt"];
 
   networking.firewall.trustedInterfaces = ["virbr0"];
 

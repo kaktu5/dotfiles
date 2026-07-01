@@ -20,7 +20,7 @@ in
       options = ["X-mount.mkdir" "exec" "mode=700" "size=64M" "uid=${uid}"];
     };
 
-    preservation.preserveAt."/persist".users.${userName}.directories = ["${xdg.data.directory}/PrismLauncher"];
+    persistence.users.${userName}.directories = [".local/share/PrismLauncher"];
 
     users.users.${userName}.packages = [prismlauncher];
   }

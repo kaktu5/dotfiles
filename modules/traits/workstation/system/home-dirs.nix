@@ -3,34 +3,31 @@
   lib,
   ...
 }: let
-  inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
   inherit (config.users.users.${userName}) home;
   inherit (lib.generators) toKeyValue;
   inherit (lib.kkts.paths) prefixEach;
 in {
-  preservation.preserveAt."/persist".users.${userName}.directories =
-    [
-      {
-        directory = "projects";
-        mountOptions = ["exec"];
-      }
-      "documents"
-      "dotfiles"
-      "downloads"
-      "images"
-      "music"
-      "videos"
-    ]
-    ++ prefixEach xdg.data.directory [
-      "cargo"
-      "gradle"
-    ];
+  persistence.users.${userName}.directories = [
+    {
+      target = "projects";
+      mountOptions = ["exec"];
+    }
+    "documents"
+    "dotfiles"
+    "downloads"
+    "images"
+    "music"
+    "videos"
+
+    ".local/share/cargo"
+    ".local/share/gradle"
+  ];
 
   hjem.users.${userName} = {
-    environment.sessionVariables = prefixEach xdg.data.directory {
-      CARGO_HOME = "cargo";
-      GRADLE_USER_HOME = "gradle";
+    environment.sessionVariables = {
+      CARGO_HOME = "${home}/.local/share/cargo";
+      GRADLE_USER_HOME = "${home}/.local/share/gradle";
     };
 
     xdg.config.files."user-dirs.dirs" = {

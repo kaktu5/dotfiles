@@ -12,8 +12,8 @@
   inherit (lib.lists) singleton;
   inherit (pkgs) openssh;
 in {
-  preservation.preserveAt."/persist".users.${userName}.directories = singleton {
-    directory = ".ssh";
+  persistence.users.${userName}.directories = singleton {
+    target = ".ssh";
     mode = "700";
   };
 
