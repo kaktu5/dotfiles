@@ -190,9 +190,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "a6db03e3c83ad2d4dba96b803b89aef8417342c4",
-    "narHash": "sha256-ZObwX317OlI0+THGmwovoIveTM6PJseXWX6lFkHhCl0=",
-    "lastModified": 1793441158
+    "rev": "7b5ed4129d297d82592643ac9437b69e331dac92",
+    "narHash": "sha256-+wt3HdItizn4p0edzvwlAnxOE/lnQsYS8+Pa+wUZ58w=",
+    "lastModified": 1793452142
   },
   "rust-overlay": {
     "type": "github",
