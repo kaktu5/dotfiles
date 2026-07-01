@@ -18,7 +18,7 @@ in
 
     env = {
       NH_FLAKE = "/var/home/dotfiles";
-      NH_NO_CHECKS = "1"; # I know what I'm doing
+      NH_NO_CHECKS = "1";
       NIX_SECRETS_NIX_EVAL_COMMAND = "${getExe' lix "nix-instantiate"} --eval --raw --expr '{{input}}'";
       NIX_SECRETS_STORAGE_PATH = "/var/home/dotfiles/secrets";
       QS_CONFIG_PATH = "/var/home/dotfiles/components/quickshell-config";
@@ -26,9 +26,9 @@ in
     };
 
     packages = attrValues {
-        # nix
-        inherit alejandra nh nix-secrets tack;
-        inherit (pkgs) dix nixd;
+      # nix
+      inherit alejandra nh nix-secrets tack;
+      inherit (pkgs) dix nixd;
 
       # qml
       inherit (pkgs) quickshell;
