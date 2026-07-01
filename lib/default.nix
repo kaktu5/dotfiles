@@ -12,6 +12,7 @@ in
         dag = import ./dag.nix {inherit lib;};
         flake = import ./flake.nix {inherit lib;};
         generators = import ./generators.nix {inherit lib;};
+        hjem = import ./hjem.nix {inherit lib;};
         hyprland = import ./hyprland.nix {inherit lib;};
         modules = import ./modules.nix {inherit lib;};
         nixos = import ./nixos.nix {inherit inputs lib self;};
