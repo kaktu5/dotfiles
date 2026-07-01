@@ -55,6 +55,14 @@
     "narHash": "sha256-sr4Kfp6yaXUeyKL6n0Y8/ElcR3momIRC20HFc+LF22s=",
     "lastModified": 1790423250
   },
+  "license-list-data": {
+    "type": "github",
+    "owner": "spdx",
+    "repo": "license-list-data",
+    "rev": "31ba1a50e5397e00a304dbadc76531740e89ee48",
+    "narHash": "sha256-HFwaQ6iCK/h8fLPKV0dwPJJnqNiE1Cb5lqjflCbLVeU=",
+    "lastModified": 1789578536
+  },
   "microvm": {
     "type": "github",
     "owner": "microvm-nix",

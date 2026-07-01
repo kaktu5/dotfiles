@@ -1,20 +1,20 @@
 {
+  inputs,
   lib,
   pkgs,
   ...
 }: let
+  inherit (inputs) license-list-data;
   inherit (lib.kkts.dag) entryAnywhere;
   inherit (lib.kkts.strings) replaceVars;
-  inherit (pkgs) fetchgit;
+  inherit (lib.meta) getExe;
+  inherit (pkgs) gitMinimal runCommandLocal;
 
-  texts = toString (fetchgit {
-    url = "https://github.com/spdx/license-list-data";
-    rev = "v3.28.0";
-    rootDir = "text";
-    hash = "sha256-t4VVDivkVpPUdBQyDFf4SXBswlddaTNSlse0r5dGrRc=";
-  });
+  spdxTexts = runCommandLocal "spdx-texts" {} ''
+    cp -r ${license-list-data}/text $out
+  '';
 in {
   kkts.programs.nushell.extraEntries = {
-    license = entryAnywhere <| replaceVars ./license.nu {inherit texts;};
+    license = entryAnywhere <| replaceVars ./license.nu {inherit spdxTexts;};
   };
 }

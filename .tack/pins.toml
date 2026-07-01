@@ -24,4 +24,5 @@ nixos-core.url = "github:manic-systems/nixos-core"
 xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 
 dnscrypt-settings = {type = "fetch", url = "github:quad9dns/dnscrypt-settings"}
+license-list-data = {type = "fetch", url = "github:spdx/license-list-data"}
 oisd = {type = "fetch", url = "github:sjhgvr/oisd"}
