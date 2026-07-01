@@ -15,8 +15,6 @@
     if isList value
     then value |> map (dir: "${prefix}/${dir}")
     else value |> mapAttrs (_: dir: "${prefix}/${dir}");
-
-  stripHome = removePrefix "${home}/";
 in {
   preservation.preserveAt."/persist".users.${userName}.directories =
     [
@@ -31,7 +29,7 @@ in {
       "music"
       "videos"
     ]
-    ++ mapWithBase (stripHome xdg.data.directory) [
+    ++ mapWithBase xdg.data.directory [
       "cargo"
       "gradle"
     ];
