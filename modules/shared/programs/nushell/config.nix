@@ -47,20 +47,12 @@ in {
 
     extraEntries = {
       ls = entryAnywhere ''
-        module ls_impl {
-          alias builtin-ls = ls
-          export def ls [...args: glob] {
-            let paths = if ($args | is-empty) {[.]} else {$args}
-            builtin-ls --all --long ...$paths
-              | sort-by type name
-              | select name user group mode size modified
-          }
-          export def ll [...args: glob] {
-            let paths = if ($args | is-empty) {[.]} else {$args}
-            builtin-ls --all --long ...$paths | sort-by type name
-          }
+        def ls [...paths: oneof<glob, string>]: nothing -> table {
+          let paths = $paths | default --empty [.]
+          %ls --all --long ...$paths
+          | select name type mode user group size modified
+          | sort-by type name
         }
-        use ls_impl [ls, ll]
       '';
 
       run0 = entryAnywhere ''

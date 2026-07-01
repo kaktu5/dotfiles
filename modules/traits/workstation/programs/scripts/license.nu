@@ -2,7 +2,7 @@ module license_m {
   const spdx_dir = "@spdxTexts@"
 
   def spdx-ids []: nothing -> list<string> {
-    ls --short-names $spdx_dir | get name | sort
+    %ls --short-names $spdx_dir | get name | sort
   }
 
   def find-license [spdx: string]: nothing -> oneof<path, nothing> {
