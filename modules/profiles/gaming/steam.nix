@@ -26,6 +26,7 @@
       ++ map (dir: "--bind ${home}/${dir} ${home}/${dir}") [
         ".local/cache/mesa_shader_cache"
         ".local/cache/radv_builtin_shaders"
+        "games"
       ]
       ++ [
         "--setenv XDG_CACHE_HOME ${home}/.local/cache"
