@@ -9,7 +9,7 @@
   inherit (config.kkts.meta) userName;
   inherit (lib.generators) toGitINI;
   inherit (pkgs) gitMinimal jujutsu;
-  inherit (pkgs.writers) writeTOML;
+  inherit (pkgs.writers) writeTOML writeText;
 in {
   preservation.preserveAt."/persist".users.${userName}.directories = ["${xdg.config.directory}/jj/repos"];
 
@@ -51,11 +51,15 @@ in {
 
     "git/config" = {
       generator = toGitINI;
-      value.url = {
-        "git@github.com:".insteadOf = "github:";
+      value = {
+        core.excludesFile = writeText "gitignore" "/.jj/";
 
-        "https://codeberg.org/".insteadOf = "codeberg:";
-        "https://gitlab.com/".insteadOf = "gitlab:";
+        url = {
+          "git@github.com:".insteadOf = "github:";
+
+          "https://codeberg.org/".insteadOf = "codeberg:";
+          "https://gitlab.com/".insteadOf = "gitlab:";
+        };
       };
     };
   };
