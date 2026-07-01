@@ -11,9 +11,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "b9e7a9b699e0308f43daa77abc53d455ce10b425",
-    "narHash": "sha256-GtOCNhZ2OHxkmzEGMVJgcJaExnT3m6URswPZHjsPPpc=",
-    "lastModified": 1786185442
+    "rev": "d119b4f3d1199209f571b7bfdeebc0cf20c04ae6",
+    "narHash": "sha256-7PKZV/3rH0SYioQUBWBVE2f4pJoqe4hbyrSLFRaH/e8=",
+    "lastModified": 1786834477
   },
   "crane": {
     "type": "github",
@@ -67,9 +67,9 @@
     "type": "git",
     "url": "https://rosa.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
     "ref": "HEAD",
-    "rev": "710ecd298b8ea18a851561541892a322bbbaf386",
-    "narHash": "sha256-46S0vFtg3v9Y0YXFe6HOFp3EgStrHMEA23aoGZdVRWs=",
-    "lastModified": 1784982672
+    "rev": "337337e1f0c340d56d9faf4baa814feae68253a3",
+    "narHash": "sha256-vAORSpBN45Knm81BTrUC3XL03wjt/NjGZeYpFIe73lU=",
+    "lastModified": 1786883267
   },
   "nix-secrets": {
     "type": "github",
@@ -113,9 +113,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "1758d37b33bef08f3f381fa8bf4db93e9588e144",
-    "narHash": "sha256-IH7FJbRDpfWCYzUhNVjyOYx/V3bVA6eFScBO2o8stUw=",
-    "lastModified": 1786821850
+    "rev": "9f4459dc2169159750b6fa8ccebb4e001219102a",
+    "narHash": "sha256-yBCV5STtcmTkfR01smurxUVEdd2EpplIS61CcrpwCeA=",
+    "lastModified": 1786883350
   },
   "preservation": {
     "type": "github",
