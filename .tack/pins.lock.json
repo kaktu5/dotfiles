@@ -65,9 +65,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "5f118a86151803ebf4d781108735d3ed70dbebb6",
-    "narHash": "sha256-UOngUSoA/Xhe4FxC+RjHnZD/cO1iPS7oSFDE1NsDyGU=",
-    "lastModified": 1783354075
+    "rev": "bc0d82e920e040a3d9dea74283df4b3b1050773a",
+    "narHash": "sha256-u8TmcE8NyJmhbq01Ea9vu8MKOqqlaWm0yxTNdYWWGDc=",
+    "lastModified": 1783850851
   },
   "preservation": {
     "type": "github",
@@ -97,9 +97,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "95ddc34601dcded62dc5d3cba27a5d102136f542",
-    "narHash": "sha256-2oK+QKei8MNpfDBwnSC/pjWtWwWwGNtqChM8XmAhZhs=",
-    "lastModified": 1782616671
+    "rev": "1b35dea7e2f90863cce2099eafdf318d4c96f2e6",
+    "narHash": "sha256-5peItmNvgVHeLDf/T7JxA/By0r8JsQx75MuMni1Q9ns=",
+    "lastModified": 1783834540
   },
   "tuigreet": {
     "type": "github",
