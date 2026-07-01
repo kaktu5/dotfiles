@@ -9,7 +9,7 @@ in {
   persistence.users.${userName}.directories = [
     ".config/kicad"
     ".local/cache/kicad"
-    ".local/data/kicad"
+    ".local/share/kicad"
   ];
 
   users.users.${userName}.packages = [kicad];
