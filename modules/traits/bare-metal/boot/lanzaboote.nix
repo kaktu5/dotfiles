@@ -39,7 +39,7 @@ in {
     lanzaboote = {
       enable = true;
 
-      configurationLimit = 8;
+      configurationLimit = 4;
 
       pkiBundle = "/var/lib/sbctl";
 
