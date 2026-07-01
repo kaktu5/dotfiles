@@ -3,12 +3,16 @@
   lib,
   ...
 }: let
-  inherit (lib.lists) optional;
-  inherit (lib.modules) mkDefault;
+  inherit (config.kkts.persistence) store;
+  inherit (lib.modules) mkDefault mkIf;
 
   isPersistent = config.services.journald.settings.Journal.Storage == "persistent";
 in {
-  persistence.directories = optional isPersistent "/var/log/journal";
+  fileSystems."/var/log/journal" = mkIf isPersistent {
+    device = "${store}/var/log/journal";
+    fsType = "none";
+    options = ["bind"];
+  };
 
   services.journald.settings.Journal = {
     Storage = mkDefault "persistent";
