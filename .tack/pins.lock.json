@@ -33,14 +33,6 @@
     "narHash": "sha256-Xrwc9hgghoOp2ySoBY1Mbyyi8mkR/HBHdFQ+5ATfikU=",
     "lastModified": 1788925586
   },
-  "crane": {
-    "type": "github",
-    "owner": "ipetkov",
-    "repo": "crane",
-    "rev": "73b980519cefc727a5f6cc8e5c0947a2f9be6edd",
-    "narHash": "sha256-jtT4yxZpR8seYnlCMMWSSPlFN92zO6ICuZ8pJrmi86k=",
-    "lastModified": 1789760033
-  },
   "dnscrypt-settings": {
     "type": "github",
     "owner": "quad9dns",
@@ -93,9 +85,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "81f70a2002254f75b572fc34c55e7df16e9bb176",
-    "narHash": "sha256-33a6iTG1uFv12/zV8yo5VvdpftMNQms6TIHhMCVN6zE=",
-    "lastModified": 1790526615
+    "rev": "3f1540f254fe73ac907281b7de7d396bb3d54850",
+    "narHash": "sha256-MV/BNWl8docJMxrNtkZ2/iw0FYMesyB69HKkLWk0r5s=",
+    "lastModified": 1790890970
   },
   "nf": {
     "type": "git",
@@ -143,7 +135,7 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1083223.c59305bab206/nixexprs.tar.zst",
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1083223.c59305bab206/nixexprs.tar.zst?rev=c59305bab2065cfecc4944690d9eedbb56f3a9fa&lastModified=1790822859",
     "rev": "c59305bab2065cfecc4944690d9eedbb56f3a9fa",
     "narHash": "sha256-VBA0QerzzmL+4wxgtwiCdiLwLpJg2/9xOxhgO3BRJQA=",
     "patched": {
@@ -172,9 +164,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "556c2cd1623138bf08ff51554d30153c0b8989df",
-    "narHash": "sha256-D+gCYnu1X5TORcg2voijAM/H/FUxeHs70tJMJ9hDzZ0=",
-    "lastModified": 1790878083
+    "rev": "5496c44650a5ac0a9e299c1bd57ba55403e49fe2",
+    "narHash": "sha256-N66Ambcvy41+WfzsY+wnacSkp3M/AQ+J0qUeDfnmqR4=",
+    "lastModified": 1791104774
   },
   "rust-overlay": {
     "type": "github",
@@ -188,9 +180,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "48db62a88aa1ccd91fedd157987ed18163bddc80",
-    "narHash": "sha256-M6WiozaXm4M13w6ygfqo+OwMsIgqVwbiGSwosXd3WAM=",
-    "lastModified": 1790877215
+    "rev": "4a8b68df58488b311840eb0244c75b4857871789",
+    "narHash": "sha256-ST/08SMwfjtXeP/+72GJYVFkO2xT6PDU5ofh9Gh9IJ8=",
+    "lastModified": 1791058919
   },
   "xdg-utils-nu": {
     "type": "github",
