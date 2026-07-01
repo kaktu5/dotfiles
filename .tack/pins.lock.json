@@ -141,14 +141,14 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1100280.3ec636362e18/nixexprs.tar.zst?rev=3ec636362e1816bc2f0888fa0fa2c69f1bc9e504&lastModified=1792773339",
-    "rev": "3ec636362e1816bc2f0888fa0fa2c69f1bc9e504",
-    "narHash": "sha256-17eNBI5Khe4JZaRkL5hRGPWf8MZ6qv+bWAr4V8YeKBw=",
-    "lastModified": 1792773339,
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1103272.31ecbaca1bde/nixexprs.tar.zst?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010&lastModified=1793110635",
+    "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+    "narHash": "sha256-yXRSdZdZZqccEL+j11lc1gFG1f7V5j8N7oPBTHwf7n4=",
+    "lastModified": 1793110635,
     "patched": {
-      "path": "/nix/store/20xzmxz0lb27r0p6rwffx6ii9xwvy7f3-source",
-      "narHash": "sha256-GxaUvP/XKXoGRIIcdwbIl/XYcLpn9T9lgKKFb+AsX+Q=",
-      "lastModified": 1792773339,
+      "path": "/nix/store/hdnvkx41q1sxbs8ajwavh5jfh17rk862-source",
+      "narHash": "sha256-qRVco/Bb3ELbF7o/rNw8idm0vaBFxnbQm0HzbYEPM/Y=",
+      "lastModified": 1793110635,
       "patches": [
         {
           "source": "github:nixos/nixpkgs/pull/538226",
@@ -163,13 +163,6 @@
           "file": "patches/nixpkgs/pr-562711.patch",
           "sha256": "5af1930e7e7839c1253be71380517081bfe4a6985b6d72d03f843ab41fb30c42",
           "head": "541a11ede9c3b84a896a196bfbd6557150ee7915"
-        },
-        {
-          "source": "github:nixos/nixpkgs/pull/576407",
-          "url": "https://github.com/nixos/nixpkgs/pull/576407",
-          "file": "patches/nixpkgs/pr-576407.patch",
-          "sha256": "2551ed577c913e9fcee7c510fd8c0c71da4eb409a80595a9944610de58b1b2f0",
-          "head": "f6064193720a72fc1e37527ca0119b265486397d"
         }
       ]
     }
@@ -186,9 +179,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "082419f841683d64f70aaa77312f28f4e468bf36",
-    "narHash": "sha256-fumootWVIWgtPmvC0TXw24hRVbfeI9yKHwHhT320+dE=",
-    "lastModified": 1793128137
+    "rev": "42a4d36ac6e004ec4b3ebd8833d2afbcd5939aad",
+    "narHash": "sha256-qv2KWtF5gj+HNokuvOqrUigEYEq233l9BdRdT2tTI+w=",
+    "lastModified": 1793200057
   },
   "rust-overlay": {
     "type": "github",

@@ -11,7 +11,6 @@ rust-overlay = []
 nixpkgs = {patches = [
   "github:nixos/nixpkgs/pull/538226", # millennium
   "github:nixos/nixpkgs/pull/562711", # rhythia
-  "github:nixos/nixpkgs/pull/576407", # fix handbrake
 ], url = "channel:nixos-unstable"}
 
 kaktu5pkgs.url = "rad:z3445hwtrioJCAisuAosBXvcTqVR2"
