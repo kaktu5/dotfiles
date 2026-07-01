@@ -7,9 +7,9 @@
   inherit (lib.kkts.hyprland) bind dsp;
   inherit (lib.lists) foldl' range;
   inherit (lib.meta) getExe;
-  inherit (pkgs) ghostty rofi uwsm;
+  inherit (pkgs) kitty rofi uwsm;
 
-  ghostty' = "${getExe ghostty} +new-window";
+  kitty' = "${getExe kitty} --single-instance";
   rofi' = "${getExe rofi} -show drun -run-command 'uwsm app -- {cmd}'";
 
   cfg = config.kkts.programs.hyprland.config;
@@ -17,7 +17,7 @@ in {
   kkts.programs.hyprland = {
     binds =
       {
-        "SUPER + RETURN" = dsp "exec_raw" ghostty';
+        "SUPER + RETURN" = dsp "exec_raw" kitty';
         "SUPER + SPACE" = dsp "exec_raw" rofi';
 
         "SUPER + C" = dsp "window.close" null;
@@ -87,7 +87,7 @@ in {
       };
 
     workspaces."special:scratchpad" = {
-      on_created_empty = ghostty';
+      on_created_empty = kitty';
       gaps_out = cfg.general.gaps_out * 12;
     };
   };
