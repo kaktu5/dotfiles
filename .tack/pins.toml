@@ -1,6 +1,6 @@
 [shorturls]
 channel = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
-rad = "git+https://rosa.radicle.network/{path}.git"
+rad = "git+https://iris.radicle.network/{path}.git"
 
 [all_follow]
 crane = []
@@ -14,15 +14,14 @@ nixpkgs-xanmod.url = "github:nixos/nixpkgs?rev=d407951447dcd00442e97087bf374aad7
 
 nf.url = "rad:z3EZi6d3LccUz1s6UmMfuoPJfMdZ"
 nixexprs.url = "github:kaktu5/nixexprs"
-preservation.url = "github:kaktu5/preservation"
 
-aagl-gtk-on-nix.url = "github:ezkea/aagl-gtk-on-nix"
+aagl-gtk-on-nix.url = "github:kaktu5/aagl-gtk-on-nix"
 cade.url = "github:manic-systems/cade"
 hjem.url = "github:feel-co/hjem"
 lanzaboote.url = "github:nix-community/lanzaboote"
 microvm.url = "github:microvm-nix/microvm.nix"
 nix-secrets.url = "github:unnamed-systems/nix-secrets"
-nixos-core.url = "github:manic-systems/nixos-core"
+nixos-core.url = "github:manic-systems/nixos-core/pull/58/merge"
 xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 
 dnscrypt-settings = {type = "fetch", url = "github:quad9dns/dnscrypt-settings"}
