@@ -11,9 +11,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "cade",
-    "rev": "1497101e2e826f4a172bfc485edf1abfb15ce2bc",
-    "narHash": "sha256-ExnFgjePOUeZwdwlkNbJLsUYVkD3q+7XdVIlubhxhgI=",
-    "lastModified": 1784754690
+    "rev": "8cf18ad67bd678aa0fc2b71d7839f3f31edf8963",
+    "narHash": "sha256-zkOMfC/oO1MnTp2Kn5eZ5n/9Lsu2cpvBo+Gjoxe2ZS8=",
+    "lastModified": 1785270046
   },
   "crane": {
     "type": "github",
@@ -35,25 +35,25 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "08d2b170a74a102c230c9651d8989fe6b39dfad8",
-    "narHash": "sha256-EAadJywc5P9CSIB7212S5jpQX48aTfYUbsJeAIbQaVI=",
-    "lastModified": 1784896036
+    "rev": "7dc2f4b1ee69c9ae3f223ab1fa4e95b93f72bc68",
+    "narHash": "sha256-QF9moiMJtq6OVOmzJhpjM78tlMAC5J+tvNWaOz4v9wY=",
+    "lastModified": 1785216864
   },
   "lanzaboote": {
     "type": "github",
     "owner": "nix-community",
     "repo": "lanzaboote",
-    "rev": "f4b0aef3dba28677a5ca4b3416827aade60b5a0b",
-    "narHash": "sha256-t17AqLEhPG6m27ipkp8mJd8Ug0XkdANFDVsgyIFBZcQ=",
-    "lastModified": 1784568171
+    "rev": "683b7f72db7202e4ad037c58fac53b3f7c12f980",
+    "narHash": "sha256-2hj+F0SxJ9tVtJSGQpoO53vtrXxbeqURz65tkmm15GE=",
+    "lastModified": 1785142311
   },
   "microvm": {
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "fa5340ac684cdce8a22b6d4a0bcebb0cc999275e",
-    "narHash": "sha256-xgfS6slV7J3baMooNN1UuBi51RIgg9y0DbCxfSA0668=",
-    "lastModified": 1784666190
+    "rev": "39a499ab85311b56dddb09ec43351cc3658f22c1",
+    "narHash": "sha256-7CjGBACbXXIJvGrPed75QI8ytqc48M78GP9aB/h2VSc=",
+    "lastModified": 1785246989
   },
   "nf": {
     "type": "git",
@@ -81,9 +81,9 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1040357.e2587caef70c/nixexprs.tar.xz",
-    "rev": "e2587caef70cea85dd97d7daab492899902dbf5d",
-    "narHash": "sha256-vwxWgF+Gj276WznzGb1LxGsK/39HaQwgQXiU3EkC844="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1042126.624af665418d/nixexprs.tar.xz",
+    "rev": "624af665418d3c65d544145b4d34ad696439570e",
+    "narHash": "sha256-JmPsbx37jA7Qga36iij0jsbwV4PVRACnqoVroAt/cAc="
   },
   "nixpkgs-xanmod": {
     "type": "github",
@@ -97,9 +97,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "bd81f8104dfef423f52aefc107338cfd7a838a2c",
-    "narHash": "sha256-mAQVhyF6iCABjyQ0w7yj3v2+j8bi/yPSZ+XKIYJ8h9Q=",
-    "lastModified": 1784920437
+    "rev": "c7a10cd5644258a093bbfef0588c1199047534b5",
+    "narHash": "sha256-rxzNkVpJyQVykbny+16vrmQnxIHLUyiloBmAqsk8EMk=",
+    "lastModified": 1785269137
   },
   "preservation": {
     "type": "github",
@@ -113,17 +113,17 @@
     "type": "github",
     "owner": "oxalica",
     "repo": "rust-overlay",
-    "rev": "47759faaddf38fadaf172151ca9df8adae9c0b2e",
-    "narHash": "sha256-DK+AmC9SQ9hmOFNIMu1l05gJtsmKyYsfJnuFtt1TnAU=",
-    "lastModified": 1784697913
+    "rev": "fe2124391e739e7b3e8720cd8a73f06edd0aceba",
+    "narHash": "sha256-ehF/c4fLdgmNu7YXEClnmwhoBYddhYIVoSQpsZoorC4=",
+    "lastModified": 1785044261
   },
   "stash": {
     "type": "github",
     "owner": "notashelf",
     "repo": "stash",
-    "rev": "bcb96342783692269c06250c7951f82ad0e1d7ac",
-    "narHash": "sha256-dGraUnB8zBxGB49q3Cji9/eJj/G0zq3Ry9facdgdUpc=",
-    "lastModified": 1784699064
+    "rev": "fcfbf7370f107b67ab4743710eb411122225713f",
+    "narHash": "sha256-XapYAZg75WA3NrTm67l7ax2Cvpby0MChqswaVeTDy58=",
+    "lastModified": 1785173763
   },
   "tack": {
     "type": "github",
@@ -137,9 +137,9 @@
     "type": "github",
     "owner": "notashelf",
     "repo": "tuigreet",
-    "rev": "3e18bcb7b68dfe5b8491ad08d5fbcbb326849a4f",
-    "narHash": "sha256-B8HU0rSC2572sFHtnLKiKPEfO+8Nnp99txrmD76rnJo=",
-    "lastModified": 1784745800
+    "rev": "097848afaa1182450e9daa36b5cd7450f74226b9",
+    "narHash": "sha256-KBhHCmm1gGtwwAoRqiPQed1eoXqbxGFxhLOEO3nZCTw=",
+    "lastModified": 1785063275
   },
   "vaultix": {
     "type": "github",
