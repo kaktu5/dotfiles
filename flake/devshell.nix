@@ -11,11 +11,11 @@
 
   vaultix' = self.vaultix.app.${system};
 
-  vaultix-edit = vaultix'.edit.overrideAttrs (_: {
+  vaultix-edit = vaultix'.edit.overrideAttrs {
     name = "vaultix-edit";
     destination = "/bin/vaultix-edit";
     meta.mainProgram = "vaultix-edit";
-  });
+  };
   vaultix-renc = writeShellScriptBin "vaultix-renc" ''
     cd "$(git rev-parse --show-toplevel)"
     nix run -Lv .#vaultix.app.${system}.renc
