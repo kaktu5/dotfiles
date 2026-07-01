@@ -3,6 +3,7 @@
   lib,
   pkgs,
 }: let
+  inherit (inputs'.fenix.packages.latest) rustfmt;
   inherit (inputs'.nh.packages) nh;
   inherit (inputs'.nix-secrets.packages) nix-secrets;
   inherit (inputs'.tack.packages) tack;
@@ -34,5 +35,12 @@ in
       # qml
       inherit (pkgs) quickshell;
       inherit (pkgs.qt6) qtdeclarative;
+
+      # rust
+      inherit rustfmt;
+      inherit (pkgs) clippy rust-analyzer;
+
+      # toml
+      inherit (pkgs) taplo;
     };
   }

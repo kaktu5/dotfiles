@@ -11,7 +11,7 @@
     in {
       devShells.default = import ./flake/devshell.nix {inherit inputs' lib pkgs;};
 
-      formatter = import ./flake/formatter.nix {inherit lib pkgs;};
+      formatter = import ./flake/formatter.nix {inherit inputs' lib pkgs;};
 
       packages = import ./flake/packages {inherit pkgs;};
     })

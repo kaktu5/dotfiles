@@ -1,0 +1,13 @@
+edition = "2024"
+
+condense_wildcard_suffixes = true
+format_strings = true
+group_imports = "StdExternalCrate"
+imports_granularity = "Crate"
+match_arm_blocks = false
+match_arm_leading_pipes = "Never"
+match_block_trailing_comma = true
+max_width = 120
+overflow_delimited_expr = true
+tab_spaces = 2
+use_field_init_shorthand = true

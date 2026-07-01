@@ -3,6 +3,7 @@
     "aagl-gtk-on-nix": "github:ezkea/aagl-gtk-on-nix",
     "cade": "github:manic-systems/cade?rev=3211f782a53f94842bbb8782de03a2c5d85c793d",
     "dnscrypt-settings": "github:quad9dns/dnscrypt-settings",
+    "fenix": "github:nix-community/fenix",
     "helium-flake": "github:amaanq/helium-flake",
     "hjem": "github:feel-co/hjem",
     "kaktu5pkgs": "git+https://rosa.radicle.network/z3445hwtrioJCAisuAosBXvcTqVR2.git",
@@ -52,9 +53,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "fenix",
-    "rev": "d17fa5c004217ac6e51da9a8c2d2b79b0ed37109",
-    "narHash": "sha256-4FDhl7ybhL5qhJw1X2IviFJ2MERnzV7X1HlJhFeSBXU=",
-    "lastModified": 1785919363
+    "rev": "12b7e3178c093a8af075f4a889238a2fffa3d0ef",
+    "narHash": "sha256-XZz60a37nUaPX0zH8TcD83ChVVyRV9o/H/t1dr4RZpk=",
+    "lastModified": 1793801102
   },
   "helium-flake": {
     "type": "github",

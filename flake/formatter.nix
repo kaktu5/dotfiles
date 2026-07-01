@@ -1,7 +1,9 @@
 {
+  inputs',
   lib,
   pkgs,
 }: let
+  inherit (inputs'.fenix.packages.latest) rustfmt;
   inherit (lib.attrsets) attrValues;
   inherit (pkgs) writeShellApplication;
 in
@@ -9,6 +11,7 @@ in
     name = "dotfiles-nix3-fmt-wrapper";
 
     runtimeInputs = attrValues {
+      inherit rustfmt;
       inherit (pkgs) alejandra fd mdformat taplo;
       inherit (pkgs.qt6) qtdeclarative;
     };
@@ -16,9 +19,10 @@ in
     runtimeEnv.RUST_LOG = "warn";
 
     text = ''
-      fd "$@" -t f -e md -X mdformat '{}'
-      fd "$@" -t f -e nix -E .tack/default.nix -X alejandra --quiet '{}'
-      fd "$@" -t f -e qml -E Config.qml -x qmlformat --inplace '{}'
-      fd "$@" -t f -e toml -X taplo format '{}'
+      fd "$@" -t f -e md -X mdformat
+      fd "$@" -t f -e nix -E .tack/default.nix -X alejandra --quiet 
+      fd "$@" -t f -e qml -E Config.qml -x qmlformat --inplace
+      fd "$@" -t f -e rs -X rustfmt
+      fd "$@" -t f -e toml -X taplo format
     '';
   }
