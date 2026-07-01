@@ -37,8 +37,6 @@
   };
 in {
   boot.initrd.systemd = {
-    emergencyAccess = false;
-
     settings.Manager = commonConfig;
 
     services.debug-shell.enable = false;
