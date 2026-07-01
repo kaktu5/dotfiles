@@ -11,7 +11,6 @@
       '';
     };
 
-    shadow.enable = false;
     sudo.enable = false;
   };
 }
