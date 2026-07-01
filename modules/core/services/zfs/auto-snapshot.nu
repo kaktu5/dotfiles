@@ -1,6 +1,6 @@
 $env.PATH = "@path@"
 
-const config = "@config@" | from nuon
+let config = "@config@" | from nuon
 
 def get-datasets []: nothing -> list<string> {
   ^zfs get -H -o name,value -t filesystem,volume com.sun:auto-snapshot
