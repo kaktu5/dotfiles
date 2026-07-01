@@ -28,7 +28,7 @@ in
       inherit (pkgs) age;
 
       # nix
-      inherit nh nix-secrets tack ;
+      inherit nh nix-secrets tack;
       inherit (pkgs) alejandra dix nixd;
 
       # qml

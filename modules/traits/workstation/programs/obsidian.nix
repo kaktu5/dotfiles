@@ -33,10 +33,7 @@ in {
     files = {
       "${vault}/.obsidian/app.json" = {
         inherit generator;
-        value = {
-          userIgnorePlugins = false;
-          vimMode = true;
-        };
+        value.vimMode = true;
       };
 
       "${vault}/.obsidian/appearance.json" = {
