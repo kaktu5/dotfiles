@@ -7,6 +7,7 @@
 }: let
   inherit (config.kkts.meta) userName;
   inherit (inputs) nixpkgs;
+  inherit (lib.meta) getExe;
   inherit (lib.modules) mkDefault;
   inherit (pkgs.lixPackageSets.latest) lix;
 in {
@@ -55,16 +56,16 @@ in {
       dates = ["Sat *-*-* 03:00"];
       randomizedDelaySec = "15min";
     };
-
-    optimise.automatic = true;
   };
 
   systemd = {
-    timers.nix-optimise.enable = false;
-
     services.nix-gc = {
-      wants = ["nix-optimise.service"];
-      before = ["nix-optimise.service"];
+      unitConfig.ConditionACPower = true;
+
+      serviceConfig = {
+        ExecStartPost = "${getExe lix} store optimise";
+        Slice = "background.slice";
+      };
     };
   };
 
