@@ -9,6 +9,7 @@
     "lanzaboote": "github:nix-community/lanzaboote",
     "license-list-data": "github:spdx/license-list-data",
     "microvm-nix": "github:microvm-nix/microvm.nix",
+    "ncro": "github:manic-systems/ncro",
     "nf": "git+https://rosa.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
     "nh": "github:nix-community/nh",
     "nix-secrets": "github:unnamed-systems/nix-secrets",
@@ -106,6 +107,14 @@
     "rev": "b7bd556974fa8a171b5b639200e81d52244dfde4",
     "narHash": "sha256-ErGIqtoWEX9KKC8NFtJDx2pGGG02Cr6LGxrvzLd2sqA=",
     "lastModified": 1793281488
+  },
+  "ncro": {
+    "type": "github",
+    "owner": "manic-systems",
+    "repo": "ncro",
+    "rev": "2f6b57783cddf80d91b8828b9a29c248ccbbc5c7",
+    "narHash": "sha256-XYoLYHQtYrlxUqKk4zO/f7xmgryySj2yrr1FYz3cwwY=",
+    "lastModified": 1793630289
   },
   "nf": {
     "type": "git",
