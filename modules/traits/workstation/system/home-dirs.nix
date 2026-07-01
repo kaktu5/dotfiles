@@ -34,7 +34,7 @@ in {
     };
 
     xdg.config.files."user-dirs.dirs" = {
-      generator = toKeyValue {mkKeyValue = k: v: "${k}='${v}'";};
+      generator = toKeyValue {mkKeyValue = k: v: "${k}=\"${v}\"";};
       value = prefixEach home {
         XDG_DOCUMENTS_DIR = "documents";
         XDG_DOWNLOAD_DIR = "downloads";
