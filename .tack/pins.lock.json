@@ -83,9 +83,9 @@
     "type": "github",
     "owner": "kaktu5",
     "repo": "nixexprs",
-    "rev": "42db87da18b495b125fca1f4d8770d20b4a61adb",
-    "narHash": "sha256-8UdlGALIa9qBHNfMBSqdukQspgKJDwul55Cr6c8ZAGw=",
-    "lastModified": 1780940893
+    "rev": "22c0b2a586cfed94a10d8d6ae0054b6dd0c4d775",
+    "narHash": "sha256-UKXlkQIK1dKCiWnleruRsa1z3fn2VktnJCCwLt4TGSE=",
+    "lastModified": 1786549501
   },
   "nixos-core": {
     "type": "github",
