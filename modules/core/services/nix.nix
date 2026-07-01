@@ -14,7 +14,7 @@ in {
   persistence = {
     directories = ["/var/cache/nix"];
 
-    users.${userName}.directories = [".local/cache/nix"];
+    users.${userName}.directories = [".local/cache/nix" ".local/share/nix"];
   };
 
   nix = {
