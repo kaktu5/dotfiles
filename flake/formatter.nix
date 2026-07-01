@@ -13,7 +13,7 @@ in
 
     runtimeInputs = attrValues {
       inherit alejandra rustfmt;
-      inherit (pkgs) fd mdformat stylua taplo;
+      inherit (pkgs) fd mdformat stylua tombi;
       inherit (pkgs.qt6) qtdeclarative;
     };
 
@@ -25,6 +25,6 @@ in
       fd "$@" -t f -e nix -E .tack/default.nix -X alejandra --quiet 
       fd "$@" -t f -e qml -E Config.qml -x qmlformat --inplace
       fd "$@" -t f -e rs -X rustfmt
-      fd "$@" -t f -e toml -X taplo format
+      fd "$@" -t f -e toml -X tombi format
     '';
   }

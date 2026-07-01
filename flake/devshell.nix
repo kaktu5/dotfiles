@@ -39,6 +39,6 @@ in
       inherit (pkgs) cargo clippy rust-analyzer rustc;
 
       # toml
-      inherit (pkgs) taplo;
+      inherit (pkgs) tombi;
     };
   }

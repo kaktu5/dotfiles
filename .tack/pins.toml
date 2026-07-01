@@ -19,7 +19,7 @@ sources.type = "fetch"
 
 [inputs.nixos]
 nixpkgs = { patches = [
-  "github:nixos/nixpkgs/pull/562711", # rhythia
+  "github:nixos/nixpkgs/pull/562711",  # rhythia
 ], url = "channel:nixos-unstable" }
 
 [inputs.firstparty]

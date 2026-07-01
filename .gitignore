@@ -35,7 +35,7 @@
 !/.qmlformat.ini
 !/.rustfmt.toml
 !/.stylua.toml
-!/.taplo.toml
+!/.tombi.toml
 !/alejandra.toml
 !/flake.nix
 !/license
