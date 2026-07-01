@@ -1,5 +1,3 @@
 {
-  services.journald.extraConfig = ''
-    MaxRetentionSec=2week
-  '';
+  services.journald.settings.Journal.MaxRetentionSec = "2week";
 }
