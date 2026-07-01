@@ -58,6 +58,7 @@ in {
           "git@github.com:".insteadOf = "github:";
 
           "https://codeberg.org/".insteadOf = "codeberg:";
+          "https://git.sr.ht/".insteadOf = "sourcehut:";
           "https://gitlab.com/".insteadOf = "gitlab:";
         };
       };
