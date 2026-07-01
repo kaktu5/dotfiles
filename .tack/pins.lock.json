@@ -43,25 +43,25 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "d248f0e4f7abd6e1f0eb9ace778dd7928481943e",
-    "narHash": "sha256-UrAlku7KST0DT+j1bdVGYI8tCz23PWL88uGMer3IZ2U=",
-    "lastModified": 1787500880
+    "rev": "e5e30b4320a8cbcd6cdfc65f044763669a8f0363",
+    "narHash": "sha256-0nvWuRbgL4GEKpR8Y4wsB3kmsVgyd0cW8kLHc2BqlTc=",
+    "lastModified": 1789234255
   },
   "lanzaboote": {
     "type": "github",
     "owner": "nix-community",
     "repo": "lanzaboote",
-    "rev": "03bc477f555adfe314af48ec0d3554f10d3390d8",
-    "narHash": "sha256-VkqjGPfG3aQGv+cgS/VbwNIR7yiXoLcUJih/tAdLv50=",
-    "lastModified": 1788769372
+    "rev": "8a34c6af53de5d0de742f35b5d764db93b53c5df",
+    "narHash": "sha256-N5qhvQXNFluy1sFvcVhIEvwm5QeCxFrpZHw/pwE+szU=",
+    "lastModified": 1789586975
   },
   "microvm": {
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "804cbac7a462aa0fa8bb60c3d2fc4ead0a62060f",
-    "narHash": "sha256-iCLUJO5V2ZlEAlYxlkCZ5YLkyQrpkyXOMUTkPXjsdPk=",
-    "lastModified": 1788636433
+    "rev": "187b0a390ee054028106a674e7b01b1cb940cbba",
+    "narHash": "sha256-4L8SOCF84de1irB72Ka9VHcu9wrAJ9Amuey4lU9oh4Y=",
+    "lastModified": 1789506833
   },
   "nf": {
     "type": "git",
@@ -97,25 +97,25 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1070770.8ce4ef6cb6f8/nixexprs.tar.zst",
-    "rev": "8ce4ef6cb6f871616146b9fe26d2a5ae594e94fe",
-    "narHash": "sha256-q+GdZ3yq4Y2LXHRK0vKTM32Hwy7RCgUgy+hjwZLI5pY="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1075591.e554fab72f81/nixexprs.tar.zst",
+    "rev": "e554fab72f81915600f3f449b786fd9af40439a5",
+    "narHash": "sha256-TAKa57gfBM/9a4IZrFaIQZhnHs9mXIFPlZbYrvhnaMY="
   },
   "oisd": {
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "2ccbd16bbeff15c30a8425287a24a00122a6983a",
-    "narHash": "sha256-9QoCYv8yVp1ILQBVAkfyTqm4CwLQZeO82+ej5nnBsZU=",
-    "lastModified": 1789049415
+    "rev": "66c2eecf9895fe428c311b48bb83fc91a8c2ea64",
+    "narHash": "sha256-byTZZUBlFaUUEGDNp3KNlUUtd4vY1CNVLuvAU4/oT+M=",
+    "lastModified": 1789820366
   },
   "rust-overlay": {
     "type": "github",
     "owner": "oxalica",
     "repo": "rust-overlay",
-    "rev": "4748ec2f5ed4a881474ed4c98aa71a5308cdac8d",
-    "narHash": "sha256-pcqbpV4ZI79al6KAlr+WJjaEo/PYfgctRlG43D5BSJM=",
-    "lastModified": 1788678114
+    "rev": "35ca0490d13a3d38c4602d0eb9600a30fa63a367",
+    "narHash": "sha256-45ikFmtfgBZgMePIm4GevJ9VjDSWO3PGQgOuuwHDpes=",
+    "lastModified": 1789543870
   },
   "xdg-utils-nu": {
     "type": "github",
