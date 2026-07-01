@@ -70,9 +70,9 @@
     "type": "git",
     "url": "https://rosa.radicle.network/z3445hwtrioJCAisuAosBXvcTqVR2.git",
     "ref": "HEAD",
-    "rev": "b3016d76860e4e78af1b0450b2f4739168b62e15",
-    "narHash": "sha256-oi9nPRv+nZXGVeSLxH6wdwKOMLagvmSV7BmJAfcPSc8=",
-    "lastModified": 1792852501
+    "rev": "67d0ba97db1f0e5e0f1e7b7e25118b1c7d0a1970",
+    "narHash": "sha256-aLh/vhzVUuIDv/T3uwcR76O1pe0jyB1HSx3Kjpcqhhc=",
+    "lastModified": 1792963460
   },
   "lanzaboote": {
     "type": "github",
@@ -102,9 +102,9 @@
     "type": "git",
     "url": "https://rosa.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
     "ref": "HEAD",
-    "rev": "71e3f6ad7e8809bf4e3a317ed230e999ef36138e",
-    "narHash": "sha256-otYfgHNZslyQdmuVMQDKMQBgjhROzwoY4A3SJadwTJY=",
-    "lastModified": 1790107157
+    "rev": "5d5bc6f6a13a4bbfd64249a3a6eec6734950755d",
+    "narHash": "sha256-TQNnM+9MPWlzeDsOyYjkViBrL5pfeEkKt6mLeNSi3JY=",
+    "lastModified": 1792961726
   },
   "nix-secrets": {
     "type": "github",
