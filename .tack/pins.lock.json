@@ -3,9 +3,9 @@
     "type": "github",
     "owner": "ipetkov",
     "repo": "crane",
-    "rev": "469fd08d0bcf6926321fa973c6777fbc87785dd7",
-    "narHash": "sha256-SlXKwIRIhrOSAcTjCB3ftPLzJWZStQIPS7J1FlZPnKk=",
-    "lastModified": 1781825982
+    "rev": "80db5bdc391be8a1794f6d8a2d56e3a84ebcede2",
+    "narHash": "sha256-G6R9IT/xwFuu+CYBWDUAok6AdC4ERC4ZfPPFtEpxnZE=",
+    "lastModified": 1783203018
   },
   "dnscrypt-settings": {
     "type": "github",
@@ -27,9 +27,9 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "3904edd282a7166cdad6c597964718e6d018baa6",
-    "narHash": "sha256-CzCF8RD9a9kwRrpeQ+z67sqqADUG0tf+4+YBSUG30y0=",
-    "lastModified": 1782764610
+    "rev": "c5a04bcc9d1f5a6ccafdcdf607bf49f70d5f7f20",
+    "narHash": "sha256-6+I67Kj47Ljwj8JGi8P3fSTxCBR+L0AauZTTmrrwLTs=",
+    "lastModified": 1783451207
   },
   "nixexprs": {
     "type": "github",
@@ -73,17 +73,17 @@
     "type": "github",
     "owner": "oxalica",
     "repo": "rust-overlay",
-    "rev": "f59bc28dd0b89e9c0240d1b80195559fc79c2471",
-    "narHash": "sha256-4XHdXp3MRa++XiGkltJChCtdbCmSlNTwQRfWQOhqbRw=",
-    "lastModified": 1782184651
+    "rev": "7dc3a177a239ed879c5581a80f6dc246c7e102f1",
+    "narHash": "sha256-jmWf+H3iC/0z7/mmvTovaJx1E/LME1QyHkyk+AFfJPk=",
+    "lastModified": 1783488441
   },
   "stash": {
     "type": "github",
     "owner": "notashelf",
     "repo": "stash",
-    "rev": "71d914176b03913676df086e35f699be20821164",
-    "narHash": "sha256-wXUXwgx7NvWdnXLWSvwYN2um0rVkGCy7reAfwj0Hygg=",
-    "lastModified": 1782485948
+    "rev": "5e9dad9f8a56ebf532c5ced262ee375977b597ae",
+    "narHash": "sha256-L5UfPKzdU8qQIyXSCMglLhv22J7xInxg3NNKCLkxszM=",
+    "lastModified": 1783501534
   },
   "tack": {
     "type": "github",
@@ -97,9 +97,9 @@
     "type": "github",
     "owner": "notashelf",
     "repo": "tuigreet",
-    "rev": "fbbe316ed5f8888f8643e191b41cd49925cfdee9",
-    "narHash": "sha256-S9PA7OraWT3dg3VPQ0vtZpcwyQqjmsLdjGodrOr8aIc=",
-    "lastModified": 1783322557
+    "rev": "2bf070a0b6bb66e76d2e32500dec851e2254ab2f",
+    "narHash": "sha256-aZttkaBzM0vjC/WDz5a/uVeq57hGur/CqfBD7P9V1es=",
+    "lastModified": 1783493073
   },
   "vaultix": {
     "type": "github",
