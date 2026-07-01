@@ -91,9 +91,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "9e3c6ef6d068570b82b00fe2ac28f1d2a4b23604",
-    "narHash": "sha256-owP2IyxlqGlPtvLYkjZZaD9jFtPUQbfChoEEpja0PkE=",
-    "lastModified": 1788284360
+    "rev": "1793b22bfe73e077ecce0ead2d8ab51ca54efdf7",
+    "narHash": "sha256-BNHNzU37v7zoUqKH/7fI3LA2ttFEbl2LxBtC+t7SlEE=",
+    "lastModified": 1788804738
   },
   "nixpkgs": {
     "type": "tarball",
