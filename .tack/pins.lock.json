@@ -1,11 +1,11 @@
 {
   "aagl-gtk-on-nix": {
     "type": "github",
-    "owner": "kaktu5",
+    "owner": "ezkea",
     "repo": "aagl-gtk-on-nix",
-    "rev": "74e6f78e2c088d81715898c09072d272f078125f",
-    "narHash": "sha256-mkYVMLaazxtyjXEeLnowObk/a/0d2VPByusGa5pr0iQ=",
-    "lastModified": 1788284597
+    "rev": "d82d6d6f66caf4b63fb154e62fad83c627874127",
+    "narHash": "sha256-mh+ZiGCtHAo0xIi1yaNjHsftfnlWz9JiYwHCyT16yIE=",
+    "lastModified": 1789138122
   },
   "cade": {
     "type": "github",
