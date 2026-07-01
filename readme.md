@@ -5,6 +5,30 @@
     <p>A Nix flake containing configurations for all of my systems.</p>
 </div>
 
+## Directory structure
+
+```
+.
+├── components/          - Non-Nix assets
+├── flake/               - Flake outputs
+├── hosts/               - Per-host configurations
+├── lib/                 - An extension of nixpkgs.lib
+├── modules/             - NixOS configuration modules
+│   ├── core/            - Core modules imported by all hosts
+│   ├── options/         - Custom options declarations
+│   ├── profiles/        - Optional modules enabled in each host's profile.nix
+│   ├── shared/          - Common modules shared between traits
+│   └── traits/          - Hardware and role-specific module groups
+│       ├── bare-metal/
+│       ├── graphical/
+│       ├── headless/
+│       ├── laptop/
+│       ├── microvm/
+│       ├── server/
+│       └── workstation/
+└── secrets/             - Encrypted secrets managed via nix-secrets
+```
+
 ## Related projects
 
 - [kaktu5pkgs](https://radicle.network/nodes/rosa.radicle.network/rad:z3445hwtrioJCAisuAosBXvcTqVR2) - a custom Nix
