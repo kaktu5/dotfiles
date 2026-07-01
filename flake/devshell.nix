@@ -25,9 +25,6 @@ in
     };
 
     packages = attrValues {
-      # age
-      inherit (pkgs) age;
-
       # nix
       inherit nh nix-secrets tack;
       inherit (pkgs) alejandra dix nixd;
