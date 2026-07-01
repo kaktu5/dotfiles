@@ -8,7 +8,10 @@
   inherit (config.kkts.persistence) store;
   inherit (lib.lists) singleton;
 in {
-  users.users.${userName}.openssh.authorizedKeys.keys = [keys.users.${userName}];
+  users.users.${userName}.openssh.authorizedKeys.keys = [
+    keys.users.${userName}
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHNiMxIwRrTPPkVpCmEFj785cMv0aSpV6dPIo3MP/ass" # Nothing Phone (1)
+  ];
 
   services.openssh = {
     enable = true;
