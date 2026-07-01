@@ -6,7 +6,6 @@
   inherit (config.kkts.meta) userName;
   inherit (config.users.users.${userName}) home;
   inherit (lib.generators) toKeyValue;
-  inherit (lib.kkts.paths) prefixEach;
 in {
   persistence.users.${userName}.directories = [
     {
@@ -32,13 +31,13 @@ in {
 
     xdg.config.files."user-dirs.dirs" = {
       generator = toKeyValue {mkKeyValue = k: v: "${k}=\"${v}\"";};
-      value = prefixEach home {
-        XDG_DOCUMENTS_DIR = "documents";
-        XDG_DOWNLOAD_DIR = "downloads";
-        XDG_MUSIC_DIR = "music";
-        XDG_PICTURES_DIR = "images";
-        XDG_PROJECTS_DIR = "projects";
-        XDG_VIDEOS_DIR = "videos";
+      value = {
+        XDG_DOCUMENTS_DIR = "${home}/documents";
+        XDG_DOWNLOAD_DIR = "${home}/downloads";
+        XDG_MUSIC_DIR = "${home}/music";
+        XDG_PICTURES_DIR = "${home}/images";
+        XDG_PROJECTS_DIR = "${home}/projects";
+        XDG_VIDEOS_DIR = "${home}/videos";
       };
     };
   };
