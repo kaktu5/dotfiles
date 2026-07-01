@@ -1,5 +1,5 @@
 [shorturls]
-channel = "https://channels.nixos.org/{path}/nixexprs.tar.xz"
+channel = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 rad = "git+https://rosa.radicle.network/{path}.git"
 
 [all_follow]
