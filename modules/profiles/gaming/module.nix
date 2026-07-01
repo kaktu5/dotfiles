@@ -11,6 +11,7 @@ in {
     ./config.nix
     ./mangohud.nix
     ./steam.nix
+    ./zenless-zone-zero.nix
   ];
 
   options.kkts.profiles.gaming = {
@@ -19,5 +20,7 @@ in {
     mangohud.enable = mkEnableOption "mangohud" // {default = cfg.enable;};
 
     steam.enable = mkEnableOption "steam";
+
+    zenless-zone-zero.enable = mkEnableOption "Zenless Zone Zero";
   };
 }

@@ -1,4 +1,12 @@
 {
+  "aagl-gtk-on-nix": {
+    "type": "github",
+    "owner": "ezkea",
+    "repo": "aagl-gtk-on-nix",
+    "rev": "af94408291ad477cae8eed964981ab41f90eb184",
+    "narHash": "sha256-Ac4EGPZr9e+mPUdmavJFSTft4vgoXml40+YOFYKTXPg=",
+    "lastModified": 1783689476
+  },
   "cade": {
     "type": "github",
     "owner": "manic-systems",

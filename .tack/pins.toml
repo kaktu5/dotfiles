@@ -14,6 +14,7 @@ nf.url = "github:kaktu5/nf"
 nixexprs.url = "github:kaktu5/nixexprs"
 preservation.url = "github:kaktu5/preservation"
 
+aagl-gtk-on-nix.url = "github:ezkea/aagl-gtk-on-nix"
 cade.url = "github:manic-systems/cade"
 hjem.url = "github:feel-co/hjem"
 lanzaboote.url = "github:nix-community/lanzaboote"
