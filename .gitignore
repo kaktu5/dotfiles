@@ -8,6 +8,8 @@
 !/.tack/pins.lock.json
 !/.tack/pins.toml
 
+!/components/
+
 !/flake/**/*.nix
 !/flake/packages/**/.nu
 
@@ -22,8 +24,6 @@
 !/modules/**/*.nix
 !/modules/**/*.nu
 !/modules/**/*.patch
-
-!/resources/**/*.nix
 
 !/secrets/**/*.enc
 
