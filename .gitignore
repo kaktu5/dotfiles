@@ -1,16 +1,16 @@
 *
 !/**/
+!.gitignore
 
 !/.tack/{default.nix,pins.lock.json,pins.toml}
 !/.vaultix/**
 !/flake/**/*.{nix,nu}
-!/hosts/**/*.nix
+!/hosts/**/*.{age,json,nix}
 !/lib/**/*.nix
-!/modules/**/{.gitignore,*.age,*.nix}
+!/modules/**/*.{age,json,nix}
 
 !/.envrc
 !/.gitattributes
-!/.gitignore
 !/.mdformat.toml
 !/.qmlformat.ini
 !/.taplo.toml
