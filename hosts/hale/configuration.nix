@@ -9,5 +9,7 @@ in {
 
   users.users.${userName}.initialPassword = "nix";
 
+  kkts.boot.loader = "limine";
+
   system.stateVersion = "26.11";
 }
