@@ -8,22 +8,23 @@
   inherit (config.boot) zfs;
   inherit (lib.attrsets) attrValues;
   inherit (lib.kkts.generators) toNuon;
+  inherit (lib.kkts.strings) replaceVars;
   inherit (lib.lists) any;
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.strings) makeBinPath readFile;
+  inherit (lib.strings) makeBinPath;
   inherit (pkgs.writers) writeNuBin;
 
-  zfsAutoSnapshot = writeNuBin "zfs-auto-snapshot" ''
-    $env.PATH = "${makeBinPath [zfs.package]}"
+  zfsAutoSnapshot =
+    writeNuBin "zfs-auto-snapshot"
+    <| replaceVars ./auto-snapshot.nu {
+      path = makeBinPath [zfs.package];
 
-    const CONFIG = ${toNuon {} {
-      daily = 7;
-      weekly = 2;
-    }}
-
-    ${readFile ./auto-snapshot.nu}
-  '';
+      config = toNuon {} {
+        daily = 7;
+        weekly = 2;
+      };
+    };
 
   hasZfsFilesystrem = fileSystems |> attrValues |> any (fs: fs.fsType == "zfs");
 

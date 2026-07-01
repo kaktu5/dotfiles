@@ -1,13 +1,17 @@
+$env.PATH = "@path@"
+
+const config = "@config@" | from nuon
+
 def get-datasets []: nothing -> list<string> {
   ^zfs get -H -o name,value -t filesystem,volume com.sun:auto-snapshot
-    | lines
-    | parse "{name}\t{value}"
-    | where value == "true"
-    | get name
+  | lines
+  | parse "{name}\t{value}"
+  | where value == "true"
+  | get name
 }
 
 def snapshot-datasets [label: string, datasets: list<string>] {
-  let date = (date now | format date "%Y-%m-%d")
+  let date = date now | format date "%Y-%m-%d"
   for dataset in $datasets {
     let snapshot_name = $"($dataset)@auto-($label)-($date)"
     print $"creating ($snapshot_name)"
@@ -25,8 +29,8 @@ def prune-datasets [label: string, keep: int, datasets: list<string>] {
       continue
     }
     $snapshots
-      | take (($snapshots | length) - $keep)
-      | each {|s|
+    | take (($snapshots | length) - $keep)
+    | each {|s|
           print $"destroying ($s)"
           ^zfs destroy $s
         }
@@ -34,7 +38,7 @@ def prune-datasets [label: string, keep: int, datasets: list<string>] {
 }
 
 def main [label: string] {
-  let keep = ($CONFIG | get $label)
+  let keep = $config | get $label
   let datasets = (get-datasets)
   snapshot-datasets $label $datasets
   prune-datasets $label $keep $datasets
