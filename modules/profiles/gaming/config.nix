@@ -4,13 +4,20 @@
   pkgs,
   ...
 }: let
+  inherit (config.kkts.meta) userName;
   inherit (config.kkts.profiles) gaming;
   inherit (lib.kkts.dag) entryAnywhere;
+  inherit (lib.lists) singleton;
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkIf;
   inherit (pkgs) wireplumber;
 in
   mkIf gaming.enable {
+    persistence.users.${userName}.directories = singleton {
+      target = "games";
+      mountOptions = ["exec"];
+    };
+
     boot.kernelModules = ["ntsync"];
 
     kkts.programs.hyprland.extraEntries.mute-unfocused-game-windows = entryAnywhere ''

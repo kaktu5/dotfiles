@@ -10,17 +10,7 @@
   inherit (lib.modules) mkIf;
 in
   mkIf (gaming.enable && gaming.zenlessZoneZero.enable) {
-    persistence.users.${userName} = {
-      directories = [
-        {
-          # TODO: move to gaming/config.nix
-          target = "games";
-          mountOptions = ["exec"];
-        }
-        ".local/cache/sleepy-launcher"
-        ".local/share/sleepy-launcher"
-      ];
-    };
+    persistence.users.${userName}.directories = [".local/cache/sleepy-launcher" ".local/share/sleepy-launcher"];
 
     users.users.${userName}.packages = [sleepy-launcher];
   }
