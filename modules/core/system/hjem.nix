@@ -12,10 +12,6 @@ in {
   hjem = {
     clobberByDefault = true;
 
-    users.${userName} = {
-      directory = home;
-
-      xdg.cache.directory = home + "/.local/cache";
-    };
+    users.${userName}.directory = home;
   };
 }
