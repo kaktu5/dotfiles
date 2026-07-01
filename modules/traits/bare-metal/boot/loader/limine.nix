@@ -5,5 +5,7 @@
     enableEditor = false;
 
     efiSupport = false;
+
+    style.wallpapers = [];
   };
 }

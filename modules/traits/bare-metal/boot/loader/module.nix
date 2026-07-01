@@ -10,5 +10,9 @@ in {
     default = "lanzaboote";
   };
 
-  config.boot.loader.efi.canTouchEfiVariables = mkDefault true;
+  config.boot.loader = {
+    efi.canTouchEfiVariables = mkDefault true;
+
+    timeout = 1;
+  };
 }
