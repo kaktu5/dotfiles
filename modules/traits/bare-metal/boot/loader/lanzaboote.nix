@@ -6,16 +6,25 @@
   ...
 }: let
   inherit (config.kkts.meta) userName;
+  inherit (config.kkts.persistence) store;
   inherit (inputs) lanzaboote;
-  inherit (lib.lists) optionals singleton;
+  inherit (lib.lists) optional optionals singleton;
   inherit (lib.modules) mkIf;
   inherit (pkgs) sbctl tpm2-tools;
 
   enable = config.kkts.boot.loader == "lanzaboote";
 
   cfg = config.boot.lanzaboote;
+
+  pcrlockPolicyDir = dirOf cfg.measuredBoot.pcrlockPolicy;
 in {
   imports = [lanzaboote.nixosModules.default];
+
+  fileSystems.${pcrlockPolicyDir} = mkIf cfg.measuredBoot.enable {
+    device = "${store}${pcrlockPolicyDir}";
+    fsType = "none";
+    options = ["bind"];
+  };
 
   persistence = mkIf enable {
     directories =
@@ -23,16 +32,10 @@ in {
         target = cfg.pkiBundle;
         mode = "700";
       }
-      ++ optionals cfg.measuredBoot.enable [
-        {
-          target = cfg.measuredBoot.pcrlockDirectory;
-          mode = "700";
-        }
-        {
-          target = dirOf cfg.measuredBoot.pcrlockPolicy;
-          mode = "700";
-        }
-      ];
+      ++ optional cfg.measuredBoot.enable {
+        target = cfg.measuredBoot.pcrlockDirectory;
+        mode = "700";
+      };
   };
 
   users.users.${userName}.packages = optionals enable [sbctl tpm2-tools];
