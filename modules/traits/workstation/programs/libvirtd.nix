@@ -5,20 +5,24 @@ in {
 
   networking.firewall.trustedInterfaces = ["virbr0"];
 
-  virtualisation.libvirtd = {
-    enable = true;
+  virtualisation = {
+    libvirtd = {
+      enable = true;
 
-    onBoot = "ignore";
-    onShutdown = "shutdown";
-    parallelShutdown = 4;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
+      parallelShutdown = 4;
 
-    qemu = {
-      runAsRoot = false;
+      qemu = {
+        runAsRoot = false;
 
-      swtpm.enable = true;
+        swtpm.enable = true;
 
-      vhostUserPackages = [virtiofsd];
+        vhostUserPackages = [virtiofsd];
+      };
     };
+
+    spiceUSBRedirection.enable = true;
   };
 
   programs.virt-manager.enable = true;
