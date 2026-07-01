@@ -2,6 +2,7 @@
   time.timeZone = "Europe/Warsaw";
 
   environment.systemPackages = [pkgs.openntpd];
+
   services.openntpd = {
     enable = true;
     extraConfig = ''

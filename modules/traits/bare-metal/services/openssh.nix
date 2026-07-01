@@ -21,8 +21,7 @@ in {
       KbdInteractiveAuthentication = false;
       MaxAuthTries = 3;
 
-      # X11 in the Big 2026?
-      X11Forwarding = false;
+      X11Forwarding = false; # X11 in the Big 2026?
 
       ClientAliveCountMax = 5;
       ClientAliveInterval = 60;
