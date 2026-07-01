@@ -58,14 +58,12 @@ in {
     };
   };
 
-  systemd = {
-    services.nix-gc = {
-      unitConfig.ConditionACPower = true;
+  systemd.services.nix-gc = {
+    unitConfig.ConditionACPower = true;
 
-      serviceConfig = {
-        ExecStartPost = "${getExe lix} store optimise";
-        Slice = "background.slice";
-      };
+    serviceConfig = {
+      ExecStartPost = "${getExe lix} store optimise";
+      Slice = "background.slice";
     };
   };
 
