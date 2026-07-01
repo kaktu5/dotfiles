@@ -7,7 +7,7 @@
 }: let
   inherit (config.kkts.meta) userName;
   inherit (inputs) lanzaboote;
-  inherit (lib.lists) optional singleton;
+  inherit (lib.lists) optionals singleton;
   inherit (pkgs) sbctl tpm2-tools;
 
   cfg = config.boot.lanzaboote;
@@ -20,15 +20,16 @@ in {
         target = cfg.pkiBundle;
         mode = "700";
       }
-      ++ optional cfg.measuredBoot.enable {
-        target = cfg.measuredBoot.pcrlockDirectory;
-        mode = "700";
-      };
-
-    files = optional cfg.measuredBoot.enable {
-      target = cfg.measuredBoot.pcrlockPolicy;
-      mode = "600";
-    };
+      ++ optionals cfg.measuredBoot.enable [
+        {
+          target = cfg.measuredBoot.pcrlockDirectory;
+          mode = "700";
+        }
+        {
+          target = dirOf cfg.measuredBoot.pcrlockPolicy;
+          mode = "700";
+        }
+      ];
   };
 
   users.users.${userName}.packages = [sbctl tpm2-tools];
@@ -57,7 +58,11 @@ in {
         autoReboot = true;
       };
 
-      measuredBoot.enable = true;
+      measuredBoot = {
+        enable = true;
+
+        pcrlockPolicy = "/var/lib/systemd/pcrlock/policy.json";
+      };
     };
   };
 }
