@@ -2,7 +2,7 @@
   services.kanata = {
     enable = true;
 
-    keyboards.internal = {
+    keyboards.krux-atax-pro-rgb-tkl = {
       devices = ["/dev/input/by-id/usb-Evision_RGB_Keyboard-event-kbd"];
 
       extraArgs = ["--nodelay"];
