@@ -49,17 +49,17 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1024265.b5aa0fbd5389/nixexprs.tar.xz",
-    "rev": "b5aa0fbd538984f6e3d201be0005b4463d8b09f8",
-    "narHash": "sha256-T6OhkwGyyGHer1lr4GkbOp//7ii23xLE7HuMmjrdkXI="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1027867.d407951447dc/nixexprs.tar.xz",
+    "rev": "d407951447dcd00442e97087bf374aad70c04cea",
+    "narHash": "sha256-FGQ8TfSm9WviNE/fQAWsKs+y4GkX8fU4EScewpw54Y8="
   },
   "oisd": {
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "2a087ff455c0d34954f419f59cc2576f1fbeec43",
-    "narHash": "sha256-rsyrk2O7rOBzvQ8sEUmZmKfLlsEef14o36dzLHLUmIw=",
-    "lastModified": 1782806842
+    "rev": "5f118a86151803ebf4d781108735d3ed70dbebb6",
+    "narHash": "sha256-UOngUSoA/Xhe4FxC+RjHnZD/cO1iPS7oSFDE1NsDyGU=",
+    "lastModified": 1783354075
   },
   "preservation": {
     "type": "github",
@@ -97,9 +97,9 @@
     "type": "github",
     "owner": "notashelf",
     "repo": "tuigreet",
-    "rev": "2412c8f18d191fdc6c4bb202da77794cdd9c3165",
-    "narHash": "sha256-vkci6lC9aGRLbQsBpr+rTjkpJ1G7h7JzsV4SK2mfCew=",
-    "lastModified": 1782196692
+    "rev": "fbbe316ed5f8888f8643e191b41cd49925cfdee9",
+    "narHash": "sha256-S9PA7OraWT3dg3VPQ0vtZpcwyQqjmsLdjGodrOr8aIc=",
+    "lastModified": 1783322557
   },
   "vaultix": {
     "type": "github",
