@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib.modules) mkForce;
   inherit (pkgs) virtiofsd;
 in {
   persistence.directories = ["/var/lib/libvirt"];
@@ -26,4 +31,6 @@ in {
   };
 
   programs.virt-manager.enable = true;
+
+  systemd.services.libvirtd.wantedBy = mkForce [];
 }
