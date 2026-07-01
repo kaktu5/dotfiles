@@ -57,6 +57,18 @@ in {
       inherit (commonConfig) DefaultTimeoutStartSec DefaultTimeoutStopSec DefaultTimeoutAbortSec;
     };
 
+    ctrlAltDelUnit = "noop.target";
+
+    slices.background.sliceConfig = {
+      CPUWeight = "idle";
+      IOWeight = 1;
+
+      MemorySwapMax = "0";
+
+      ManagedOOMMemoryPressure = "kill";
+      ManagedOOMSwap = "kill";
+    };
+
     services = {
       "autovt@".enable = false;
       "getty@".enable = false;
@@ -68,7 +80,5 @@ in {
       hybrid-sleep.enable = false;
       noop.unitConfig.DefaultDependencies = false;
     };
-
-    ctrlAltDelUnit = "noop.target";
   };
 }
