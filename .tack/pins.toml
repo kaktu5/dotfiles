@@ -4,7 +4,8 @@ rad = "git+https://rosa.radicle.network/{path}.git"
 
 [all_follow]
 crane = []
-nixpkgs = ["nixpkgs-lib"]
+fenix = []
+nixpkgs = []
 rust-overlay = []
 
 [inputs]
