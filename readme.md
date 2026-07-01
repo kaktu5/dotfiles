@@ -7,7 +7,8 @@
 
 ## Related projects
 
-- [nf](https://github.com/kaktu5/nf) - my personal Neovim configuration
+- [nf](https://radicle.network/nodes/rosa.radicle.network/rad:z3EZi6d3LccUz1s6UmMfuoPJfMdZ) - my personal Neovim
+  configuration
 - [nixexprs](https://github.com/kaktu5/nixexprs) - a custom Nix package collection
 
 ## Software
