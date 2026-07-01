@@ -1,13 +1,13 @@
 {
   config,
-  inputs',
+  pkgs,
   ...
 }: let
   inherit (config.hjem.users.${userName}.environment.sessionVariables) XCURSOR_SIZE;
   inherit (config.kkts.meta) userName;
   inherit (config.kkts.programs.hyprland) finalConfig;
   inherit (config.kkts.theme.colors) hex';
-  inherit (inputs'.kaktu5pkgs.packages) breezex-cursor;
+  inherit (pkgs.ktu5) breezex-cursor;
 
   breezex-cursor' = breezex-cursor.override {
     baseColor = hex'.bg0;

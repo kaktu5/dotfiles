@@ -1,10 +1,8 @@
 {
   config,
-  inputs',
   lib,
   pkgs,
 }: let
-  inherit (inputs'.kaktu5pkgs.packages) space-mono;
   inherit (lib) types;
   inherit (lib.attrsets) mapAttrs;
   inherit (lib.options) mkOption;
@@ -12,6 +10,7 @@
   inherit (lib.types) str;
   inherit (lib.types.ints) positive;
   inherit (pkgs) _0xproto noto-fonts-monochrome-emoji;
+  inherit (pkgs.ktu5) space-mono;
 
   cfg = config.kkts.theme.fonts;
 
