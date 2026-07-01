@@ -9,7 +9,6 @@
   inherit (lib.attrsets) mapAttrs;
   inherit (lib.generators) toKeyValue;
   inherit (lib.lists) isList;
-  inherit (lib.strings) removePrefix;
 
   mapWithBase = prefix: value:
     if isList value
