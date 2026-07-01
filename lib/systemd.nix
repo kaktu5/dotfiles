@@ -25,4 +25,20 @@ in {
 
       serviceConfig.Restart = "on-failure";
     };
+
+  mkUserTargetService = {
+    after ? [],
+    partOf ? [],
+    wantedBy ? [],
+    ...
+  } @ attrs:
+    attrs
+    |> (a: removeAttrs a ["after" "partOf" "wantedBy"])
+    |> recursiveUpdate {
+      after = ["default.target"] ++ after;
+      partOf = ["default.target"] ++ partOf;
+      wantedBy = ["default.target"] ++ wantedBy;
+
+      serviceConfig.Restart = "on-failure";
+    };
 }
