@@ -12,8 +12,11 @@ in {
       target = "projects";
       mountOptions = ["exec"];
     }
+    {
+      target = "dotfiles";
+      mountOptions = ["exec"];
+    }
     "documents"
-    "dotfiles"
     "downloads"
     "images"
     "music"
