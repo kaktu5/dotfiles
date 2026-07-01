@@ -13,7 +13,6 @@ in {
     enable = true;
 
     package = nixos-core.override {
-      withUpdateUsersGroups = false;
       withInitScript = false;
       withStage1 = false;
     };
