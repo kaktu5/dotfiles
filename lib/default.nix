@@ -14,6 +14,7 @@ in
         hyprland = import ./hyprland.nix {inherit lib;};
         modules = import ./modules.nix {inherit lib;};
         nixos = import ./nixos.nix {inherit inputs lib self;};
+        paths = import ./paths.nix {inherit lib;};
         systemd = import ./systemd.nix {inherit lib;};
       };
     })

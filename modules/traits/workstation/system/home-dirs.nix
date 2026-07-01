@@ -6,14 +6,8 @@
   inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
   inherit (config.users.users.${userName}) home;
-  inherit (lib.attrsets) mapAttrs;
   inherit (lib.generators) toKeyValue;
-  inherit (lib.lists) isList;
-
-  mapWithBase = prefix: value:
-    if isList value
-    then value |> map (dir: "${prefix}/${dir}")
-    else value |> mapAttrs (_: dir: "${prefix}/${dir}");
+  inherit (lib.kkts.paths) prefixEach;
 in {
   preservation.preserveAt."/persist".users.${userName}.directories =
     [
@@ -28,20 +22,20 @@ in {
       "music"
       "videos"
     ]
-    ++ mapWithBase xdg.data.directory [
+    ++ prefixEach xdg.data.directory [
       "cargo"
       "gradle"
     ];
 
   hjem.users.${userName} = {
-    environment.sessionVariables = mapWithBase xdg.data.directory {
+    environment.sessionVariables = prefixEach xdg.data.directory {
       CARGO_HOME = "cargo";
       GRADLE_USER_HOME = "gradle";
     };
 
     xdg.config.files."user-dirs.dirs" = {
       generator = toKeyValue {mkKeyValue = k: v: "${k}='${v}'";};
-      value = mapWithBase home {
+      value = prefixEach home {
         XDG_DOCUMENTS_DIR = "documents";
         XDG_DOWNLOAD_DIR = "downloads";
         XDG_MUSIC_DIR = "music";
