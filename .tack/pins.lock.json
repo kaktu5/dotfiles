@@ -1,6 +1,7 @@
 {
   "$declared": {
     "affinity-nix": "github:mrshmllow/affinity-nix",
+    "alejandra": "github:kamadorueda/alejandra",
     "breezex-cursor": "github:ful1e5/breezex_cursor",
     "cade": "github:manic-systems/cade",
     "dnscrypt-settings": "github:quad9dns/dnscrypt-settings",
@@ -32,6 +33,15 @@
     "rev": "188d9365326b8f820e5c2c46069566ef3dfe3330",
     "narHash": "sha256-jeh9MU9l5Rn8LSOdBRjsd37xSV01HuiwRSh+TSrBx6g=",
     "lastModified": 1795305373,
+    "public": true
+  },
+  "alejandra": {
+    "type": "github",
+    "owner": "kamadorueda",
+    "repo": "alejandra",
+    "rev": "d6457f52f7335446e8188852070ceb0bbdf8bc13",
+    "narHash": "sha256-JKO72eFr/br/8LqkH+qI7biZJCT79rnIOsjFJFLID3g=",
+    "lastModified": 1795587918,
     "public": true
   },
   "breezex-cursor": {

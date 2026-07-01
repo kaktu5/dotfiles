@@ -3,6 +3,7 @@
   lib,
   pkgs,
 }: let
+  inherit (inputs'.alejandra.overlays.default pkgs {}) alejandra;
   inherit (inputs'.fenix.packages.latest) rustfmt;
   inherit (inputs'.nh.packages) nh;
   inherit (inputs'.nix-secrets.packages) nix-secrets;
@@ -25,9 +26,9 @@ in
     };
 
     packages = attrValues {
-      # nix
-      inherit nh nix-secrets tack;
-      inherit (pkgs) alejandra dix nixd;
+        # nix
+        inherit alejandra nh nix-secrets tack;
+        inherit (pkgs) dix nixd;
 
       # qml
       inherit (pkgs) quickshell;

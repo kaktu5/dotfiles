@@ -3,6 +3,7 @@
   lib,
   pkgs,
 }: let
+  inherit (inputs'.alejandra.overlays.default pkgs {}) alejandra;
   inherit (inputs'.fenix.packages.latest) rustfmt;
   inherit (lib.attrsets) attrValues;
   inherit (pkgs) writeShellApplication;
@@ -11,8 +12,8 @@ in
     name = "dotfiles-nix3-fmt-wrapper";
 
     runtimeInputs = attrValues {
-      inherit rustfmt;
-      inherit (pkgs) alejandra fd mdformat taplo;
+      inherit alejandra rustfmt;
+      inherit (pkgs) fd mdformat taplo;
       inherit (pkgs.qt6) qtdeclarative;
     };
 

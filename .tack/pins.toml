@@ -26,6 +26,7 @@ obsidian-bases-tasks.url = "rad:z4FC12ufxa84RxepxeNMXm5PJUycy"
 
 [inputs.thirdparty]
 affinity-nix.url = "github:mrshmllow/affinity-nix"
+alejandra.url = "github:kamadorueda/alejandra"
 cade.url = "github:manic-systems/cade"
 fenix = { omit_inputs = ["rust-analyzer-src"], url = "github:nix-community/fenix" }
 helium-flake.url = "github:amaanq/helium-flake"

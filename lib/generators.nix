@@ -13,7 +13,9 @@
     then "derivation"
     else typeOf v;
 in {
-  toHyprlang = {priorityKeys ? []}: attrs: let
+  toHyprlang = {
+    priorityKeys ? [],
+  }: attrs: let
     orderKeys = keys: let
       priorityKeys' = priorityKeys |> filter (key: elem key keys);
       restKeys = subtractLists priorityKeys' keys;
