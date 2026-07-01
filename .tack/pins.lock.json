@@ -81,18 +81,18 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "fenix",
-    "rev": "c0e82cad53833b053f4e1ec2c596cb3b18f00cbf",
-    "narHash": "sha256-I4XtLHtuQa4roY8uky/9PqPSpm5sqt6uWkmY5eRxzN0=",
-    "lastModified": 1795540720,
+    "rev": "bd6a1aca2abf2c8d754447f7bd37624b69ba1b17",
+    "narHash": "sha256-3y7g6HcL3Mx4vOsGR42aDqGmc7yxzodB7lFupBVuglo=",
+    "lastModified": 1795711196,
     "public": true
   },
   "helium-flake": {
     "type": "github",
     "owner": "amaanq",
     "repo": "helium-flake",
-    "rev": "077f04d80e1ddd98ff86b0709d9916f86385d12f",
-    "narHash": "sha256-a0Q3+z23BSIvsQaiz4fInmIbEuCEDgG+w0wh2hASu8g=",
-    "lastModified": 1795607293,
+    "rev": "bf5bf3c2fb4d002ab8d3e50b9097487e6dfd7acf",
+    "narHash": "sha256-bCoL2NDFgRqlzBveW//quJ5AvDCnGmZmgoU35N+BHx4=",
+    "lastModified": 1795699007,
     "public": true
   },
   "hjem": {
@@ -116,12 +116,12 @@
     "type": "github",
     "owner": "spdx",
     "repo": "license-list-data",
-    "rev": "ab9b0904b43db6f4b67431efd8821feb821f1c8b",
-    "narHash": "sha256-VuBLea0+m5kq7J8AfB6PxktKh918Sbvm7NcclzQbwvI=",
-    "lastModified": 1794969834,
+    "rev": "cc4fe1ac462bd3ad3c81a07234baf7d9541ee871",
+    "narHash": "sha256-jnQsQD4LAShB6E21aHFSIY4+DucpQG49enF2NiZqroo=",
+    "lastModified": 1795650182,
     "archive": {
-      "hash": "sha256-TUpSgvE9Po+u55DAfehDBz4qyoQs9bzAJoGfmpm6ICo=",
-      "outHash": "sha256-79UX/QLn0hXtpYA0SeSgXwSaaRf0Cv0MurDdWfgW8Vc="
+      "hash": "sha256-hDFGPnO2Mhy+XkBTLZzDI57yHymC9RnMfmdMJ30f8TM=",
+      "outHash": "sha256-6DWf1rvOimmGsXYwJI6pOGzqX7kg4dQ5rJXy1oygjEc="
     },
     "public": true
   },
@@ -147,26 +147,26 @@
     "type": "git",
     "url": "https://rosa.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
     "ref": "HEAD",
-    "rev": "d4fc6dd6360c5d35147d89593d2f3965164a81ef",
-    "narHash": "sha256-lK/MqNrmidmtDMVQtOrJRmrw90OY7n1lBpKo0QVxg2k=",
-    "lastModified": 1794066216
+    "rev": "190a9b22294123e059b52d4d53c7eafc64de9d62",
+    "narHash": "sha256-SVRgC8JOd9WqO9AIW0Eu6qmJJTJ1JCx1hdNcWxJvQA0=",
+    "lastModified": 1795686676
   },
   "nh": {
     "type": "github",
     "owner": "nix-community",
     "repo": "nh",
-    "rev": "f24dac0be47c8bf3688cde1377a9bdb1f69dc758",
-    "narHash": "sha256-iSU/mgKi5NnA2VS81/7zGG3qfJ5yxORTHy4J9gWMbJc=",
-    "lastModified": 1795607239,
+    "rev": "eee61cd916bb2a821590847e3a7cd615221bcbbc",
+    "narHash": "sha256-9adgtREBdeGSFpsjBGRXXdq2Ify6f/hsKBvXNBBewIw=",
+    "lastModified": 1795707072,
     "public": true
   },
   "nix-secrets": {
     "type": "github",
     "owner": "unnamed-systems",
     "repo": "nix-secrets",
-    "rev": "837a8f06a8b6d819149e15a1d2782dd32a354810",
-    "narHash": "sha256-ULXB9cWnPQ7MNY4rmy4VTYNRozLOS93KDPV63Txpi8s=",
-    "lastModified": 1795452146,
+    "rev": "6790b3968acdaea623e210bedd290e24a6bd90a4",
+    "narHash": "sha256-iT2uRAVoTwcNXpX8uFiBEIYa2LhZEnol823UQrJvOVk=",
+    "lastModified": 1795635705,
     "public": true
   },
   "nixos-core": {
@@ -224,12 +224,12 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "bb0d9d2c89fefff0b0421283fbb12bb813494ec0",
-    "narHash": "sha256-aLoFwlO6VNu+oISJxEe56pshDG74tkfcV2YtQiXkC2g=",
-    "lastModified": 1795610719,
+    "rev": "a2231ef704ff79f1437f766f912074f8ac3f9c61",
+    "narHash": "sha256-RDk8TinSUJaS4hcDoku4HM7uFkjAC/HcXX0dM9a2B8Q=",
+    "lastModified": 1795711874,
     "archive": {
-      "hash": "sha256-fHptla+aVicd6KJJuqJYP4M+nhkWjgXQd8tx+kDu0aI=",
-      "outHash": "sha256-z0d4S7yMR+VjBcBPzZ9tfbwJKs1UXCY9EDGoimWQKgo="
+      "hash": "sha256-K6wbmdYXbrc6fENvPdhl7lIdBas9kBrfYEntIkqouks=",
+      "outHash": "sha256-mTc5P7YxBllGfJRNzYvDH7BdSI2XQnguyi7YsqpTjAg="
     },
     "public": true
   },
@@ -274,9 +274,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "35c1c4cb2653226de6bf7744d648549592ad341a",
-    "narHash": "sha256-sHc/kJwHpMcszaBMniAMAp5CiUEIph6pb49pQ6Amag8=",
-    "lastModified": 1795458252,
+    "rev": "147cec2879505729dbcf2d8ff9848be19b6f7094",
+    "narHash": "sha256-qGjfI0mOgZ1WXjocPeDCL0WqjWy2v0/VyMgYqwfmf6k=",
+    "lastModified": 1795654496,
     "public": true
   },
   "xdg-utils-nu": {
