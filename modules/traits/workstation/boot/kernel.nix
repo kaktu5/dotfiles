@@ -2,22 +2,24 @@
   inherit (pkgs) linuxPackages_xanmod_latest;
   inherit (pkgs.scx) rustscheds;
 
-  scheduler = "scx_lavd";
-  package = rustscheds.overrideAttrs (old: {
-    pname = scheduler;
+  schedulerName = "scx_lavd";
+  schedulerPackage = rustscheds.overrideAttrs (old: {
+    pname = schedulerName;
 
-    cargoBuildFlags = (old.cargoBuildFlags or []) ++ ["--package" scheduler];
+    cargoBuildFlags = (old.cargoBuildFlags or []) ++ ["--package" schedulerName];
 
     postInstall = "";
 
-    passthru = (old.passthru or {}) // {schedulers = [scheduler];};
+    passthru = (old.passthru or {}) // {schedulers = [schedulerName];};
   });
 in {
   boot.kernelPackages = linuxPackages_xanmod_latest;
 
-  services.scx = {
+  services.scx-loader = {
     enable = true;
 
-    inherit package scheduler;
+    schedsPackages = [schedulerPackage];
+
+    config.default_sched = schedulerName;
   };
 }
