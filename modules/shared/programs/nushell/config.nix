@@ -45,26 +45,13 @@ in {
       highlight_resolved_externals = true;
     };
 
-    extraEntries = {
-      ls = entryAnywhere ''
-        def ls [...paths: oneof<glob, string>]: nothing -> table {
-          let paths = $paths | default --empty [.]
-          %ls --all --long ...$paths
-          | select name type mode user group size modified
-          | sort-by type name
-        }
-      '';
-
-      run0 = entryAnywhere ''
-        def --wrapped run0 [...args] {
-          let command = $"$in | from nuon | ($args | str join " ") | to nuon"
-          $in
-          | default null
-          | to nuon
-          | ^run0 --background "" --pipe -- nu --stdin --config $nu.config-path --commands $command
-          | from nuon
-        }
-      '';
-    };
+    extraEntries.ls = entryAnywhere ''
+      def ls [...paths: oneof<glob, string>]: nothing -> table {
+        let paths = $paths | default --empty [.]
+        %ls --all --long ...$paths
+        | select name type mode user group size modified
+        | sort-by type name
+      }
+    '';
   };
 }
