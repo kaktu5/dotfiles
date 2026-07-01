@@ -10,6 +10,7 @@ in {
     systemPackages = attrValues {
       inherit
         (pkgs)
+        bash
         inetutils
         iproute2
         lsof
