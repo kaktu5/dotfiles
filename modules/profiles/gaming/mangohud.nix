@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (config.kkts.meta) userName;
+  inherit (config.kkts.profiles) gaming;
   inherit (lib.generators) mkKeyValueDefault mkValueStringDefault toKeyValue;
   inherit (lib.modules) mkIf;
   inherit (lib.trivial) isBool;
@@ -21,10 +22,8 @@
         else mkValueStringDefault {} v;
     } "=";
   };
-
-  cfg = config.kkts.profiles.gaming.mangohud;
 in
-  mkIf cfg.enable {
+  mkIf (gaming.enable && gaming.mangohud.enable) {
     users.users.${userName}.packages = [mangohud];
 
     hjem.users.${userName}.xdg.config.files."MangoHud/MangoHud.conf" = {

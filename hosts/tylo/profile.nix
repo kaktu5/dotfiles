@@ -1,7 +1,14 @@
 {
   kkts.profiles.gaming = {
     enable = true;
-    steam.enable = true;
-    zenless-zone-zero.enable = true;
+
+    osu.enable = true;
+
+    steam = {
+      enable = true;
+      games = ["factorio"];
+    };
+
+    zenlessZoneZero.enable = true;
   };
 }

@@ -4,14 +4,13 @@
   pkgs,
   ...
 }: let
+  inherit (config.kkts.profiles) gaming;
   inherit (lib.kkts.dag) entryAnywhere;
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkIf;
   inherit (pkgs) wireplumber;
-
-  cfg = config.kkts.profiles.gaming;
 in
-  mkIf cfg.enable {
+  mkIf gaming.enable {
     boot.kernelModules = ["ntsync"];
 
     kkts.programs.hyprland.extraEntries.mute-unfocused-game-windows = entryAnywhere ''

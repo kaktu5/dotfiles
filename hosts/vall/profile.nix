@@ -1,3 +1,12 @@
 {
-  kkts.profiles.gaming.steam.enable = true;
+  kkts.profiles.gaming = {
+    enable = true;
+
+    osu.enable = true;
+
+    steam = {
+      enable = true;
+      games = ["factorio"];
+    };
+  };
 }

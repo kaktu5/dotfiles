@@ -6,18 +6,20 @@
 }: let
   inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
+  inherit (config.kkts.profiles) gaming;
+  inherit (config.kkts.profiles.gaming.steam) games;
+  inherit (lib.lists) elem flatten optional;
   inherit (lib.modules) mkIf;
   inherit (pkgs) proton-ge-bin;
-
-  cfg = config.kkts.profiles.gaming.steam;
 in
-  mkIf cfg.enable {
-    preservation.preserveAt."/persist".users.${userName}.directories = [
+  mkIf (gaming.enable && gaming.steam.enable) {
+    preservation.preserveAt."/persist".users.${userName}.directories = flatten [
       {
         directory = "${xdg.data.directory}/Steam";
         mountOptions = ["exec"];
       }
-      ".steam"
+
+      (optional (games |> elem "factorio") ".factorio")
     ];
 
     programs.steam = {

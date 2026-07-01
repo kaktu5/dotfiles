@@ -6,12 +6,11 @@
 }: let
   inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
+  inherit (config.kkts.profiles) gaming;
   inherit (inputs'.aagl-gtk-on-nix.packages) sleepy-launcher;
   inherit (lib.modules) mkIf;
-
-  cfg = config.kkts.profiles.gaming.zenless-zone-zero;
 in
-  mkIf cfg.enable {
+  mkIf (gaming.enable && gaming.zenlessZoneZero.enable) {
     preservation.preserveAt."/persist".users.${userName} = {
       directories = [
         {

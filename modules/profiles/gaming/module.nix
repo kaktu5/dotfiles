@@ -3,13 +3,15 @@
   lib,
   ...
 }: let
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.types) enum listOf;
 
   cfg = config.kkts.profiles.gaming;
 in {
   imports = [
     ./config.nix
     ./mangohud.nix
+    ./osu.nix
     ./steam.nix
     ./zenless-zone-zero.nix
   ];
@@ -19,8 +21,17 @@ in {
 
     mangohud.enable = mkEnableOption "mangohud" // {default = cfg.enable;};
 
-    steam.enable = mkEnableOption "steam";
+    osu.enable = mkEnableOption "osu! Tachyon";
 
-    zenless-zone-zero.enable = mkEnableOption "Zenless Zone Zero";
+    steam = {
+      enable = mkEnableOption "steam";
+
+      games = mkOption {
+        type = listOf <| enum ["factorio"];
+        default = [];
+      };
+    };
+
+    zenlessZoneZero.enable = mkEnableOption "Zenless Zone Zero";
   };
 }
