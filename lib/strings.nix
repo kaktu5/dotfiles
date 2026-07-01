@@ -4,7 +4,7 @@
 in {
   replaceVars = file: vars: let
     placeholders = vars |> attrNames |> map (name: "@${name}@");
-    replacements = vars |> attrValues;
+    replacements = vars |> attrValues |> map toString;
   in
     file |> readFile |> replaceStrings placeholders replacements;
 }
