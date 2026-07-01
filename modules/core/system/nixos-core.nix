@@ -24,9 +24,5 @@ in {
     persistence.enable = true;
   };
 
-  persistence = {
-    commonMountOptions = ["x-gdu.hide" "x-gvfs-hide"];
-
-    directories = ["/var/log"];
-  };
+  persistence.commonMountOptions = ["x-gdu.hide" "x-gvfs-hide"];
 }
