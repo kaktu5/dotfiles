@@ -1,10 +1,5 @@
-{
-  inputs,
-  lib,
-  ...
-}: let
+{inputs, ...}: let
   inherit (inputs) preservation;
-  inherit (lib.lists) singleton;
 in {
   imports = [preservation.nixosModules.default];
 
@@ -20,11 +15,13 @@ in {
         "/var/log"
       ];
 
-      files = singleton {
-        file = "/var/lib/systemd/random-seed";
-        inInitrd = true;
-        configureParent = true;
-      };
+      files = [
+        {
+          file = "/var/lib/systemd/random-seed";
+          inInitrd = true;
+        }
+        "/var/lib/systemd/credential.secret"
+      ];
     };
   };
 }
