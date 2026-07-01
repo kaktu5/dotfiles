@@ -2,12 +2,25 @@
 !/**/
 !.gitignore
 
-!/.tack/{default.nix,pins.lock.json,pins.toml}
+!/.tack/default.nix
+!/.tack/pins.lock.json
+!/.tack/pins.toml
+
 !/.vaultix/**
-!/flake/**/*.{nix,nu}
-!/hosts/**/*.{age,json,nix}
+
+!/flake/**/*.nix
+!/flake/packages/**/.nu
+
+!/hosts/**/*.age
+!/hosts/**/*.json
+!/hosts/**/*.nix
+
 !/lib/**/*.nix
-!/modules/**/*.{age,json,nix}
+
+!/modules/**/*.age
+!/modules/**/*.json
+!/modules/**/*.nix
+
 !/resources/**/*.nix
 
 !/.envrc
