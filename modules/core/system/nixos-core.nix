@@ -14,7 +14,6 @@ in {
 
     package = nixos-core.override {
       withUpdateUsersGroups = false;
-      withSetupEtc = false;
       withInitScript = false;
       withStage1 = false;
     };
