@@ -6,15 +6,8 @@
 
     kernelParams = ["acpi_backlight=native"];
 
-    initrd.kernelModules = [
-      "kvm-amd"
-      "nvme"
-      "rtw89_8852ae"
-      "sd_mod"
-      "usb_storage"
-      "xhci_pci"
-      "xhci_pci_renesas"
-    ];
+    initrd.kernelModules = ["nvme" "xhci_pci" "xhci_pci_renesas"];
+    kernelModules = ["iwlwifi" "kvm-amd"];
   };
 
   kkts.hardware = {
