@@ -32,6 +32,13 @@ in {
 
   swapDevices = singleton {
     device = "/dev/disk/by-partuuid/7f455d6e-560b-4d1b-ab97-6b336fa43378";
-    randomEncryption.enable = true;
+    discardPolicy = "once";
+    randomEncryption = {
+      enable = true;
+      cipher = "aes-xts-plain64";
+      keySize = 512;
+      sectorSize = 4096;
+      allowDiscards = true;
+    };
   };
 }
