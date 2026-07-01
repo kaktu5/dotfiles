@@ -26,6 +26,8 @@
       }
       // (range 0 15 |> map (i: nameValuePair "color${i}" hex'."${i}") |> listToAttrs));
 in {
+  environment.systemPackages = [kitty.terminfo];
+
   hjem.users.${userName}.systemd.services.kitty = mkGraphicalTargetService {
     enableDefaultPath = false;
 
