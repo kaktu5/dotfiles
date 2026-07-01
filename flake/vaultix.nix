@@ -7,7 +7,7 @@
 in
   vaultix.configure {
     nodes = self.nixosConfigurations;
-    identity = "~/.ssh/id_ed25519";
+    identity = "/run/vaultix/id";
     cache = ".vaultix";
     inherit systems;
   }
