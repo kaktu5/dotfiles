@@ -40,7 +40,7 @@ in {
   hjem.users.${userName}.environment.sessionVariables = {
     inherit HYPRLAND_CONFIG;
 
-    XCURSOR_SIZE = 32;
+    XCURSOR_SIZE = 24;
     XCURSOR_THEME = "BreezeX";
 
     CLUTTER_BACKEND = "wayland";
