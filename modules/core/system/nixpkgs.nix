@@ -2,6 +2,7 @@
 {
   lib,
   modulesPath,
+  pkgs,
   ...
 }: let
   inherit (lib.attrsets) attrValues;
@@ -32,5 +33,12 @@ in {
   nixpkgs.config = {
     allowAliases = false;
     allowUnfree = true;
+
+    permittedInsecurePackages = ["radicle-node-1.10.3"];
+  };
+
+  assertions = singleton {
+    assertion = pkgs.radicle-node.version == "1.10.3";
+    message = "remove radicle-node-1.10.3 from permittedInsecurePackages";
   };
 }

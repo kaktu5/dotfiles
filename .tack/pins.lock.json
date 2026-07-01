@@ -19,9 +19,9 @@
     "type": "github",
     "owner": "ipetkov",
     "repo": "crane",
-    "rev": "eb35abda9f232cc6610b1d1e3200d15c49b7ac54",
-    "narHash": "sha256-Y1/TTVXjYXGF068IThQH9fPSZ0SIE74PABlUxnWTUH0=",
-    "lastModified": 1788465171
+    "rev": "73b980519cefc727a5f6cc8e5c0947a2f9be6edd",
+    "narHash": "sha256-jtT4yxZpR8seYnlCMMWSSPlFN92zO6ICuZ8pJrmi86k=",
+    "lastModified": 1789760033
   },
   "dnscrypt-settings": {
     "type": "github",
@@ -43,33 +43,33 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "e5e30b4320a8cbcd6cdfc65f044763669a8f0363",
-    "narHash": "sha256-0nvWuRbgL4GEKpR8Y4wsB3kmsVgyd0cW8kLHc2BqlTc=",
-    "lastModified": 1789234255
+    "rev": "cef02450f2c18a7e2b9297ea8d366f9a597254f7",
+    "narHash": "sha256-tycoVCB2KSVdy9ERT1lJGHdP9Hf4FHanaEY25hUxylw=",
+    "lastModified": 1790081753
   },
   "lanzaboote": {
     "type": "github",
     "owner": "nix-community",
     "repo": "lanzaboote",
-    "rev": "8a34c6af53de5d0de742f35b5d764db93b53c5df",
-    "narHash": "sha256-N5qhvQXNFluy1sFvcVhIEvwm5QeCxFrpZHw/pwE+szU=",
-    "lastModified": 1789586975
+    "rev": "92a2a41085c56ec894769afd7c3fc25fa8b2f651",
+    "narHash": "sha256-Ka3mEWzK+doNs3UHpCjMkGQm2EXYBHLcwxDbq8nzc/s=",
+    "lastModified": 1790352947
   },
   "microvm": {
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "187b0a390ee054028106a674e7b01b1cb940cbba",
-    "narHash": "sha256-4L8SOCF84de1irB72Ka9VHcu9wrAJ9Amuey4lU9oh4Y=",
-    "lastModified": 1789506833
+    "rev": "68f2670367e03da7d0cceef0594a7b2c173849de",
+    "narHash": "sha256-Gj7g9GkMZNj0u0VKvyN4uf2XUxdHd4JwKOsaSicGtAo=",
+    "lastModified": 1790337272
   },
   "nf": {
     "type": "git",
-    "url": "https://rosa.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
+    "url": "https://iris.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
     "ref": "HEAD",
-    "rev": "337337e1f0c340d56d9faf4baa814feae68253a3",
-    "narHash": "sha256-vAORSpBN45Knm81BTrUC3XL03wjt/NjGZeYpFIe73lU=",
-    "lastModified": 1786883267
+    "rev": "71e3f6ad7e8809bf4e3a317ed230e999ef36138e",
+    "narHash": "sha256-otYfgHNZslyQdmuVMQDKMQBgjhROzwoY4A3SJadwTJY=",
+    "lastModified": 1790107157
   },
   "nix-secrets": {
     "type": "github",
@@ -83,9 +83,9 @@
     "type": "github",
     "owner": "kaktu5",
     "repo": "nixexprs",
-    "rev": "31852846411b9429515f1cf06f4df5514f6db86d",
-    "narHash": "sha256-tbcRW/GP2w7u0Zgr7Bs4SU+Y76BRygrNTIRdCxALViw=",
-    "lastModified": 1787686579
+    "rev": "b85340304554484ffa1d34631d6ab8435c361d59",
+    "narHash": "sha256-FIazE2clBvttLFvjv/M8RYQemrhitHYtFjGY7JbO+4w=",
+    "lastModified": 1789901117
   },
   "nixos-core": {
     "type": "github",
@@ -97,25 +97,25 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1075591.e554fab72f81/nixexprs.tar.zst",
-    "rev": "e554fab72f81915600f3f449b786fd9af40439a5",
-    "narHash": "sha256-TAKa57gfBM/9a4IZrFaIQZhnHs9mXIFPlZbYrvhnaMY="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1079315.e94cb152ed51/nixexprs.tar.zst",
+    "rev": "e94cb152ed51bd6e24eb4a41f1460252beb52cd2",
+    "narHash": "sha256-m4DGo58Fza5ImOegtWOeE18nhpSO1IGzsVA6Lpsb4zw="
   },
   "oisd": {
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "66c2eecf9895fe428c311b48bb83fc91a8c2ea64",
-    "narHash": "sha256-byTZZUBlFaUUEGDNp3KNlUUtd4vY1CNVLuvAU4/oT+M=",
-    "lastModified": 1789820366
+    "rev": "8368f5c064aac792144a830407a06be1d8c86cc3",
+    "narHash": "sha256-rCCDPPWSoF/xjMw70oRbw+oZQFsKUeesRRj22uIapfo=",
+    "lastModified": 1790414338
   },
   "rust-overlay": {
     "type": "github",
     "owner": "oxalica",
     "repo": "rust-overlay",
-    "rev": "35ca0490d13a3d38c4602d0eb9600a30fa63a367",
-    "narHash": "sha256-45ikFmtfgBZgMePIm4GevJ9VjDSWO3PGQgOuuwHDpes=",
-    "lastModified": 1789543870
+    "rev": "1fb104a12a8667045559b2575d6d448ae2fbd99b",
+    "narHash": "sha256-aL/ogiN7qZCGeNovS1f9hX73jwYIKb4Pcq6AZm57WtY=",
+    "lastModified": 1789889921
   },
   "xdg-utils-nu": {
     "type": "github",
