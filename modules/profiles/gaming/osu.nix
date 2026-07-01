@@ -7,7 +7,7 @@
   inherit (config.kkts.meta) userName;
   inherit (config.kkts.profiles) gaming;
   inherit (config.nixpkgs.config) allowUnfree;
-  inherit (inputs'.nixexprs.packages) osu-lazer-bin;
+  inherit (inputs'.kaktu5pkgs.packages) osu-lazer-bin;
   inherit (lib.lists) elem singleton;
   inherit (lib.modules) mkIf;
 in

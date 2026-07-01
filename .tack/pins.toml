@@ -1,6 +1,6 @@
 [shorturls]
 channel = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
-rad = "git+https://iris.radicle.network/{path}.git"
+rad = "git+https://rosa.radicle.network/{path}.git"
 
 [all_follow]
 fenix = []
@@ -13,8 +13,8 @@ nixpkgs = {patches = [
   "github:nixos/nixpkgs/pull/562711", # rhythia
 ], url = "channel:nixos-unstable"}
 
+kaktu5pkgs.url = "rad:z3445hwtrioJCAisuAosBXvcTqVR2"
 nf.url = "rad:z3EZi6d3LccUz1s6UmMfuoPJfMdZ"
-nixexprs.url = "github:kaktu5/nixexprs"
 
 aagl-gtk-on-nix = {omit_inputs = [
   "flake-compat",

@@ -7,7 +7,7 @@
   inherit (config.kkts.meta) userName;
   inherit (config.kkts.programs.hyprland) finalConfig;
   inherit (config.kkts.theme.colors) hex';
-  inherit (inputs'.nixexprs.packages) breezex-cursor;
+  inherit (inputs'.kaktu5pkgs.packages) breezex-cursor;
 
   breezex-cursor' = breezex-cursor.override {
     baseColor = hex'.bg0;

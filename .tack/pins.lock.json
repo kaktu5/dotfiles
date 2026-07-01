@@ -5,12 +5,12 @@
     "dnscrypt-settings": "github:quad9dns/dnscrypt-settings",
     "helium-flake": "github:amaanq/helium-flake",
     "hjem": "github:feel-co/hjem",
+    "kaktu5pkgs": "git+https://rosa.radicle.network/z3445hwtrioJCAisuAosBXvcTqVR2.git",
     "lanzaboote": "github:nix-community/lanzaboote",
     "license-list-data": "github:spdx/license-list-data",
     "microvm": "github:microvm-nix/microvm.nix",
-    "nf": "git+https://iris.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
+    "nf": "git+https://rosa.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
     "nix-secrets": "github:unnamed-systems/nix-secrets",
-    "nixexprs": "github:kaktu5/nixexprs",
     "nixos-core": "github:manic-systems/nixos-core",
     "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst",
     "oisd": "github:sjhgvr/oisd",
@@ -65,6 +65,14 @@
     "narHash": "sha256-tycoVCB2KSVdy9ERT1lJGHdP9Hf4FHanaEY25hUxylw=",
     "lastModified": 1790081753
   },
+  "kaktu5pkgs": {
+    "type": "git",
+    "url": "https://rosa.radicle.network/z3445hwtrioJCAisuAosBXvcTqVR2.git",
+    "ref": "HEAD",
+    "rev": "05304f00d96d29bc968ad792c0e4b6b1187e2ed2",
+    "narHash": "sha256-8EHGOgbjsC6F61es8qqojYqC8f99dZSLhcwFP+jt9uI=",
+    "lastModified": 1791116260
+  },
   "lanzaboote": {
     "type": "github",
     "owner": "nix-community",
@@ -91,7 +99,7 @@
   },
   "nf": {
     "type": "git",
-    "url": "https://iris.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
+    "url": "https://rosa.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
     "ref": "HEAD",
     "rev": "71e3f6ad7e8809bf4e3a317ed230e999ef36138e",
     "narHash": "sha256-otYfgHNZslyQdmuVMQDKMQBgjhROzwoY4A3SJadwTJY=",
@@ -104,14 +112,6 @@
     "rev": "151f264a22b595802647db8fac09a2dbd6cb202c",
     "narHash": "sha256-rxClV4z02Ev/bk0/FpdT5h9Oq4/o16RA7e6LRl1/QtU=",
     "lastModified": 1788356805
-  },
-  "nixexprs": {
-    "type": "github",
-    "owner": "kaktu5",
-    "repo": "nixexprs",
-    "rev": "b85340304554484ffa1d34631d6ab8435c361d59",
-    "narHash": "sha256-FIazE2clBvttLFvjv/M8RYQemrhitHYtFjGY7JbO+4w=",
-    "lastModified": 1789901117
   },
   "nixos-core": {
     "type": "github",
@@ -164,9 +164,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "5496c44650a5ac0a9e299c1bd57ba55403e49fe2",
-    "narHash": "sha256-N66Ambcvy41+WfzsY+wnacSkp3M/AQ+J0qUeDfnmqR4=",
-    "lastModified": 1791104774
+    "rev": "bc84dbd48cc22c4ec312fc8a1e7076412d73a5ee",
+    "narHash": "sha256-W98tHYnRF3d8VTXlonbk8m1W0qiRRJWZcMx2SUVtNAk=",
+    "lastModified": 1791115538
   },
   "rust-overlay": {
     "type": "github",
