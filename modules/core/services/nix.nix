@@ -7,17 +7,11 @@
 }: let
   inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
-  inherit (config.security.nix-secrets.secrets) nix-access-tokens;
   inherit (inputs) nixpkgs;
   inherit (lib.modules) mkDefault;
   inherit (pkgs.lixPackageSets.latest) lix;
   inherit (pkgs.writers) writeJSON;
 in {
-  security.nix-secrets.secrets.nix-access-tokens = {
-    group = "wheel";
-    mode = "440";
-  };
-
   preservation.preserveAt."/persist" = {
     directories = ["/var/cache/nix"];
 
@@ -54,8 +48,6 @@ in {
         version = 2;
       };
     };
-
-    extraOptions = "!include ${nix-access-tokens.path}";
 
     gc = {
       automatic = true;
