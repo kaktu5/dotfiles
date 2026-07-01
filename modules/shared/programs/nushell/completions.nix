@@ -9,7 +9,7 @@
   inherit (lib.meta) getExe;
   inherit (pkgs) carapace runCommand;
 
-  carapace-nu = runCommand "carapace.nu" {} "${getExe carapace} _carapace nushell | grep -v '^\$env\.PATH' > $out";
+  carapace-nu = runCommand "carapace.nu" {} "${getExe carapace} _carapace nushell | grep -v '^\$env.PATH' > $out";
 in {
   users.users.${userName}.packages = [carapace];
 
