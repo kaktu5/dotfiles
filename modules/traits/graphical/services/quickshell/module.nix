@@ -17,6 +17,7 @@
     root = ./.;
     fileset = unions [
       ./Bar.qml
+      ./Osd.qml
       ./components
       ./shell.qml
       ./widgets

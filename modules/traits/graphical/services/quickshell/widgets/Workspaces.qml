@@ -1,3 +1,8 @@
+// bug1: floating windows update only after they are dropped
+// bug2: floating windows that are partialy outside of screen dont show correctly
+// bug3: floating windows don't have any border around them
+// bug4: windows from special workspaces should show on top
+
 import QtQuick
 import Quickshell
 import Quickshell.Hyprland

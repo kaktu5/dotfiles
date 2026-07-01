@@ -4,4 +4,7 @@ import Quickshell
 ShellRoot {
   Bar {
   }
+
+  Osd {
+  }
 }
