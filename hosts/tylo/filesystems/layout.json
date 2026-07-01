@@ -12,7 +12,8 @@
         "devices": {
           "nixos": {
             "device": "/dev/disk/by-uuid/af174d4b-39fb-424b-b6fd-764b143848d3",
-            "allowDiscards": true
+            "allowDiscards": true,
+            "bypassWorkqueues": true
           }
         }
       }

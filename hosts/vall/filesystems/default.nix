@@ -3,5 +3,5 @@
 in
   (importJSON ./layout.json)
   // {
-    zramSwap.memoryMax = 8 * 1024 * 1024 * 1024;
+    zramSwap.memoryMax = 4 * 1024 * 1024 * 1024;
   }
