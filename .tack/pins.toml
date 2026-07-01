@@ -38,9 +38,8 @@ nh.url = "github:nix-community/nh"
 nix-secrets.url = "github:unnamed-systems/nix-secrets"
 nixos-core = { patches = [
   "patches/nixos-core/dont-create-home-dirs.patch",
-  "patches/nixos-core/fixes.patch",
 ], url = "github:manic-systems/nixos-core" }
-tack = { patches = ["github:manic-systems/tack/pull/209"], url = "github:manic-systems/tack" }
+tack.url = "github:manic-systems/tack"
 xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 
 [inputs.data]

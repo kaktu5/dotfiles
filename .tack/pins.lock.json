@@ -37,9 +37,9 @@
     "type": "github",
     "owner": "mrshmllow",
     "repo": "affinity-nix",
-    "rev": "0013d501101e91f9ba16b198d48b2cbeec6f5d80",
-    "narHash": "sha256-X2bD4itaupSjjXf7gGCGyftRCGYtSfkXx3lI5kX14bs=",
-    "lastModified": 1793921726
+    "rev": "60bed9617edd7e6d5744af23cca080e76a711556",
+    "narHash": "sha256-5R96O//wV98vBBQKzgBlZbrqKQvFZcFeJoYCRBMC1nA=",
+    "lastModified": 1794695401
   },
   "breezex-cursor": {
     "type": "github",
@@ -77,43 +77,43 @@
   },
   "dwproton-bin": {
     "type": "fixed",
-    "url": "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-11.0-16/dwproton-11.0-16-x86_64.tar.xz",
-    "sha256": "sha256-ZXsOZu+wqYJCFbwIh6aPdYNVUXzE6qsxZMAZu2y5Umg=",
+    "url": "https://dawn.wine/dawn-winery/dwproton/releases/download/dwproton-11.0-17/dwproton-11.0-17-x86_64.tar.xz",
+    "sha256": "sha256-3YrxQOrMort4rDzdZBZJCR2/ZcMMJO3jbO+Oh1+7Ddg=",
     "unpack": "tarball",
-    "tag": "dwproton-11.0-16",
-    "version": "11.0-16"
+    "tag": "dwproton-11.0-17",
+    "version": "11.0-17"
   },
   "fenix": {
     "type": "github",
     "owner": "nix-community",
     "repo": "fenix",
-    "rev": "0738efb391fea6fe32c886f5bac8e8ab90af3c81",
-    "narHash": "sha256-WKnOgZ2VYIx1H3oeAeOq5CctswSlKH2SsiQh9iugCrI=",
-    "lastModified": 1794495277
+    "rev": "5a908d7732ad97bd120dd3df34580fab5bbeb6ff",
+    "narHash": "sha256-mZNudswBDyC3jiJtarQo+DPcbZVSCmU8fURez9RtJTI=",
+    "lastModified": 1794930299
   },
   "helium-flake": {
     "type": "github",
     "owner": "amaanq",
     "repo": "helium-flake",
-    "rev": "20568958fc47239af0a4ac7441bc52357ca95f7d",
-    "narHash": "sha256-0dKSs9yz1zJ5Fr1ouWRoc3pCSm16Dq1NiGe0INkDKJc=",
-    "lastModified": 1794313532
+    "rev": "e043ae9c2685fb6799535c2e84c0ab72e0bae0c1",
+    "narHash": "sha256-lBogPqME3iTOahGSsxiu2BZn0bkGTDTry/khh4322Hs=",
+    "lastModified": 1794834261
   },
   "hjem": {
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "28cec3017cc94842f919f8f294c8b7136216b79b",
-    "narHash": "sha256-tttNqwFIXsClznNv3uEltACsfBm8xIDo9bPl+BHqYZc=",
-    "lastModified": 1794190356
+    "rev": "2f56c85f80a52c23fb3e956119ca80975a2b9ceb",
+    "narHash": "sha256-k/nDw1zTlCmhA2K3odt/gy4uDiS002x8Nc14lQxvpY8=",
+    "lastModified": 1794842388
   },
   "lanzaboote": {
     "type": "github",
     "owner": "nix-community",
     "repo": "lanzaboote",
-    "rev": "2857d5b105c8c41a3f9535aeef544aa7b17ee32e",
-    "narHash": "sha256-l7z9fKPK6ydFFuq3ZmCoRGS+osRrqjZLyOd1ZW5VaOo=",
-    "lastModified": 1794426370
+    "rev": "69c7f74b872aae4f360bdd0050106e0fddfed7aa",
+    "narHash": "sha256-Yb47Gb1KlSGsedQuAqdDz/NNr9goz9PI+uCBDybN9Cs=",
+    "lastModified": 1794657966
   },
   "license-list-data": {
     "type": "github",
@@ -131,17 +131,17 @@
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "b7bd556974fa8a171b5b639200e81d52244dfde4",
-    "narHash": "sha256-ErGIqtoWEX9KKC8NFtJDx2pGGG02Cr6LGxrvzLd2sqA=",
-    "lastModified": 1793281488
+    "rev": "194a254693f49af939a2b53d04982bd4b276fdb3",
+    "narHash": "sha256-m5iXk3ILiCuRpCgqYWNiGVFmu8YLh2FNxxaZj/Auc10=",
+    "lastModified": 1794529892
   },
   "ncro": {
     "type": "github",
     "owner": "manic-systems",
     "repo": "ncro",
-    "rev": "1e7d0637a28e4d100381b1248fc0dfe15c367aad",
-    "narHash": "sha256-IkzejeEUm6Wm7O4SpPRovFfWNoLQ/R08vnwSGiZVuxE=",
-    "lastModified": 1794486500
+    "rev": "f4f0f1e47388edb04fe5a31193c6f475b9662be6",
+    "narHash": "sha256-GCzOJ0BG5VZQX129Q8MXXDBHAihfceV62AjL3JhVdaA=",
+    "lastModified": 1794839722
   },
   "nf": {
     "type": "git",
@@ -155,9 +155,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "nh",
-    "rev": "26438120191b8802e8af775e0ca39caba7cd95c3",
-    "narHash": "sha256-MZk0y+/pHzZahqL162aLfTaHaeNVa4rONRyRFnPPsGs=",
-    "lastModified": 1794468073
+    "rev": "a5adbe165150f7f26778616ec918d3a0f8437a0a",
+    "narHash": "sha256-fnvVJNRVkurXxF7dNSfCCGk+EhEYkhl4yXPYgtKWiSs=",
+    "lastModified": 1794858467
   },
   "nix-secrets": {
     "type": "github",
@@ -171,26 +171,21 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "411f45761a532a02f056bb1b366aa07abb7cf34e",
-    "narHash": "sha256-Vl9FOeAOqr94iSFnRpOUqI0P2nffULmtKj2wtnRvdFs=",
-    "lastModified": 1794025402,
+    "rev": "80edbeb8f8d45f72c4e788b586ce59fa4a2611b4",
+    "narHash": "sha256-vadrXCxy5s8uAZ+4bB5/gNuR71SbaIgHpGq0JeRY2g4=",
+    "lastModified": 1794651602,
     "patched": {
-      "path": "/nix/store/823f4aplf5mz4269zn9g7f151wpj1fpr-source",
-      "narHash": "sha256-wYgFAdF2kfjvQhSk2CmkjP9Y2IAHCcuobeS1QkZ4CA8=",
-      "lastModified": 1794025402,
+      "path": "/nix/store/svpj2ym11pbf6z8kbh0a8jdk0ykmzvpg-source",
+      "narHash": "sha256-zTH7XAEX3K/9wZAnpgySrys2Sg46xWFGpIAvDvgT7pk=",
+      "lastModified": 1794651602,
       "patches": [
         {
           "source": "patches/nixos-core/dont-create-home-dirs.patch",
           "file": "patches/nixos-core/dont-create-home-dirs.patch",
           "sha256": "7e9422e43bc7be59836d3b0cec9d0911681698293a7bfc3163d51269a86ac686"
-        },
-        {
-          "source": "patches/nixos-core/fixes.patch",
-          "file": "patches/nixos-core/fixes.patch",
-          "sha256": "c916c660b48e48c22d104c256299cccdb476194f4b0cfeadfddf395d93da8154"
         }
       ],
-      "diff": "1748872a27fe44c1b63c7d8c8cd35dc15872ce9c1eed5169089fc101b1f266dc"
+      "diff": "70e7335783a33ea24a70ab5f520c0e62ee6817e9cb410324d8425f084685eaae"
     }
   },
   "nixpkgs": {
@@ -227,21 +222,21 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "90c78fec96d0bbc17175416efdc0f884722cbeab",
-    "narHash": "sha256-dYhhtoJD+TGp20C52tFemU335OvwgwixW9x1tdyA0dE=",
-    "lastModified": 1794508523,
+    "rev": "fe3a9f87fc9220c356d93385f7ca25465cc0ad76",
+    "narHash": "sha256-glLZHz+9iS4XYgvSu3uzW7lydQ+n9Gd5A7jQIFP+XV4=",
+    "lastModified": 1794942355,
     "archive": {
-      "hash": "sha256-HfLTOGU6J09FFP7N1hZeLET+GvNNGkGnu4xC8e++IJs=",
-      "outHash": "sha256-uLpoQyjGmxxsMUFlvTJKUxIy44OpjhJKrFJrJdmGwe0="
+      "hash": "sha256-r9G+IigzyvuwfgV7ng0o/Jd8G1l22qzmDmcbC/SUvTE=",
+      "outHash": "sha256-YJ8/qVfrVfJB/YfTO1DfN/e2W49vS690MQCDkDumx6M="
     }
   },
   "osu-tachyon-bin": {
     "type": "fixed",
-    "url": "https://github.com/ppy/osu/releases/download/2026.1110.0-tachyon/osu.AppImage",
-    "sha256": "sha256-r/0qhHPUFnBQnZix4MNiGUBhU5S3ptSxnHfJsG9aKoo=",
+    "url": "https://github.com/ppy/osu/releases/download/2026.1114.0-tachyon/osu.AppImage",
+    "sha256": "sha256-3HtE1ZkXhg2xmObsm4lDGjkajVn5UMEsJYc/uq3mXt8=",
     "unpack": "file",
-    "tag": "2026.1110.0-tachyon",
-    "version": "2026.1110.0"
+    "tag": "2026.1114.0-tachyon",
+    "version": "2026.1114.0"
   },
   "rust-overlay": {
     "type": "github",
@@ -267,24 +262,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "c107b0fc252b0b33b01e6b7d6111aaaedc49613e",
-    "narHash": "sha256-bdNCaHUF3c8hgsYw6FCI+lGcZanZIDxt2Sefu5AsERY=",
-    "lastModified": 1794450976,
-    "patched": {
-      "path": "/nix/store/s4zm5sdcz3k75n9zpj69xzly8kw7p6f6-source",
-      "narHash": "sha256-UQHznL+Vt/pQPu2Sc9qGTPxoJdCxrpRdZnyLK2lIMqM=",
-      "lastModified": 1794450976,
-      "patches": [
-        {
-          "source": "github:manic-systems/tack/pull/209",
-          "url": "https://github.com/manic-systems/tack/pull/209",
-          "file": "patches/tack/pr-209.patch",
-          "sha256": "8f51041e3b71d723726f962872fec6af900628394fd4f9324c9db208b0e20f8d",
-          "head": "e6395e780fd98795b27088b5280e4f792498aca9"
-        }
-      ],
-      "diff": "0150bdd3e19aa768755bc51fc55e428ecece3097091e77263474a2e398da85a1"
-    }
+    "rev": "bad78453288bfb5d890af856fa2429979e2b944c",
+    "narHash": "sha256-Jn+PT5iYnKcttgR5Rc6oWLNxhFGzyBY3/P3sgvqcQDU=",
+    "lastModified": 1794909624
   },
   "xdg-utils-nu": {
     "type": "github",
