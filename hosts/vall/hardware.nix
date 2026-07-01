@@ -1,15 +1,19 @@
 {
   hardware.enableRedistributableFirmware = true;
 
-  boot.initrd.kernelModules = [
-    "kvm-amd"
-    "nvme"
-    "rtw89_8852ae"
-    "sd_mod"
-    "usb_storage"
-    "xhci_pci"
-    "xhci_pci_renesas"
-  ];
+  boot = {
+    kernelParams = ["acpi_backlight=native"];
+
+    initrd.kernelModules = [
+      "kvm-amd"
+      "nvme"
+      "rtw89_8852ae"
+      "sd_mod"
+      "usb_storage"
+      "xhci_pci"
+      "xhci_pci_renesas"
+    ];
+  };
 
   kkts.hardware.monitors = {
     primaryMonitor = "eDP-1";
