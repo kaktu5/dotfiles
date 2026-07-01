@@ -5,7 +5,7 @@
 }: let
   inherit (lib.attrsets) mapAttrsToList;
   inherit (lib.kkts.dag) entryAnywhere resolveStr;
-  inherit (lib.kkts.formats.nuon) generate;
+  inherit (lib.kkts.generators) toNuon;
   inherit (lib.options) mkOption;
   inherit (lib.strings) concatLines;
   inherit (lib.types) anything attrsOf str;
@@ -36,8 +36,8 @@ in {
     finalConfig = mkOption {
       type = str;
       default = let
-        env = entryAnywhere "load-env ${generate {} cfg.env}";
-        config = entryAnywhere "$env.config = $env.config | merge deep ${generate {} cfg.config}";
+        env = entryAnywhere "load-env ${toNuon {} cfg.env}";
+        config = entryAnywhere "$env.config = $env.config | merge deep ${toNuon {} cfg.config}";
         aliases =
           cfg.aliases
           |> mapAttrsToList (k: v: "alias ${k} = (${v})")

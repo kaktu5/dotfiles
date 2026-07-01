@@ -6,7 +6,7 @@
 }: let
   inherit (config.kkts.meta) userName;
   inherit (lib.generators) toINI;
-  inherit (lib.kkts.formats) hyprlang;
+  inherit (lib.kkts.generators) toHyprlang;
   inherit (pkgs.kdePackages) xdg-desktop-portal-kde;
 in {
   xdg.portal.extraPortals = [xdg-desktop-portal-kde];
@@ -21,7 +21,7 @@ in {
     };
 
     "hypr/xdph.conf" = {
-      generator = hyprlang.generate {};
+      generator = toHyprlang {};
       value.screencopy.allow_token_by_default = true;
     };
   };
