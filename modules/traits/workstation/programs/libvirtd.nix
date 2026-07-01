@@ -3,9 +3,14 @@
   pkgs,
   ...
 }: let
+  inherit (lib.lists) singleton;
   inherit (lib.modules) mkForce;
   inherit (pkgs) virtiofsd;
 in {
+  nixpkgs.overlays = singleton (_: prev: {
+    libvirt = prev.libvirt.override {enableXen = false;};
+  });
+
   persistence.directories = ["/var/lib/libvirt" "/var/log/libvirt"];
 
   networking.firewall.trustedInterfaces = ["virbr0"];
