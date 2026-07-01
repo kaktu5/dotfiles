@@ -1,0 +1,3 @@
+{
+  services.watt.enable = true;
+}
