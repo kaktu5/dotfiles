@@ -6,8 +6,8 @@
   ...
 }: let
   inherit (inputs) oisd;
-  inherit (lib.attrsets) genAttrs ;
-  inherit (lib.strings) concatStringsSep ;
+  inherit (lib.attrsets) genAttrs;
+  inherit (lib.strings) concatStringsSep;
   inherit (pkgs) runCommand;
 
   quad9Stamps = import ./quad9-dns-stamps.nix {inherit inputs lib;};
