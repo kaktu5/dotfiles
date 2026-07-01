@@ -1,6 +1,6 @@
 {lib}: let
-  inherit (lib.attrsets) mapAttrs zipAttrsWith;
-  inherit (lib.lists) foldl';
+  inherit (lib.attrsets) filterAttrs mapAttrs zipAttrsWith;
+  inherit (lib.lists) elem foldl';
 in {
   mapSystems = systems: f:
     systems
@@ -13,10 +13,8 @@ in {
       if (input._type or null) == "flake"
       then
         input
-        // foldl' (acc: output:
-          if input ? ${output}
-          then acc // {${output} = input.${output}.${system};}
-          else acc) {}
-        outputs
+        |> filterAttrs (k: _: elem k outputs)
+        |> mapAttrs (_: v: v.${system})
+        |> (o: input // o)
       else input);
 }
