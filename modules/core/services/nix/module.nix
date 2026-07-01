@@ -19,10 +19,11 @@ in {
     mode = "440";
   };
 
-  preservation.preserveAt."/persist".users.${userName}.directories = [
-    "/var/cache/nix"
-    "${xdg.cache.directory}/nix"
-  ];
+  preservation.preserveAt."/persist" = {
+    directories = ["/var/cache/nix"];
+
+    users.${userName}.directories = ["${xdg.cache.directory}/nix"];
+  };
 
   nix = {
     package = lix;
