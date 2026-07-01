@@ -1,5 +1,9 @@
-{inputs', ...}: let
-  inherit (inputs'.nixpkgs-xanmod.legacyPackages) linuxPackages_xanmod_latest;
+{pkgs, ...}: let
+  inherit (pkgs) linuxPackages_xanmod_latest zfs;
 in {
-  boot.kernelPackages = linuxPackages_xanmod_latest;
+  boot = {
+    kernelPackages = linuxPackages_xanmod_latest;
+
+    zfs.package = zfs;
+  };
 }
