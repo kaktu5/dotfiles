@@ -36,9 +36,8 @@ microvm-nix = { omit_inputs = ["spectrum"], url = "github:microvm-nix/microvm.ni
 ncro.url = "github:manic-systems/ncro"
 nh.url = "github:nix-community/nh"
 nix-secrets.url = "github:unnamed-systems/nix-secrets"
-nixos-core = { patches = [
-  "patches/nixos-core/dont-create-home-dirs.patch",
-], url = "github:manic-systems/nixos-core" }
+nixos-core = { patches = ["patches/nixos-core/dont-create-home-dirs.patch"], url = "github:manic-systems/nixos-core" }
+override-utils.url = "github:gabriella439/override-utils"
 tack.url = "github:manic-systems/tack"
 xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 

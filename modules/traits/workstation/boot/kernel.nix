@@ -13,7 +13,7 @@
     passthru = (old.passthru or {}) // {schedulers = [schedulerName];};
   });
 in {
-  boot.kernelPackages = linuxPackages_xanmod_latest;
+  # boot.kernelPackages = linuxPackages_xanmod_latest;
 
   services.scx-loader = {
     enable = true;

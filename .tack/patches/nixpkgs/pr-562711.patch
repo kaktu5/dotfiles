@@ -1,5 +1,5 @@
 diff --git a/maintainers/maintainer-list.nix b/maintainers/maintainer-list.nix
-index 9aee3b2ee1e4e..01eece6fa82f1 100644
+index 9aee3b2ee1e4ee..01eece6fa82f1c 100644
 --- a/maintainers/maintainer-list.nix
 +++ b/maintainers/maintainer-list.nix
 @@ -14993,6 +14993,13 @@
@@ -18,7 +18,7 @@ index 9aee3b2ee1e4e..01eece6fa82f1 100644
      github = "karpfediem";
 diff --git a/pkgs/by-name/rh/rhythia/add-aarch64-linux-export-preset.patch b/pkgs/by-name/rh/rhythia/add-aarch64-linux-export-preset.patch
 new file mode 100644
-index 0000000000000..884f0023356c3
+index 00000000000000..884f0023356c33
 --- /dev/null
 +++ b/pkgs/by-name/rh/rhythia/add-aarch64-linux-export-preset.patch
 @@ -0,0 +1,88 @@
@@ -112,7 +112,7 @@ index 0000000000000..884f0023356c3
 + binary_format/architecture="universal"
 diff --git a/pkgs/by-name/rh/rhythia/deps.json b/pkgs/by-name/rh/rhythia/deps.json
 new file mode 100644
-index 0000000000000..b438ec8e8c772
+index 00000000000000..b438ec8e8c772c
 --- /dev/null
 +++ b/pkgs/by-name/rh/rhythia/deps.json
 @@ -0,0 +1,77 @@
@@ -195,7 +195,7 @@ index 0000000000000..b438ec8e8c772
 +]
 diff --git a/pkgs/by-name/rh/rhythia/enable-s3tc-bptc-image-compression.patch b/pkgs/by-name/rh/rhythia/enable-s3tc-bptc-image-compression.patch
 new file mode 100644
-index 0000000000000..1c974f9803354
+index 00000000000000..1c974f98033546
 --- /dev/null
 +++ b/pkgs/by-name/rh/rhythia/enable-s3tc-bptc-image-compression.patch
 @@ -0,0 +1,12 @@
@@ -213,7 +213,7 @@ index 0000000000000..1c974f9803354
 + environment/defaults/default_clear_color=Color(0.0885599, 0.08855992, 0.08855987, 1)
 diff --git a/pkgs/by-name/rh/rhythia/package.nix b/pkgs/by-name/rh/rhythia/package.nix
 new file mode 100644
-index 0000000000000..c8ee5bfb31b47
+index 00000000000000..c8ee5bfb31b47c
 --- /dev/null
 +++ b/pkgs/by-name/rh/rhythia/package.nix
 @@ -0,0 +1,172 @@
@@ -390,7 +390,7 @@ index 0000000000000..c8ee5bfb31b47
 +  };
 +})
 diff --git a/pkgs/development/tools/godot/common.nix b/pkgs/development/tools/godot/common.nix
-index 21203d65725a6..9da5a9c239bfe 100644
+index 21203d65725a6c..9da5a9c239bfe4 100644
 --- a/pkgs/development/tools/godot/common.nix
 +++ b/pkgs/development/tools/godot/common.nix
 @@ -79,6 +79,7 @@

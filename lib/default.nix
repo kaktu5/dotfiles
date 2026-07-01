@@ -2,12 +2,14 @@
   inputs,
   self,
 }: let
-  inherit (inputs) nixpkgs;
+  inherit (inputs) nixpkgs override-utils;
   inherit (nixpkgs.lib.fixedPoints) fix;
 in
   fix (lib:
     nixpkgs.lib
     // {
+      overrideUtils = override-utils.lib;
+
       kkts = {
         dag = import ./dag.nix {inherit lib;};
         flake = import ./flake.nix {inherit lib;};
