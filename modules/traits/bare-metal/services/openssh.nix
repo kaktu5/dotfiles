@@ -4,7 +4,6 @@ in {
   services.openssh = {
     enable = true;
     allowSFTP = false;
-    ports = [32];
 
     settings = {
       PermitRootLogin = "no";
