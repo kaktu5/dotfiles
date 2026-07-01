@@ -5,6 +5,7 @@
     nixos-generate-config.enable = false;
     nixos-install.enable = false;
     nixos-option.enable = false;
+    nixos-rebuild.enable = false;
     nixos-version.enable = false;
   };
 }
