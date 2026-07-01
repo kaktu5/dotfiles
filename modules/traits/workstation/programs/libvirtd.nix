@@ -6,7 +6,7 @@
   inherit (lib.modules) mkForce;
   inherit (pkgs) virtiofsd;
 in {
-  persistence.directories = ["/var/lib/libvirt"];
+  persistence.directories = ["/var/lib/libvirt" "/var/log/libvirt"];
 
   networking.firewall.trustedInterfaces = ["virbr0"];
 
