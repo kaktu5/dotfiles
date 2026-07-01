@@ -3,9 +3,9 @@
     "type": "github",
     "owner": "ezkea",
     "repo": "aagl-gtk-on-nix",
-    "rev": "af94408291ad477cae8eed964981ab41f90eb184",
-    "narHash": "sha256-Ac4EGPZr9e+mPUdmavJFSTft4vgoXml40+YOFYKTXPg=",
-    "lastModified": 1783689476
+    "rev": "ce55463be1feee6a9a6a6d35d313b8b728c1d8c9",
+    "narHash": "sha256-pXD5pfIwI6j17cpvHh9vjzY+635cCiAldN9bDjXKJ8Y=",
+    "lastModified": 1785936455
   },
   "cade": {
     "type": "github",
@@ -35,9 +35,9 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "d628ecda714785fddf86cad28ee4f506dc5b7eb9",
-    "narHash": "sha256-M9v4zyKLYSVv2RYB4iYTg2THKvW3mDlj+fR1KvW9G3w=",
-    "lastModified": 1785525782
+    "rev": "b610953d0c56da6b28fd39c21bd193b88e91341c",
+    "narHash": "sha256-qwppDYdtxqtDpI1iSp7bs8prOJ0KQSvhJchfROD04f0=",
+    "lastModified": 1785929776
   },
   "lanzaboote": {
     "type": "github",
@@ -105,9 +105,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "a3b552e55747a5ccae436a6300904f2991a79628",
-    "narHash": "sha256-6VLxHaIr/Qel06rlAClDOAEDEy4n7nq+1vo8C2W5G+w=",
-    "lastModified": 1785870519
+    "rev": "e9e0108fb2684243ac5b59eec310c28c28c76bab",
+    "narHash": "sha256-O4iCUygjmWVRz/Aldbi8b0BJdEwv8Hr7CW4Ymw2rhIM=",
+    "lastModified": 1785958329
   },
   "preservation": {
     "type": "github",
@@ -121,9 +121,9 @@
     "type": "github",
     "owner": "oxalica",
     "repo": "rust-overlay",
-    "rev": "fe2124391e739e7b3e8720cd8a73f06edd0aceba",
-    "narHash": "sha256-ehF/c4fLdgmNu7YXEClnmwhoBYddhYIVoSQpsZoorC4=",
-    "lastModified": 1785044261
+    "rev": "6ef009bf4c4873cdc1a621826722bdea7c03e62c",
+    "narHash": "sha256-/CXwCFPS41rb/JI2VitKCgVK6V5E6/sfw5ke3B9zyVQ=",
+    "lastModified": 1785476452
   },
   "stash": {
     "type": "github",
@@ -137,9 +137,9 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "eeeeb38f444c047642eaa7f81946df6e17b77ce5",
-    "narHash": "sha256-mrzOe9u1EdkVRc31rVhiNeSHXSfnjsYzWMCNFGOS51E=",
-    "lastModified": 1785804627
+    "rev": "62a67545adaf01b48d01ee73c0d16353ca68432e",
+    "narHash": "sha256-rTiX4SZ9Sjei3WzsW25nDTZweMRzA7ZunspkhDXkZfY=",
+    "lastModified": 1785878583
   },
   "tuigreet": {
     "type": "github",
@@ -148,6 +148,14 @@
     "rev": "68e8e3146b0112f8112a2e7e65ae34938fbbe667",
     "narHash": "sha256-7WNPBwWfptUZWmEwyLUXPSDs3bA/Q+LW12zLY9SD/gE=",
     "lastModified": 1785834583
+  },
+  "watt": {
+    "type": "github",
+    "owner": "notashelf",
+    "repo": "watt",
+    "rev": "db522b64c0ce29724edb7e91ecdc4fb71c8a96b8",
+    "narHash": "sha256-1w8NCqJLMIO9H9bpCOHIcuMzPANX8fI3TzgY3+V5+HA=",
+    "lastModified": 1785244524
   },
   "xdg-utils-nu": {
     "type": "github",
