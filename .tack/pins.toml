@@ -11,6 +11,7 @@ rust-overlay = []
 [inputs]
 nixpkgs = {patches = [
   "github:nixos/nixpkgs/pull/538226", # millennium
+  "github:nixos/nixpkgs/pull/562711", # rhythia
 ], url = "channel:nixos-unstable"}
 
 nf.url = "rad:z3EZi6d3LccUz1s6UmMfuoPJfMdZ"

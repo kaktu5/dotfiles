@@ -1,0 +1,592 @@
+diff --git a/maintainers/maintainer-list.nix b/maintainers/maintainer-list.nix
+index bb6c803398707..82cf3f20189eb 100644
+--- a/maintainers/maintainer-list.nix
++++ b/maintainers/maintainer-list.nix
+@@ -14802,6 +14802,13 @@
+     githubId = 32744028;
+     keys = [ { fingerprint = "7577 13A4 9609 0C2F 51C4  018C B5C8 89A2 F195 28F6"; } ];
+   };
++  karol-broda = {
++    name = "Karol Broda";
++    email = "me@karolbroda.com";
++    matrix = "@karolbroda:matrix.karolbroda.com";
++    github = "karol-broda";
++    githubId = 122811026;
++  };
+   karpfediem = {
+     name = "Karpfen";
+     github = "karpfediem";
+diff --git a/pkgs/by-name/rh/rhythia/deps-indev.json b/pkgs/by-name/rh/rhythia/deps-indev.json
+new file mode 100644
+index 0000000000000..b438ec8e8c772
+--- /dev/null
++++ b/pkgs/by-name/rh/rhythia/deps-indev.json
+@@ -0,0 +1,77 @@
++[
++  {
++    "pname": "DiscordRichPresence",
++    "version": "1.6.1.70",
++    "hash": "sha256-uXTNIWfZU7Gf/JpXQ5ufKA3SQdXYSkg3yLm5yCrBDd8="
++  },
++  {
++    "pname": "Godot.SourceGenerators",
++    "version": "4.7.2",
++    "hash": "sha256-1vUbZvoXVQvPy8OKrjQOcfHHKYskI23wk15O3NZ0VL4="
++  },
++  {
++    "pname": "GodotSharp",
++    "version": "4.7.2",
++    "hash": "sha256-+iwW5s5rjTyJAbvK/xWVZdxzJn74QGh9IBUh4I9l4Ok="
++  },
++  {
++    "pname": "GodotSharpEditor",
++    "version": "4.7.2",
++    "hash": "sha256-X29rwmPebDQ8wXQ2ToKO89E7qEXdFOBJ+oNne2oHWss="
++  },
++  {
++    "pname": "Microsoft.Extensions.Primitives",
++    "version": "5.0.1",
++    "hash": "sha256-e4uoLnUSmON4If9qJh78+4z14IzW9qCu5YkqLdQqWQU="
++  },
++  {
++    "pname": "Newtonsoft.Json",
++    "version": "13.0.1",
++    "hash": "sha256-K2tSVW4n4beRPzPu3rlVaBEMdGvWSv/3Q1fxaDh4Mjo="
++  },
++  {
++    "pname": "Octokit",
++    "version": "14.0.0",
++    "hash": "sha256-pTSI7Tz5VFd4Ydx1laE+VkZfhsl7Rbgw42PBqhyVvyI="
++  },
++  {
++    "pname": "Semver",
++    "version": "3.0.0",
++    "hash": "sha256-nX5ka27GY6pz9S73H6sLSQCrnAyyI9xDVdzrtlMp4BQ="
++  },
++  {
++    "pname": "sqlite-net-pcl",
++    "version": "1.9.172",
++    "hash": "sha256-0PTcOwm4k8bMeLm5+z0iWjy379KYdQXjqkaBGBR20cc="
++  },
++  {
++    "pname": "SQLitePCLRaw.bundle_green",
++    "version": "2.1.2",
++    "hash": "sha256-7858BCblsCoALR11Q7ejjPKHk7johTjWxgndHwUYNws="
++  },
++  {
++    "pname": "SQLitePCLRaw.core",
++    "version": "2.1.2",
++    "hash": "sha256-bbymML2TTQJDKZbYXoiyYJnF6mh/PjKrzDkqWhLaHaY="
++  },
++  {
++    "pname": "SQLitePCLRaw.lib.e_sqlite3",
++    "version": "2.1.2",
++    "hash": "sha256-34lJgnGvODwrjn9WTkkBIg2jzYph/ARi1QSiKedCyUo="
++  },
++  {
++    "pname": "SQLitePCLRaw.provider.e_sqlite3",
++    "version": "2.1.2",
++    "hash": "sha256-e56+FgxEHqV3SGQx0ZAqzlscPxNUPXJ8Ls9rtqET1S4="
++  },
++  {
++    "pname": "Tomlyn",
++    "version": "0.20.0",
++    "hash": "sha256-BGEzKBaxmeHQgr80k8xbTFzpDcMvy+oUsb3vQptQS5E="
++  },
++  {
++    "pname": "Updatum",
++    "version": "1.3.2",
++    "hash": "sha256-eou+7GMaEZZ3wepGSUvi+W6Gp/94uDoKvyGFjWFIUPQ="
++  }
++]
+diff --git a/pkgs/by-name/rh/rhythia/deps.json b/pkgs/by-name/rh/rhythia/deps.json
+new file mode 100644
+index 0000000000000..80631ef3f8c5d
+--- /dev/null
++++ b/pkgs/by-name/rh/rhythia/deps.json
+@@ -0,0 +1,82 @@
++[
++  {
++    "pname": "DiscordRichPresence",
++    "version": "1.6.1.70",
++    "hash": "sha256-uXTNIWfZU7Gf/JpXQ5ufKA3SQdXYSkg3yLm5yCrBDd8="
++  },
++  {
++    "pname": "Godot.NET.Sdk",
++    "version": "4.6.3",
++    "hash": "sha256-TWIk3G3+mOrwFwoWjgx16x9UGffbGfJc9LelGjQJ/iQ="
++  },
++  {
++    "pname": "Godot.SourceGenerators",
++    "version": "4.6.3",
++    "hash": "sha256-UCpaUy14SMRV82P0PS03bQQ9gZamUDQFeP4eL9qajmE="
++  },
++  {
++    "pname": "GodotSharp",
++    "version": "4.6.3",
++    "hash": "sha256-wzpEESJJm2nMiE95/e//s8Tm4dHs1v4IIpCfYalNDIs="
++  },
++  {
++    "pname": "GodotSharpEditor",
++    "version": "4.6.3",
++    "hash": "sha256-As1H28Wp/L0QtFYkLXY3S+jgLpT3tm7Mh4uYfpU8m3s="
++  },
++  {
++    "pname": "Microsoft.Extensions.Primitives",
++    "version": "5.0.1",
++    "hash": "sha256-e4uoLnUSmON4If9qJh78+4z14IzW9qCu5YkqLdQqWQU="
++  },
++  {
++    "pname": "Newtonsoft.Json",
++    "version": "13.0.1",
++    "hash": "sha256-K2tSVW4n4beRPzPu3rlVaBEMdGvWSv/3Q1fxaDh4Mjo="
++  },
++  {
++    "pname": "Octokit",
++    "version": "14.0.0",
++    "hash": "sha256-pTSI7Tz5VFd4Ydx1laE+VkZfhsl7Rbgw42PBqhyVvyI="
++  },
++  {
++    "pname": "Semver",
++    "version": "3.0.0",
++    "hash": "sha256-nX5ka27GY6pz9S73H6sLSQCrnAyyI9xDVdzrtlMp4BQ="
++  },
++  {
++    "pname": "sqlite-net-pcl",
++    "version": "1.9.172",
++    "hash": "sha256-0PTcOwm4k8bMeLm5+z0iWjy379KYdQXjqkaBGBR20cc="
++  },
++  {
++    "pname": "SQLitePCLRaw.bundle_green",
++    "version": "2.1.2",
++    "hash": "sha256-7858BCblsCoALR11Q7ejjPKHk7johTjWxgndHwUYNws="
++  },
++  {
++    "pname": "SQLitePCLRaw.core",
++    "version": "2.1.2",
++    "hash": "sha256-bbymML2TTQJDKZbYXoiyYJnF6mh/PjKrzDkqWhLaHaY="
++  },
++  {
++    "pname": "SQLitePCLRaw.lib.e_sqlite3",
++    "version": "2.1.2",
++    "hash": "sha256-34lJgnGvODwrjn9WTkkBIg2jzYph/ARi1QSiKedCyUo="
++  },
++  {
++    "pname": "SQLitePCLRaw.provider.e_sqlite3",
++    "version": "2.1.2",
++    "hash": "sha256-e56+FgxEHqV3SGQx0ZAqzlscPxNUPXJ8Ls9rtqET1S4="
++  },
++  {
++    "pname": "Tomlyn",
++    "version": "0.20.0",
++    "hash": "sha256-BGEzKBaxmeHQgr80k8xbTFzpDcMvy+oUsb3vQptQS5E="
++  },
++  {
++    "pname": "Updatum",
++    "version": "1.3.2",
++    "hash": "sha256-eou+7GMaEZZ3wepGSUvi+W6Gp/94uDoKvyGFjWFIUPQ="
++  }
++]
+diff --git a/pkgs/by-name/rh/rhythia/fix-aarch64-linux.patch b/pkgs/by-name/rh/rhythia/fix-aarch64-linux.patch
+new file mode 100644
+index 0000000000000..0d2bc8e76dc07
+--- /dev/null
++++ b/pkgs/by-name/rh/rhythia/fix-aarch64-linux.patch
+@@ -0,0 +1,77 @@
++diff --git a/export_presets.cfg b/export_presets.cfg
++index d69582c..6b2eaa1 100644
++--- a/export_presets.cfg
+++++ b/export_presets.cfg
++@@ -3,6 +3,7 @@
++ "Windows Desktop"="Windows Desktop"
++ Linux="Linux"
++ macOS="macOS"
+++"Linux AArch64"="Linux AArch64"
++ 
++ [preset.0]
++ 
++@@ -388,3 +389,52 @@ rm -rf \"{temp_dir}\""
++ dotnet/include_scripts_content=false
++ dotnet/include_debug_symbols=true
++ dotnet/embed_build_outputs=false
+++
+++[preset.3]
+++
+++name="Linux AArch64"
+++platform="Linux"
+++dedicated_server=false
+++custom_features=""
+++export_filter="all_resources"
+++include_filter="user/*"
+++exclude_filter=""
+++export_path=""
+++patches=PackedStringArray()
+++patch_delta_encoding=false
+++patch_delta_compression_level_zstd=19
+++patch_delta_min_reduction=0.1
+++patch_delta_include_filters="*"
+++patch_delta_exclude_filters=""
+++encryption_include_filters=""
+++encryption_exclude_filters=""
+++seed=0
+++encrypt_pck=false
+++encrypt_directory=false
+++script_export_mode=2
+++
+++[preset.3.options]
+++
+++custom_template/debug=""
+++custom_template/release=""
+++debug/export_console_wrapper=1
+++binary_format/embed_pck=true
+++texture_format/s3tc_bptc=true
+++texture_format/etc2_astc=false
+++shader_baker/enabled=false
+++binary_format/architecture="arm64"
+++ssh_remote_deploy/enabled=false
+++ssh_remote_deploy/host="user@host_ip"
+++ssh_remote_deploy/port="22"
+++ssh_remote_deploy/extra_args_ssh=""
+++ssh_remote_deploy/extra_args_scp=""
+++ssh_remote_deploy/run_script="#!/usr/bin/env bash
+++export DISPLAY=:0
+++unzip -o -q \"{temp_dir}/{archive_name}\" -d \"{temp_dir}\"
+++\"{temp_dir}/{exe_name}\" {cmd_args}"
+++ssh_remote_deploy/cleanup_script="#!/usr/bin/env bash
+++pkill -x -f \"{temp_dir}/{exe_name} {cmd_args}\"
+++rm -rf \"{temp_dir}\""
+++dotnet/include_scripts_content=false
+++dotnet/include_debug_symbols=true
+++dotnet/embed_build_outputs=false
++diff --git a/project.godot b/project.godot
++index b22af13..f6eaa4c 100644
++--- a/project.godot
+++++ b/project.godot
++@@ -85,6 +85,7 @@ common/physics_ticks_per_second=120
++ 
++ [rendering]
++ 
+++textures/vram_compression/import_s3tc_bptc=true
++ textures/vram_compression/import_etc2_astc=true
++ textures/lossless_compression/force_png=true
++ environment/defaults/default_clear_color=Color(0.0885599, 0.08855992, 0.08855987, 1)
+diff --git a/pkgs/by-name/rh/rhythia/fix-renderer-node-fallback.patch b/pkgs/by-name/rh/rhythia/fix-renderer-node-fallback.patch
+new file mode 100644
+index 0000000000000..2d396845f7f41
+--- /dev/null
++++ b/pkgs/by-name/rh/rhythia/fix-renderer-node-fallback.patch
+@@ -0,0 +1,18 @@
++diff --git a/scripts/game/Runner.cs b/scripts/game/Runner.cs
++index b2bdb29..23ab025 100644
++--- a/scripts/game/Runner.cs
+++++ b/scripts/game/Runner.cs
++@@ -60,9 +60,13 @@ public partial class Runner : Node3D
++ 
++         HudManager ??= GetNode<HudManager>("HUD");
++         Camera ??= GetNode<Camera3D>("Camera3D");
++-        Renderers ??= GetNode<Godot.Collections.Array<Renderer>>("Renderers");
+++        Renderers ??= new Godot.Collections.Array<Renderer>(
+++            GetNode<Node>("Renderers")
+++                .GetChildren()
+++                .OfType<Renderer>()
+++        );
++         Grid ??= HudManager.GetNode<MeshInstance3D>("Grid");
++-        Cursor ??= GetNode<MeshInstance3D>("Cursor");
+++        Cursor ??= Grid.GetNode<MeshInstance3D>("Cursor");
++         // VideoStreamPlayer ??= GetNode<VideoStreamPlayer>("Video/VideoViewport/VideoStreamPlayer");
+diff --git a/pkgs/by-name/rh/rhythia/godot-dotnet-sdk-4.6.3.patch b/pkgs/by-name/rh/rhythia/godot-dotnet-sdk-4.6.3.patch
+new file mode 100644
+index 0000000000000..c5695adf76c02
+--- /dev/null
++++ b/pkgs/by-name/rh/rhythia/godot-dotnet-sdk-4.6.3.patch
+@@ -0,0 +1,24 @@
++diff --git a/Rhythia.csproj b/Rhythia.csproj
++index 041d012..fc42bde 100644
++--- a/Rhythia.csproj
+++++ b/Rhythia.csproj
++@@ -1,4 +1,4 @@
++-﻿<Project Sdk="Godot.NET.Sdk/4.6.1">
+++﻿<Project Sdk="Godot.NET.Sdk/4.6.3">
++ 	<PropertyGroup>
++ 		<TargetFramework>net10.0</TargetFramework>
++ 		<TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net10.0</TargetFramework>
++@@ -10,10 +10,10 @@
++ 	</ItemGroup>
++ 	<ItemGroup>
++ 		<PackageReference Include="DiscordRichPresence" Version="1.6.1.70" />
++-		<PackageReference Include="Godot.NET.Sdk" Version="4.5.0" />
+++		<PackageReference Include="Godot.NET.Sdk" Version="4.6.3" />
++ 		<PackageReference Include="Semver" Version="3.0.0" />
++ 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
++ 		<PackageReference Include="Tomlyn" Version="0.20.0" />
++ 		<PackageReference Include="Updatum" Version="1.3.2" />
++ 	</ItemGroup>
++-</Project>
++\ No newline at end of file
+++</Project>
+diff --git a/pkgs/by-name/rh/rhythia/package.nix b/pkgs/by-name/rh/rhythia/package.nix
+new file mode 100644
+index 0000000000000..5b0c69f4c88ac
+--- /dev/null
++++ b/pkgs/by-name/rh/rhythia/package.nix
+@@ -0,0 +1,196 @@
++{
++  alsa-lib,
++  autoPatchelfHook,
++  buildDotnetModule,
++  copyDesktopItems,
++  dbus,
++  dotnetCorePackages,
++  fetchFromGitHub,
++  fontconfig,
++  godotPackages_4_7,
++  lib,
++  libGL,
++  libx11,
++  libxcursor,
++  libxext,
++  libxi,
++  libxinerama,
++  libxkbcommon,
++  libxrandr,
++  libxrender,
++  makeDesktopItem,
++  pulseaudio,
++  stdenv,
++  udev,
++  vulkan-loader,
++  wayland,
++}:
++
++let
++  presets = {
++    "x86_64-linux" = "Linux";
++    "aarch64-linux" = "Linux AArch64";
++  };
++  preset =
++    presets.${stdenv.hostPlatform.system}
++      or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
++
++  # godotPackages = godotPackages_4_6;
++  # indev branch
++  godotPackages = godotPackages_4_7;
++
++  godot = godotPackages.godot-mono.override {
++    inherit dotnet-sdk;
++    dotnet-sdk_alt = dotnet-sdk;
++  };
++
++  export-templates = godot.export-templates-bin;
++
++  dotnet-sdk = dotnetCorePackages.sdk_10_0;
++  dotnet-runtime = dotnetCorePackages.runtime_10_0;
++
++  dataDirs = {
++    "x86_64-linux" = "data_Rhythia_linuxbsd_x86_64";
++    "aarch64-linux" = "data_Rhythia_linuxbsd_arm64";
++  };
++  dataDir =
++    dataDirs.${stdenv.hostPlatform.system}
++      or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
++in
++
++buildDotnetModule (finalAttrs: {
++  pname = "rhythia";
++  # version = "0.1.2";
++  # indev branch
++  version = "0-unstable-2026-09-29";
++
++  # src = fetchFromGitHub {
++  #   owner = "Rhythia";
++  #   repo = "Client";
++  #   rev = finalAttrs.version;
++  #   hash = "sha256-alwbuNJ+wa3VF0g8kYSebtuyc2Ouder5asNi9e62dvA=";
++  #   fetchLFS = true;
++  # };
++
++  # indev branch
++  src = fetchFromGitHub {
++    owner = "Rhythia";
++    repo = "Client";
++    rev = "62a79cf2bd4f77e607552d74c81c99ca9bef6ec5";
++    hash = "sha256-hqtFVnBzYzqSOfkDGqyvqFXVN5Y5Gqttfy201apTJm4=";
++    fetchLFS = true;
++  };
++
++  __structuredAttrs = true;
++  strictDeps = true;
++
++  patches = [
++    # ./godot-dotnet-sdk-4.6.3.patch
++    ./fix-renderer-node-fallback.patch
++  ]
++  ++ lib.optional (stdenv.hostPlatform.system == "aarch64-linux") ./fix-aarch64-linux.patch;
++
++  postPatch = ''
++    rm dotnet-tools.json
++  '';
++
++  nugetDeps = ./deps-indev.json;
++
++  inherit dotnet-sdk dotnet-runtime;
++
++  buildInputs = [
++    stdenv.cc.cc.lib
++  ];
++
++  nativeBuildInputs = [
++    autoPatchelfHook
++    copyDesktopItems
++    dotnet-sdk
++    godot
++  ];
++
++  desktopItems = [
++    (makeDesktopItem {
++      name = "Rhythia";
++      desktopName = "Rhythia";
++      genericName = finalAttrs.meta.description;
++      comment = finalAttrs.meta.description;
++      icon = "Rhythia";
++      exec = "Rhythia";
++      categories = [ "Game" ];
++      keywords = [
++        "rhythm"
++        "rhythia"
++      ];
++      singleMainWindow = true;
++      terminal = false;
++      prefersNonDefaultGPU = true;
++    })
++  ];
++
++  buildPhase = ''
++    runHook preBuild
++
++    export HOME=$(mktemp -d)
++    mkdir -p $HOME/.local/share/godot/
++    ln -s "${export-templates}"/share/godot/export_templates "$HOME"/.local/share/godot/
++
++    mkdir -p ./build
++    godot4.7-mono --headless --export-release "${preset}" ./build/Rhythia
++
++    runHook postBuild
++  '';
++
++  installPhase = ''
++    runHook preInstall
++
++    install -Dm 755 -t $out/libexec ./build/Rhythia
++    install -Dm 755 -t $out/libexec/${dataDir} ./build/${dataDir}/*
++
++    install -Dm 644 ./textures/icon.svg $out/share/icons/hicolor/scalable/apps/Rhythia.svg
++    install -dm 755 $out/bin
++
++    ln -s $out/libexec/Rhythia $out/bin/Rhythia
++    ln -s $out/bin/Rhythia $out/bin/rhythia
++
++    runHook postInstall
++  '';
++
++  postFixup = ''
++    patchelf --add-rpath "$out/libexec:${
++      lib.makeLibraryPath [
++        alsa-lib
++        dbus
++        fontconfig
++        libGL
++        libx11
++        libxcursor
++        libxext
++        libxi
++        libxinerama
++        libxkbcommon
++        libxrandr
++        libxrender
++        pulseaudio
++        udev
++        vulkan-loader
++        wayland
++      ]
++    }" $out/libexec/Rhythia
++  '';
++
++  meta = {
++    homepage = "https://wiki.rhythia.net/";
++    description = "Aim-based rhythm game client built in Godot 4";
++    license = lib.licenses.agpl3Only;
++    platforms = [
++      "x86_64-linux"
++      "aarch64-linux"
++    ];
++    maintainers = with lib.maintainers; [
++      karol-broda
++      poz
++    ];
++    mainProgram = "Rhythia";
++  };
++})
+diff --git a/pkgs/development/tools/godot/common.nix b/pkgs/development/tools/godot/common.nix
+index 30416a828ad9b..aedfa42701555 100644
+--- a/pkgs/development/tools/godot/common.nix
++++ b/pkgs/development/tools/godot/common.nix
+@@ -7,6 +7,8 @@
+   darwin,
+   dbus,
+   dotnetCorePackages,
++  dotnet-sdk ? if withMono then dotnetCorePackages.sdk_8_0-source else null,
++  dotnet-sdk_alt ? if withMono then dotnetCorePackages.sdk_9_0-source else null,
+   embree,
+   enet,
+   exportTemplatesHash,
+@@ -87,6 +89,39 @@ assert lib.asserts.assertOneOf "withPrecision" withPrecision [
+   "single"
+   "double"
+ ];
++let
++  # we're including sdk 8 as without it the build breaks if it can't find a specific package from 8.0.0
++  # the potentially overriden sdk is first to prioritize it over the default
++  _dotnet-sdk =
++    let
++      sdk_8_0 = dotnetCorePackages.sdk_8_0-source;
++    in
++    if withMono then
++      if (builtins.compareVersions sdk_8_0.version dotnet-sdk.version) != 0 then
++        dotnetCorePackages.combinePackages [
++          dotnet-sdk
++          sdk_8_0
++        ]
++      else
++        sdk_8_0
++    else
++      null;
++
++  _dotnet-sdk_alt =
++    let
++      sdk_9_0 = dotnetCorePackages.sdk_9_0-source;
++    in
++    if withMono then
++      if (builtins.compareVersions sdk_9_0.version dotnet-sdk_alt.version) != 0 then
++        dotnetCorePackages.combinePackages [
++          dotnet-sdk_alt
++          sdk_9_0
++        ]
++      else
++        sdk_9_0
++    else
++      null;
++in
+ let
+   mkSconsFlagsFromAttrSet = lib.mapAttrsToList (
+     k: v: if builtins.isString v then "${k}=${v}" else "${k}=${builtins.toJSON v}"
+@@ -94,8 +129,8 @@ let
+ 
+   arch = stdenv.hostPlatform.linuxArch;
+ 
+-  dotnet-sdk = if withMono then dotnetCorePackages.sdk_8_0-source else null;
+-  dotnet-sdk_alt = if withMono then dotnetCorePackages.sdk_9_0-source else null;
++  dotnet-sdk = _dotnet-sdk;
++  dotnet-sdk_alt = _dotnet-sdk_alt;
+ 
+   dottedVersion = lib.replaceStrings [ "-" ] [ "." ] version + lib.optionalString withMono ".mono";
+ 
