@@ -7,8 +7,7 @@ in {
     default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICrm08yLyJn1TpTvnEuyyuSp60hD2Z8oOXZgsA/sbHPa";
   };
 
-  config.vaultix.secrets.kaktu5-key = {
-    file = ./kaktu5-key.age;
+  config.security.nix-secrets.secrets.kaktu5-key = {
     owner = "kaktu5";
     group = "users";
   };

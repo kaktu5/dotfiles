@@ -63,6 +63,14 @@
     "narHash": "sha256-46S0vFtg3v9Y0YXFe6HOFp3EgStrHMEA23aoGZdVRWs=",
     "lastModified": 1784982672
   },
+  "nix-secrets": {
+    "type": "github",
+    "owner": "unnamed-systems",
+    "repo": "nix-secrets",
+    "rev": "6ca661cc7a9db26977f6f09c3832b225580b4462",
+    "narHash": "sha256-5Hg1C9yq9V2WZn5naZYSr6FH5+PzWhnvJTrmd8KT5KM=",
+    "lastModified": 1785611903
+  },
   "nixexprs": {
     "type": "github",
     "owner": "kaktu5",
@@ -140,14 +148,6 @@
     "rev": "097848afaa1182450e9daa36b5cd7450f74226b9",
     "narHash": "sha256-KBhHCmm1gGtwwAoRqiPQed1eoXqbxGFxhLOEO3nZCTw=",
     "lastModified": 1785063275
-  },
-  "vaultix": {
-    "type": "github",
-    "owner": "milieuim",
-    "repo": "vaultix",
-    "rev": "ea2b13afe5ea5ef72f0829b97141c4757334b4ec",
-    "narHash": "sha256-67+m+CbQf5q73BoP6KwOhwPfIgpm8p64qdN74eRUHxo=",
-    "lastModified": 1784033318
   },
   "xdg-utils-nu": {
     "type": "github",

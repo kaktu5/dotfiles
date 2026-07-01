@@ -16,7 +16,7 @@
     mapSystems systems (system: let
       pkgs = inputs.nixpkgs.legacyPackages.${system};
     in {
-      devShells.default = import ./flake/devshell.nix {inherit inputs lib pkgs self system;};
+      devShells.default = import ./flake/devshell.nix {inherit inputs lib pkgs system;};
 
       formatter = import ./flake/formatter.nix {inherit lib pkgs;};
 
@@ -26,7 +26,5 @@
       inherit lib;
 
       nixosConfigurations = import ./hosts {inherit lib;};
-
-      vaultix = import ./flake/vaultix.nix {inherit inputs self systems;};
     };
 }

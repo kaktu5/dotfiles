@@ -20,11 +20,11 @@ cade.url = "github:manic-systems/cade"
 hjem.url = "github:feel-co/hjem"
 lanzaboote.url = "github:nix-community/lanzaboote"
 microvm.url = "github:microvm-nix/microvm.nix"
+nix-secrets.url = "github:unnamed-systems/nix-secrets"
 nixos-core.url = "github:kaktu5/nixos-core"            # nixos-core.url = "github:manic-systems/nixos-core"
 stash.url = "github:notashelf/stash"
 tack.url = "github:manic-systems/tack"
 tuigreet.url = "github:notashelf/tuigreet"
-vaultix.url = "github:milieuim/vaultix"
 xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 
 dnscrypt-settings = {type = "fetch", url = "github:quad9dns/dnscrypt-settings"}

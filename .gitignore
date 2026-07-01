@@ -6,12 +6,9 @@
 !/.tack/pins.lock.json
 !/.tack/pins.toml
 
-!/.vaultix/**
-
 !/flake/**/*.nix
 !/flake/packages/**/.nu
 
-!/hosts/**/*.age
 !/hosts/**/*.json
 !/hosts/**/*.nix
 !/hosts/**/*.nu
@@ -19,13 +16,14 @@
 
 !/lib/**/*.nix
 
-!/modules/**/*.age
 !/modules/**/*.json
 !/modules/**/*.nix
 !/modules/**/*.nu
 !/modules/**/*.patch
 
 !/resources/**/*.nix
+
+!/secrets/**/*.enc
 
 !/.cade
 !/.gitattributes

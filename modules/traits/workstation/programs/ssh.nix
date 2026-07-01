@@ -6,8 +6,8 @@
 }: let
   inherit (config.kkts) keys;
   inherit (config.kkts.meta) userName;
+  inherit (config.security.nix-secrets.secrets) kaktu5-key;
   inherit (config.services.openssh.settings) Ciphers KexAlgorithms Macs;
-  inherit (config.vaultix) secrets;
   inherit (lib.kkts.generators) toSshConfig;
   inherit (lib.lists) singleton;
   inherit (pkgs) openssh;
@@ -43,7 +43,7 @@ in {
       generator = toSshConfig {};
       value."*" = {
         AddKeysToAgent = true;
-        IdentityFile = secrets.kaktu5-key.path;
+        IdentityFile = kaktu5-key.path;
         IdentitiesOnly = true;
       };
       type = "copy";

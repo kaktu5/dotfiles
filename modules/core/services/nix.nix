@@ -7,14 +7,13 @@
 }: let
   inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
-  inherit (config.vaultix.secrets) nix-access-tokens;
+  inherit (config.security.nix-secrets.secrets) nix-access-tokens;
   inherit (inputs) nixpkgs;
   inherit (lib.modules) mkDefault;
   inherit (pkgs.lixPackageSets.latest) lix;
   inherit (pkgs.writers) writeJSON;
 in {
-  vaultix.secrets.nix-access-tokens = {
-    file = ./access-tokens.age;
+  security.nix-secrets.secrets.nix-access-tokens = {
     group = "wheel";
     mode = "440";
   };
@@ -33,14 +32,7 @@ in {
     nixPath = ["nixpkgs=${nixpkgs}"];
 
     settings = {
-      experimental-features = [
-        "auto-allocate-uids"
-        "cgroups"
-        "coerce-integers"
-        "flakes"
-        "nix-command"
-        "pipe-operator"
-      ];
+      experimental-features = ["auto-allocate-uids" "cgroups" "coerce-integers" "flakes" "nix-command" "pipe-operator"];
 
       auto-allocate-uids = true;
       use-cgroups = true;
