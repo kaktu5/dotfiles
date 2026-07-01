@@ -4,13 +4,17 @@
   ...
 }: let
   inherit (inputs) ncro;
+  inherit (lib.lists) singleton;
   inherit (lib.modules) mkForce;
 
   listen = "[::1]:5151";
 in {
   imports = [ncro.nixosModules.default];
 
-  persistence.directories = ["/var/lib/ncro"];
+  persistence.directories = singleton {
+    target = "/var/lib/private/ncro";
+    mode = "700";
+  };
 
   services.ncro = {
     enable = true;
