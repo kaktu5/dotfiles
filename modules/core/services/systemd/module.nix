@@ -38,8 +38,6 @@
   };
 in {
   boot.initrd.systemd = {
-    managerEnvironment.SYSTEMD_DEFAULT_MOUNT_RATE_LIMIT_INTERVAL_SEC = "0";
-
     settings.Manager = commonConfig;
 
     services.debug-shell.enable = false;
