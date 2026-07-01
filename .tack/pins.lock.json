@@ -97,9 +97,9 @@
     "type": "github",
     "owner": "kaktu5",
     "repo": "preservation",
-    "rev": "cbf8b0e4ca7fda3fc065bf469b0e4cf39fde2b8e",
-    "narHash": "sha256-MbZAhvDNbeJ+ReTn2VrbW0uYTMLYIJWABH2labnTy7w=",
-    "lastModified": 1784283873
+    "rev": "aa0fad528dd04cace02f23371fbc78373c332b0f",
+    "narHash": "sha256-V+WvfOjGO4B9OjoZkdrTOsVEJcdhZFH/PrgX5krw0es=",
+    "lastModified": 1784637437
   },
   "rust-overlay": {
     "type": "github",
