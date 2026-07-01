@@ -24,7 +24,13 @@ in
   mkShellNoCC {
     name = "dotfiles-devshell";
 
-    env.TACK_NIX_CONF_TOKENS = "1";
+    env = {
+      NH_NO_CHECKS = "1"; # I know what I'm doing
+      NH_SHOW_ACTIVATION_LOGS = "1";
+      TACK_NIX_CONF_TOKENS = "1";
+    };
+
+    shellHook = "NH_FLAKE=$(pwd)";
 
     packages = attrValues {
       # nix
