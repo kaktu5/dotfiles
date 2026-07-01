@@ -31,7 +31,7 @@ in {
   kkts.persistence.store = "/nix/persist";
 
   swapDevices = singleton {
-    device = "/dev/disk/by-uuid/22a8709f-2e80-4cc4-9886-ae9728c36f36";
-    # randomEncryption.enable = true;
+    device = "/dev/disk/by-partuuid/7f455d6e-560b-4d1b-ab97-6b336fa43378";
+    randomEncryption.enable = true;
   };
 }
