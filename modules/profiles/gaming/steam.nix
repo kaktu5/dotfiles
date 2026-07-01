@@ -10,6 +10,7 @@
   inherit (lib.lists) elem flatten optional;
   inherit (lib.modules) mkIf;
   inherit (pkgs) proton-ge-bin steamWithMillennium;
+  inherit (pkgs.ktu5) dwproton-bin;
 in
   mkIf (gaming.enable && gaming.steam.enable) {
     persistence.users.${userName}.directories = flatten [
@@ -29,6 +30,6 @@ in
 
       localNetworkGameTransfers.openFirewall = true;
 
-      extraCompatPackages = [proton-ge-bin];
+      extraCompatPackages = [dwproton-bin proton-ge-bin];
     };
   }
