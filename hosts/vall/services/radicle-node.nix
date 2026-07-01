@@ -10,7 +10,7 @@
   inherit (config.users.users.${userName}) home;
   inherit (lib.generators) toJSON;
   inherit (lib.kkts.systemd) mkUserTargetService;
-  inherit (pkgs) radicle-desktop radicle-node;
+  inherit (pkgs) radicle-node;
 in {
   persistence.users.${userName}.directories = [
     ".local/share/radicle/cobs"
@@ -21,7 +21,7 @@ in {
 
   networking.firewall.allowedTCPPorts = [8776];
 
-  users.users.${userName}.packages = [radicle-desktop radicle-node];
+  users.users.${userName}.packages = [radicle-node];
 
   hjem.users.${userName} = {
     environment.sessionVariables.RAD_HOME = "${home}/.local/share/radicle";
