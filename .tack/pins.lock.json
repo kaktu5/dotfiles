@@ -51,17 +51,17 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "lanzaboote",
-    "rev": "92a2a41085c56ec894769afd7c3fc25fa8b2f651",
-    "narHash": "sha256-Ka3mEWzK+doNs3UHpCjMkGQm2EXYBHLcwxDbq8nzc/s=",
-    "lastModified": 1790352947
+    "rev": "c1c5edd31802d181c8aa2c71588995d93425d650",
+    "narHash": "sha256-sr4Kfp6yaXUeyKL6n0Y8/ElcR3momIRC20HFc+LF22s=",
+    "lastModified": 1790423250
   },
   "microvm": {
     "type": "github",
     "owner": "microvm-nix",
     "repo": "microvm.nix",
-    "rev": "68f2670367e03da7d0cceef0594a7b2c173849de",
-    "narHash": "sha256-Gj7g9GkMZNj0u0VKvyN4uf2XUxdHd4JwKOsaSicGtAo=",
-    "lastModified": 1790337272
+    "rev": "81f70a2002254f75b572fc34c55e7df16e9bb176",
+    "narHash": "sha256-33a6iTG1uFv12/zV8yo5VvdpftMNQms6TIHhMCVN6zE=",
+    "lastModified": 1790526615
   },
   "nf": {
     "type": "git",
@@ -91,23 +91,23 @@
     "type": "github",
     "owner": "manic-systems",
     "repo": "nixos-core",
-    "rev": "c65bbdee8d52c1219a721a39b7427b82ea377b9f",
-    "narHash": "sha256-UU72d6f9S0qBXaVTYL8vmLhIVuugSFONQL2zYQzcP30=",
-    "lastModified": 1788952165
+    "rev": "4434fb7858b05864cbb3e484d4ae044c7a34ce65",
+    "narHash": "sha256-50PWMf5J8aZfjEkr/AN8NpnMCsdZf8D52TwPUzaj2mw=",
+    "lastModified": 1790529944
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1079315.e94cb152ed51/nixexprs.tar.zst",
-    "rev": "e94cb152ed51bd6e24eb4a41f1460252beb52cd2",
-    "narHash": "sha256-m4DGo58Fza5ImOegtWOeE18nhpSO1IGzsVA6Lpsb4zw="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1080855.7a0f122f5090/nixexprs.tar.zst",
+    "rev": "7a0f122f5090cf4c2ade2a13a0e229d4e19ba71f",
+    "narHash": "sha256-EvoKOTtoIJ7Xflls2Nfo5WDcqjFJB0kuzwOz0nLWs0w="
   },
   "oisd": {
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "8368f5c064aac792144a830407a06be1d8c86cc3",
-    "narHash": "sha256-rCCDPPWSoF/xjMw70oRbw+oZQFsKUeesRRj22uIapfo=",
-    "lastModified": 1790414338
+    "rev": "52e89a04c4383d6004fed2fc1658875c4bd6c79e",
+    "narHash": "sha256-mlQLlQwAMhXx5EsKUVqFfSBkUER81KgFAxFiiMglVA0=",
+    "lastModified": 1790611647
   },
   "rust-overlay": {
     "type": "github",
