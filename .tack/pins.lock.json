@@ -67,9 +67,9 @@
     "type": "github",
     "owner": "unnamed-systems",
     "repo": "nix-secrets",
-    "rev": "6ca661cc7a9db26977f6f09c3832b225580b4462",
-    "narHash": "sha256-5Hg1C9yq9V2WZn5naZYSr6FH5+PzWhnvJTrmd8KT5KM=",
-    "lastModified": 1785611903
+    "rev": "2f713c2e612fed887c58e94ca4d332de85ec0945",
+    "narHash": "sha256-7a80WzEx8foVYZ4u9gLoAcPbV1ncITEpJshtuznqrIg=",
+    "lastModified": 1786013172
   },
   "nixexprs": {
     "type": "github",
@@ -89,9 +89,9 @@
   },
   "nixpkgs": {
     "type": "tarball",
-    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1040357.e2587caef70c/nixexprs.tar.xz",
-    "rev": "e2587caef70cea85dd97d7daab492899902dbf5d",
-    "narHash": "sha256-vwxWgF+Gj276WznzGb1LxGsK/39HaQwgQXiU3EkC844="
+    "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1048607.b7c2ada94fe9/nixexprs.tar.xz",
+    "rev": "b7c2ada94fe99c15b0dbcf4d11fd7850b957a436",
+    "narHash": "sha256-929m7iW8q2uv3mZHNwY8Um6XKj99rbIcZsWS9cT1vaI="
   },
   "nixpkgs-xanmod": {
     "type": "github",
@@ -105,9 +105,9 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "e9e0108fb2684243ac5b59eec310c28c28c76bab",
-    "narHash": "sha256-O4iCUygjmWVRz/Aldbi8b0BJdEwv8Hr7CW4Ymw2rhIM=",
-    "lastModified": 1785958329
+    "rev": "9c5d073c14dda55170b5756b3f92c99cfa7bc95c",
+    "narHash": "sha256-9MToiIjI7NF09rtZoOj5FSqb38bHty3s70ZCLkFKkOk=",
+    "lastModified": 1786028928
   },
   "preservation": {
     "type": "github",
