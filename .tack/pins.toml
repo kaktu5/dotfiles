@@ -25,4 +25,5 @@ xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 
 dnscrypt-settings = {type = "fetch", url = "github:quad9dns/dnscrypt-settings"}
 license-list-data = {type = "fetch", url = "github:spdx/license-list-data"}
+millennium = {type = "fetch", url = "github:steamclienthomebrew/millennium"}
 oisd = {type = "fetch", url = "github:sjhgvr/oisd"}

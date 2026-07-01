@@ -71,6 +71,14 @@
     "narHash": "sha256-33a6iTG1uFv12/zV8yo5VvdpftMNQms6TIHhMCVN6zE=",
     "lastModified": 1790526615
   },
+  "millennium": {
+    "type": "github",
+    "owner": "steamclienthomebrew",
+    "repo": "millennium",
+    "rev": "847e0dad6c33ab9f11bdd4e7ca2e90cd26aef416",
+    "narHash": "sha256-kk+bzZx7d+noy1YPrbt2Z0GBUzxKykU/+1clGCIPHQ8=",
+    "lastModified": 1790520975
+  },
   "nf": {
     "type": "git",
     "url": "https://iris.radicle.network/z3EZi6d3LccUz1s6UmMfuoPJfMdZ.git",
