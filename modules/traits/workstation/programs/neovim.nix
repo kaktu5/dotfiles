@@ -10,7 +10,10 @@
   inherit (inputs.nf.packages.${system}) neovim;
   inherit (lib.meta) getExe;
 in {
-  preservation.preserveAt."/persist".users.${userName}.directories = ["${xdg.cache.directory}/neovim"];
+  preservation.preserveAt."/persist".users.${userName}.directories = [
+    "${xdg.cache.directory}/neovim"
+    "${xdg.state.directory}/neovim"
+  ];
 
   users.users.${userName}.packages = [neovim];
 
