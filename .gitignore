@@ -8,6 +8,7 @@
 !/hosts/**/*.{age,json,nix}
 !/lib/**/*.nix
 !/modules/**/*.{age,json,nix}
+!/resources/**/*.nix
 
 !/.envrc
 !/.gitattributes
