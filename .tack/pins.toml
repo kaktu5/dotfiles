@@ -3,7 +3,6 @@ channel = "https://channels.nixos.org/{path}/nixexprs.tar.zst"
 rad = "git+https://iris.radicle.network/{path}.git"
 
 [all_follow]
-crane = []
 fenix = []
 nixpkgs = []
 rust-overlay = []
@@ -17,12 +16,12 @@ nixpkgs = {patches = [
 nf.url = "rad:z3EZi6d3LccUz1s6UmMfuoPJfMdZ"
 nixexprs.url = "github:kaktu5/nixexprs"
 
-aagl-gtk-on-nix.url = "github:ezkea/aagl-gtk-on-nix"
+aagl-gtk-on-nix = {follows.flake-compat = "", url = "github:ezkea/aagl-gtk-on-nix"}
 cade.url = "github:manic-systems/cade?rev=3211f782a53f94842bbb8782de03a2c5d85c793d" # cade.url = "github:manic-systems/cade"
 helium-flake.url = "github:amaanq/helium-flake"
 hjem.url = "github:feel-co/hjem"
-lanzaboote.url = "github:nix-community/lanzaboote"
-microvm.url = "github:microvm-nix/microvm.nix"
+lanzaboote = {follows.pre-commit = "", url = "github:nix-community/lanzaboote"}
+microvm = {follows.spectrum = "", url = "github:microvm-nix/microvm.nix"}
 nix-secrets.url = "github:unnamed-systems/nix-secrets"
 nixos-core.url = "github:manic-systems/nixos-core"
 tack.url = "github:manic-systems/tack"
