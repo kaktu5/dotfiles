@@ -14,5 +14,7 @@ in {
     persistence.directories = ["/etc/NetworkManager/system-connections"];
 
     networking.networkmanager.enable = true;
+
+    systemd.services.NetworkManager-wait-online.enable = false;
   };
 }
