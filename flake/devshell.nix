@@ -30,7 +30,7 @@ in
       TACK_NIX_CONF_TOKENS = "1";
     };
 
-    shellHook = "NH_FLAKE=$(pwd)";
+    shellHook = "export NH_FLAKE=$(pwd)";
 
     packages = attrValues {
       # nix
