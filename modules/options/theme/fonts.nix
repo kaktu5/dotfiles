@@ -4,7 +4,7 @@
   lib,
   pkgs,
 }: let
-  inherit (inputs'.nixexprs.legacyPackages) space-mono;
+  inherit (inputs'.nixexprs.packages) space-mono;
   inherit (lib) types;
   inherit (lib.attrsets) mapAttrs;
   inherit (lib.options) mkOption;
