@@ -2,6 +2,8 @@
   hardware.enableRedistributableFirmware = true;
 
   boot = {
+    kernelParams = ["mem_sleep_default=s2idle"]; # for some fucking reason the firmware defaults to S3
+
     initrd.kernelModules = [
       "ahci"
       "sr_mod"
