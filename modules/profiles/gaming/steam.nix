@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
@@ -8,20 +7,9 @@
   inherit (config.kkts.meta) userName;
   inherit (config.kkts.profiles) gaming;
   inherit (config.kkts.profiles.gaming.steam) games;
-  inherit (inputs) millennium;
   inherit (lib.lists) elem flatten optional;
   inherit (lib.modules) mkIf;
-  inherit (pkgs) callPackage proton-ge-bin;
-
-  # TODO: https://github.com/NixOS/nixpkgs/pull/538226
-  package = callPackage "${millennium}/packages/nix/steam.nix" {
-    millennium = callPackage "${millennium}/packages/nix/millennium.nix" {
-      millennium-src = millennium;
-
-      libXi = pkgs.libxi;
-      libXtst = pkgs.libxtst;
-    };
-  };
+  inherit (pkgs) proton-ge-bin steamWithMillennium;
 in
   mkIf (gaming.enable && gaming.steam.enable) {
     persistence.users.${userName}.directories = flatten [
@@ -37,7 +25,7 @@ in
 
     programs.steam = {
       enable = true;
-      inherit package;
+      package = steamWithMillennium;
 
       localNetworkGameTransfers.openFirewall = true;
 

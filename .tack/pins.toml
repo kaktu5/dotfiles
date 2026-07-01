@@ -9,7 +9,9 @@ nixpkgs = []
 rust-overlay = []
 
 [inputs]
-nixpkgs.url = "channel:nixos-unstable"
+nixpkgs = {patches = [
+  "github:nixos/nixpkgs/pull/538226", # millennium
+], url = "channel:nixos-unstable"}
 
 nf.url = "rad:z3EZi6d3LccUz1s6UmMfuoPJfMdZ"
 nixexprs.url = "github:kaktu5/nixexprs"
@@ -27,5 +29,4 @@ xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"
 
 dnscrypt-settings = {type = "fetch", url = "github:quad9dns/dnscrypt-settings"}
 license-list-data = {type = "fetch", url = "github:spdx/license-list-data"}
-millennium = {type = "fetch", url = "github:steamclienthomebrew/millennium"}
 oisd = {type = "fetch", url = "github:sjhgvr/oisd"}

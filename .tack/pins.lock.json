@@ -1,4 +1,7 @@
 {
+  "$declared": {
+    "nixpkgs": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
+  },
   "aagl-gtk-on-nix": {
     "type": "github",
     "owner": "ezkea",
@@ -123,7 +126,21 @@
     "type": "tarball",
     "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1083223.c59305bab206/nixexprs.tar.zst",
     "rev": "c59305bab2065cfecc4944690d9eedbb56f3a9fa",
-    "narHash": "sha256-VBA0QerzzmL+4wxgtwiCdiLwLpJg2/9xOxhgO3BRJQA="
+    "narHash": "sha256-VBA0QerzzmL+4wxgtwiCdiLwLpJg2/9xOxhgO3BRJQA=",
+    "patched": {
+      "path": "/nix/store/2lljy77xz9wmyl9rrgyc4i4jhpairlm6-source",
+      "narHash": "sha256-r75k2OQVLHM2RtTN1vRtu9+6NY2qa6q3oTDAs0b9fjM=",
+      "lastModified": 315532800,
+      "patches": [
+        {
+          "source": "github:nixos/nixpkgs/pull/538226",
+          "url": "https://github.com/nixos/nixpkgs/pull/538226",
+          "file": "patches/nixpkgs/pr-538226.patch",
+          "sha256": "f1fa71855801e3538ccd3e31110720288b057d0108c9df6246c534698de3e415",
+          "head": "edf77e5838207e9d0baa69cee27373a6f21240b7"
+        }
+      ]
+    }
   },
   "oisd": {
     "type": "github",
