@@ -8,15 +8,16 @@
   inherit (inputs'.nf.packages) neovim;
   inherit (lib.meta) getExe;
 in {
-  persistence.users.${userName}.directories = [
-    ".local/cache/neovim"
-    ".local/state/neovim"
-  ];
+  persistence.users.${userName}.directories = [".local/cache/neovim" ".local/state/neovim"];
 
   users.users.${userName}.packages = [neovim];
 
-  hjem.users.${userName}.environment.sessionVariables = {
-    EDITOR = getExe neovim;
-    VISUAL = getExe neovim;
+  hjem.users.${userName} = {
+    environment.sessionVariables = {
+      EDITOR = getExe neovim;
+      VISUAL = getExe neovim;
+    };
+
+    xdg.mime-apps.default-applications."text/plain" = "nvim.desktop";
   };
 }
