@@ -26,7 +26,6 @@ in
 
     env = {
       NH_NO_CHECKS = "1"; # I know what I'm doing
-      NH_SHOW_ACTIVATION_LOGS = "1";
       TACK_NIX_CONF_TOKENS = "1";
     };
 
