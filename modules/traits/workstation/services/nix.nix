@@ -8,7 +8,10 @@ in {
     mode = "440";
   };
 
-  preservation.preserveAt."/persist".users.${userName}.directories = ["${xdg.state.directory}/nix-output-monitor"];
+  preservation.preserveAt."/persist".users.${userName}.directories = [
+    "${xdg.state.directory}/nix-output-monitor"
+    "${xdg.state.directory}/tack"
+  ];
 
   nix = {
     settings = {
