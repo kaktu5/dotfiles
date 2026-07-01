@@ -4,6 +4,7 @@
   pkgs,
   ...
 }: let
+  inherit (config.hjem.users.${userName}) xdg;
   inherit (config.kkts.meta) userName;
   inherit (lib.generators) toGitINI;
   inherit (lib.meta) getExe;
@@ -17,6 +18,8 @@
 
   gpg = getExe pkgs.gnupg;
 in {
+  preservation.preserveAt."/persist".users.${userName}.directories = ["${xdg.config.directory}/jj/repos"];
+
   users.users.${userName}.packages = [gitMinimal jujutsu];
 
   hjem.users.${userName}.xdg.config.files = {
