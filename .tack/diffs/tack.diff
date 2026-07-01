@@ -1,0 +1,1482 @@
+diff --git a/.tack/default.nix b/.tack/default.nix
+--- a/.tack/default.nix
++++ b/.tack/default.nix
+@@ -1,6 +1,6 @@
+ # SPDX-License-Identifier: EUPL-1.2
+ # tack-managed resolver. delete this line to take ownership; tack will leave it alone afterwards.
+-# tack-resolver: patched patchedDiff tag version signedBy groups
++# tack-resolver: patched patchedDiff tag version signedBy groups archive defaultType
+ 
+ let
+   inherit (builtins)
+@@ -8,11 +8,13 @@
+     all
+     attrNames
+     attrValues
++    compareVersions
+     concatMap
+     concatStringsSep
+     any
+     elem
+     elemAt
++    fetchGit
+     filter
+     foldl'
+     fromJSON
+@@ -27,6 +29,8 @@
+     listToAttrs
+     mapAttrs
+     match
++    nixVersion
++    path
+     pathExists
+     readFile
+     readFileType
+@@ -110,6 +114,110 @@
+     treeHash = null;
+   };
+ 
++  fetchGitAttrs = {
++    url = null;
++    ref = null;
++    rev = null;
++    narHash = null;
++    submodules = null;
++    shallow = null;
++    allRefs = null;
++    lfs = null;
++    verifyCommit = null;
++    keytype = null;
++    publicKey = null;
++    publicKeys = null;
++  };
++
++  # fetchTarball ignores access-tokens, so prefer fetchTree when available
++  fetchLocked =
++    { what, locked }:
++    let
++      type = locked.type or "";
++      host = default: locked.host or default;
++      verifyCommit = locked.verifyCommit or (locked ? publicKey || locked ? publicKeys);
++      archiveUrl = {
++        github = "https://${host "github.com"}/${locked.owner}/${locked.repo}/archive/${locked.rev}.tar.gz";
++        gitlab = "https://${host "gitlab.com"}/api/v4/projects/${locked.owner}%2F${locked.repo}/repository/archive.tar.gz?sha=${locked.rev}";
++        sourcehut = "https://${host "git.sr.ht"}/${locked.owner}/${locked.repo}/archive/${locked.rev}.tar.gz";
++      };
++      revInfo =
++        if locked ? rev then
++          {
++            inherit (locked) rev;
++            shortRev = substring 0 7 locked.rev;
++          }
++        else
++          { };
++      dateInfo =
++        if locked ? lastModified then
++          {
++            inherit (locked) lastModified;
++            lastModifiedDate = formatEpoch locked.lastModified;
++          }
++        else
++          { };
++      tarball = url: {
++        outPath = fetchTarball {
++          inherit url;
++          sha256 = locked.narHash;
++        };
++        inherit (locked) narHash;
++      };
++    in
++    if builtins ? fetchTree then
++      builtins.fetchTree locked
++    else if !(locked ? narHash) then
++      throw "tack: ${what} has no narHash and requires builtins.fetchTree"
++    else if archiveUrl ? ${type} && locked ? rev then
++      tarball archiveUrl.${type} // revInfo // dateInfo
++    else if type == "tarball" then
++      tarball locked.url // revInfo // dateInfo
++    else if type == "git" && locked ? rev then
++      dateInfo
++      // {
++        submodules = locked.submodules or false;
++      }
++      // removeAttrs (fetchGit (
++        removeAttrs (intersectAttrs fetchGitAttrs locked) (
++          (if locked.lfs or false then [ ] else [ "lfs" ])
++          ++ (
++            if verifyCommit then
++              [ ]
++            else
++              [
++                "verifyCommit"
++                "keytype"
++                "publicKey"
++                "publicKeys"
++              ]
++          )
++        )
++        # nix 2.20 added exportIgnore and enabled it by default, and lix and older nix reject
++        # it, lfs and verifyCommit outright. lix reports 2.18.3-lix
++        // (
++          if compareVersions nixVersion "2.20" >= 0 then
++            { exportIgnore = locked.exportIgnore or false; }
++          else
++            { }
++        )
++        // (if locked.allRefs or false then { } else { shallow = locked.shallow or true; })
++      )) [ "revCount" ]
++      // (if locked ? revCount then { inherit (locked) revCount; } else { })
++    else if type == "path" && substring 0 1 locked.path == "/" then
++      {
++        outPath = path {
++          inherit (locked) path;
++          sha256 = locked.narHash;
++          name = "source";
++        };
++        inherit (locked) narHash;
++        lastModified = locked.lastModified or 0;
++        lastModifiedDate = formatEpoch (locked.lastModified or 0);
++      }
++    else
++      throw "tack: ${what} has type '${type}', which requires builtins.fetchTree";
++
+   call =
+     {
+       overrides ? { },
+@@ -116,6 +224,7 @@
+       resolverDir ? ./.,
+       pkgs ? null,
+       system ? builtins.currentSystem or null,
++      fetch_mode ? null,
+     }:
+     let
+       pins = fromTOML (readFile (resolverDir + "/pins.toml"));
+@@ -140,6 +249,26 @@
+       inheritedOmitted = inheritedPolicy.omitted or [ ];
+       inheritedOmitLayers = (inheritedPolicy.omit or { }).layers or [ ];
+       pinOverrides = removeAttrs overrides [ "__tack_policy" ];
++      forcedMode =
++        let
++          value = if fetch_mode != null then fetch_mode else inheritedPolicy.fetchMode or null;
++        in
++        if
++          elem value [
++            null
++            "build"
++            "eval"
++          ]
++        then
++          value
++        else
++          throw "tack: fetch_mode must be 'build' or 'eval', got '${toString value}'";
++      pinFetchMode =
++        pin:
++        if forcedMode != null then
++          forcedMode
++        else
++          pin.fetch_mode or (pins.tack or { }).fetch_mode or "eval";
+ 
+       all_omit_inputs =
+         if !(pins ? omit_inputs) then
+@@ -236,7 +365,10 @@
+         else if !(elem type knownTypes) then
+           throw "tack: unknown lock type '${type}' for pin '${name}'"
+         else
+-          fetchTree (intersectAttrs fetchTreeAttrs node);
++          fetchLocked {
++            what = "pin '${name}'";
++            locked = intersectAttrs fetchTreeAttrs node;
++          };
+ 
+       fetchPin =
+         name:
+@@ -271,6 +403,46 @@
+         in
+         if (entry.unpack or "file") == "tarball" then unpacked.outPath + "/" + name else raw.outPath;
+ 
++      # lix's builtin:fetchurl requires outputHashAlgo
++      fetchArchive =
++        node:
++        let
++          raw = derivation {
++            name = "source-archive";
++            url =
++              {
++                github = "https://codeload.github.com/${node.owner}/${node.repo}/tar.gz/${node.rev}";
++                tarball = node.url;
++              }
++              .${node.type};
++            builder = "builtin:fetchurl";
++            system = "builtin";
++            outputHash = node.archive.hash;
++            outputHashAlgo = "sha256";
++            outputHashMode = "flat";
++            preferLocalBuild = true;
++            impureEnvVars = [
++              "http_proxy"
++              "https_proxy"
++              "ftp_proxy"
++              "all_proxy"
++              "no_proxy"
++            ];
++          };
++          unpacked = derivation {
++            name = "source";
++            builder = "builtin:unpack-channel";
++            system = "builtin";
++            src = raw;
++            channelName = "source";
++            outputHash = node.archive.outHash;
++            outputHashAlgo = "sha256";
++            outputHashMode = "recursive";
++            preferLocalBuild = true;
++          };
++        in
++        unpacked.outPath + "/source";
++
+       patchedTree =
+         { name, pin }:
+         let
+@@ -305,15 +477,14 @@
+           fetched =
+             addErrorContext
+               "tack: the patched tree of '${name}' is not in the store, run tack materialize or nix-build .tack -A _patched -o .tack/patched, or tack update ${name} if the lock was edited by hand"
+-              (
+-                fetchTree (
+-                  {
+-                    type = "path";
+-                    inherit (tree) path narHash;
+-                  }
+-                  // (if tree ? lastModified then { inherit (tree) lastModified; } else { })
+-                )
+-              );
++              (fetchLocked {
++                what = "the patched tree of '${name}'";
++                locked = {
++                  type = "path";
++                  inherit (tree) path narHash;
++                }
++                // (if tree ? lastModified then { inherit (tree) lastModified; } else { });
++              });
+         in
+         fetched
+         // (
+@@ -921,6 +1092,7 @@
+           override = {
+             __tack_policy = {
+               inherit omit omitted meta;
++              fetchMode = forcedMode;
+               follows = followValues;
+               followMeta = scopedFollowValues "tack" (followMetaForSide {
+                 side = "tack";
+@@ -1033,7 +1205,10 @@
+                   spec = ref;
+                 };
+                 childNode = upLock.nodes.${childName};
+-                childSrc = fetchTree childNode.locked;
++                childSrc = fetchLocked {
++                  what = "flake.lock node '${childName}'";
++                  locked = removeAttrs childNode.locked [ "dir" ];
++                };
+               in
+               if isList ref && ref != [ ] then
+                 followed
+@@ -1042,8 +1217,15 @@
+                   inherit upLock rootInputs omit;
+                   nodeName = childName;
+                   sourceInfo = childSrc;
++                  dir = childNode.locked.dir or null;
+                   follows = deepFollows;
+                 }
++              else if childNode.locked ? dir then
++                childSrc
++                // {
++                  outPath = childSrc.outPath + "/" + childNode.locked.dir;
++                  sourceInfo = childSrc;
++                }
+               else
+                 childSrc
+             else
+@@ -1109,7 +1291,7 @@
+           # upstream declares its outputs forward tackOverrides; a closed `{ self }:`
+           # would throw on the extra kwarg, so forward only when declared
+           extraArgs =
+-            if tackCall.supportsOverrides && tackCall.needed then
++            if tackCall.supportsOverrides && (tackCall.needed || forcedMode != null) then
+               { tackOverrides = tackCall.overrides; }
+             else
+               { };
+@@ -1132,6 +1314,7 @@
+           upLock,
+           nodeName,
+           sourceInfo,
++          dir,
+           follows,
+           omit,
+           rootInputs,
+@@ -1144,7 +1327,7 @@
+             omit
+             rootInputs
+             ;
+-          flakeDir = sourceInfo.outPath;
++          flakeDir = sourceInfo.outPath + (if dir == null then "" else "/" + dir);
+           levelFollows = follows;
+           deepFollows = follows;
+         };
+@@ -1214,7 +1397,10 @@
+       loadPin =
+         { name, pin }:
+         let
+-          pinType = pin.type or (if pin.flake or true then "flake" else "fetch");
++          pinType =
++            pin.type or (
++              if pin ? flake then (if pin.flake then "flake" else "fetch") else (pins.tack or { }).type or "flake"
++            );
+           omit = omitsFor { inherit name pin; };
+           follows = checkFollowKeys {
+             follows = pin.follows or { };
+@@ -1242,6 +1428,7 @@
+                 sourceInfo =
+                   if (pin.patches or [ ]) == [ ] then fetchPin name else fetchPatched { inherit name pin; };
+                 subdir = if pin ? dir then "/" + pin.dir else "";
++                node = lock.${name} or { };
+               in
+               if pinType == "flake" then
+                 evalTopFlake {
+@@ -1252,6 +1439,11 @@
+                     omit
+                     ;
+                 }
++              # archive is only locked for trees without .tack
++              else if
++                pinFetchMode pin == "build" && node.archive or null != null && (pin.patches or [ ]) == [ ]
++              then
++                fetchArchive node + subdir
+               else
+                 evalFetch {
+                   inherit
+diff --git a/assets/pins.toml b/assets/pins.toml
+--- a/assets/pins.toml
++++ b/assets/pins.toml
+@@ -24,9 +24,14 @@
+ [signers]
+ # alice = "ssh-ed25519 AAAA..."
+ 
++# default fetch_mode for fetch pins ("eval" or "build")
++# [tack]
++# fetch_mode = "build"
++# type = "fetch"
++
+ # inputs.<name> fields
+ #   url             required, shorturl ok, ?rev=<sha> pins an exact commit
+-#   type            flake (default), fetch, or fixed
++#   type            flake (default), fetch, or fixed, overrides [tack] type
+ #   flake           legacy false means type = "fetch"
+ #   follows         { child = "pin" } immediate-input override map
+ #   exclude_follow  all_follow names to skip, flake:/tack: scoped or *
+@@ -35,6 +40,7 @@
+ #   dir             subdir holding flake.nix
+ #   submodules      fetch git submodules
+ #   unpack          fixed-only tarball or file
++#   fetch_mode      fetch-only "eval" (default) or "build" to defer fetching to build time
+ #   signers         names from [signers], one of whom must have signed the locked commit
+ #   patches         patch urls or files relative to this dir, applied in order
+ #   tag             follow the newest tag like "v{version}", where {version} is numbers
+diff --git a/src/cli.rs b/src/cli.rs
+--- a/src/cli.rs
++++ b/src/cli.rs
+@@ -78,7 +78,7 @@
+ pub struct AddArgs {
+     pub name:       String,
+     pub url:        String,
+-    pub pin_type:   PinType,
++    pub pin_type:   Option<PinType>,
+     pub unpack:     Option<Unpack>,
+     pub dir:        Option<String>,
+     pub submodules: bool,
+@@ -183,6 +183,9 @@
+         name:       String,
+         /// pin url (shorturl ok; ?rev=<sha> pins a commit)
+         url:        String,
++        /// pin a flake, overriding [tack] type
++        #[pound(long, group = kind)]
++        flake:      bool,
+         /// pin a source tree only, no flake eval
+         #[pound(long, group = kind)]
+         fetch:      bool,
+@@ -464,6 +467,7 @@
+             Cli::Add {
+                 name,
+                 url,
++                flake,
+                 fetch,
+                 fixed,
+                 unpack,
+@@ -474,11 +478,11 @@
+                 tags_from,
+             } => {
+                 let pin_type = if fixed {
+-                    PinType::Fixed
++                    Some(PinType::Fixed)
+                 } else if fetch {
+-                    PinType::Fetch
++                    Some(PinType::Fetch)
+                 } else {
+-                    PinType::Flake
++                    flake.then_some(PinType::Flake)
+                 };
+                 Self::Add(AddArgs {
+                     name,
+diff --git a/src/commands/convert.rs b/src/commands/convert.rs
+--- a/src/commands/convert.rs
++++ b/src/commands/convert.rs
+@@ -56,7 +56,7 @@
+             follows:    &follows,
+             tag:        None,
+             tags_from:  None,
+-        });
++        })?;
+         added += 1;
+     }
+     project.save_pins(&doc)?;
+diff --git a/src/commands/edit.rs b/src/commands/edit.rs
+--- a/src/commands/edit.rs
++++ b/src/commands/edit.rs
+@@ -45,7 +45,7 @@
+     let AddArgs {
+         ref name,
+         ref url,
+-        pin_type,
++        pin_type: asked_type,
+         unpack,
+         ref dir,
+         submodules,
+@@ -55,6 +55,7 @@
+     } = *args;
+     pins::check_name(name)?;
+     let mut doc = project.load_pins()?;
++    let pin_type = asked_type.map_or_else(|| doc.default_type(), Ok)?;
+     if doc.has_input(name) {
+         user_bail!("input '{name}' already exists");
+     }
+@@ -91,7 +92,7 @@
+         follows,
+         tag: template.as_ref(),
+         tags_from: tags_from.as_deref(),
+-    });
++    })?;
+     // a load's own checks, so no flag combination saves an unloadable pins.toml
+     let follow = doc
+         .inputs()?
+@@ -105,7 +106,7 @@
+         eprintln!("tack: {warning}");
+     }
+     let fetched = tag::follow(name, follow.as_ref(), &localized.url).and_then(|followed| {
+-        update::fetch_input(pin_type, unpack, submodules, &followed.url)
++        update::fetch_input(pin_type, unpack, submodules, false, &followed.url)
+             .map(|pin| (pin, followed.tag))
+     });
+     match fetched {
+diff --git a/src/commands/tests.rs b/src/commands/tests.rs
+--- a/src/commands/tests.rs
++++ b/src/commands/tests.rs
+@@ -26,6 +26,7 @@
+                 tag:         None,
+                 group:       None,
+                 frozen:      None,
++                build_fetch: None,
+             }
+         })
+         .collect()
+diff --git a/src/commands/update/core.rs b/src/commands/update/core.rs
+--- a/src/commands/update/core.rs
++++ b/src/commands/update/core.rs
+@@ -42,6 +42,7 @@
+     },
+     pins::{
+         self,
++        BuildFetch,
+         Frozen,
+         PinType,
+         Unpack,
+@@ -99,13 +100,18 @@
+     pin_type: PinType,
+     unpack: Option<Unpack>,
+     submodules: bool,
++    patched: bool,
+     expanded: &str,
+ ) -> Result<FetchedPin> {
+     match pin_type {
+         PinType::Fixed => fetch::fetch_fixed_pin(expanded, unpack),
+         PinType::Flake | PinType::Fetch => {
+-            let source = expanded.parse::<Source>()?;
+-            fetch::fetch_pin(&source, submodules)
++            let fetched = fetch::fetch_pin(&expanded.parse::<Source>()?, submodules)?;
++            Ok(if pin_type == PinType::Fetch && !patched {
++                fetched.offer_archive()
++            } else {
++                fetched
++            })
+         },
+     }
+ }
+@@ -321,7 +327,13 @@
+         return PinResolution::unchanged(warning);
+     }
+ 
+-    let mut fetched = match fetch_input(input.pin_type, input.unpack, input.submodules, expanded) {
++    let mut fetched = match fetch_input(
++        input.pin_type,
++        input.unpack,
++        input.submodules,
++        !input.patches.is_empty(),
++        expanded,
++    ) {
+         Ok(fetched) => fetched,
+         Err(err) => return PinResolution::failed(&err, warning),
+     };
+@@ -421,7 +433,8 @@
+         let lock = self.lock;
+         let localized = source::localize_path_url_with_warning(url, self.project.dir());
+         let old = lock.get(&input.name);
+-        let stale = declared_changed(input, lock, url, &localized.url);
++        let stale = declared_changed(input, lock, url, &localized.url)
++            || input.frozen.is_none() && old.is_some_and(|node| archive_missing(input, node));
+         let freeze = input
+             .frozen
+             .as_ref()
+@@ -485,6 +498,7 @@
+         let recorded = lock.signed_by(&input.name);
+         let mut mark = check_signers(input, old, recorded, self.keyring, &mut resolution);
+         settle_patches(self.project, input, lock, &mut resolution);
++        note_unfit(input, old, &mut resolution);
+         if matches!(resolution.outcome, UpdateOutcome::Failed(_)) {
+             mark = SignerMark::Keep;
+         }
+@@ -526,6 +540,35 @@
+     (changed, moved)
+ }
+ 
++fn note_unfit(input: &pins::Input, old: Option<&LockedNode>, resolution: &mut PinResolution) {
++    let fresh = resolution.node.is_some();
++    let Some(locked) = resolution.node.as_ref().or(old) else {
++        return;
++    };
++    let asked = match input.build_fetch {
++        Some(BuildFetch::Pinned) => true,
++        Some(BuildFetch::Global) => fresh,
++        None => false,
++    };
++    if !asked || !locked.archive_checked() || locked.archive().is_some() {
++        return;
++    }
++    let unfit = format!(
++        "{}: cannot fetch at build time, falling back to eval",
++        input.name
++    );
++    resolution.warning = Some(
++        resolution
++            .warning
++            .take()
++            .map_or_else(|| unfit.clone(), |prev| format!("{prev} {unfit}")),
++    );
++}
++
++fn archive_missing(input: &pins::Input, node: &LockedNode) -> bool {
++    input.build_fetch == Some(BuildFetch::Pinned) && node.takes_archive() && !node.archive_checked()
++}
++
+ fn declared_changed(
+     input: &pins::Input,
+     lock: &LockFile,
+diff --git a/src/fetch/archive.rs b/src/fetch/archive.rs
+--- a/src/fetch/archive.rs
++++ b/src/fetch/archive.rs
+@@ -23,6 +23,8 @@
+ use xz2::read::XzDecoder;
+ use zstd::stream::read::Decoder as ZstdDecoder;
+ 
++use crate::nar::HashingReader;
++
+ #[derive(Clone, Copy)]
+ pub(super) enum TarFormat {
+     Gz,
+@@ -111,21 +113,43 @@
+ where
+     R: Read,
+ {
+-    let boxed: Box<dyn Read> = match format {
+-        TarFormat::Gz => Box::new(GzDecoder::new(reader)),
+-        TarFormat::Xz => Box::new(XzDecoder::new(reader)),
+-        TarFormat::Zstd => Box::new(ZstdDecoder::new(reader)?),
+-        TarFormat::Plain => Box::new(reader),
+-    };
+-    let mut ar = tar::Archive::new(boxed);
+-    ar.unpack(into)?;
++    unpack_hashed(reader, format, into).map(|unpacked| unpacked.root)
++}
++
++pub(super) struct Unpacked {
++    pub root:       PathBuf,
++    pub sha256:     String,
++    pub single_dir: bool,
++}
++
++pub(super) fn unpack_hashed<R>(reader: R, format: TarFormat, into: &Path) -> Result<Unpacked>
++where
++    R: Read,
++{
++    let mut hashed = HashingReader::new(reader);
++    {
++        let boxed: Box<dyn Read + '_> = match format {
++            TarFormat::Gz => Box::new(GzDecoder::new(&mut hashed)),
++            TarFormat::Xz => Box::new(XzDecoder::new(&mut hashed)),
++            TarFormat::Zstd => Box::new(ZstdDecoder::new(&mut hashed)?),
++            TarFormat::Plain => Box::new(&mut hashed),
++        };
++        tar::Archive::new(boxed).unpack(into)?;
++    }
++    let sha256 = hashed.finish()?;
+ 
+     let mut entries = fs::read_dir(into)?
+         .filter_map(StdResult::ok)
+         .collect::<Vec<_>>();
+-    if entries.len() == 1 && entries[0].file_type()?.is_dir() {
+-        Ok(entries.remove(0).path())
++    let single_dir = entries.len() == 1 && entries[0].file_type()?.is_dir();
++    let root = if single_dir {
++        entries.remove(0).path()
+     } else {
+-        Ok(into.to_owned())
+-    }
++        into.to_owned()
++    };
++    Ok(Unpacked {
++        root,
++        sha256,
++        single_dir,
++    })
+ }
+diff --git a/src/fetch/github.rs b/src/fetch/github.rs
+--- a/src/fetch/github.rs
++++ b/src/fetch/github.rs
+@@ -27,10 +27,12 @@
+     FetchedPin,
+     archive::{
+         TarFormat,
+-        unpack_tar_stream,
++        Unpacked,
++        unpack_hashed,
+     },
+     auth::with_credential_fallback,
+     http::HttpClient,
++    resolve::Download,
+     time::epoch_from_iso,
+     topology::{
+         CommitLog,
+@@ -131,17 +133,16 @@
+         Ok(ResolvedGithubRef { rev, last_modified })
+     }
+ 
+-    fn download_tarball(self, owner: &str, repo: &str, rev: &str, into: &Path) -> Result<PathBuf> {
+-        let url = format!("https://codeload.github.com/{owner}/{repo}/tar.gz/{rev}");
++    fn download_tarball(self, url: &str, into: &Path) -> Result<Unpacked> {
+         with_credential_fallback("github.com", true, |credential| {
+-            let request = HttpClient::with_credential(self.http.get(&url), credential);
++            let request = HttpClient::with_credential(self.http.get(url), credential);
+             let mut resp = request
+                 .call()
+-                .map_err(|err| FetchError::from_ureq(err, &url))?;
++                .map_err(|err| FetchError::from_ureq(err, url))?;
+             if resp.status() != 200 {
+-                return Err(FetchError::from_response(&mut resp, &url));
++                return Err(FetchError::from_response(&mut resp, url));
+             }
+-            unpack_tar_stream(resp.body_mut().as_reader(), TarFormat::Gz, into)
++            unpack_hashed(resp.body_mut().as_reader(), TarFormat::Gz, into)
+                 .map_err(|err| FetchError::Transport(format!("download {url}: {err}")))
+         })
+         .map_err(|err| misstep::report!("download {url}: {err}"))
+@@ -265,9 +266,15 @@
+     rev: &str,
+     dir: &Path,
+ ) -> Result<PathBuf> {
+-    GithubClient::global().download_tarball(owner, repo, rev, dir)
++    GithubClient::global()
++        .download_tarball(&tarball_url(owner, repo, rev), dir)
++        .map(|unpacked| unpacked.root)
+ }
+ 
++fn tarball_url(owner: &str, repo: &str, rev: &str) -> String {
++    format!("https://codeload.github.com/{owner}/{repo}/tar.gz/{rev}")
++}
++
+ pub(super) fn fetch_tree_into(
+     owner: &str,
+     repo: &str,
+@@ -282,7 +289,9 @@
+         let ref_str = reff.unwrap_or("HEAD");
+         github.commit(owner, repo, ref_str)?.0
+     };
+-    github.download_tarball(owner, repo, &tree_rev, dir)
++    github
++        .download_tarball(&tarball_url(owner, repo, &tree_rev), dir)
++        .map(|unpacked| unpacked.root)
+ }
+ 
+ pub(super) fn fetch_pin(
+@@ -294,11 +303,19 @@
+     let github = GithubClient::global();
+     let resolved = github.resolve_for_pin(owner, repo, reff, pinned)?;
+     let dir = tempfile::tempdir()?;
+-    let root = github.download_tarball(owner, repo, &resolved.rev, dir.path())?;
+-    let nar_hash = nar::hash_path(&root)?;
++    let url = tarball_url(owner, repo, &resolved.rev);
++    let Unpacked {
++        root,
++        sha256,
++        single_dir,
++    } = github.download_tarball(&url, dir.path())?;
++    let (nar_hash, out_hash) = nar::hash_path_and_wrapped(&root, "source")?;
+     let rev = resolved.rev;
+     let node = LockedNode::new_github(owner, repo, rev.clone(), nar_hash, resolved.last_modified);
+-    Ok(FetchedPin::rev(node, rev).with_tree(dir, root))
++    let download = Download::new(url, sha256, single_dir, out_hash, Some("github.com"));
++    Ok(FetchedPin::rev(node, rev)
++        .with_download(download)
++        .with_tree(dir, root))
+ }
+ 
+ struct ResolvedGithubRef {
+diff --git a/src/fetch/resolve.rs b/src/fetch/resolve.rs
+--- a/src/fetch/resolve.rs
++++ b/src/fetch/resolve.rs
+@@ -33,9 +33,11 @@
+     FetchResult,
+     RemoteTag,
+     archive::{
++        Unpacked,
+         detect_tar_format,
+         newest_mtime,
+         sniff_reader,
++        unpack_hashed,
+         unpack_tar_stream,
+     },
+     auth::{
+@@ -53,6 +55,7 @@
+ use crate::{
+     error::user_bail,
+     lock::{
++        Archive,
+         LockedNode,
+         PathFingerprint,
+     },
+@@ -72,6 +75,34 @@
+     node:     LockedNode,
+     identity: FetchIdentity,
+     tree:     Option<FetchedTree>,
++    download: Option<Download>,
++}
++
++#[derive(Debug)]
++pub(super) struct Download {
++    url:             String,
++    sha256:          String,
++    out_hash:        String,
++    single_dir:      bool,
++    credential_host: Option<String>,
++}
++
++impl Download {
++    pub(super) fn new(
++        url: String,
++        sha256: String,
++        single_dir: bool,
++        out_hash: String,
++        credential_host: Option<&str>,
++    ) -> Self {
++        Self {
++            url,
++            sha256,
++            out_hash,
++            single_dir,
++            credential_host: credential_host.map(str::to_owned),
++        }
++    }
+ }
+ 
+ /// the unpacked tree a pin was hashed from, kept so patching can reuse it
+@@ -94,6 +125,7 @@
+             node,
+             identity: FetchIdentity::Rev(rev),
+             tree: None,
++            download: None,
+         }
+     }
+ 
+@@ -102,6 +134,7 @@
+             node,
+             identity: FetchIdentity::ContentHash(hash),
+             tree: None,
++            download: None,
+         }
+     }
+ 
+@@ -110,6 +143,7 @@
+             node,
+             identity: FetchIdentity::ImmutableUrl(url),
+             tree: None,
++            download: None,
+         }
+     }
+ 
+@@ -118,6 +152,7 @@
+             node,
+             identity: FetchIdentity::Path(path),
+             tree: None,
++            download: None,
+         }
+     }
+ 
+@@ -128,6 +163,32 @@
+         }
+     }
+ 
++    pub(super) fn with_download(self, download: Download) -> Self {
++        Self {
++            download: Some(download),
++            ..self
++        }
++    }
++
++    pub fn offer_archive(mut self) -> Self {
++        let fit = self.download.take().filter(|download| {
++            let anonymous = download
++                .credential_host
++                .as_deref()
++                .is_none_or(|host| token_for_host(host).is_none() || serves(&download.url));
++            download.single_dir
++                && anonymous
++                && self.tree.as_ref().is_some_and(|tree| !has_tack(&tree.root))
++        });
++        self.node.set_archive(fit.map(|download| {
++            Archive {
++                hash:     download.sha256,
++                out_hash: download.out_hash,
++            }
++        }));
++        self
++    }
++
+     pub const fn take_tree(&mut self) -> Option<FetchedTree> {
+         self.tree.take()
+     }
+@@ -420,9 +481,15 @@
+                 .or_else(|_| detect_tar_format(url))
+                 .with_context(|| format!("tarball {url}"))?;
+ 
++            let served_from =
++                (resp.get_uri().to_string() == immutable_url).then(|| immutable_url.clone());
+             let dir = tempfile::tempdir()?;
+-            let root = unpack_tar_stream(resp.body_mut().as_reader(), format, dir.path())?;
+-            let nar_hash = nar::hash_path(&root)?;
++            let Unpacked {
++                root,
++                sha256,
++                single_dir,
++            } = unpack_hashed(resp.body_mut().as_reader(), format, dir.path())?;
++            let (nar_hash, out_hash) = nar::hash_path_and_wrapped(&root, "source")?;
+             // record a shipped rev so fetchTree exposes rev/shortRev
+             let node = git_revision_of(&root).map_or_else(
+                 || LockedNode::new_tarball(immutable_url.clone(), nar_hash.clone(), last_modified),
+@@ -436,7 +503,14 @@
+                     )
+                 },
+             );
+-            Ok(FetchedPin::immutable_url(node, immutable_url).with_tree(dir, root))
++            let pin = FetchedPin::immutable_url(node, immutable_url);
++            let downloaded = match served_from {
++                Some(served) => {
++                    pin.with_download(Download::new(served, sha256, single_dir, out_hash, None))
++                },
++                None => pin,
++            };
++            Ok(downloaded.with_tree(dir, root))
+         },
+         Source::Path { ref path } => {
+             let target = Path::new(path);
+@@ -460,6 +534,25 @@
+     }
+ }
+ 
++fn has_tack(root: &Path) -> bool {
++    let mut pending = vec![root.to_path_buf()];
++    while let Some(dir) = pending.pop() {
++        if dir.join(".tack/pins.toml").exists() {
++            return true;
++        }
++        let Ok(entries) = fs::read_dir(&dir) else {
++            return true;
++        };
++        pending.extend(
++            entries
++                .flatten()
++                .filter(|entry| entry.file_type().is_ok_and(|kind| kind.is_dir()))
++                .map(|entry| entry.path()),
++        );
++    }
++    false
++}
++
+ fn path_fingerprint(root: &Path) -> Result<PathFingerprint> {
+     let mut fingerprint = PathFingerprint {
+         last_modified: 0,
+diff --git a/src/lock.rs b/src/lock.rs
+--- a/src/lock.rs
++++ b/src/lock.rs
+@@ -378,6 +378,20 @@
+ type ExtraFields = BTreeMap<String, Value>;
+ 
+ #[derive(Clone, Debug, Deserialize, PartialEq, Eq, Serialize)]
++pub struct Archive {
++    pub hash:     String,
++    #[serde(rename = "outHash")]
++    pub out_hash: String,
++}
++
++#[derive(Clone, Debug, Deserialize, PartialEq, Eq, Serialize)]
++#[serde(untagged)]
++pub enum Archived {
++    Fetchable(Box<Archive>),
++    Unfit(()),
++}
++
++#[derive(Clone, Debug, Deserialize, PartialEq, Eq, Serialize)]
+ #[serde(tag = "type")]
+ pub enum LockedNode {
+     #[serde(rename = "github")]
+@@ -390,6 +404,12 @@
+         nar_hash:      Option<String>,
+         #[serde(rename = "lastModified", skip_serializing_if = "Option::is_none")]
+         last_modified: Option<i64>,
++        #[serde(
++            default,
++            deserialize_with = "deserialize_present",
++            skip_serializing_if = "Option::is_none"
++        )]
++        archive:       Option<Archived>,
+         #[serde(flatten)]
+         extra:         ExtraFields,
+     },
+@@ -437,6 +457,12 @@
+         nar_hash:      Option<String>,
+         #[serde(rename = "lastModified", skip_serializing_if = "Option::is_none")]
+         last_modified: Option<i64>,
++        #[serde(
++            default,
++            deserialize_with = "deserialize_present",
++            skip_serializing_if = "Option::is_none"
++        )]
++        archive:       Option<Archived>,
+         #[serde(flatten)]
+         extra:         ExtraFields,
+     },
+@@ -540,6 +566,7 @@
+             rev:           Some(rev.into()),
+             nar_hash:      Some(nar_hash.into()),
+             last_modified: Some(last_modified),
++            archive:       None,
+             extra:         BTreeMap::new(),
+         }
+     }
+@@ -607,6 +634,7 @@
+             rev:           None,
+             nar_hash:      Some(nar_hash.into()),
+             last_modified: Some(last_modified),
++            archive:       None,
+             extra:         BTreeMap::new(),
+         }
+     }
+@@ -629,6 +657,7 @@
+             rev: Some(rev.into()),
+             nar_hash: Some(nar_hash.into()),
+             last_modified,
++            archive: None,
+             extra: BTreeMap::new(),
+         }
+     }
+@@ -741,6 +770,54 @@
+         }
+     }
+ 
++    pub fn archive(&self) -> Option<&Archive> {
++        match self {
++            Self::Github { archive, .. } | Self::Tarball { archive, .. } => {
++                match archive.as_ref()? {
++                    Archived::Fetchable(found) => Some(found),
++                    Archived::Unfit(()) => None,
++                }
++            },
++            Self::Gitlab { .. }
++            | Self::Git { .. }
++            | Self::Fixed { .. }
++            | Self::Indirect { .. }
++            | Self::Path { .. } => None,
++        }
++    }
++
++    pub const fn takes_archive(&self) -> bool {
++        matches!(self, Self::Github { .. } | Self::Tarball { .. })
++    }
++
++    pub const fn archive_checked(&self) -> bool {
++        matches!(
++            self,
++            Self::Github {
++                archive: Some(_),
++                ..
++            } | Self::Tarball {
++                archive: Some(_),
++                ..
++            }
++        )
++    }
++
++    pub fn set_archive(&mut self, value: Option<Archive>) {
++        match self {
++            Self::Github { archive, .. } | Self::Tarball { archive, .. } => {
++                *archive = Some(value.map_or(Archived::Unfit(()), |found| {
++                    Archived::Fetchable(Box::new(found))
++                }));
++            },
++            Self::Gitlab { .. }
++            | Self::Git { .. }
++            | Self::Fixed { .. }
++            | Self::Indirect { .. }
++            | Self::Path { .. } => {},
++        }
++    }
++
+     pub fn forge_rev(&self) -> Option<&str> {
+         match self {
+             Self::Github { rev, .. } | Self::Gitlab { rev, .. } | Self::Git { rev, .. } => {
+@@ -839,6 +916,14 @@
+     Ok(LockedNode::from_value(value).map_or(LockedEntry::Unknown(kind), LockedEntry::Known))
+ }
+ 
++fn deserialize_present<'de, D, T>(deserializer: D) -> Result<Option<T>, D::Error>
++where
++    D: Deserializer<'de>,
++    T: Deserialize<'de>,
++{
++    T::deserialize(deserializer).map(Some)
++}
++
+ fn deserialize_host<'de, D>(deserializer: D) -> Result<String, D::Error>
+ where
+     D: Deserializer<'de>,
+diff --git a/src/nar.rs b/src/nar.rs
+--- a/src/nar.rs
++++ b/src/nar.rs
+@@ -31,6 +31,86 @@
+     Ok(format!("sha256-{}", BASE64.encode(&hash.finalize())))
+ }
+ 
++pub fn hash_path_and_wrapped(root: &Path, name: &str) -> Result<(String, String)> {
++    let mut nar = Sha256::new();
++    emit_bytes(&mut nar, b"nix-archive-1");
++    let mut wrapped = Sha256::new();
++    for token in [
++        b"nix-archive-1".as_slice(),
++        b"(",
++        b"type",
++        b"directory",
++        b"entry",
++        b"(",
++        b"name",
++        name.as_bytes(),
++        b"node",
++    ] {
++        emit_bytes(&mut wrapped, token);
++    }
++    let mut both = [nar, wrapped];
++    let mut path = root.to_path_buf();
++    emit_node(&mut both, &mut path)?;
++    let [nar_done, mut wrapped_open] = both;
++    emit_bytes(&mut wrapped_open, b")");
++    emit_bytes(&mut wrapped_open, b")");
++    Ok((
++        format!("sha256-{}", BASE64.encode(&nar_done.finalize())),
++        format!("sha256-{}", BASE64.encode(&wrapped_open.finalize())),
++    ))
++}
++
++trait Feed {
++    fn feed(&mut self, bytes: &[u8]);
++}
++
++impl Feed for Sha256 {
++    fn feed(&mut self, bytes: &[u8]) {
++        self.update(bytes);
++    }
++}
++
++impl Feed for [Sha256; 2] {
++    fn feed(&mut self, bytes: &[u8]) {
++        for hasher in self {
++            hasher.update(bytes);
++        }
++    }
++}
++
++pub struct HashingReader<R> {
++    inner:  R,
++    hasher: Sha256,
++}
++
++impl<R> HashingReader<R>
++where
++    R: io::Read,
++{
++    pub fn new(inner: R) -> Self {
++        Self {
++            inner,
++            hasher: Sha256::new(),
++        }
++    }
++
++    pub fn finish(mut self) -> io::Result<String> {
++        io::copy(&mut self, &mut io::sink())?;
++        Ok(format!("sha256-{}", BASE64.encode(&self.hasher.finalize())))
++    }
++}
++
++impl<R> io::Read for HashingReader<R>
++where
++    R: io::Read,
++{
++    fn read(&mut self, buf: &mut [u8]) -> io::Result<usize> {
++        let read = self.inner.read(buf)?;
++        self.hasher.update(buf.get(..read).unwrap_or_default());
++        Ok(read)
++    }
++}
++
+ #[expect(clippy::large_stack_arrays, reason = "64kb isn't that large, really")]
+ pub fn hash_reader<R>(mut reader: R) -> io::Result<String>
+ where
+@@ -48,7 +128,10 @@
+     Ok(format!("sha256-{}", BASE64.encode(&hasher.finalize())))
+ }
+ 
+-fn emit_node(hash: &mut Sha256, path: &mut PathBuf) -> Result<()> {
++fn emit_node<H>(hash: &mut H, path: &mut PathBuf) -> Result<()>
++where
++    H: Feed,
++{
+     let meta = fs::symlink_metadata(&path).with_context(|| format!("stat {}", path.display()))?;
+     emit_bytes(hash, b"(");
+     if meta.is_symlink() {
+@@ -90,8 +173,11 @@
+ }
+ 
+ #[expect(clippy::large_stack_arrays, reason = "64kb isn't that large, really")]
+-fn emit_contents(hasher: &mut Sha256, path: &Path, len: u64) -> Result<()> {
+-    hasher.update(len.to_le_bytes());
++fn emit_contents<H>(hasher: &mut H, path: &Path, len: u64) -> Result<()>
++where
++    H: Feed,
++{
++    hasher.feed(&len.to_le_bytes());
+     let mut file = fs::File::open(path)?;
+     let mut buf = [0_u8; 0x10000];
+     let mut total = 0_u64;
+@@ -100,7 +186,7 @@
+         if read == 0 {
+             break;
+         }
+-        hasher.update(&buf[..read]);
++        hasher.feed(&buf[..read]);
+         total += read as u64;
+     }
+     if total != len {
+@@ -110,15 +196,21 @@
+     Ok(())
+ }
+ 
+-fn emit_bytes(hasher: &mut Sha256, bytes: &[u8]) {
+-    hasher.update((bytes.len() as u64).to_le_bytes());
+-    hasher.update(bytes);
++fn emit_bytes<H>(hasher: &mut H, bytes: &[u8])
++where
++    H: Feed,
++{
++    hasher.feed(&(bytes.len() as u64).to_le_bytes());
++    hasher.feed(bytes);
+     pad(hasher, bytes.len() as u64);
+ }
+ 
+-fn pad(hasher: &mut Sha256, len: u64) {
++fn pad<H>(hasher: &mut H, len: u64)
++where
++    H: Feed,
++{
+     let rem = (len % 8) as usize;
+     if rem != 0 {
+-        hasher.update(&[0_u8; 8][..8 - rem]);
++        hasher.feed(&[0_u8; 8][..8 - rem]);
+     }
+ }
+diff --git a/src/pins.rs b/src/pins.rs
+--- a/src/pins.rs
++++ b/src/pins.rs
+@@ -197,12 +197,20 @@
+     pub tag:         Option<TagFollow>,
+     pub group:       Option<String>,
+     pub frozen:      Option<Frozen>,
++    pub build_fetch: Option<BuildFetch>,
++}
++
++#[derive(Clone, Copy, Debug, PartialEq, Eq)]
++pub enum BuildFetch {
++    Pinned,
++    Global,
+ }
+ 
+ impl Input {
+-    const KEYS: [&str; 16] = [
++    const KEYS: [&str; 17] = [
+         "dir",
+         "exclude_follow",
++        "fetch_mode",
+         "flake",
+         "follows",
+         "frozen",
+@@ -224,6 +232,8 @@
+         input_item: &Item,
+         defaults: Option<&dyn TableLike>,
+         shorturls: &ShortUrls<'_>,
++        global_build: bool,
++        default_type: PinType,
+     ) -> Result<Self> {
+         check_name(name)?;
+ 
+@@ -252,14 +262,7 @@
+                 })
+                 .transpose()
+         };
+-        let pin_type = match str_field("type")? {
+-            Some(typ) => {
+-                typ.parse::<PinType>()
+-                    .with_context(|| format!("input '{name}'"))?
+-            },
+-            None if bool_field("flake")? == Some(false) => PinType::Fetch,
+-            None => PinType::Flake,
+-        };
++        let pin_type = type_field(name, str_field("type")?, bool_field("flake")?, default_type)?;
+         let unpack = str_field("unpack")?
+             .map(|unpack| {
+                 unpack
+@@ -304,7 +307,6 @@
+         let tags_from = str_field("tags_from")?;
+         let tag = tag_field(name, str_field("tag")?, tags_from, pin_type, url, shorturls)?;
+         let group = str_field("group")?;
+-        let frozen = frozen_field(name, entry.get("frozen"))?;
+         let submodules = bool_field("submodules")?.unwrap_or(false);
+         Ok(Self {
+             name: name.to_owned(),
+@@ -318,14 +320,64 @@
+             omit_inputs,
+             keep_inputs,
+             signers,
++            build_fetch: fetch_mode_field(
++                name,
++                str_field("fetch_mode")?,
++                global_build,
++                pin_type,
++                &patches,
++            )?,
+             patches,
+             tag,
+             group: group.map(str::to_owned),
+-            frozen,
++            frozen: frozen_field(name, entry.get("frozen"))?,
+         })
+     }
+ }
+ 
++fn type_field(
++    name: &str,
++    raw: Option<&str>,
++    flake: Option<bool>,
++    default_type: PinType,
++) -> Result<PinType> {
++    Ok(match (raw, flake) {
++        (Some(typ), _) => {
++            typ.parse::<PinType>()
++                .with_context(|| format!("input '{name}'"))?
++        },
++        (None, Some(true)) => PinType::Flake,
++        (None, Some(false)) => PinType::Fetch,
++        (None, None) => default_type,
++    })
++}
++
++fn fetch_mode_field(
++    name: &str,
++    raw: Option<&str>,
++    global_build: bool,
++    pin_type: PinType,
++    patches: &[PatchSource],
++) -> Result<Option<BuildFetch>> {
++    Ok(match raw {
++        None => {
++            (global_build && pin_type == PinType::Fetch && patches.is_empty())
++                .then_some(BuildFetch::Global)
++        },
++        Some("eval") => None,
++        Some("build") if pin_type != PinType::Fetch => {
++            user_bail!("input '{name}': fetch_mode = \"build\" is only valid for type = \"fetch\"")
++        },
++        Some("build") if !patches.is_empty() => {
++            user_bail!("input '{name}': fetch_mode = \"build\" is not valid with patches")
++        },
++        Some("build") => Some(BuildFetch::Pinned),
++        Some(other) => {
++            user_bail!("input '{name}': fetch_mode must be \"eval\" or \"build\", got {other:?}")
++        },
++    })
++}
++
+ fn frozen_field(name: &str, field: Option<&Item>) -> Result<Option<Frozen>> {
+     let Some(item) = field else {
+         return Ok(None);
+@@ -542,12 +594,21 @@
+ 
+         let groups = self.groups()?;
+         let shorturls = self.shorturls();
++        let global_build = self.global_build_fetch()?;
++        let default_type = self.default_type()?;
+         for (name, item) in table.iter() {
+             let defaults = item
+                 .get("group")
+                 .and_then(Item::as_str)
+                 .and_then(|group| groups.get(group).copied());
+-            out.push(Input::from_item(name, item, defaults, &shorturls)?);
++            out.push(Input::from_item(
++                name,
++                item,
++                defaults,
++                &shorturls,
++                global_build,
++                default_type,
++            )?);
+         }
+ 
+         if let Some(group) = groups.keys().find(|&&group| table.contains_key(group)) {
+@@ -677,9 +738,10 @@
+             .is_some_and(|tbl| tbl.contains_key(name))
+     }
+ 
+-    pub fn add_input(&mut self, name: &str, url: &str, opts: &AddInputOpts<'_>) {
+-        self.ensure_table("inputs")
+-            .insert(name, Item::Table(opts.to_table(url)));
++    pub fn add_input(&mut self, name: &str, url: &str, opts: &AddInputOpts<'_>) -> Result<()> {
++        let table = opts.to_table(url, self.default_type()?);
++        self.ensure_table("inputs").insert(name, Item::Table(table));
++        Ok(())
+     }
+ 
+     pub fn remove_input(&mut self, name: &str) -> bool {
+@@ -802,6 +864,29 @@
+             .is_some()
+     }
+ 
++    fn global_build_fetch(&self) -> Result<bool> {
++        let Some(item) = self.doc.get("tack").and_then(|tack| tack.get("fetch_mode")) else {
++            return Ok(false);
++        };
++        match item.as_str() {
++            Some("eval") => Ok(false),
++            Some("build") => Ok(true),
++            _ => user_bail!("[tack] fetch_mode must be \"eval\" or \"build\""),
++        }
++    }
++
++    pub fn default_type(&self) -> Result<PinType> {
++        self.doc
++            .get("tack")
++            .and_then(|tack| tack.get("type"))
++            .map_or(Ok(PinType::Flake), |item| {
++                item.as_str()
++                    .context("[tack] type must be a string")?
++                    .parse::<PinType>()
++                    .context("[tack] type")
++            })
++    }
++
+     pub fn mark_recomposable(&mut self) {
+         self.ensure_table("tack")
+             .insert("recomposable", value(true));
+@@ -922,11 +1007,11 @@
+ }
+ 
+ impl AddInputOpts<'_> {
+-    fn to_table(&self, url: &str) -> Table {
++    fn to_table(&self, url: &str, default_type: PinType) -> Table {
+         let mut entry = Table::new();
+         entry.set_implicit(false);
+         entry.insert("url", value(url));
+-        if self.pin_type != PinType::Flake {
++        if self.pin_type != default_type {
+             entry.insert("type", value(self.pin_type.as_str()));
+         }
+         if let Some(unpak) = self.unpack {
+diff --git a/src/resolver.rs b/src/resolver.rs
+--- a/src/resolver.rs
++++ b/src/resolver.rs
+@@ -13,7 +13,11 @@
+ 
+ use crate::{
+     error::user_bail,
+-    lock::LockFile,
++    lock::{
++        LockFile,
++        LockedNode,
++    },
++    pins::PinType,
+     project::{
+         self,
+         Project,
+@@ -30,9 +34,11 @@
+ pub const VERSION: &str = "version";
+ pub const SIGNED: &str = "signedBy";
+ pub const GROUPS: &str = "groups";
++pub const ARCHIVE: &str = "archive";
++pub const DEFAULT_TYPE: &str = "defaultType";
+ 
+ /// lock features an older resolver can safely ignore
+-const OPTIONAL: [&str; 1] = [PATCHED_DIFF];
++const OPTIONAL: [&str; 2] = [PATCHED_DIFF, ARCHIVE];
+ 
+ fn declared(resolver: &str) -> Vec<&str> {
+     resolver
+@@ -68,6 +74,10 @@
+                 (lock.tag(name).is_some(), TAG),
+                 (lock.version(name).is_some(), VERSION),
+                 (lock.signed_by(name).is_some(), SIGNED),
++                (
++                    lock.get(name).and_then(LockedNode::archive).is_some(),
++                    ARCHIVE,
++                ),
+             ]
+             .into_iter()
+             .filter(|&(used, _)| used)
+@@ -74,6 +84,7 @@
+             .map(move |(_, feature)| (name.as_str(), feature))
+         })
+         .chain(grouped)
++        .chain((pins.default_type()? != PinType::Flake).then_some(("[tack] type", DEFAULT_TYPE)))
+         .collect::<Vec<_>>();
+     ensure(project, &needs)
+ }
