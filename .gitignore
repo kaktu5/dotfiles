@@ -29,6 +29,7 @@
 !/secrets/**/*.enc
 
 !/.cade
+!/.clippy.toml
 !/.gitattributes
 !/.mdformat.toml
 !/.qmlformat.ini

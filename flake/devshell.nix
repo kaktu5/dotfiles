@@ -35,7 +35,7 @@ in
 
       # rust
       inherit rustfmt;
-      inherit (pkgs) cargo clippy rust-analyzer;
+      inherit (pkgs) cargo clippy rust-analyzer rustc;
 
       # toml
       inherit (pkgs) taplo;
