@@ -1,15 +1,14 @@
 {
   config,
-  inputs',
   lib,
+  pkgs,
   ...
 }: let
   inherit (config.kkts.meta) userName;
   inherit (config.kkts.profiles) gaming;
-  inherit (config.nixpkgs.config) allowUnfree;
-  inherit (inputs'.kaktu5pkgs.packages) osu-lazer-bin;
   inherit (lib.lists) elem singleton;
   inherit (lib.modules) mkIf;
+  inherit (pkgs.ktu5) osu-lazer-bin;
 in
   mkIf (gaming.enable && elem "osu" gaming.games) {
     persistence.users.${userName} = {
@@ -21,12 +20,7 @@ in
       };
     };
 
-    users.users.${userName}.packages =
-      singleton
-      <| (osu-lazer-bin.overrideAttrs {
-        # hack to allow an unfree package from a flake
-        meta.unfree = !allowUnfree;
-      }).override {
-        releaseStream = "tachyon";
-      };
+    users.users.${userName}.packages = [
+      (osu-lazer-bin.override {releaseStream = "tachyon";})
+    ];
   }
