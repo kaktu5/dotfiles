@@ -11,6 +11,7 @@ rust-overlay = []
 nixpkgs = {patches = [
   "github:nixos/nixpkgs/pull/538226", # millennium
   "github:nixos/nixpkgs/pull/562711", # rhythia
+  "github:nixos/nixpkgs/pull/576407", # fix handbrake
 ], url = "channel:nixos-unstable"}
 
 kaktu5pkgs.url = "rad:z3445hwtrioJCAisuAosBXvcTqVR2"
@@ -26,10 +27,11 @@ hjem.url = "github:feel-co/hjem"
 lanzaboote = {omit_inputs = [
   "pre-commit",
 ], url = "github:nix-community/lanzaboote"}
-microvm = {omit_inputs = ["spectrum"], url = "github:microvm-nix/microvm.nix"}
+microvm-nix = {omit_inputs = ["spectrum"], url = "github:microvm-nix/microvm.nix"}
 nix-secrets.url = "github:unnamed-systems/nix-secrets"
 nixos-core = {patches = [
   "patches/nixos-core/dont-create-home-dirs.patch",
+  "patches/nixos-core/fixes.patch",
 ], url = "github:manic-systems/nixos-core"}
 tack.url = "github:manic-systems/tack"
 xdg-utils-nu.url = "github:manic-systems/xdg-utils.nu"

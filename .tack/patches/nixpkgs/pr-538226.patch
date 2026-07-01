@@ -1,9 +1,9 @@
 diff --git a/pkgs/by-name/mi/millennium/package.nix b/pkgs/by-name/mi/millennium/package.nix
 new file mode 100644
-index 0000000000000..55c8a2c537715
+index 0000000000000..7d4c3c0086ec2
 --- /dev/null
 +++ b/pkgs/by-name/mi/millennium/package.nix
-@@ -0,0 +1,178 @@
+@@ -0,0 +1,186 @@
 +{
 +  cmake,
 +  ninja,
@@ -27,7 +27,7 @@ index 0000000000000..55c8a2c537715
 +}:
 +pkgsi686Linux.stdenv.mkDerivation (finalAttrs: {
 +  pname = "millennium";
-+  version = "3.4.1";
++  version = "3.6.1";
 +
 +  __structuredAttrs = true;
 +  strictDeps = true;
@@ -36,7 +36,7 @@ index 0000000000000..55c8a2c537715
 +    owner = "SteamClientHomebrew";
 +    repo = "Millennium";
 +    tag = "v${finalAttrs.version}";
-+    hash = "sha256-zgr4cdJfye4qunpD3ClNnZ9D1WPGQAXV0CnYwEbB52s=";
++    hash = "sha256-sNpoyJ+IjrTiDGfX2QiKVg4jkrJR7n9PdBeOYJSS4n8=";
 +  };
 +
 +  nativeBuildInputs = [
@@ -64,22 +64,28 @@ index 0000000000000..55c8a2c537715
 +    ];
 +
 +    buildPhase = ''
-+      bun install --frozen-lockfile
++      bun install  --frozen-lockfile \
++        --ignore-scripts \
++        --no-progress \
++        --os="*" \
++        --cpu="*"
++
++      (cd ttc && bun node_modules/.bin/rollup -c)
 +    '';
 +
 +    installPhase = ''
 +      mkdir -p $out
-+      for dir in "./." "ttc"  "sdk" "sdk/packages/client" "sdk/packages/browser" "sdk/packages/loader" "frontend"; do
-+        if [ -d "$dir" ]; then
++      for dir in "./." "ttc"  "sdk" "frontend"; do
 +          mkdir -p "$out/src/typescript/$dir"
 +          cp -r "$dir/node_modules" "$out/src/typescript/$dir/node_modules"
-+        fi
 +      done
++
++      cp -r "ttc/dist" "$out/src/typescript/ttc/dist"
 +    '';
 +
 +    outputHashMode = "recursive";
 +    outputHashAlgo = "sha256";
-+    outputHash = "sha256-teBEq/y0oyrDEx8GZbTeE14WIJnawylORnd/TeK8mao=";
++    outputHash = "sha256-c3aw+Nznk5ciamIQ+7l7MwB0e7pezzZTtMP97z5U1e4=";
 +  };
 +
 +  millennium-64-bit-libs = stdenv.mkDerivation (finalAttrs64: {
@@ -139,13 +145,15 @@ index 0000000000000..55c8a2c537715
 +      --replace-fail "/usr/lib/millennium/libmillennium_x86.so" "${placeholder "out"}/lib/libmillennium_x86.so"
 +    substituteInPlace src/bootstrap/linux/libmillennium_bootstrap.c \
 +      --replace-fail "/usr/lib/millennium/libmillennium_x86.so" "${placeholder "out"}/lib/libmillennium_x86.so"
++
 +    cp -r ${finalAttrs.typescript-deps}/src .
++    chmod -R u+w src/typescript/ttc/dist
++
 +    patchShebangs src/typescript/node_modules
-+    for dir in "ttc/" "sdk/" "sdk/packages/client/" "sdk/packages/browser/" "sdk/packages/loader/" "frontend/"; do
-+      if [ -d "src/typescript/$dir" ]; then
++    for dir in "ttc/" "sdk/" "frontend/"; do
 +        (cd "src/typescript/$dir" && bun run build)
-+      fi
 +    done
++
 +  '';
 +
 +  installPhase = ''
@@ -184,10 +192,10 @@ index 0000000000000..55c8a2c537715
 +})
 diff --git a/pkgs/by-name/st/steamWithMillennium/package.nix b/pkgs/by-name/st/steamWithMillennium/package.nix
 new file mode 100644
-index 0000000000000..a7466758adca7
+index 0000000000000..10191c1b3a01a
 --- /dev/null
 +++ b/pkgs/by-name/st/steamWithMillennium/package.nix
-@@ -0,0 +1,43 @@
+@@ -0,0 +1,44 @@
 +{
 +  lib,
 +  millennium,
@@ -219,6 +227,7 @@ index 0000000000000..a7466758adca7
 +    (prevArgs.extraProfile or "")
 +    + extraProfile
 +    + ''
++      mkdir -p "$HOME"/.local/share/Steam/ubuntu12_{32,64}
 +      ln -sf ${millennium}/lib/libmillennium_bootstrap_x86.so "$HOME/.local/share/Steam/ubuntu12_32/libXtst.so.6"
 +      ln -sf ${millennium}/lib/libmillennium_bootstrap_hhx64.so "$HOME/.local/share/Steam/ubuntu12_64/libXtst.so.6"
 +    '';

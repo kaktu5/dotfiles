@@ -3,11 +3,11 @@
   inputs,
   ...
 }: let
-  inherit (inputs) microvm;
+  inherit (inputs) microvm-nix;
 
   cfg = config.microvm;
 in {
-  imports = [microvm.nixosModules.host];
+  imports = [microvm-nix.nixosModules.host];
 
   microvm.host = {
     enable = cfg.vms != {};

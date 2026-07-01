@@ -21,6 +21,9 @@ in {
       withStage1 = false;
     };
 
+    # TODO:
+    # components.bootloaderInstaller.enable = true;
+
     persistence.enable = true;
   };
 

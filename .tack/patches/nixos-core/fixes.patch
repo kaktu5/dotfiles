@@ -1,0 +1,101 @@
+From 38bd74fa6a830f2363e6cd08a7c3594dde38c652 Mon Sep 17 00:00:00 2001
+From: kaktu5 <108426150+kaktu5@users.noreply.github.com>
+Date: Mon, 26 Oct 2026 21:25:23 +0100
+Subject: [PATCH] fixes
+
+---
+ nix/modules/nixos.nix        | 22 +++++++++++-----------
+ nix/vm-tests/persistence.nix |  2 --
+ 2 files changed, 11 insertions(+), 13 deletions(-)
+
+diff --git a/nix/modules/nixos.nix b/nix/modules/nixos.nix
+index 92afe97..6fa9ba0 100644
+--- a/nix/modules/nixos.nix
++++ b/nix/modules/nixos.nix
+@@ -323,8 +323,8 @@ in {
+       extraUtilsCommand.enable =
+         mkEnableOption ""
+         // {
+-          default = !config.boot.initrd.systemd.enable;
+-          defaultText = literalExpression "!config.boot.initrd.systemd.enable";
++          default = false;
++          defaultText = literalExpression "false";
+           description = "Whether to place nixos-core in extraUtils for the stage-1 wrapper";
+         };
+ 
+@@ -332,8 +332,8 @@ in {
+         enable =
+           mkEnableOption ""
+           // {
+-            default = !config.boot.initrd.systemd.enable;
+-            defaultText = literalExpression "!config.boot.initrd.systemd.enable";
++            default = false;
++            defaultText = literalExpression "false";
+             description = ''
+               Whether to create {option}`system.build.bootStage1` wrapper with `nixos-core` available.
+ 
+@@ -400,8 +400,8 @@ in {
+         enable =
+           mkEnableOption ""
+           // {
+-            default = !config.boot.initrd.systemd.enable;
+-            defaultText = literalExpression "!config.boot.initrd.systemd.enable";
++            default = false;
++            defaultText = literalExpression "false";
+             description = ''
+               Whether to override {option}`system.build.initialRamdisk` with
+               nixos-core's initrd, which embeds the stage-1 wrapper as {file}`/init`.
+@@ -425,8 +425,8 @@ in {
+             description = "Whether to replace legacy bootloader installer with nixos-core";
+           };
+ 
+-        package = mkOption {
+-          type = package;
++        script = mkOption {
++          type = lines;
+           default = getExe' cfg.package "init-script-builder";
+           defaultText = literalExpression "$${getExe' cfg.package \"init-script-builder\"}";
+           description = "The bootloader installer package to use";
+@@ -478,8 +478,8 @@ in {
+         enable =
+           mkEnableOption ""
+           // {
+-            default = config.boot.initrd.systemd.enable;
+-            defaultText = literalExpression "config.boot.initrd.systemd.enable";
++            default = true;
++            defaultText = literalExpression "true";
+             description = ''
+               Whether to wire nixos-init-compatible setup into stage2 for the
+               systemd-initrd path. When enabled, stage2 receives flags to set up
+@@ -516,7 +516,7 @@ in {
+         bootStage2 = mkIf cfg.components.bootStage2.enable (mkForce cfg.components.bootStage2.package);
+ 
+         # Bootloader Installer
+-        installBootLoader = mkIf cfg.components.bootloaderInstaller.enable (mkForce cfg.components.bootloaderInstaller.package);
++        installBootLoader = mkIf cfg.components.bootloaderInstaller.enable (mkForce cfg.components.bootloaderInstaller.script);
+ 
+         # /etc Activation
+         etcActivationCommands = mkIf cfg.components.etcActivation.enable (mkForce cfg.components.etcActivation.script);
+diff --git a/nix/vm-tests/persistence.nix b/nix/vm-tests/persistence.nix
+index c70a85d..99e1c10 100644
+--- a/nix/vm-tests/persistence.nix
++++ b/nix/vm-tests/persistence.nix
+@@ -180,7 +180,6 @@ in
+       # We could even consider simply not supporting tmpfs tbh?
+       btrfs = {
+         imports = [common];
+-        boot.initrd.systemd.enable = true;
+         networking.hostId = "b7f50001";
+         virtualisation.fileSystems = {
+           "/persist" = {
+@@ -254,7 +253,6 @@ in
+ 
+       systemd = {
+         imports = [common];
+-        boot.initrd.systemd.enable = true;
+         networking.hostId = "cafef00d";
+         virtualisation.fileSystems = {
+           "/persist".options = ["x-systemd.makefs"];
+-- 
+2.55.0
+
