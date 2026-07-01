@@ -20,7 +20,7 @@ in {
 
     quantum = mkOption {
       type = positive;
-      default = 256;
+      default = 128;
       description = "Minimum quantum to set.";
     };
 
