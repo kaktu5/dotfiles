@@ -7,10 +7,10 @@
   inherit (pkgs) kicad;
 in {
   persistence.users.${userName}.directories = [
+    ".config/kicad"
     ".local/cache/kicad"
     ".local/data/kicad"
-    ".config/kicad"
   ];
-  
+
   users.users.${userName}.packages = [kicad];
 }
