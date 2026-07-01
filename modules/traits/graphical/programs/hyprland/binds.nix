@@ -86,9 +86,15 @@ in {
         "SUPER + S" = dsp "workspace.toggle_special" "scratchpad";
       };
 
-    workspaces."special:scratchpad" = {
-      on_created_empty = kitty';
-      gaps_out = cfg.general.gaps_out * 12;
-    };
+    workspaces."special:scratchpad".gaps_out = cfg.general.gaps_out * 12;
+    events."workspace.created" = ''
+      function(w)
+        if not w.is_empty then return end
+
+        if w.name == "special:scratchpad" then
+          hl.dispatch(${dsp "exec_raw" kitty'})
+        end
+      end
+    '';
   };
 }
