@@ -10,7 +10,7 @@
   inherit (inputs.aagl-gtk-on-nix.packages.${system}) sleepy-launcher;
   inherit (lib.modules) mkIf;
 
-  cfg = config.kkts.profiles.gaming.steam;
+  cfg = config.kkts.profiles.gaming.zenless-zone-zero;
 in
   mkIf cfg.enable {
     preservation.preserveAt."/persist".users.${userName} = {
