@@ -1,6 +1,7 @@
 {
   "$declared": {
     "aagl-gtk-on-nix": "github:ezkea/aagl-gtk-on-nix",
+    "affinity-nix": "github:mrshmllow/affinity-nix",
     "cade": "github:manic-systems/cade?rev=3211f782a53f94842bbb8782de03a2c5d85c793d",
     "dnscrypt-settings": "github:quad9dns/dnscrypt-settings",
     "fenix": "github:nix-community/fenix",
@@ -28,6 +29,14 @@
     "rev": "fd3ebb4300888301dedfcd3bebaa6e5820701ea8",
     "narHash": "sha256-xbYK7Qw0/MUuzbn7ViKmln+cXsunhJjkC4XP2dpHJOA=",
     "lastModified": 1793811875
+  },
+  "affinity-nix": {
+    "type": "github",
+    "owner": "mrshmllow",
+    "repo": "affinity-nix",
+    "rev": "0013d501101e91f9ba16b198d48b2cbeec6f5d80",
+    "narHash": "sha256-X2bD4itaupSjjXf7gGCGyftRCGYtSfkXx3lI5kX14bs=",
+    "lastModified": 1793921726
   },
   "cade": {
     "type": "github",
@@ -201,12 +210,12 @@
     "type": "github",
     "owner": "sjhgvr",
     "repo": "oisd",
-    "rev": "395f2eed3a9e9553fa6564c10eea57496ebf4dfe",
-    "narHash": "sha256-rpac1AmJWQATZbl/Om+4/6CgKlwrgoEJdry+HOpMSPI=",
-    "lastModified": 1794042504,
+    "rev": "a085d9b2d19100005e07acac7fcc0a58c280e712",
+    "narHash": "sha256-+spHo/QX50C1rum9xlCT4NBgk9QIVko+KbvaK4hxpxw=",
+    "lastModified": 1794048139,
     "archive": {
-      "hash": "sha256-gwRaQRemm8VyqGGIO8sm7hAmJKtauilpeGgnrjFsF7s=",
-      "outHash": "sha256-h3AYTVIEExh5qZgQ4izscjpWc0PbrtdBJ64D9KKNphw="
+      "hash": "sha256-da8FmMbbWe1AL/kycrkJqw4Is5qYnPFXqRh/idcSPDc=",
+      "outHash": "sha256-m6iB+L2h2ElyTW2QimVZP+vZYwXTgs+FLw7oVOVWKlI="
     }
   },
   "rust-overlay": {
