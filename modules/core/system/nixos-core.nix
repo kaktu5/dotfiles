@@ -13,15 +13,3 @@ in {
     };
   };
 }
-/*
-system = {
-  activationScripts = {
-    binsh = mkForce "";
-    usrbinenv = mkForce "";
-  };
-  nixos.core = {
-    components.bootStage2.setupFhs = false;
-  };
-};
-*/
-
